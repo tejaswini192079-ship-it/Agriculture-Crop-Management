@@ -135,7 +135,7 @@
                 </div>
 
                 <div>
-                    <h3>80%</h3>
+                    <h3 id="dashboardProgress">80%</h3>
                     <p>Harvest Readiness</p>
                 </div>
 
@@ -609,7 +609,7 @@
             </section>
 
 
-            <!-- ================= NEW FIELDS WILL APPEAR HERE ================= -->
+            <!-- ================= NEW FIELDS ================= -->
 
             <div id="newFields"></div>
 
@@ -936,12 +936,18 @@
 
                 <p>
                     Harvest Hope Field is currently at
-                    <strong>86%</strong> maturity.
+                    <strong id="harvestPercentage">
+                        86%
+                    </strong>
+                    maturity.
                 </p>
+
+
+                <!-- HARVEST PROGRESS -->
 
                 <div class="harvest-progress">
 
-                    <div>
+                    <div class="progress-text">
 
                         <span>
                             Harvest readiness
@@ -953,6 +959,7 @@
 
                     </div>
 
+
                     <div class="progress-bar large">
 
                         <div
@@ -961,6 +968,11 @@
                         </div>
 
                     </div>
+
+
+                    <p id="progress-text">
+                        Harvest Readiness: 86%
+                    </p>
 
                 </div>
 
@@ -1000,14 +1012,16 @@
                     Enter the current harvest readiness percentage.
                 </p>
 
-                <label for="progress">
+
+                <label for="progressInput">
                     Harvest Readiness (%):
                 </label>
 
+
                 <input
                     type="number"
-                    id="progress"
-                    placeholder="Example: 75"
+                    id="progressInput"
+                    placeholder="Enter %"
                     min="0"
                     max="100">
 
@@ -1024,7 +1038,9 @@
                 </button>
 
 
-                <p id="progress-text"></p>
+                <p id="progress-text">
+                    Harvest Readiness: 86%
+                </p>
 
             </div>
 
