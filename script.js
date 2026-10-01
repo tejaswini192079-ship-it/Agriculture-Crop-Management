@@ -1,0 +1,1 @@
+console.log("Agriculture Crop Management Platform loaded successfully!");
