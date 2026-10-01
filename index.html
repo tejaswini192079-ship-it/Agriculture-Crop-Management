@@ -4,16 +4,512 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Agriculture Crop Management Platform</title>
+    <title>AgriCare | Agriculture Crop Management</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <h1>Agriculture Crop Management Platform</h1>
+    <!-- Navigation Bar -->
+    <header class="navbar">
 
-    <p>Welcome to our farm management platform.</p>
+        <div class="logo">
+            🌾 <span>AgriCare</span>
+        </div>
+
+        <nav>
+            <a href="#dashboard">Dashboard</a>
+            <a href="#fields">My Fields</a>
+            <a href="#activities">Activities</a>
+            <a href="#harvest">Harvest</a>
+        </nav>
+
+        <button class="profile-btn">
+            👨‍🌾 Farmer
+        </button>
+
+    </header>
+
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Welcome Section -->
+        <section id="dashboard" class="hero">
+
+            <div class="hero-content">
+
+                <p class="small-heading">
+                    YOUR FARM • YOUR JOURNEY • YOUR HARVEST
+                </p>
+
+                <h1>
+                    Good morning, Farmer! 👋
+                </h1>
+
+                <p>
+                    Manage your fields, crops and daily farm activities
+                    from one simple place.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <button class="primary-btn" onclick="showMessage()">
+                        🌱 View Today's Tasks
+                    </button>
+
+                    <button class="secondary-btn" onclick="addField()">
+                        + Add New Field
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="hero-icon">
+                🌾
+            </div>
+
+        </section>
+
+
+        <!-- Overview Cards -->
+        <section class="overview">
+
+            <div class="stat-card">
+                <div class="stat-icon">🌾</div>
+                <div>
+                    <h3>3</h3>
+                    <p>Active Fields</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">💧</div>
+                <div>
+                    <h3>2</h3>
+                    <p>Today's Irrigation</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🐛</div>
+                <div>
+                    <h3>1</h3>
+                    <p>Pest Observation</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🚜</div>
+                <div>
+                    <h3>80%</h3>
+                    <p>Harvest Readiness</p>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- Fields Section -->
+        <section id="fields" class="section">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="section-label">FIELD MANAGEMENT</p>
+
+                    <h2>My Fields</h2>
+
+                    <p>
+                        Keep track of every crop from planting to harvest.
+                    </p>
+                </div>
+
+                <button class="outline-btn" onclick="addField()">
+                    + Add Field
+                </button>
+
+            </div>
+
+
+            <div class="field-grid">
+
+                <!-- Field 1 -->
+                <article class="field-card">
+
+                    <div class="field-top">
+                        <span class="crop-emoji">🌾</span>
+
+                        <span class="status healthy">
+                            ● Healthy
+                        </span>
+                    </div>
+
+                    <h3>Green Valley Field</h3>
+
+                    <p class="field-location">
+                        📍 Field A • 2.5 Acres
+                    </p>
+
+                    <div class="crop-info">
+
+                        <div>
+                            <span>Crop</span>
+                            <strong>Rice</strong>
+                        </div>
+
+                        <div>
+                            <span>Stage</span>
+                            <strong>🌿 Vegetative</strong>
+                        </div>
+
+                    </div>
+
+                    <div class="progress-area">
+
+                        <div class="progress-text">
+                            <span>Crop Progress</span>
+                            <strong>58%</strong>
+                        </div>
+
+                        <div class="progress-bar">
+                            <div style="width:58%"></div>
+                        </div>
+
+                    </div>
+
+                    <button class="card-btn" onclick="viewField('Green Valley Field')">
+                        View Field →
+                    </button>
+
+                </article>
+
+
+                <!-- Field 2 -->
+                <article class="field-card">
+
+                    <div class="field-top">
+                        <span class="crop-emoji">🍅</span>
+
+                        <span class="status attention">
+                            ● Needs Attention
+                        </span>
+                    </div>
+
+                    <h3>Sunrise Field</h3>
+
+                    <p class="field-location">
+                        📍 Field B • 1.5 Acres
+                    </p>
+
+                    <div class="crop-info">
+
+                        <div>
+                            <span>Crop</span>
+                            <strong>Tomato</strong>
+                        </div>
+
+                        <div>
+                            <span>Stage</span>
+                            <strong>🌼 Flowering</strong>
+                        </div>
+
+                    </div>
+
+                    <div class="progress-area">
+
+                        <div class="progress-text">
+                            <span>Crop Progress</span>
+                            <strong>72%</strong>
+                        </div>
+
+                        <div class="progress-bar">
+                            <div style="width:72%"></div>
+                        </div>
+
+                    </div>
+
+                    <button class="card-btn" onclick="viewField('Sunrise Field')">
+                        View Field →
+                    </button>
+
+                </article>
+
+
+                <!-- Field 3 -->
+                <article class="field-card">
+
+                    <div class="field-top">
+                        <span class="crop-emoji">🌽</span>
+
+                        <span class="status healthy">
+                            ● Healthy
+                        </span>
+                    </div>
+
+                    <h3>Harvest Hope Field</h3>
+
+                    <p class="field-location">
+                        📍 Field C • 3 Acres
+                    </p>
+
+                    <div class="crop-info">
+
+                        <div>
+                            <span>Crop</span>
+                            <strong>Maize</strong>
+                        </div>
+
+                        <div>
+                            <span>Stage</span>
+                            <strong>🌾 Maturity</strong>
+                        </div>
+
+                    </div>
+
+                    <div class="progress-area">
+
+                        <div class="progress-text">
+                            <span>Crop Progress</span>
+                            <strong>86%</strong>
+                        </div>
+
+                        <div class="progress-bar">
+                            <div style="width:86%"></div>
+                        </div>
+
+                    </div>
+
+                    <button class="card-btn" onclick="viewField('Harvest Hope Field')">
+                        View Field →
+                    </button>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- Activities -->
+        <section id="activities" class="section">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="section-label">DAILY FARM CARE</p>
+
+                    <h2>Today's Activities</h2>
+
+                    <p>
+                        Small actions today lead to a healthier harvest tomorrow.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="activity-grid">
+
+                <!-- Irrigation -->
+                <article class="activity-card">
+
+                    <div class="activity-icon irrigation">
+                        💧
+                    </div>
+
+                    <div>
+                        <span class="activity-type">IRRIGATION</span>
+
+                        <h3>Water Green Valley Field</h3>
+
+                        <p>
+                            Scheduled today • 1200 litres
+                        </p>
+                    </div>
+
+                    <button onclick="completeTask(this)">
+                        Mark Done
+                    </button>
+
+                </article>
+
+
+                <!-- Fertilizer -->
+                <article class="activity-card">
+
+                    <div class="activity-icon fertilizer">
+                        🧪
+                    </div>
+
+                    <div>
+                        <span class="activity-type">FERTILIZER</span>
+
+                        <h3>Apply NPK Fertilizer</h3>
+
+                        <p>
+                            Sunrise Field • Due tomorrow
+                        </p>
+                    </div>
+
+                    <button onclick="completeTask(this)">
+                        View
+                    </button>
+
+                </article>
+
+
+                <!-- Pest -->
+                <article class="activity-card">
+
+                    <div class="activity-icon pest">
+                        🐛
+                    </div>
+
+                    <div>
+                        <span class="activity-type">PEST OBSERVATION</span>
+
+                        <h3>Check Tomato Leaves</h3>
+
+                        <p>
+                            Medium attention • Sunrise Field
+                        </p>
+                    </div>
+
+                    <button onclick="completeTask(this)">
+                        Inspect
+                    </button>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- Crop Journey -->
+        <section class="journey section">
+
+            <div class="journey-content">
+
+                <p class="section-label">
+                    FROM SEED TO HARVEST
+                </p>
+
+                <h2>Every Crop Has a Journey 🌱</h2>
+
+                <p>
+                    Follow the cultivation stage of your crop and never miss
+                    an important farming activity.
+                </p>
+
+            </div>
+
+
+            <div class="timeline">
+
+                <div class="stage active">
+                    <span>🌱</span>
+                    <strong>Planting</strong>
+                </div>
+
+                <div class="line"></div>
+
+                <div class="stage active">
+                    <span>🌿</span>
+                    <strong>Vegetative</strong>
+                </div>
+
+                <div class="line"></div>
+
+                <div class="stage active">
+                    <span>🌼</span>
+                    <strong>Flowering</strong>
+                </div>
+
+                <div class="line"></div>
+
+                <div class="stage">
+                    <span>🌾</span>
+                    <strong>Maturity</strong>
+                </div>
+
+                <div class="line"></div>
+
+                <div class="stage">
+                    <span>🚜</span>
+                    <strong>Harvest</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Harvest Section -->
+        <section id="harvest" class="section harvest-section">
+
+            <div>
+
+                <p class="section-label">
+                    HARVEST TRACKER
+                </p>
+
+                <h2>Harvest is Getting Closer 🚜</h2>
+
+                <p>
+                    Harvest Hope Field is currently at
+                    <strong>86%</strong> maturity.
+                </p>
+
+                <div class="harvest-progress">
+
+                    <div>
+                        <span>Harvest readiness</span>
+                        <strong>86%</strong>
+                    </div>
+
+                    <div class="progress-bar large">
+                        <div style="width:86%"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="harvest-date">
+
+                <span>EXPECTED HARVEST</span>
+
+                <strong>18 October</strong>
+
+                <small>Maize • Field C</small>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <div>
+            <strong>🌾 AgriCare</strong>
+            <p>
+                Simple technology for smarter farm management.
+            </p>
+        </div>
+
+        <p>
+            CSE326 HTML Project • Agriculture Crop Management Platform
+        </p>
+
+    </footer>
+
 
     <script src="script.js"></script>
 
