@@ -169,6 +169,10 @@ document.getElementById("viewTasks").addEventListener("click", function() {
 document.getElementById("addField").addEventListener("click", function() {
     alert("🌱 New Field Added Successfully!");
 });
+document.getElementById("viewTasks").addEventListener("click", function() {
+    document.getElementById("tasks").style.display = "block";
+});
+
 
 
 
