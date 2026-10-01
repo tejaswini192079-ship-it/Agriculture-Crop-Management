@@ -148,4 +148,17 @@ function calculateYield() {
             " Please enter both values.";
     }
 }
+function updateProgress() {
+    let progress = document.getElementById("progress").value;
+
+    if (progress >= 0 && progress <= 100) {
+        document.getElementById("progress-fill").style.width = progress + "%";
+        document.getElementById("progress-text").innerText =
+            "🌱 Harvest Readiness: " + progress + "%";
+    } else {
+        document.getElementById("progress-text").innerText =
+            " Please enter a value between 0 and 100.";
+    }
+}
+
 
