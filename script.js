@@ -160,5 +160,15 @@ function updateProgress() {
             " Please enter a value between 0 and 100.";
     }
 }
+// Function for "View Today's Tasks"
+document.getElementById("viewTasks").addEventListener("click", function() {
+    alert("✅ Today's tasks: Irrigation, Fertilizer, Pest Observation");
+});
+
+// Function for "Add New Field"
+document.getElementById("addField").addEventListener("click", function() {
+    alert("🌱 New Field Added Successfully!");
+});
+
 
 
