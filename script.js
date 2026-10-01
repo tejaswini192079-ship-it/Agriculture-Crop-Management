@@ -135,3 +135,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+function calculateYield() {
+    let acres = document.getElementById("acres").value;
+    let yieldPerAcre = document.getElementById("yield").value;
+
+    if (acres && yieldPerAcre) {
+        let totalYield = acres * yieldPerAcre;
+        document.getElementById("result").innerText =
+            "🌾 Estimated Harvest: " + totalYield + " kg";
+    } else {
+        document.getElementById("result").innerText =
+            " Please enter both values.";
+    }
+}
+
