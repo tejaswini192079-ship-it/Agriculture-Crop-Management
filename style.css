@@ -399,3 +399,111 @@ footer p {
         flex-direction: column;
     }
 }
+/* =========================================
+   🌱 AGRICARE INTERACTIVE MESSAGE
+   ========================================= */
+
+.agri-message {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    z-index: 9999;
+
+    width: 350px;
+
+    background: rgba(255, 255, 255, 0.97);
+
+    border-radius: 18px;
+
+    padding: 22px;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.18);
+
+    border-left: 6px solid #2e8b57;
+
+    animation: slideIn 0.4s ease;
+}
+
+.agri-message-content h3 {
+    margin: 0 0 8px;
+
+    color: #237a45;
+
+    font-size: 20px;
+}
+
+.agri-message-content p {
+    margin: 0;
+
+    color: #555;
+
+    line-height: 1.6;
+}
+
+.close-message {
+    position: absolute;
+
+    top: 8px;
+    right: 12px;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    color: #777;
+}
+
+.close-message:hover {
+    color: #d33;
+}
+
+@keyframes slideIn {
+
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
+
+/* Button interaction */
+
+button {
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+button:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(46, 139, 87, 0.20);
+
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+
+/* Navigation active effect */
+
+nav a.active {
+    color: #2e8b57;
+
+    font-weight: 700;
+
+}
