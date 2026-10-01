@@ -526,6 +526,22 @@
 
   <p id="result"></p>
 </section>
+    <section id="harvest">
+  <h2>🚜 Harvest Progress Tracker</h2>
+  <p>Track how close your crop is to harvest.</p>
+
+  <label for="progress">Enter Harvest Readiness (%):</label>
+  <input type="number" id="progress" placeholder="e.g. 75">
+
+  <button onclick="updateProgress()">Update Progress</button>
+
+  <div class="progress-bar">
+    <div id="progress-fill"></div>
+  </div>
+
+  <p id="progress-text"></p>
+</section>
+
 
 
 </body>
