@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     console.log("🌱 AgriCare Platform loaded successfully!");
 
-
     // ==================================================
     // 🌱 WELCOME MESSAGE
     // ==================================================
@@ -32,25 +31,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let greeting;
 
-
     if (hour < 12) {
 
         greeting = "🌅 Good morning, Farmer!";
 
-    }
-
-    else if (hour < 17) {
+    } else if (hour < 17) {
 
         greeting = "☀️ Good afternoon, Farmer!";
 
-    }
-
-    else {
+    } else {
 
         greeting = "🌙 Good evening, Farmer!";
 
     }
-
 
     console.log(greeting);
 
@@ -59,20 +52,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // 🧭 NAVIGATION
     // ==================================================
 
-    const navLinks =
-        document.querySelectorAll("nav a");
-
+    const navLinks = document.querySelectorAll("nav a");
 
     navLinks.forEach(link => {
 
         link.addEventListener("click", function () {
 
             navLinks.forEach(item => {
-
                 item.classList.remove("active");
-
             });
-
 
             this.classList.add("active");
 
@@ -87,7 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const profileButton =
         document.querySelector(".profile-btn");
-
 
     if (profileButton) {
 
@@ -105,7 +92,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-
 // ======================================================
 // 🌟 MESSAGE / NOTIFICATION
 // ======================================================
@@ -115,21 +101,15 @@ function showMessage(title, message) {
     const oldMessage =
         document.querySelector(".agri-message");
 
-
     if (oldMessage) {
-
         oldMessage.remove();
-
     }
-
 
     const box =
         document.createElement("div");
 
-
     box.className =
         "agri-message";
-
 
     box.innerHTML = `
 
@@ -151,33 +131,24 @@ function showMessage(title, message) {
 
     `;
 
-
     document.body.appendChild(box);
-
 
     const closeButton =
         box.querySelector(".close-message");
 
-
     closeButton.addEventListener("click", () => {
-
         box.remove();
-
     });
-
 
     setTimeout(() => {
 
         if (box.parentElement) {
-
             box.remove();
-
         }
 
     }, 5000);
 
 }
-
 
 
 // ======================================================
@@ -189,37 +160,24 @@ function showTasks() {
     const tasksSection =
         document.getElementById("tasks");
 
-
     if (!tasksSection) {
-
         return;
-
     }
-
 
     tasksSection.style.display =
         "block";
 
-
     tasksSection.scrollIntoView({
-
         behavior: "smooth",
-
         block: "start"
-
     });
 
-
     showMessage(
-
         "🌾 Today's Farm Tasks",
-
         "You have irrigation, fertilizer and pest observation activities to complete today."
-
     );
 
 }
-
 
 
 // ======================================================
@@ -231,43 +189,30 @@ function showAddFieldForm() {
     const form =
         document.getElementById("addFieldForm");
 
-
     if (!form) {
-
         return;
-
     }
-
 
     form.style.display =
         "block";
 
-
     form.scrollIntoView({
-
         behavior: "smooth",
-
         block: "start"
-
     });
-
 
     const cropInput =
         document.getElementById("cropName");
 
-
     if (cropInput) {
 
         setTimeout(() => {
-
             cropInput.focus();
-
         }, 500);
 
     }
 
 }
-
 
 
 // ======================================================
@@ -276,85 +221,131 @@ function showAddFieldForm() {
 
 function saveField() {
 
+    // ==================================================
+    // GET INPUTS
+    // ==================================================
+
     const cropInput =
         document.getElementById("cropName");
-
 
     const acresInput =
         document.getElementById("cropAcres");
 
+    const progressInput =
+        document.getElementById("cropProgress");
 
-    if (!cropInput || !acresInput) {
 
+    // ==================================================
+    // CHECK INPUTS
+    // ==================================================
+
+    if (
+        !cropInput ||
+        !acresInput ||
+        !progressInput
+    ) {
         return;
-
     }
 
+
+    // ==================================================
+    // GET VALUES
+    // ==================================================
 
     const crop =
         cropInput.value.trim();
 
-
     const acres =
         acresInput.value.trim();
 
+    const progress =
+        parseInt(progressInput.value);
+
 
     // ==================================================
-    // VALIDATION
+    // VALIDATION - CROP
     // ==================================================
 
-    if (crop === "" || acres === "") {
+    if (crop === "") {
 
         showMessage(
-
-            "⚠️ Missing Information",
-
-            "Please enter both the crop name and the number of acres."
-
+            "⚠️ Missing Crop Name",
+            "Please enter the crop name."
         );
 
-        return;
+        cropInput.focus();
 
+        return;
     }
 
 
-    if (Number(acres) <= 0) {
+    // ==================================================
+    // VALIDATION - ACRES
+    // ==================================================
+
+    if (
+        acres === "" ||
+        Number(acres) <= 0
+    ) {
 
         showMessage(
-
             "⚠️ Invalid Acres",
-
             "Please enter a valid number of acres greater than 0."
-
         );
 
-        return;
+        acresInput.focus();
 
+        return;
     }
 
+
+    // ==================================================
+    // VALIDATION - PROGRESS
+    // ==================================================
+
+    if (
+        isNaN(progress) ||
+        progress < 0 ||
+        progress > 100
+    ) {
+
+        showMessage(
+            "⚠️ Invalid Crop Progress",
+            "Please enter crop progress between 0 and 100%."
+        );
+
+        progressInput.focus();
+
+        return;
+    }
+
+
+    // ==================================================
+    // GET NEW FIELDS CONTAINER
+    // ==================================================
 
     const fieldsContainer =
         document.getElementById("newFields");
 
-
     if (!fieldsContainer) {
-
         return;
-
     }
 
 
     // ==================================================
-    // CREATE NEW FIELD
+    // CREATE NEW FIELD CARD
     // ==================================================
 
     const newField =
         document.createElement("article");
 
-
     newField.className =
         "field-card";
 
+
+    // ==================================================
+    // FIELD CARD HTML
+    // ==================================================
 
     newField.innerHTML = `
 
@@ -411,6 +402,8 @@ function saveField() {
         </div>
 
 
+        <!-- CROP PROGRESS -->
+
         <div class="progress-area">
 
             <div class="progress-text">
@@ -420,7 +413,7 @@ function saveField() {
                 </span>
 
                 <strong>
-                    0%
+                    ${progress}%
                 </strong>
 
             </div>
@@ -428,20 +421,24 @@ function saveField() {
 
             <div class="progress-bar">
 
-                <div style="width:0%">
+                <div
+                    style="width:${progress}%">
                 </div>
 
             </div>
 
 
             <p>
-                Crop Progress: 0%
+                🌱 Crop Progress: ${progress}%
             </p>
 
         </div>
 
 
-        <button class="card-btn new-field-view">
+        <!-- VIEW FIELD BUTTON -->
+
+        <button
+            class="card-btn new-field-view">
 
             View Field →
 
@@ -450,32 +447,34 @@ function saveField() {
     `;
 
 
+    // ==================================================
+    // ADD FIELD TO PAGE
+    // ==================================================
+
     fieldsContainer.appendChild(newField);
 
 
     // ==================================================
-    // VIEW NEW FIELD
+    // VIEW FIELD BUTTON
     // ==================================================
 
     const viewButton =
         newField.querySelector(".new-field-view");
 
+    if (viewButton) {
 
-    viewButton.addEventListener("click", () => {
+        viewButton.addEventListener("click", () => {
 
-        viewField(
+            viewField(
+                `${crop} Field`,
+                crop,
+                "Planting",
+                `${progress}%`
+            );
 
-            `${crop} Field`,
+        });
 
-            crop,
-
-            "Planting",
-
-            "0%"
-
-        );
-
-    });
+    }
 
 
     // ==================================================
@@ -485,19 +484,14 @@ function saveField() {
     const fieldCount =
         document.getElementById("fieldCount");
 
-
     if (fieldCount) {
 
         let currentCount =
             parseInt(fieldCount.innerText);
 
-
         if (isNaN(currentCount)) {
-
             currentCount = 0;
-
         }
-
 
         fieldCount.innerText =
             currentCount + 1;
@@ -513,10 +507,15 @@ function saveField() {
 
     acresInput.value = "";
 
+    progressInput.value = "";
+
 
     // ==================================================
     // HIDE FORM
     // ==================================================
+
+    const form =
+        document.getElementById("addFieldForm");
 
     if (form) {
 
@@ -531,24 +530,21 @@ function saveField() {
     // ==================================================
 
     newField.scrollIntoView({
-
         behavior: "smooth",
-
         block: "center"
-
     });
 
 
+    // ==================================================
+    // SUCCESS MESSAGE
+    // ==================================================
+
     showMessage(
-
         "🌱 Field Added Successfully!",
-
-        `${crop} field with ${acres} acres has been added to your farm.`
-
+        `${crop} field with ${acres} acres and ${progress}% crop progress has been added to your farm.`
     );
 
 }
-
 
 
 // ======================================================
@@ -556,39 +552,28 @@ function saveField() {
 // ======================================================
 
 function viewField(
-
     name,
-
     crop,
-
     stage,
-
     progress
-
 ) {
 
     const details =
         document.getElementById("fieldDetails");
 
-
     if (!details) {
-
         return;
-
     }
 
 
     document.getElementById("detailName").innerText =
         name;
 
-
     document.getElementById("detailCrop").innerText =
         crop;
 
-
     document.getElementById("detailStage").innerText =
         stage;
-
 
     document.getElementById("detailProgress").innerText =
         progress;
@@ -599,24 +584,17 @@ function viewField(
 
 
     details.scrollIntoView({
-
         behavior: "smooth",
-
         block: "center"
-
     });
 
 
     showMessage(
-
         "🌾 Field Details",
-
         `${name} is growing ${crop}. Current stage: ${stage}. Crop progress: ${progress}.`
-
     );
 
 }
-
 
 
 // ======================================================
@@ -626,49 +604,36 @@ function viewField(
 function completeTask(button) {
 
     if (!button) {
-
         return;
-
     }
 
-
     if (button.dataset.completed === "true") {
-
         return;
-
     }
 
 
     button.dataset.completed =
         "true";
 
-
     button.innerText =
         "✓ Completed";
-
 
     button.disabled =
         true;
 
-
     button.style.opacity =
         "0.7";
-
 
     button.style.cursor =
         "default";
 
 
     showMessage(
-
         "✅ Task Completed!",
-
         "Great work, Farmer! Your farm activity has been marked as completed."
-
     );
 
 }
-
 
 
 // ======================================================
@@ -680,47 +645,40 @@ function calculateYield() {
     const acresInput =
         document.getElementById("acres");
 
-
     const yieldInput =
         document.getElementById("yieldPerAcre");
-
 
     const result =
         document.getElementById("result");
 
 
-    if (!acresInput || !yieldInput || !result) {
-
+    if (
+        !acresInput ||
+        !yieldInput ||
+        !result
+    ) {
         return;
-
     }
 
 
     const acres =
         parseFloat(acresInput.value);
 
-
     const yieldPerAcre =
         parseFloat(yieldInput.value);
 
 
     if (
-
         isNaN(acres) ||
-
         isNaN(yieldPerAcre) ||
-
         acres <= 0 ||
-
         yieldPerAcre <= 0
-
     ) {
 
         result.innerText =
             "⚠️ Please enter valid values for both fields.";
 
         return;
-
     }
 
 
@@ -729,88 +687,17 @@ function calculateYield() {
 
 
     result.innerText =
-
         "🌾 Estimated Harvest: " +
-
         totalYield.toFixed(2) +
-
         " kg";
 
 
     showMessage(
-
         "🧮 Yield Calculated",
-
         `Your estimated harvest is ${totalYield.toFixed(2)} kg.`
-
     );
 
 }
-
-
-
-// ======================================================
-// 🌱 UPDATE CROP PROGRESS
-// ======================================================
-
-function updateCropProgress(value) {
-
-    const progressFill =
-        document.getElementById("progress-fill");
-
-
-    const progressText =
-        document.getElementById("progress-text");
-
-
-    if (!progressFill || !progressText) {
-
-        return;
-
-    }
-
-
-    // Convert value to number
-
-    value =
-        parseInt(value);
-
-
-    // Validation
-
-    if (
-
-        isNaN(value) ||
-
-        value < 0 ||
-
-        value > 100
-
-    ) {
-
-        progressText.innerText =
-            "⚠️ Crop Progress must be between 0 and 100%.";
-
-        return;
-
-    }
-
-
-    // Update progress bar
-
-    progressFill.style.width =
-        value + "%";
-
-
-    // Update progress text
-
-    progressText.innerText =
-        "🌱 Crop Progress: " +
-        value +
-        "%";
-
-}
-
 
 
 // ======================================================
@@ -822,26 +709,20 @@ function updateProgress() {
     const progressInput =
         document.getElementById("progressInput");
 
-
     const progressFill =
         document.getElementById("progress-fill");
-
 
     const progressText =
         document.getElementById("progress-text");
 
-
     const progressMessage =
         document.getElementById("progress-message");
-
 
     const currentProgress =
         document.getElementById("currentProgress");
 
-
     const harvestPercentage =
         document.getElementById("harvestPercentage");
-
 
     const dashboardProgress =
         document.getElementById("dashboardProgress");
@@ -851,10 +732,11 @@ function updateProgress() {
     // CHECK ELEMENTS
     // ==================================================
 
-    if (!progressInput || !progressFill) {
-
+    if (
+        !progressInput ||
+        !progressFill
+    ) {
         return;
-
     }
 
 
@@ -871,13 +753,9 @@ function updateProgress() {
     // ==================================================
 
     if (
-
         isNaN(progress) ||
-
         progress < 0 ||
-
         progress > 100
-
     ) {
 
         if (progressMessage) {
@@ -887,15 +765,7 @@ function updateProgress() {
 
         }
 
-        else if (progressText) {
-
-            progressText.innerText =
-                "⚠️ Please enter a value between 0 and 100.";
-
-        }
-
         return;
-
     }
 
 
@@ -950,11 +820,8 @@ function updateProgress() {
     if (progressMessage) {
 
         progressMessage.innerText =
-
             "🌱 Harvest Readiness: " +
-
             progress +
-
             "%";
 
     }
@@ -967,11 +834,8 @@ function updateProgress() {
     if (progressText) {
 
         progressText.innerText =
-
             "Harvest Readiness: " +
-
             progress +
-
             "%";
 
     }
@@ -984,35 +848,22 @@ function updateProgress() {
     if (progress === 100) {
 
         showMessage(
-
             "🎉 Harvest Ready!",
-
             "Excellent! Your crop has reached 100% harvest readiness."
-
         );
 
-    }
-
-    else if (progress >= 80) {
+    } else if (progress >= 80) {
 
         showMessage(
-
             "🚜 Harvest Almost Ready!",
-
             "Your crop is getting close to harvest. Start preparing your harvesting activities."
-
         );
 
-    }
-
-    else {
+    } else {
 
         showMessage(
-
             "📊 Progress Updated",
-
             `Harvest readiness is now ${progress}%. Keep monitoring your crop.`
-
         );
 
     }
