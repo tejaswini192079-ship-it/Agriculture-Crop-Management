@@ -172,6 +172,26 @@ document.getElementById("addField").addEventListener("click", function() {
 document.getElementById("viewTasks").addEventListener("click", function() {
     document.getElementById("tasks").style.display = "block";
 });
+document.getElementById("addField").addEventListener("click", function() {
+    let fieldsDiv = document.getElementById("fields");
+
+    // Create a new field card
+    let newField = document.createElement("div");
+    newField.className = "field-card";
+    newField.innerHTML = `
+        <h3>🌾 New Field</h3>
+        <p>Status: Healthy</p>
+        <p>Crop: Rice</p>
+        <p>Stage: Vegetative</p>
+        <p>Progress: 0%</p>
+    `;
+
+    fieldsDiv.appendChild(newField);
+});
+document.getElementById("viewField").addEventListener("click", function() {
+    document.getElementById("fieldDetails").style.display = "block";
+});
+
 
 
 
