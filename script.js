@@ -26,10 +26,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (hour < 12) {
         greeting = "🌅 Good morning, Farmer!";
-    } 
+    }
     else if (hour < 17) {
         greeting = "☀️ Good afternoon, Farmer!";
-    } 
+    }
     else {
         greeting = "🌙 Good evening, Farmer!";
     }
@@ -62,7 +62,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // 👨‍🌾 PROFILE BUTTON
     // ==========================================
 
-    const profileButton = document.querySelector(".profile-btn");
+    const profileButton =
+        document.querySelector(".profile-btn");
 
     if (profileButton) {
 
@@ -81,21 +82,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // ======================================================
-// 🌟 MESSAGE / NOTIFICATION FUNCTION
+// 🌟 MESSAGE / NOTIFICATION
 // ======================================================
 
 function showMessage(title, message) {
 
-    // Remove old message
-    const oldMessage = document.querySelector(".agri-message");
+    const oldMessage =
+        document.querySelector(".agri-message");
 
     if (oldMessage) {
         oldMessage.remove();
     }
 
 
-    // Create message box
-    const box = document.createElement("div");
+    const box =
+        document.createElement("div");
 
     box.className = "agri-message";
 
@@ -122,15 +123,14 @@ function showMessage(title, message) {
     document.body.appendChild(box);
 
 
-    // Close button
-    const closeButton = box.querySelector(".close-message");
+    const closeButton =
+        box.querySelector(".close-message");
 
     closeButton.addEventListener("click", () => {
         box.remove();
     });
 
 
-    // Automatically disappear after 5 seconds
     setTimeout(() => {
 
         if (box.parentElement) {
@@ -149,18 +149,17 @@ function showMessage(title, message) {
 
 function showTasks() {
 
-    const tasksSection = document.getElementById("tasks");
+    const tasksSection =
+        document.getElementById("tasks");
 
     if (!tasksSection) {
         return;
     }
 
 
-    // Show tasks section
     tasksSection.style.display = "block";
 
 
-    // Scroll to tasks
     tasksSection.scrollIntoView({
         behavior: "smooth",
         block: "start"
@@ -182,31 +181,32 @@ function showTasks() {
 
 function showAddFieldForm() {
 
-    const form = document.getElementById("addFieldForm");
+    const form =
+        document.getElementById("addFieldForm");
 
     if (!form) {
         return;
     }
 
 
-    // Show form
     form.style.display = "block";
 
 
-    // Scroll to form
     form.scrollIntoView({
         behavior: "smooth",
         block: "start"
     });
 
 
-    // Focus crop input
-    const cropInput = document.getElementById("cropName");
+    const cropInput =
+        document.getElementById("cropName");
 
     if (cropInput) {
+
         setTimeout(() => {
             cropInput.focus();
         }, 500);
+
     }
 
 }
@@ -219,14 +219,27 @@ function showAddFieldForm() {
 
 function saveField() {
 
-    const cropInput = document.getElementById("cropName");
-    const acresInput = document.getElementById("cropAcres");
+    const cropInput =
+        document.getElementById("cropName");
 
-    const crop = cropInput.value.trim();
-    const acres = acresInput.value.trim();
+    const acresInput =
+        document.getElementById("cropAcres");
+
+
+    if (!cropInput || !acresInput) {
+        return;
+    }
+
+
+    const crop =
+        cropInput.value.trim();
+
+    const acres =
+        acresInput.value.trim();
 
 
     // Validation
+
     if (crop === "" || acres === "") {
 
         showMessage(
@@ -249,21 +262,25 @@ function saveField() {
     }
 
 
-    // New fields container
-    const fieldsContainer = document.getElementById("newFields");
+    const fieldsContainer =
+        document.getElementById("newFields");
 
     if (!fieldsContainer) {
         return;
     }
 
 
-    // Create new field card
-    const newField = document.createElement("article");
+    // Create new field
 
-    newField.className = "field-card";
+    const newField =
+        document.createElement("article");
+
+    newField.className =
+        "field-card";
 
 
     newField.innerHTML = `
+
         <div class="field-top">
 
             <span class="crop-emoji">
@@ -276,13 +293,16 @@ function saveField() {
 
         </div>
 
+
         <h3>
             ${crop} Field
         </h3>
 
+
         <p class="field-location">
             📍 New Field • ${acres} Acres
         </p>
+
 
         <div class="crop-info">
 
@@ -298,6 +318,7 @@ function saveField() {
 
         </div>
 
+
         <div class="progress-area">
 
             <div class="progress-text">
@@ -312,6 +333,7 @@ function saveField() {
 
             </div>
 
+
             <div class="progress-bar">
 
                 <div style="width:0%">
@@ -321,20 +343,19 @@ function saveField() {
 
         </div>
 
-        <button
-            class="card-btn new-field-view">
 
+        <button class="card-btn new-field-view">
             View Field →
-
         </button>
+
     `;
 
 
-    // Add card to page
     fieldsContainer.appendChild(newField);
 
 
-    // View Field button
+    // View new field
+
     const viewButton =
         newField.querySelector(".new-field-view");
 
@@ -352,6 +373,7 @@ function saveField() {
 
 
     // Update field count
+
     const fieldCount =
         document.getElementById("fieldCount");
 
@@ -371,12 +393,14 @@ function saveField() {
     }
 
 
-    // Clear form
+    // Clear inputs
+
     cropInput.value = "";
     acresInput.value = "";
 
 
     // Hide form
+
     const form =
         document.getElementById("addFieldForm");
 
@@ -386,13 +410,13 @@ function saveField() {
 
 
     // Scroll to new field
+
     newField.scrollIntoView({
         behavior: "smooth",
         block: "center"
     });
 
 
-    // Success message
     showMessage(
         "🌱 Field Added Successfully!",
         `${crop} field with ${acres} acres has been added to your farm.`
@@ -422,7 +446,6 @@ function viewField(
     }
 
 
-    // Update details
     document.getElementById("detailName").innerText =
         name;
 
@@ -436,11 +459,9 @@ function viewField(
         progress;
 
 
-    // Show details
     details.style.display = "block";
 
 
-    // Scroll to details
     details.scrollIntoView({
         behavior: "smooth",
         block: "center"
@@ -467,22 +488,29 @@ function completeTask(button) {
     }
 
 
-    // Already completed
     if (button.dataset.completed === "true") {
         return;
     }
 
 
-    button.dataset.completed = "true";
-
-    button.innerText = "✓ Completed";
-
-    button.disabled = true;
+    button.dataset.completed =
+        "true";
 
 
-    button.style.opacity = "0.7";
+    button.innerText =
+        "✓ Completed";
 
-    button.style.cursor = "default";
+
+    button.disabled =
+        true;
+
+
+    button.style.opacity =
+        "0.7";
+
+
+    button.style.cursor =
+        "default";
 
 
     showMessage(
@@ -506,7 +534,6 @@ function calculateYield() {
     const yieldInput =
         document.getElementById("yieldPerAcre");
 
-
     const result =
         document.getElementById("result");
 
@@ -523,7 +550,6 @@ function calculateYield() {
         parseFloat(yieldInput.value);
 
 
-    // Validation
     if (
         isNaN(acres) ||
         isNaN(yieldPerAcre) ||
@@ -538,12 +564,10 @@ function calculateYield() {
     }
 
 
-    // Calculate
     const totalYield =
         acres * yieldPerAcre;
 
 
-    // Display result
     result.innerText =
         "🌾 Estimated Harvest: " +
         totalYield.toFixed(2) +
@@ -565,18 +589,34 @@ function calculateYield() {
 
 function updateProgress() {
 
+    // IMPORTANT:
+    // Your HTML uses progressInput
+
     const progressInput =
-        document.getElementById("progress");
+        document.getElementById("progressInput");
+
 
     const progressFill =
         document.getElementById("progress-fill");
 
+
     const progressText =
         document.getElementById("progress-text");
+
 
     const currentProgress =
         document.getElementById("currentProgress");
 
+
+    const harvestPercentage =
+        document.getElementById("harvestPercentage");
+
+
+    const dashboardProgress =
+        document.getElementById("dashboardProgress");
+
+
+    // Check elements
 
     if (
         !progressInput ||
@@ -587,11 +627,14 @@ function updateProgress() {
     }
 
 
+    // Get value
+
     const progress =
         parseInt(progressInput.value);
 
 
     // Validation
+
     if (
         isNaN(progress) ||
         progress < 0 ||
@@ -606,11 +649,13 @@ function updateProgress() {
 
 
     // Update progress bar
+
     progressFill.style.width =
         progress + "%";
 
 
-    // Update percentage
+    // Update harvest percentage
+
     if (currentProgress) {
 
         currentProgress.innerText =
@@ -619,13 +664,36 @@ function updateProgress() {
     }
 
 
+    // Update harvest description
+
+    if (harvestPercentage) {
+
+        harvestPercentage.innerText =
+            progress + "%";
+
+    }
+
+
+    // Update dashboard
+
+    if (dashboardProgress) {
+
+        dashboardProgress.innerText =
+            progress + "%";
+
+    }
+
+
+    // Update message
+
     progressText.innerText =
         "🌱 Harvest Readiness: " +
         progress +
         "%";
 
 
-    // Different messages based on progress
+    // Success messages
+
     if (progress === 100) {
 
         showMessage(
@@ -634,6 +702,7 @@ function updateProgress() {
         );
 
     }
+
     else if (progress >= 80) {
 
         showMessage(
@@ -642,6 +711,7 @@ function updateProgress() {
         );
 
     }
+
     else {
 
         showMessage(
