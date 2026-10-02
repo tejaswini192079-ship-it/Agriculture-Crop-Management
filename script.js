@@ -1,4 +1,4 @@
-// 🌱 AGRICARE - Smart Agriculture Interaction System
+// 🌱 AGRICARE - Smart Agriculture Management System
 // ======================================================
 // Features:
 // • Field Management
@@ -7,99 +7,51 @@
 // • Yield Calculator
 // • Harvest Progress
 // • Live Weather
-// • Smart Suggestions
+// • Smart Farm Suggestions
 // • Local Storage
 // ======================================================
 
 
 // ======================================================
-// 🌱 PAGE LOAD
+// 🚀 PAGE LOAD
 // ======================================================
 
 document.addEventListener("DOMContentLoaded", () => {
 
     console.log("🌱 AgriCare Platform loaded successfully!");
 
+    // Load saved information
     loadSavedFields();
     loadSavedHarvestProgress();
+
+    // Start weather system
     initLiveWeather();
 
+    // Welcome message
     setTimeout(() => {
         showMessage(
-            "🌱 Welcome to AgriCare!",
-            "Your smart companion for better crop management."
+            "🌱 Welcome to AgriCare! Your smart farm dashboard is ready.",
+            "success"
         );
     }, 800);
 
+    // Greeting
+    updateGreeting();
 
-    // ==================================================
-    // 🌾 GREETING
-    // ==================================================
+    // Navigation
+    setupNavigation();
 
-    const hour = new Date().getHours();
-
-    let greeting;
-
-    if (hour < 12) {
-        greeting = "🌅 Good morning, Farmer!";
-    } else if (hour < 17) {
-        greeting = "☀️ Good afternoon, Farmer!";
-    } else {
-        greeting = "🌙 Good evening, Farmer!";
-    }
-
-    console.log(greeting);
-
-
-    // ==================================================
-    // 🧭 NAVIGATION
-    // ==================================================
-
-    const navLinks = document.querySelectorAll("nav a");
-
-    navLinks.forEach(link => {
-
-        link.addEventListener("click", function () {
-
-            navLinks.forEach(item => {
-                item.classList.remove("active");
-            });
-
-            this.classList.add("active");
-
-        });
-
-    });
-
-
-    // ==================================================
-    // 👨‍🌾 PROFILE
-    // ==================================================
-
-    const profileButton =
-        document.querySelector(".profile-btn");
-
-    if (profileButton) {
-
-        profileButton.addEventListener("click", () => {
-
-            showMessage(
-                "👨‍🌾 Farmer Profile",
-                "Welcome to your AgriCare farm dashboard. Manage your crops, fields and activities from one place."
-            );
-
-        });
-
-    }
+    // Profile button
+    setupProfile();
 
 });
 
 
 // ======================================================
-// 🌟 MESSAGE / NOTIFICATION
+// 💬 MESSAGE SYSTEM
 // ======================================================
 
-function showMessage(title, message) {
+function showMessage(message, type = "success") {
 
     const oldMessage =
         document.querySelector(".agri-message");
@@ -108,92 +60,67 @@ function showMessage(title, message) {
         oldMessage.remove();
     }
 
-
-    const box =
+    const messageBox =
         document.createElement("div");
 
-    box.className =
-        "agri-message";
+    messageBox.className = "agri-message";
 
+    messageBox.textContent = message;
 
-    box.innerHTML = `
+    messageBox.style.position = "fixed";
+    messageBox.style.top = "85px";
+    messageBox.style.right = "25px";
+    messageBox.style.zIndex = "9999";
+    messageBox.style.padding = "14px 20px";
+    messageBox.style.borderRadius = "12px";
+    messageBox.style.background = "#14532d";
+    messageBox.style.color = "white";
+    messageBox.style.fontWeight = "600";
+    messageBox.style.boxShadow =
+        "0 10px 25px rgba(0,0,0,0.15)";
 
-        <div class="agri-message-content">
-
-            <button class="close-message">
-                ×
-            </button>
-
-            <h3>${title}</h3>
-
-            <p>${message}</p>
-
-        </div>
-
-    `;
-
-
-    document.body.appendChild(box);
-
-
-    const closeButton =
-        box.querySelector(".close-message");
-
-
-    if (closeButton) {
-
-        closeButton.addEventListener("click", () => {
-            box.remove();
-        });
-
-    }
-
+    document.body.appendChild(messageBox);
 
     setTimeout(() => {
 
-        if (box.parentElement) {
-            box.remove();
-        }
+        messageBox.style.opacity = "0";
+        messageBox.style.transition = "0.4s";
 
-    }, 5000);
+        setTimeout(() => {
+            messageBox.remove();
+        }, 400);
 
+    }, 3000);
 }
 
 
 // ======================================================
-// 🌾 TODAY'S TASKS
+// 📝 TASKS
 // ======================================================
 
 function showTasks() {
 
-    const tasksSection =
+    const taskSection =
         document.getElementById("tasks");
 
-    if (!tasksSection) {
+    if (!taskSection) {
+        showMessage(
+            "Today's farm tasks are ready to review.",
+            "success"
+        );
         return;
     }
 
+    taskSection.style.display = "block";
 
-    tasksSection.style.display =
-        "block";
-
-
-    tasksSection.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
+    taskSection.scrollIntoView({
+        behavior: "smooth"
     });
-
-
-    showMessage(
-        "🌾 Today's Farm Tasks",
-        "You have irrigation, fertilizer and pest observation activities to complete today."
-    );
-
 }
 
 
 // ======================================================
-// ➕ ADD FIELD FORM
+// 🌾 ADD FIELD FORM
 // ======================================================
 
 function showAddFieldForm() {
@@ -201,33 +128,24 @@ function showAddFieldForm() {
     const form =
         document.getElementById("addFieldForm");
 
-    if (!form) {
-        return;
+    if (!form) return;
+
+    if (
+        form.style.display === "none" ||
+        form.style.display === ""
+    ) {
+
+        form.style.display = "block";
+
+        form.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+    } else {
+
+        form.style.display = "none";
     }
-
-
-    form.style.display =
-        "block";
-
-
-    form.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
-
-
-    const cropInput =
-        document.getElementById("cropName");
-
-
-    if (cropInput) {
-
-        setTimeout(() => {
-            cropInput.focus();
-        }, 500);
-
-    }
-
 }
 
 
@@ -237,149 +155,111 @@ function showAddFieldForm() {
 
 function saveField() {
 
-    const cropInput =
-        document.getElementById("cropName");
+    const cropName =
+        document.getElementById("cropName").value.trim();
 
-    const acresInput =
-        document.getElementById("cropAcres");
+    const cropAcres =
+        document.getElementById("cropAcres").value;
 
-    const progressInput =
-        document.getElementById("cropProgress");
+    const cropProgress =
+        document.getElementById("cropProgress").value;
 
-
-    if (
-        !cropInput ||
-        !acresInput ||
-        !progressInput
-    ) {
-        return;
-    }
-
-
-    const crop =
-        cropInput.value.trim();
-
-    const acres =
-        acresInput.value.trim();
-
-    const progress =
-        parseInt(progressInput.value);
-
-
-    // ==================================================
-    // VALIDATION
-    // ==================================================
-
-    if (crop === "") {
+    // Validation
+    if (!cropName) {
 
         showMessage(
-            "⚠️ Missing Crop Name",
-            "Please enter the crop name."
+            "Please enter the crop name.",
+            "error"
         );
-
-        cropInput.focus();
 
         return;
     }
 
-
     if (
-        acres === "" ||
-        Number(acres) <= 0
+        cropAcres === "" ||
+        Number(cropAcres) <= 0
     ) {
 
         showMessage(
-            "⚠️ Invalid Acres",
-            "Please enter a valid number of acres greater than 0."
+            "Please enter valid acres.",
+            "error"
         );
-
-        acresInput.focus();
 
         return;
     }
 
-
     if (
-        isNaN(progress) ||
-        progress < 0 ||
-        progress > 100
+        cropProgress === "" ||
+        Number(cropProgress) < 0 ||
+        Number(cropProgress) > 100
     ) {
 
         showMessage(
-            "⚠️ Invalid Crop Progress",
-            "Please enter crop progress between 0 and 100%."
+            "Progress must be between 0 and 100.",
+            "error"
         );
-
-        progressInput.focus();
 
         return;
     }
 
-
-    // ==================================================
-    // CREATE FIELD OBJECT
-    // ==================================================
 
     const field = {
 
         id: Date.now(),
 
-        crop: crop,
+        crop: cropName,
 
-        acres: acres,
+        acres: Number(cropAcres),
 
-        progress: progress
+        progress: Number(cropProgress)
 
     };
 
 
-    // ==================================================
-    // SAVE TO LOCAL STORAGE
-    // ==================================================
+    // Get existing fields
+    let fields = [];
 
-    const savedFields =
-        JSON.parse(
-            localStorage.getItem("agriCareFields")
-        ) || [];
+    try {
+
+        fields =
+            JSON.parse(
+                localStorage.getItem("agriCareFields")
+            ) || [];
+
+    } catch (error) {
+
+        fields = [];
+    }
 
 
-    savedFields.push(field);
+    // Add new field
+    fields.push(field);
 
 
+    // Save
     localStorage.setItem(
         "agriCareFields",
-        JSON.stringify(savedFields)
+        JSON.stringify(fields)
     );
 
 
-    // ==================================================
-    // DISPLAY FIELD
-    // ==================================================
-
+    // Display
     displayField(field);
 
 
-    // ==================================================
-    // UPDATE COUNT
-    // ==================================================
-
+    // Update count
     updateFieldCount();
 
 
-    // ==================================================
-    // CLEAR FORM
-    // ==================================================
-
-    cropInput.value = "";
-
-    acresInput.value = "";
-
-    progressInput.value = "";
+    // Clear form
+    document.getElementById("cropName").value = "";
+    document.getElementById("cropAcres").value = "";
+    document.getElementById("cropProgress").value = "";
 
 
+    // Hide form
     const form =
         document.getElementById("addFieldForm");
-
 
     if (form) {
         form.style.display = "none";
@@ -387,176 +267,116 @@ function saveField() {
 
 
     showMessage(
-        "🌱 Field Added Successfully!",
-        `${crop} field with ${acres} acres and ${progress}% crop progress has been saved.`
+        `🌱 ${cropName} field added successfully!`,
+        "success"
     );
-
 }
 
 
 // ======================================================
-// 🌱 DISPLAY FIELD
+// 🌾 DISPLAY NEW FIELD
 // ======================================================
 
 function displayField(field) {
 
-    const fieldsContainer =
+    const container =
         document.getElementById("newFields");
 
-    if (!fieldsContainer) {
-        return;
+    if (!container) return;
+
+
+    const card =
+        document.createElement("div");
+
+    card.className = "field-card";
+
+
+    let stage = "Planning";
+
+    if (field.progress >= 80) {
+        stage = "Maturity";
+    } else if (field.progress >= 50) {
+        stage = "Flowering";
+    } else if (field.progress >= 20) {
+        stage = "Vegetative";
     }
 
 
-    const newField =
-        document.createElement("article");
+    card.innerHTML = `
 
-    newField.className =
-        "field-card";
-
-
-    newField.dataset.fieldId =
-        field.id;
-
-
-    newField.innerHTML = `
-
-        <div class="field-top">
-
-            <span class="crop-emoji">
-                🌱
-            </span>
-
-            <span class="status healthy">
-                ● Healthy
-            </span>
-
-        </div>
-
-
-        <h3>
-            ${escapeHTML(field.crop)} Field
-        </h3>
-
-
-        <p class="field-location">
-            📍 New Field • ${field.acres} Acres
-        </p>
-
-
-        <div class="crop-info">
+        <div class="field-card-content">
 
             <div>
 
-                <span>
-                    Crop
-                </span>
+                <h3>🌱 ${escapeHTML(field.crop)}</h3>
 
-                <strong>
-                    ${escapeHTML(field.crop)}
-                </strong>
+                <p>
+                    ${field.acres} acres
+                </p>
+
+                <p>
+                    Stage: ${stage}
+                </p>
 
             </div>
 
 
-            <div>
-
-                <span>
-                    Stage
-                </span>
-
-                <strong>
-                    🌱 Planting
-                </strong>
-
-            </div>
-
-        </div>
-
-
-        <div class="progress-area">
-
-            <div class="progress-text">
-
-                <span>
-                    Crop Progress
-                </span>
+            <div class="field-progress">
 
                 <strong>
                     ${field.progress}%
                 </strong>
 
-            </div>
+                <div class="progress-bar">
 
+                    <div
+                        class="progress-fill"
+                        style="width:${field.progress}%"
+                    ></div>
 
-            <div class="progress-bar">
-
-                <div
-                    style="width:${field.progress}%">
                 </div>
 
             </div>
 
 
-            <p>
-                🌱 Crop Progress: ${field.progress}%
-            </p>
+            <button
+                class="primary-btn"
+                onclick="viewField(${field.id})"
+            >
+                View Field
+            </button>
 
         </div>
-
-
-        <button
-            class="card-btn new-field-view">
-
-            View Field →
-
-        </button>
 
     `;
 
 
-    fieldsContainer.appendChild(newField);
-
-
-    // ==================================================
-    // VIEW FIELD
-    // ==================================================
-
-    const viewButton =
-        newField.querySelector(".new-field-view");
-
-
-    if (viewButton) {
-
-        viewButton.addEventListener("click", () => {
-
-            viewField(
-                `${field.crop} Field`,
-                field.crop,
-                "Planting",
-                `${field.progress}%`
-            );
-
-        });
-
-    }
-
+    container.appendChild(card);
 }
 
 
 // ======================================================
-// 🔄 LOAD SAVED FIELDS
+// 📂 LOAD SAVED FIELDS
 // ======================================================
 
 function loadSavedFields() {
 
-    const savedFields =
-        JSON.parse(
-            localStorage.getItem("agriCareFields")
-        ) || [];
+    let fields = [];
+
+    try {
+
+        fields =
+            JSON.parse(
+                localStorage.getItem("agriCareFields")
+            ) || [];
+
+    } catch (error) {
+
+        fields = [];
+    }
 
 
-    savedFields.forEach(field => {
+    fields.forEach(field => {
 
         displayField(field);
 
@@ -564,7 +384,6 @@ function loadSavedFields() {
 
 
     updateFieldCount();
-
 }
 
 
@@ -577,245 +396,179 @@ function updateFieldCount() {
     const fieldCount =
         document.getElementById("fieldCount");
 
-    if (!fieldCount) {
-        return;
+    if (!fieldCount) return;
+
+
+    let savedFields = [];
+
+    try {
+
+        savedFields =
+            JSON.parse(
+                localStorage.getItem("agriCareFields")
+            ) || [];
+
+    } catch (error) {
+
+        savedFields = [];
     }
 
 
-    const savedFields =
-        JSON.parse(
-            localStorage.getItem("agriCareFields")
-        ) || [];
-
-
-    // Existing fields in your HTML = 3
-    const totalFields =
+    // Three original fields already present
+    const total =
         3 + savedFields.length;
 
 
-    fieldCount.innerText =
-        totalFields;
-
+    fieldCount.textContent = total;
 }
 
 
 // ======================================================
-// 👀 VIEW FIELD DETAILS
+// 👀 VIEW FIELD
 // ======================================================
 
-function viewField(
-    name,
-    crop,
-    stage,
-    progress
-) {
+function viewField(id) {
+
+    let fields = [];
+
+    try {
+
+        fields =
+            JSON.parse(
+                localStorage.getItem("agriCareFields")
+            ) || [];
+
+    } catch (error) {
+
+        fields = [];
+    }
+
+
+    const field =
+        fields.find(item => item.id === id);
+
+
+    if (!field) return;
+
 
     const details =
         document.getElementById("fieldDetails");
 
 
     if (!details) {
+
+        showMessage(
+            `${field.crop} • ${field.acres} acres • ${field.progress}% complete`,
+            "success"
+        );
+
         return;
     }
 
 
-    const detailName =
-        document.getElementById("detailName");
+    details.innerHTML = `
 
-    const detailCrop =
-        document.getElementById("detailCrop");
+        <h3>🌱 ${escapeHTML(field.crop)}</h3>
 
-    const detailStage =
-        document.getElementById("detailStage");
+        <p>
+            Area: ${field.acres} acres
+        </p>
 
-    const detailProgress =
-        document.getElementById("detailProgress");
+        <p>
+            Crop Progress: ${field.progress}%
+        </p>
 
-
-    if (detailName) {
-        detailName.innerText = name;
-    }
+    `;
 
 
-    if (detailCrop) {
-        detailCrop.innerText = crop;
-    }
-
-
-    if (detailStage) {
-        detailStage.innerText = stage;
-    }
-
-
-    if (detailProgress) {
-        detailProgress.innerText = progress;
-    }
-
-
-    details.style.display =
-        "block";
-
+    details.style.display = "block";
 
     details.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
+        behavior: "smooth"
     });
-
-
-    showMessage(
-        "🌾 Field Details",
-        `${name} is growing ${crop}. Current stage: ${stage}. Crop progress: ${progress}.`
-    );
-
 }
 
 
 // ======================================================
-// ✅ COMPLETE FARM TASK
+// ✅ COMPLETE TASK
 // ======================================================
 
 function completeTask(button) {
 
-    if (!button) {
-        return;
-    }
+    if (!button) return;
 
 
-    if (button.dataset.completed === "true") {
-        return;
-    }
+    button.textContent = "✓ Completed";
 
+    button.disabled = true;
 
-    button.dataset.completed =
-        "true";
-
-
-    button.innerText =
-        "✓ Completed";
-
-
-    button.disabled =
-        true;
-
-
-    button.style.opacity =
-        "0.7";
-
-
-    button.style.cursor =
-        "default";
+    button.style.opacity = "0.7";
 
 
     showMessage(
-        "✅ Task Completed!",
-        "Great work, Farmer! Your farm activity has been marked as completed."
+        "✅ Farm task completed!",
+        "success"
     );
-
 }
 
 
 // ======================================================
-// 🧮 CROP YIELD CALCULATOR
+// 🧮 YIELD CALCULATOR
 // ======================================================
 
 function calculateYield() {
 
-    const acresInput =
-        document.getElementById("acres");
+    const acres =
+        Number(
+            document.getElementById("acres").value
+        );
 
-    const yieldInput =
-        document.getElementById("yieldPerAcre");
+    const yieldPerAcre =
+        Number(
+            document.getElementById("yieldPerAcre").value
+        );
 
     const result =
         document.getElementById("result");
 
 
     if (
-        !acresInput ||
-        !yieldInput ||
-        !result
-    ) {
-        return;
-    }
-
-
-    const acres =
-        parseFloat(acresInput.value);
-
-    const yieldPerAcre =
-        parseFloat(yieldInput.value);
-
-
-    if (
-        isNaN(acres) ||
-        isNaN(yieldPerAcre) ||
+        !acres ||
         acres <= 0 ||
+        !yieldPerAcre ||
         yieldPerAcre <= 0
     ) {
 
-        result.innerText =
-            "⚠️ Please enter valid values for both fields.";
+        result.textContent =
+            "Please enter valid values.";
 
         return;
     }
 
 
-    const totalYield =
+    const total =
         acres * yieldPerAcre;
 
 
-    result.innerText =
-        "🌾 Estimated Harvest: " +
-        totalYield.toFixed(2) +
-        " kg";
-
-
-    showMessage(
-        "🧮 Yield Calculated",
-        `Your estimated harvest is ${totalYield.toFixed(2)} kg.`
-    );
-
+    result.textContent =
+        `Estimated Total Yield: ${total.toFixed(2)} units`;
 }
 
 
 // ======================================================
-// 🚜 UPDATE HARVEST PROGRESS
+// 🌽 HARVEST PROGRESS
 // ======================================================
 
 function updateProgress() {
 
-    const progressInput =
+    const input =
         document.getElementById("progressInput");
 
-    const progressFill =
-        document.getElementById("progress-fill");
-
-    const progressText =
-        document.getElementById("progress-text");
-
-    const progressMessage =
-        document.getElementById("progress-message");
-
-    const currentProgress =
-        document.getElementById("currentProgress");
-
-    const harvestPercentage =
-        document.getElementById("harvestPercentage");
-
-    const dashboardProgress =
-        document.getElementById("dashboardProgress");
+    if (!input) return;
 
 
-    if (
-        !progressInput ||
-        !progressFill
-    ) {
-        return;
-    }
-
-
-    const progress =
-        parseInt(progressInput.value);
+    let progress =
+        Number(input.value);
 
 
     if (
@@ -824,421 +577,192 @@ function updateProgress() {
         progress > 100
     ) {
 
-        if (progressMessage) {
-
-            progressMessage.innerText =
-                "⚠️ Please enter a value between 0 and 100.";
-
-        }
+        showMessage(
+            "Please enter progress between 0 and 100.",
+            "error"
+        );
 
         return;
     }
 
 
-    // ==================================================
-    // SAVE HARVEST PROGRESS
-    // ==================================================
+    progress =
+        Math.round(progress);
 
+
+    // Save progress
     localStorage.setItem(
         "agriCareHarvestProgress",
         progress
     );
 
 
-    // ==================================================
-    // UPDATE UI
-    // ==================================================
+    // Update progress bar
+    const fill =
+        document.getElementById("progress-fill");
 
-    progressFill.style.width =
-        progress + "%";
+    if (fill) {
+        fill.style.width =
+            `${progress}%`;
+    }
 
+
+    // Update percentage
+    const currentProgress =
+        document.getElementById("currentProgress");
 
     if (currentProgress) {
-        currentProgress.innerText =
-            progress + "%";
+        currentProgress.textContent =
+            `${progress}%`;
     }
 
+
+    const harvestPercentage =
+        document.getElementById("harvestPercentage");
 
     if (harvestPercentage) {
-        harvestPercentage.innerText =
-            progress + "%";
+        harvestPercentage.textContent =
+            `${progress}%`;
     }
 
+
+    const dashboardProgress =
+        document.getElementById("dashboardProgress");
 
     if (dashboardProgress) {
-        dashboardProgress.innerText =
-            progress + "%";
+        dashboardProgress.textContent =
+            `${progress}%`;
     }
 
 
-    if (progressMessage) {
-
-        progressMessage.innerText =
-            "🌱 Harvest Readiness: " +
-            progress +
-            "%";
-
-    }
-
+    const progressText =
+        document.getElementById("progress-text");
 
     if (progressText) {
-
-        progressText.innerText =
-            "Harvest Readiness: " +
-            progress +
-            "%";
-
+        progressText.textContent =
+            `${progress}% complete`;
     }
 
 
-    if (progress === 100) {
+    const message =
+        document.getElementById("progress-message");
 
-        showMessage(
-            "🎉 Harvest Ready!",
-            "Excellent! Your crop has reached 100% harvest readiness."
-        );
+    if (message) {
 
-    } else if (progress >= 80) {
+        if (progress >= 100) {
 
-        showMessage(
-            "🚜 Harvest Almost Ready!",
-            "Your crop is getting close to harvest. Start preparing your harvesting activities."
-        );
+            message.textContent =
+                "🎉 Harvest completed!";
 
-    } else {
+        } else if (progress >= 80) {
 
-        showMessage(
-            "📊 Progress Updated",
-            `Harvest readiness is now ${progress}%. Keep monitoring your crop.`
-        );
+            message.textContent =
+                "🌾 Harvest is almost ready.";
 
+        } else if (progress >= 50) {
+
+            message.textContent =
+                "🌱 Crop is progressing well.";
+
+        } else {
+
+            message.textContent =
+                "🌱 Crop is still developing.";
+        }
     }
 
+
+    showMessage(
+        "🌾 Harvest progress updated!",
+        "success"
+    );
 }
 
 
 // ======================================================
-// 🔄 LOAD SAVED HARVEST PROGRESS
+// 📂 LOAD HARVEST PROGRESS
 // ======================================================
 
 function loadSavedHarvestProgress() {
 
-    const savedProgress =
+    const saved =
         localStorage.getItem(
             "agriCareHarvestProgress"
         );
 
 
-    if (savedProgress === null) {
-        return;
-    }
+    if (saved === null) return;
 
 
     const progress =
-        parseInt(savedProgress);
+        Number(saved);
 
 
     if (
         isNaN(progress) ||
         progress < 0 ||
         progress > 100
-    ) {
-        return;
-    }
+    ) return;
 
 
-    const progressFill =
+    const fill =
         document.getElementById("progress-fill");
 
-    const progressText =
-        document.getElementById("progress-text");
+    if (fill) {
+        fill.style.width =
+            `${progress}%`;
+    }
+
 
     const currentProgress =
         document.getElementById("currentProgress");
 
+    if (currentProgress) {
+        currentProgress.textContent =
+            `${progress}%`;
+    }
+
+
     const harvestPercentage =
         document.getElementById("harvestPercentage");
+
+    if (harvestPercentage) {
+        harvestPercentage.textContent =
+            `${progress}%`;
+    }
+
 
     const dashboardProgress =
         document.getElementById("dashboardProgress");
 
-
-    if (progressFill) {
-        progressFill.style.width =
-            progress + "%";
+    if (dashboardProgress) {
+        dashboardProgress.textContent =
+            `${progress}%`;
     }
 
+
+    const progressText =
+        document.getElementById("progress-text");
 
     if (progressText) {
-        progressText.innerText =
-            "Harvest Readiness: " +
-            progress +
-            "%";
+        progressText.textContent =
+            `${progress}% complete`;
     }
-
-
-    if (currentProgress) {
-        currentProgress.innerText =
-            progress + "%";
-    }
-
-
-    if (harvestPercentage) {
-        harvestPercentage.innerText =
-            progress + "%";
-    }
-
-
-    if (dashboardProgress) {
-        dashboardProgress.innerText =
-            progress + "%";
-    }
-
 }
 
 
 // ======================================================
-// 🌦️ LIVE WEATHER SYSTEM
+// 🌦️ LIVE WEATHER
+// 📍 Fixed location: Phagwara, Punjab
+// ❌ No browser location permission
 // ======================================================
 
 function initLiveWeather() {
 
-    const weatherSection =
-        document.getElementById("conditions");
+    // Phagwara, Punjab coordinates
+    const latitude = 31.2240;
+    const longitude = 75.7708;
 
-
-    if (!weatherSection) {
-        return;
-    }
-
-
-    const locationText =
-        document.getElementById("weather-location");
-
-
-    if (locationText) {
-
-        locationText.innerText =
-            "📍 Requesting your location...";
-
-    }
-
-
-    if (!navigator.geolocation) {
-
-        showWeatherError(
-            "Your browser does not support location services."
-        );
-
-        return;
-    }
-
-
-    navigator.geolocation.getCurrentPosition(
-
-        position => {
-
-            const latitude =
-                position.coords.latitude;
-
-            const longitude =
-                position.coords.longitude;
-
-
-            console.log(
-                "📍 Location:",
-                latitude,
-                longitude
-            );
-
-
-            getLiveWeather(
-                latitude,
-                longitude
-            );
-
-        },
-
-
-        error => {
-
-            console.log(
-                "Location error:",
-                error.message
-            );
-
-
-            showWeatherError(
-                "Location permission was not allowed. Please allow location access to see live weather."
-            );
-
-        },
-
-
-        {
-            enableHighAccuracy: true,
-            timeout: 10000,
-            maximumAge: 300000
-        }
-
-    );
-
-}
-
-
-// ======================================================
-// 🌦️ GET LIVE WEATHER
-// ======================================================
-
-async function getLiveWeather(
-    latitude,
-    longitude
-) {
-
-    try {
-
-        const weatherURL =
-            `https://api.open-meteo.com/v1/forecast` +
-            `?latitude=${latitude}` +
-            `&longitude=${longitude}` +
-            `&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,rain,weather_code,wind_speed_10m` +
-            `&hourly=precipitation_probability,soil_moisture_0_to_1cm` +
-            `&forecast_days=1` +
-            `&timezone=auto`;
-
-
-        const response =
-            await fetch(weatherURL);
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Weather service unavailable."
-            );
-
-        }
-
-
-        const data =
-            await response.json();
-
-
-        console.log(
-            "🌦️ Live Weather Data:",
-            data
-        );
-
-
-        updateWeatherUI(
-            data,
-            latitude,
-            longitude
-        );
-
-
-    } catch (error) {
-
-        console.error(
-            "Weather error:",
-            error
-        );
-
-
-        showWeatherError(
-            "Live weather could not be loaded right now."
-        );
-
-    }
-
-}
-
-
-// ======================================================
-// 🌤️ WEATHER DESCRIPTION
-// ======================================================
-
-function getWeatherDescription(code) {
-
-    const weatherCodes = {
-
-        0: "Clear Sky ☀️",
-
-        1: "Mainly Clear 🌤️",
-        2: "Partly Cloudy ⛅",
-        3: "Overcast ☁️",
-
-        45: "Foggy 🌫️",
-        48: "Foggy 🌫️",
-
-        51: "Light Drizzle 🌦️",
-        53: "Drizzle 🌦️",
-        55: "Heavy Drizzle 🌧️",
-
-        61: "Light Rain 🌦️",
-        63: "Rain 🌧️",
-        65: "Heavy Rain 🌧️",
-
-        71: "Light Snow ❄️",
-        73: "Snow ❄️",
-        75: "Heavy Snow ❄️",
-
-        80: "Rain Showers 🌦️",
-        81: "Rain Showers 🌧️",
-        82: "Heavy Rain Showers 🌧️",
-
-        95: "Thunderstorm ⛈️",
-        96: "Thunderstorm with Hail ⛈️",
-        99: "Severe Thunderstorm ⛈️"
-
-    };
-
-
-    return weatherCodes[code] ||
-        "Weather data available";
-
-}
-
-
-// ======================================================
-// 🌦️ UPDATE WEATHER UI
-// ======================================================
-
-function updateWeatherUI(
-    data,
-    latitude,
-    longitude
-) {
-
-    const current =
-        data.current || {};
-
-    const hourly =
-        data.hourly || {};
-
-
-    const temperature =
-        current.temperature_2m;
-
-    const humidity =
-        current.relative_humidity_2m;
-
-    const wind =
-        current.wind_speed_10m;
-
-    const weatherCode =
-        current.weather_code;
-
-
-    const weatherDescription =
-        getWeatherDescription(
-            weatherCode
-        );
-
-
-    // ==================================================
-    // 📍 LOCATION
-    // ==================================================
 
     const locationElement =
         document.getElementById(
@@ -1248,348 +772,336 @@ function updateWeatherUI(
 
     if (locationElement) {
 
-        locationElement.innerText =
-            `📍 Live weather near your current location (${latitude.toFixed(2)}, ${longitude.toFixed(2)})`;
+        locationElement.textContent =
+            "📍 Phagwara, Punjab";
 
     }
 
 
-    // ==================================================
+    getLiveWeather(
+        latitude,
+        longitude
+    );
+}
+
+
+// ======================================================
+// 🌦️ GET WEATHER FROM OPEN-METEO
+// ======================================================
+
+async function getLiveWeather(
+    latitude,
+    longitude
+) {
+
+    try {
+
+        const url =
+            `https://api.open-meteo.com/v1/forecast?` +
+            `latitude=${latitude}` +
+            `&longitude=${longitude}` +
+            `&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,rain,weather_code,wind_speed_10m` +
+            `&hourly=precipitation_probability,soil_moisture_0_to_1cm` +
+            `&forecast_days=1` +
+            `&timezone=auto`;
+
+
+        const response =
+            await fetch(url);
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Weather API request failed"
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        updateWeatherUI(data);
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Weather Error:",
+            error
+        );
+
+
+        const locationElement =
+            document.getElementById(
+                "weather-location"
+            );
+
+
+        if (locationElement) {
+
+            locationElement.textContent =
+                "📍 Phagwara, Punjab • Weather unavailable";
+
+        }
+
+
+        const temperature =
+            document.getElementById(
+                "temperature-value"
+            );
+
+        const humidity =
+            document.getElementById(
+                "humidity-value"
+            );
+
+        const weather =
+            document.getElementById(
+                "weather-value"
+            );
+
+        const rain =
+            document.getElementById(
+                "rain-value"
+            );
+
+        const wind =
+            document.getElementById(
+                "wind-value"
+            );
+
+        const soil =
+            document.getElementById(
+                "soil-value"
+            );
+
+
+        if (temperature)
+            temperature.textContent = "--°C";
+
+        if (humidity)
+            humidity.textContent = "--%";
+
+        if (weather)
+            weather.textContent = "Unavailable";
+
+        if (rain)
+            rain.textContent = "--%";
+
+        if (wind)
+            wind.textContent = "-- km/h";
+
+        if (soil)
+            soil.textContent = "--";
+    }
+}
+
+
+// ======================================================
+// ☁️ WEATHER DESCRIPTION
+// ======================================================
+
+function getWeatherDescription(code) {
+
+    const weatherCodes = {
+
+        0: "Clear Sky",
+
+        1: "Mainly Clear",
+
+        2: "Partly Cloudy",
+
+        3: "Overcast",
+
+        45: "Foggy",
+
+        48: "Rime Fog",
+
+        51: "Light Drizzle",
+
+        53: "Moderate Drizzle",
+
+        55: "Heavy Drizzle",
+
+        61: "Light Rain",
+
+        63: "Moderate Rain",
+
+        65: "Heavy Rain",
+
+        71: "Light Snow",
+
+        73: "Moderate Snow",
+
+        75: "Heavy Snow",
+
+        80: "Light Rain Showers",
+
+        81: "Moderate Rain Showers",
+
+        82: "Heavy Rain Showers",
+
+        95: "Thunderstorm",
+
+        96: "Thunderstorm with Hail",
+
+        99: "Heavy Thunderstorm"
+
+    };
+
+
+    return (
+        weatherCodes[code] ||
+        "Unknown Weather"
+    );
+}
+
+
+// ======================================================
+// 🌦️ UPDATE WEATHER CARDS
+// ======================================================
+
+function updateWeatherUI(data) {
+
+    const current =
+        data.current;
+
+
     // 🌡️ TEMPERATURE
-    // ==================================================
-
-    const temperatureElement =
-        document.getElementById(
-            "temperature-value"
-        );
-
-    const temperatureMessage =
-        document.getElementById(
-            "temperature-message"
+    const temperature =
+        Math.round(
+            current.temperature_2m
         );
 
 
-    if (temperatureElement) {
-
-        temperatureElement.innerText =
-            `${Math.round(temperature)}°C`;
-
-    }
+    document.getElementById(
+        "temperature-value"
+    ).textContent =
+        `${temperature}°C`;
 
 
-    if (temperatureMessage) {
-
-        if (temperature >= 35) {
-
-            temperatureMessage.innerText =
-                "High heat — monitor crops.";
-
-        } else if (temperature <= 15) {
-
-            temperatureMessage.innerText =
-                "Cool conditions.";
-
-        } else {
-
-            temperatureMessage.innerText =
-                "Current outdoor temperature.";
-
-        }
-
-    }
+    document.getElementById(
+        "temperature-message"
+    ).textContent =
+        `Feels like ${Math.round(
+            current.apparent_temperature
+        )}°C`;
 
 
-    // ==================================================
     // 💧 HUMIDITY
-    // ==================================================
-
-    const humidityElement =
-        document.getElementById(
-            "humidity-value"
-        );
-
-    const humidityMessage =
-        document.getElementById(
-            "humidity-message"
+    const humidity =
+        Math.round(
+            current.relative_humidity_2m
         );
 
 
-    if (humidityElement) {
-
-        humidityElement.innerText =
-            `${Math.round(humidity)}%`;
-
-    }
+    document.getElementById(
+        "humidity-value"
+    ).textContent =
+        `${humidity}%`;
 
 
-    if (humidityMessage) {
+    document.getElementById(
+        "humidity-message"
+    ).textContent =
 
-        if (humidity >= 80) {
-
-            humidityMessage.innerText =
-                "High humidity — monitor fungal risk.";
-
-        } else if (humidity <= 35) {
-
-            humidityMessage.innerText =
-                "Low humidity — crops may lose moisture.";
-
-        } else {
-
-            humidityMessage.innerText =
-                "Current outdoor humidity.";
-
-        }
-
-    }
+        humidity > 80
+            ? "High humidity"
+            : humidity > 50
+                ? "Moderate humidity"
+                : "Low humidity";
 
 
-    // ==================================================
     // ☁️ WEATHER
-    // ==================================================
-
-    const weatherElement =
-        document.getElementById(
-            "weather-value"
-        );
-
-    const weatherMessage =
-        document.getElementById(
-            "weather-message"
+    const weather =
+        getWeatherDescription(
+            current.weather_code
         );
 
 
-    if (weatherElement) {
-
-        weatherElement.innerText =
-            weatherDescription;
-
-    }
+    document.getElementById(
+        "weather-value"
+    ).textContent =
+        weather;
 
 
-    if (weatherMessage) {
-
-        weatherMessage.innerText =
-            "Live weather condition.";
-
-    }
+    document.getElementById(
+        "weather-message"
+    ).textContent =
+        "Current conditions";
 
 
-    // ==================================================
-    // 🌧️ RAIN PROBABILITY
-    // ==================================================
-
-    let rainProbability = 0;
+    // 🌧️ RAIN CHANCE
+    let rainChance = 0;
 
 
     if (
-        hourly.precipitation_probability &&
-        hourly.time
+        data.hourly &&
+        data.hourly.precipitation_probability
     ) {
 
-        const now =
-            new Date();
-
-
-        let closestIndex = 0;
-
-        let smallestDifference =
-            Infinity;
-
-
-        hourly.time.forEach(
-            (time, index) => {
-
-                const forecastTime =
-                    new Date(time);
-
-
-                const difference =
-                    Math.abs(
-                        forecastTime - now
-                    );
-
-
-                if (
-                    difference <
-                    smallestDifference
-                ) {
-
-                    smallestDifference =
-                        difference;
-
-                    closestIndex =
-                        index;
-
-                }
-
-            }
-        );
-
-
-        rainProbability =
-            hourly.precipitation_probability[
-                closestIndex
-            ] ?? 0;
-
+        rainChance =
+            data.hourly
+                .precipitation_probability[0] || 0;
     }
 
 
-    const rainElement =
-        document.getElementById(
-            "rain-value"
-        );
-
-    const rainMessage =
-        document.getElementById(
-            "rain-message"
-        );
+    document.getElementById(
+        "rain-value"
+    ).textContent =
+        `${rainChance}%`;
 
 
-    if (rainElement) {
+    document.getElementById(
+        "rain-message"
+    ).textContent =
 
-        rainElement.innerText =
-            `${Math.round(rainProbability)}%`;
-
-    }
-
-
-    if (rainMessage) {
-
-        if (rainProbability >= 70) {
-
-            rainMessage.innerText =
-                "High chance of rain.";
-
-        } else if (rainProbability >= 40) {
-
-            rainMessage.innerText =
-                "Possible rainfall.";
-
-        } else {
-
-            rainMessage.innerText =
-                "Low chance of rain.";
-
-        }
-
-    }
+        rainChance > 60
+            ? "High chance of rain"
+            : rainChance > 30
+                ? "Possible rain"
+                : "Low chance of rain";
 
 
-    // ==================================================
     // 💨 WIND
-    // ==================================================
-
-    const windElement =
-        document.getElementById(
-            "wind-value"
-        );
-
-    const windMessage =
-        document.getElementById(
-            "wind-message"
+    const wind =
+        Math.round(
+            current.wind_speed_10m
         );
 
 
-    if (windElement) {
-
-        windElement.innerText =
-            `${Math.round(wind)} km/h`;
-
-    }
+    document.getElementById(
+        "wind-value"
+    ).textContent =
+        `${wind} km/h`;
 
 
-    if (windMessage) {
+    document.getElementById(
+        "wind-message"
+    ).textContent =
 
-        if (wind >= 30) {
-
-            windMessage.innerText =
-                "Strong wind — avoid spraying.";
-
-        } else if (wind >= 15) {
-
-            windMessage.innerText =
-                "Moderate wind conditions.";
-
-        } else {
-
-            windMessage.innerText =
-                "Light wind conditions.";
-
-        }
-
-    }
+        wind > 25
+            ? "Strong winds"
+            : "Normal wind conditions";
 
 
-    // ==================================================
-    // 🌱 SOIL MOISTURE ESTIMATE
-    // ==================================================
-
+    // 🌱 SOIL MOISTURE
     let soilMoisture = null;
 
 
     if (
-        hourly.soil_moisture_0_to_1cm &&
-        hourly.time
+        data.hourly &&
+        data.hourly.soil_moisture_0_to_1cm
     ) {
 
-        const now =
-            new Date();
-
-
-        let closestIndex = 0;
-
-        let smallestDifference =
-            Infinity;
-
-
-        hourly.time.forEach(
-            (time, index) => {
-
-                const forecastTime =
-                    new Date(time);
-
-
-                const difference =
-                    Math.abs(
-                        forecastTime - now
-                    );
-
-
-                if (
-                    difference <
-                    smallestDifference
-                ) {
-
-                    smallestDifference =
-                        difference;
-
-                    closestIndex =
-                        index;
-
-                }
-
-            }
-        );
-
-
         soilMoisture =
-            hourly.soil_moisture_0_to_1cm[
-                closestIndex
-            ];
-
+            data.hourly
+                .soil_moisture_0_to_1cm[0];
     }
-
-
-    const soilElement =
-        document.getElementById(
-            "soil-value"
-        );
-
-    const soilMessage =
-        document.getElementById(
-            "soil-message"
-        );
 
 
     if (soilMoisture !== null) {
@@ -1600,62 +1112,29 @@ function updateWeatherUI(
             );
 
 
-        if (soilElement) {
-
-            soilElement.innerText =
-                `${soilPercent}%`;
-
-        }
+        document.getElementById(
+            "soil-value"
+        ).textContent =
+            `${soilPercent}%`;
 
 
-        if (soilMessage) {
-
-            if (soilPercent < 25) {
-
-                soilMessage.innerText =
-                    "Dry soil estimate.";
-
-            } else if (soilPercent < 60) {
-
-                soilMessage.innerText =
-                    "Moderate moisture estimate.";
-
-            } else {
-
-                soilMessage.innerText =
-                    "Moist soil estimate.";
-
-            }
-
-        }
-
-    } else {
-
-        if (soilElement) {
-            soilElement.innerText = "N/A";
-        }
-
-        if (soilMessage) {
-
-            soilMessage.innerText =
-                "Soil sensor data unavailable.";
-
-        }
+        document.getElementById(
+            "soil-message"
+        ).textContent =
+            "Model-based estimate";
 
     }
 
 
-    // ==================================================
     // 💡 SMART SUGGESTIONS
-    // ==================================================
 
     updateSmartSuggestions(
         temperature,
         humidity,
-        rainProbability,
-        wind
+        rainChance,
+        wind,
+        weather
     );
-
 }
 
 
@@ -1666,379 +1145,311 @@ function updateWeatherUI(
 function updateSmartSuggestions(
     temperature,
     humidity,
-    rainProbability,
-    wind
+    rainChance,
+    wind,
+    weather
 ) {
 
-    const irrigationSuggestion =
+    const irrigationTitle =
         document.getElementById(
             "irrigation-suggestion"
         );
+
 
     const irrigationText =
         document.getElementById(
             "irrigation-text"
         );
 
-    const weatherSuggestion =
+
+    if (!irrigationTitle ||
+        !irrigationText) {
+
+        return;
+    }
+
+
+    // 💧 IRRIGATION
+
+    if (rainChance >= 60) {
+
+        irrigationTitle.textContent =
+            "Delay Irrigation";
+
+
+        irrigationText.textContent =
+            "Rain is likely, so irrigation may not be necessary.";
+
+    }
+
+    else if (
+        temperature >= 32 &&
+        humidity < 60
+    ) {
+
+        irrigationTitle.textContent =
+            "Irrigation Recommended";
+
+
+        irrigationText.textContent =
+            "Hot and relatively dry conditions may increase crop water demand.";
+
+    }
+
+    else {
+
+        irrigationTitle.textContent =
+            "Normal Irrigation";
+
+
+        irrigationText.textContent =
+            "Current weather does not indicate unusually high water demand.";
+    }
+
+
+    // 🌦️ WEATHER SUGGESTION
+
+    const weatherTitle =
         document.getElementById(
             "weather-suggestion"
         );
 
-    const weatherSuggestionText =
+
+    const weatherText =
         document.getElementById(
             "weather-suggestion-text"
         );
 
-    const cropSuggestion =
+
+    if (weatherTitle &&
+        weatherText) {
+
+
+        if (rainChance >= 60) {
+
+            weatherTitle.textContent =
+                "Rain Expected";
+
+
+            weatherText.textContent =
+                "Consider protecting harvested crops and avoiding unnecessary field operations.";
+
+        }
+
+        else if (wind >= 25) {
+
+            weatherTitle.textContent =
+                "Windy Conditions";
+
+
+            weatherText.textContent =
+                "Monitor young plants and support vulnerable crops.";
+
+        }
+
+        else {
+
+            weatherTitle.textContent =
+                "Favorable Conditions";
+
+
+            weatherText.textContent =
+                `Current weather: ${weather}.`;
+        }
+    }
+
+
+    // 🌱 CROP CARE
+
+    const cropTitle =
         document.getElementById(
             "crop-suggestion"
         );
 
-    const cropSuggestionText =
+
+    const cropText =
         document.getElementById(
             "crop-suggestion-text"
         );
 
 
-    // ==================================================
-    // 💧 IRRIGATION
-    // ==================================================
+    if (cropTitle &&
+        cropText) {
 
-    if (rainProbability >= 70) {
 
-        if (irrigationSuggestion) {
-            irrigationSuggestion.innerText =
-                "Delay irrigation";
+        if (temperature >= 35) {
+
+            cropTitle.textContent =
+                "Heat Monitoring";
+
+
+            cropText.textContent =
+                "High temperature may increase crop stress. Monitor soil moisture and irrigation needs.";
+
         }
 
-        if (irrigationText) {
-            irrigationText.innerText =
-                "Rain is likely. Avoid unnecessary watering and check field drainage.";
+        else if (humidity >= 80) {
+
+            cropTitle.textContent =
+                "Humidity Monitoring";
+
+
+            cropText.textContent =
+                "High humidity can increase the risk of fungal crop diseases. Monitor plants regularly.";
+
         }
 
-    } else if (
-        rainProbability <= 20 &&
-        temperature >= 30
-    ) {
+        else {
 
-        if (irrigationSuggestion) {
-            irrigationSuggestion.innerText =
-                "Check irrigation";
+            cropTitle.textContent =
+                "Crop Conditions Normal";
+
+
+            cropText.textContent =
+                "Continue regular crop monitoring and farm activities.";
         }
-
-        if (irrigationText) {
-            irrigationText.innerText =
-                "Low rain chance with warm conditions. Check soil moisture before watering.";
-        }
-
-    } else {
-
-        if (irrigationSuggestion) {
-            irrigationSuggestion.innerText =
-                "Monitor soil moisture";
-        }
-
-        if (irrigationText) {
-            irrigationText.innerText =
-                "Use current weather and field conditions to decide the next irrigation cycle.";
-        }
-
     }
-
-
-    // ==================================================
-    // 🌦️ WEATHER
-    // ==================================================
-
-    if (rainProbability >= 70) {
-
-        if (weatherSuggestion) {
-            weatherSuggestion.innerText =
-                "Rain expected";
-        }
-
-        if (weatherSuggestionText) {
-            weatherSuggestionText.innerText =
-                "Plan field work around rainfall and keep drainage channels clear.";
-        }
-
-    } else if (wind >= 30) {
-
-        if (weatherSuggestion) {
-            weatherSuggestion.innerText =
-                "Strong wind";
-        }
-
-        if (weatherSuggestionText) {
-            weatherSuggestionText.innerText =
-                "Avoid spraying and secure young plants where possible.";
-        }
-
-    } else {
-
-        if (weatherSuggestion) {
-            weatherSuggestion.innerText =
-                "Weather suitable";
-        }
-
-        if (weatherSuggestionText) {
-            weatherSuggestionText.innerText =
-                "Current conditions can be used to plan routine farm activities.";
-        }
-
-    }
-
-
-    // ==================================================
-    // 🌱 CROP CARE
-    // ==================================================
-
-    if (
-        humidity >= 80 &&
-        rainProbability >= 50
-    ) {
-
-        if (cropSuggestion) {
-            cropSuggestion.innerText =
-                "Monitor disease risk";
-        }
-
-        if (cropSuggestionText) {
-            cropSuggestionText.innerText =
-                "Warm, humid and wet conditions can increase fungal disease risk. Inspect crops regularly.";
-        }
-
-    } else if (wind >= 30) {
-
-        if (cropSuggestion) {
-            cropSuggestion.innerText =
-                "Protect crops from wind";
-        }
-
-        if (cropSuggestionText) {
-            cropSuggestionText.innerText =
-                "Strong winds may damage tender plants. Avoid unnecessary field spraying.";
-        }
-
-    } else if (temperature >= 35) {
-
-        if (cropSuggestion) {
-            cropSuggestion.innerText =
-                "Monitor heat stress";
-        }
-
-        if (cropSuggestionText) {
-            cropSuggestionText.innerText =
-                "High temperature can increase crop water demand. Check plants and soil regularly.";
-        }
-
-    } else {
-
-        if (cropSuggestion) {
-            cropSuggestion.innerText =
-                "Continue crop monitoring";
-        }
-
-        if (cropSuggestionText) {
-            cropSuggestionText.innerText =
-                "Monitor crop growth, pests and field conditions regularly.";
-        }
-
-    }
-
 }
 
 
 // ======================================================
-// ⚠️ WEATHER ERROR
+// 👋 GREETING
 // ======================================================
 
-function showWeatherError(message) {
+function updateGreeting() {
 
-    const locationElement =
+    const greeting =
         document.getElementById(
-            "weather-location"
+            "greeting"
         );
 
 
-    if (locationElement) {
+    if (!greeting) return;
 
-        locationElement.innerText =
-            "📍 Live weather unavailable";
+
+    const hour =
+        new Date().getHours();
+
+
+    if (hour < 12) {
+
+        greeting.textContent =
+            "Good Morning, Farmer 🌅";
 
     }
 
+    else if (hour < 17) {
 
-    const weatherElement =
-        document.getElementById(
-            "weather-value"
+        greeting.textContent =
+            "Good Afternoon, Farmer ☀️";
+
+    }
+
+    else {
+
+        greeting.textContent =
+            "Good Evening, Farmer 🌙";
+    }
+}
+
+
+// ======================================================
+// 🧭 NAVIGATION
+// ======================================================
+
+function setupNavigation() {
+
+    const links =
+        document.querySelectorAll(
+            ".navbar nav a"
         );
 
 
-    if (weatherElement) {
-        weatherElement.innerText = "Unavailable";
-    }
+    links.forEach(link => {
+
+        link.addEventListener(
+            "click",
+            () => {
+
+                links.forEach(item => {
+
+                    item.classList.remove(
+                        "active"
+                    );
+
+                });
 
 
-    const temperatureElement =
-        document.getElementById(
-            "temperature-value"
+                link.classList.add(
+                    "active"
+                );
+
+            }
+        );
+
+    });
+}
+
+
+// ======================================================
+// 👨‍🌾 PROFILE BUTTON
+// ======================================================
+
+function setupProfile() {
+
+    const profileButton =
+        document.querySelector(
+            ".profile-btn"
         );
 
 
-    if (temperatureElement) {
-        temperatureElement.innerText = "--°C";
-    }
+    if (!profileButton) return;
 
 
-    const humidityElement =
-        document.getElementById(
-            "humidity-value"
-        );
+    profileButton.addEventListener(
+        "click",
+        () => {
 
+            showMessage(
+                "👨‍🌾 Farmer Profile • AgriCare Dashboard",
+                "success"
+            );
 
-    if (humidityElement) {
-        humidityElement.innerText = "--%";
-    }
-
-
-    const rainElement =
-        document.getElementById(
-            "rain-value"
-        );
-
-
-    if (rainElement) {
-        rainElement.innerText = "--%";
-    }
-
-
-    const windElement =
-        document.getElementById(
-            "wind-value"
-        );
-
-
-    if (windElement) {
-        windElement.innerText = "-- km/h";
-    }
-
-
-    const soilElement =
-        document.getElementById(
-            "soil-value"
-        );
-
-
-    if (soilElement) {
-        soilElement.innerText = "N/A";
-    }
-
-
-    const weatherMessage =
-        document.getElementById(
-            "weather-message"
-        );
-
-
-    if (weatherMessage) {
-
-        weatherMessage.innerText =
-            message;
-
-    }
-
-
-    const temperatureMessage =
-        document.getElementById(
-            "temperature-message"
-        );
-
-
-    if (temperatureMessage) {
-
-        temperatureMessage.innerText =
-            "Live data unavailable.";
-
-    }
-
-
-    const humidityMessage =
-        document.getElementById(
-            "humidity-message"
-        );
-
-
-    if (humidityMessage) {
-
-        humidityMessage.innerText =
-            "Live data unavailable.";
-
-    }
-
-
-    const rainMessage =
-        document.getElementById(
-            "rain-message"
-        );
-
-
-    if (rainMessage) {
-
-        rainMessage.innerText =
-            "Live data unavailable.";
-
-    }
-
-
-    const windMessage =
-        document.getElementById(
-            "wind-message"
-        );
-
-
-    if (windMessage) {
-
-        windMessage.innerText =
-            "Live data unavailable.";
-
-    }
-
-
-    const soilMessage =
-        document.getElementById(
-            "soil-message"
-        );
-
-
-    if (soilMessage) {
-
-        soilMessage.innerText =
-            "No live soil data.";
-
-    }
-
-
-    console.log(
-        "⚠️ Weather:",
-        message
+        }
     );
-
 }
 
 
 // ======================================================
-// 🔐 BASIC HTML SAFETY
+// 🛡️ SECURITY
 // ======================================================
 
 function escapeHTML(value) {
 
     return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
 
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 }
