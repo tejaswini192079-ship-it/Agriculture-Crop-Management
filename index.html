@@ -143,8 +143,6 @@
         <section class="overview">
 
 
-            <!-- ACTIVE FIELDS -->
-
             <div class="stat-card">
 
                 <div class="stat-icon">
@@ -165,8 +163,6 @@
 
             </div>
 
-
-            <!-- IRRIGATION -->
 
             <div class="stat-card">
 
@@ -189,8 +185,6 @@
             </div>
 
 
-            <!-- PEST -->
-
             <div class="stat-card">
 
                 <div class="stat-icon">
@@ -211,8 +205,6 @@
 
             </div>
 
-
-            <!-- HARVEST -->
 
             <div class="stat-card">
 
@@ -270,11 +262,8 @@
             </div>
 
 
-
             <div class="activity-grid">
 
-
-                <!-- IRRIGATION TASK -->
 
                 <article class="activity-card">
 
@@ -311,8 +300,6 @@
 
 
 
-                <!-- FERTILIZER TASK -->
-
                 <article class="activity-card">
 
                     <div class="activity-icon fertilizer">
@@ -347,8 +334,6 @@
                 </article>
 
 
-
-                <!-- PEST TASK -->
 
                 <article class="activity-card">
 
@@ -435,10 +420,6 @@
             </div>
 
 
-
-            <!-- ==================================================
-                 EXISTING FIELDS
-            ================================================== -->
 
             <div
                 class="field-grid"
@@ -897,18 +878,12 @@
 
 
 
-            <!-- ==================================================
-                 NEW FIELDS
-            ================================================== -->
-
             <div id="newFields">
             </div>
 
 
 
-            <!-- ==================================================
-                 FIELD DETAILS
-            ================================================== -->
+            <!-- FIELD DETAILS -->
 
             <section
                 id="fieldDetails"
@@ -1010,8 +985,6 @@
             <div class="activity-grid">
 
 
-                <!-- IRRIGATION -->
-
                 <article class="activity-card">
 
 
@@ -1051,8 +1024,6 @@
 
 
 
-                <!-- FERTILIZER -->
-
                 <article class="activity-card">
 
 
@@ -1091,8 +1062,6 @@
                 </article>
 
 
-
-                <!-- PEST -->
 
                 <article class="activity-card">
 
@@ -1348,7 +1317,7 @@
 
 
         <!-- ==================================================
-             🌦️ FARM CONDITIONS
+             🌦️ LIVE FARM CONDITIONS
         ================================================== -->
 
         <section
@@ -1372,9 +1341,17 @@
 
 
                     <p>
-                        Monitor important conditions that can affect your crops.
+                        Live weather conditions for your selected location.
                     </p>
 
+
+                    <p
+                        id="weather-location"
+                        style="font-size:13px;color:#68776c;">
+
+                        📍 Detecting your location...
+
+                    </p>
 
                 </div>
 
@@ -1384,7 +1361,7 @@
 
 
             <!-- ==================================================
-                 CONDITION CARDS
+                 🌦️ LIVE CONDITION CARDS
             ================================================== -->
 
             <div class="condition-grid">
@@ -1394,11 +1371,9 @@
 
                 <div class="condition-card">
 
-
                     <div class="condition-icon">
                         🌡️
                     </div>
-
 
                     <div>
 
@@ -1406,51 +1381,43 @@
                             TEMPERATURE
                         </span>
 
-
-                        <h3>
-                            29°C
+                        <h3 id="temperature-value">
+                            --°C
                         </h3>
 
-
-                        <p>
-                            Comfortable for crops
+                        <p id="temperature-message">
+                            Loading...
                         </p>
 
                     </div>
-
 
                 </div>
 
 
 
-                <!-- SOIL MOISTURE -->
+                <!-- HUMIDITY -->
 
                 <div class="condition-card">
-
 
                     <div class="condition-icon">
                         💧
                     </div>
 
-
                     <div>
 
                         <span>
-                            SOIL MOISTURE
+                            HUMIDITY
                         </span>
 
-
-                        <h3>
-                            68%
+                        <h3 id="humidity-value">
+                            --%
                         </h3>
 
-
-                        <p>
-                            Moisture level is good
+                        <p id="humidity-message">
+                            Loading...
                         </p>
 
                     </div>
-
 
                 </div>
 
@@ -1460,11 +1427,9 @@
 
                 <div class="condition-card">
 
-
                     <div class="condition-icon">
                         ☁️
                     </div>
-
 
                     <div>
 
@@ -1472,32 +1437,27 @@
                             WEATHER
                         </span>
 
-
-                        <h3>
-                            Partly Cloudy
+                        <h3 id="weather-value">
+                            Loading...
                         </h3>
 
-
-                        <p>
-                            Mild conditions today
+                        <p id="weather-message">
+                            Getting current weather
                         </p>
 
                     </div>
-
 
                 </div>
 
 
 
-                <!-- RAIN -->
+                <!-- RAIN CHANCE -->
 
                 <div class="condition-card">
-
 
                     <div class="condition-icon">
                         🌧️
                     </div>
-
 
                     <div>
 
@@ -1505,32 +1465,27 @@
                             RAIN CHANCE
                         </span>
 
-
-                        <h3>
-                            30%
+                        <h3 id="rain-value">
+                            --%
                         </h3>
 
-
-                        <p>
-                            Low chance of rainfall
+                        <p id="rain-message">
+                            Loading...
                         </p>
 
                     </div>
-
 
                 </div>
 
 
 
-                <!-- WIND -->
+                <!-- WIND SPEED -->
 
                 <div class="condition-card">
-
 
                     <div class="condition-icon">
                         💨
                     </div>
-
 
                     <div>
 
@@ -1538,18 +1493,43 @@
                             WIND SPEED
                         </span>
 
-
-                        <h3>
-                            12 km/h
+                        <h3 id="wind-value">
+                            -- km/h
                         </h3>
 
-
-                        <p>
-                            Light wind conditions
+                        <p id="wind-message">
+                            Loading...
                         </p>
 
                     </div>
 
+                </div>
+
+
+
+                <!-- SOIL MOISTURE -->
+
+                <div class="condition-card">
+
+                    <div class="condition-icon">
+                        🌱
+                    </div>
+
+                    <div>
+
+                        <span>
+                            SOIL MOISTURE
+                        </span>
+
+                        <h3 id="soil-value">
+                            --
+                        </h3>
+
+                        <p id="soil-message">
+                            Model-based estimate
+                        </p>
+
+                    </div>
 
                 </div>
 
@@ -1559,7 +1539,7 @@
 
 
             <!-- ==================================================
-                 💡 SMART SUGGESTIONS
+                 💡 SMART FARM SUGGESTIONS
             ================================================== -->
 
             <div class="smart-suggestions">
@@ -1607,15 +1587,13 @@
                             </span>
 
 
-                            <h3>
-                                Monitor Soil Moisture
+                            <h3 id="irrigation-suggestion">
+                                Checking conditions...
                             </h3>
 
 
-                            <p>
-                                Soil moisture is currently 68%.
-                                Monitor the field before scheduling
-                                the next irrigation.
+                            <p id="irrigation-text">
+                                Weather data is being analyzed.
                             </p>
 
                         </div>
@@ -1625,32 +1603,30 @@
 
 
 
-                    <!-- CROP HEALTH -->
+                    <!-- WEATHER -->
 
                     <div class="suggestion-card">
 
 
                         <div class="suggestion-icon">
-                            🐛
+                            🌦️
                         </div>
 
 
                         <div>
 
                             <span>
-                                CROP HEALTH
+                                WEATHER
                             </span>
 
 
-                            <h3>
-                                Check Tomato Leaves
+                            <h3 id="weather-suggestion">
+                                Checking weather...
                             </h3>
 
 
-                            <p>
-                                Sunrise Field has a pest observation
-                                scheduled today. Inspect the leaves
-                                for early signs of pests.
+                            <p id="weather-suggestion-text">
+                                Weather conditions are being analyzed.
                             </p>
 
                         </div>
@@ -1660,32 +1636,31 @@
 
 
 
-                    <!-- HARVEST -->
+                    <!-- CROP CARE -->
 
                     <div class="suggestion-card">
 
 
                         <div class="suggestion-icon">
-                            🌾
+                            🌱
                         </div>
 
 
                         <div>
 
                             <span>
-                                HARVEST
+                                CROP CARE
                             </span>
 
 
-                            <h3>
-                                Harvest Preparation
+                            <h3 id="crop-suggestion">
+                                Monitoring crop conditions
                             </h3>
 
 
-                            <p>
-                                Harvest Hope Field has reached
-                                86% maturity. Start preparing
-                                harvesting equipment.
+                            <p id="crop-suggestion-text">
+                                Suggestions will update using current
+                                weather conditions.
                             </p>
 
                         </div>
@@ -1740,8 +1715,6 @@
 
 
 
-                <!-- HARVEST PROGRESS -->
-
                 <div class="harvest-progress">
 
 
@@ -1785,8 +1758,6 @@
             </div>
 
 
-
-            <!-- EXPECTED HARVEST -->
 
             <div class="harvest-date">
 
