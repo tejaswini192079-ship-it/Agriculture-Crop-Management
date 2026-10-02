@@ -16,24 +16,16 @@
 // 🚀 PAGE LOAD
 // ======================================================
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
 
     console.log("🌱 AgriCare Platform loaded successfully!");
 
-    // Load saved information
+    // Load saved data
     loadSavedFields();
     loadSavedHarvestProgress();
 
-    // Start weather system
+    // Start live weather
     initLiveWeather();
-
-    // Welcome message
-    setTimeout(() => {
-        showMessage(
-            "🌱 Welcome to AgriCare! Your smart farm dashboard is ready.",
-            "success"
-        );
-    }, 800);
 
     // Greeting
     updateGreeting();
@@ -44,11 +36,21 @@ document.addEventListener("DOMContentLoaded", () => {
     // Profile button
     setupProfile();
 
+    // Welcome message
+    setTimeout(function () {
+
+        showMessage(
+            "🌱 Welcome to AgriCare! Your smart farm dashboard is ready.",
+            "success"
+        );
+
+    }, 800);
+
 });
 
 
 // ======================================================
-// 💬 MESSAGE SYSTEM
+// 💬 MESSAGE
 // ======================================================
 
 function showMessage(message, type = "success") {
@@ -81,12 +83,12 @@ function showMessage(message, type = "success") {
 
     document.body.appendChild(messageBox);
 
-    setTimeout(() => {
+    setTimeout(function () {
 
         messageBox.style.opacity = "0";
         messageBox.style.transition = "0.4s";
 
-        setTimeout(() => {
+        setTimeout(function () {
             messageBox.remove();
         }, 400);
 
@@ -104,10 +106,12 @@ function showTasks() {
         document.getElementById("tasks");
 
     if (!taskSection) {
+
         showMessage(
             "Today's farm tasks are ready to review.",
             "success"
         );
+
         return;
     }
 
@@ -145,12 +149,13 @@ function showAddFieldForm() {
     } else {
 
         form.style.display = "none";
+
     }
 }
 
 
 // ======================================================
-// 🌱 SAVE NEW FIELD
+// 🌱 SAVE FIELD
 // ======================================================
 
 function saveField() {
@@ -164,7 +169,7 @@ function saveField() {
     const cropProgress =
         document.getElementById("cropProgress").value;
 
-    // Validation
+
     if (!cropName) {
 
         showMessage(
@@ -174,6 +179,7 @@ function saveField() {
 
         return;
     }
+
 
     if (
         cropAcres === "" ||
@@ -187,6 +193,7 @@ function saveField() {
 
         return;
     }
+
 
     if (
         cropProgress === "" ||
@@ -216,7 +223,6 @@ function saveField() {
     };
 
 
-    // Get existing fields
     let fields = [];
 
     try {
@@ -229,35 +235,29 @@ function saveField() {
     } catch (error) {
 
         fields = [];
+
     }
 
 
-    // Add new field
     fields.push(field);
 
 
-    // Save
     localStorage.setItem(
         "agriCareFields",
         JSON.stringify(fields)
     );
 
 
-    // Display
     displayField(field);
 
-
-    // Update count
     updateFieldCount();
 
 
-    // Clear form
     document.getElementById("cropName").value = "";
     document.getElementById("cropAcres").value = "";
     document.getElementById("cropProgress").value = "";
 
 
-    // Hide form
     const form =
         document.getElementById("addFieldForm");
 
@@ -274,7 +274,7 @@ function saveField() {
 
 
 // ======================================================
-// 🌾 DISPLAY NEW FIELD
+// 🌾 DISPLAY FIELD
 // ======================================================
 
 function displayField(field) {
@@ -285,21 +285,28 @@ function displayField(field) {
     if (!container) return;
 
 
+    let stage = "Planning";
+
+
+    if (field.progress >= 80) {
+
+        stage = "Maturity";
+
+    } else if (field.progress >= 50) {
+
+        stage = "Flowering";
+
+    } else if (field.progress >= 20) {
+
+        stage = "Vegetative";
+
+    }
+
+
     const card =
         document.createElement("div");
 
     card.className = "field-card";
-
-
-    let stage = "Planning";
-
-    if (field.progress >= 80) {
-        stage = "Maturity";
-    } else if (field.progress >= 50) {
-        stage = "Flowering";
-    } else if (field.progress >= 20) {
-        stage = "Vegetative";
-    }
 
 
     card.innerHTML = `
@@ -308,7 +315,9 @@ function displayField(field) {
 
             <div>
 
-                <h3>🌱 ${escapeHTML(field.crop)}</h3>
+                <h3>
+                    🌱 ${escapeHTML(field.crop)}
+                </h3>
 
                 <p>
                     ${field.acres} acres
@@ -373,10 +382,11 @@ function loadSavedFields() {
     } catch (error) {
 
         fields = [];
+
     }
 
 
-    fields.forEach(field => {
+    fields.forEach(function (field) {
 
         displayField(field);
 
@@ -388,7 +398,7 @@ function loadSavedFields() {
 
 
 // ======================================================
-// 🔢 UPDATE FIELD COUNT
+// 🔢 FIELD COUNT
 // ======================================================
 
 function updateFieldCount() {
@@ -411,10 +421,10 @@ function updateFieldCount() {
     } catch (error) {
 
         savedFields = [];
+
     }
 
 
-    // Three original fields already present
     const total =
         3 + savedFields.length;
 
@@ -441,11 +451,14 @@ function viewField(id) {
     } catch (error) {
 
         fields = [];
+
     }
 
 
     const field =
-        fields.find(item => item.id === id);
+        fields.find(function (item) {
+            return item.id === id;
+        });
 
 
     if (!field) return;
@@ -468,7 +481,9 @@ function viewField(id) {
 
     details.innerHTML = `
 
-        <h3>🌱 ${escapeHTML(field.crop)}</h3>
+        <h3>
+            🌱 ${escapeHTML(field.crop)}
+        </h3>
 
         <p>
             Area: ${field.acres} acres
@@ -482,6 +497,7 @@ function viewField(id) {
 
 
     details.style.display = "block";
+
 
     details.scrollIntoView({
         behavior: "smooth"
@@ -590,30 +606,31 @@ function updateProgress() {
         Math.round(progress);
 
 
-    // Save progress
     localStorage.setItem(
         "agriCareHarvestProgress",
         progress
     );
 
 
-    // Update progress bar
     const fill =
         document.getElementById("progress-fill");
 
     if (fill) {
+
         fill.style.width =
             `${progress}%`;
+
     }
 
 
-    // Update percentage
     const currentProgress =
         document.getElementById("currentProgress");
 
     if (currentProgress) {
+
         currentProgress.textContent =
             `${progress}%`;
+
     }
 
 
@@ -621,8 +638,10 @@ function updateProgress() {
         document.getElementById("harvestPercentage");
 
     if (harvestPercentage) {
+
         harvestPercentage.textContent =
             `${progress}%`;
+
     }
 
 
@@ -630,8 +649,10 @@ function updateProgress() {
         document.getElementById("dashboardProgress");
 
     if (dashboardProgress) {
+
         dashboardProgress.textContent =
             `${progress}%`;
+
     }
 
 
@@ -639,13 +660,16 @@ function updateProgress() {
         document.getElementById("progress-text");
 
     if (progressText) {
+
         progressText.textContent =
             `${progress}% complete`;
+
     }
 
 
     const message =
         document.getElementById("progress-message");
+
 
     if (message) {
 
@@ -668,6 +692,7 @@ function updateProgress() {
 
             message.textContent =
                 "🌱 Crop is still developing.";
+
         }
     }
 
@@ -709,8 +734,10 @@ function loadSavedHarvestProgress() {
         document.getElementById("progress-fill");
 
     if (fill) {
+
         fill.style.width =
             `${progress}%`;
+
     }
 
 
@@ -718,8 +745,10 @@ function loadSavedHarvestProgress() {
         document.getElementById("currentProgress");
 
     if (currentProgress) {
+
         currentProgress.textContent =
             `${progress}%`;
+
     }
 
 
@@ -727,8 +756,10 @@ function loadSavedHarvestProgress() {
         document.getElementById("harvestPercentage");
 
     if (harvestPercentage) {
+
         harvestPercentage.textContent =
             `${progress}%`;
+
     }
 
 
@@ -736,8 +767,10 @@ function loadSavedHarvestProgress() {
         document.getElementById("dashboardProgress");
 
     if (dashboardProgress) {
+
         dashboardProgress.textContent =
             `${progress}%`;
+
     }
 
 
@@ -745,22 +778,24 @@ function loadSavedHarvestProgress() {
         document.getElementById("progress-text");
 
     if (progressText) {
+
         progressText.textContent =
             `${progress}% complete`;
+
     }
 }
 
 
 // ======================================================
 // 🌦️ LIVE WEATHER
-// 📍 Fixed location: Phagwara, Punjab
-// ❌ No browser location permission
+// 📍 FIXED LOCATION: PHAGWARA, PUNJAB
+// ❌ NO BROWSER LOCATION ACCESS
 // ======================================================
 
 function initLiveWeather() {
 
-    // Phagwara, Punjab coordinates
     const latitude = 31.2240;
+
     const longitude = 75.7708;
 
 
@@ -786,7 +821,7 @@ function initLiveWeather() {
 
 
 // ======================================================
-// 🌦️ GET WEATHER FROM OPEN-METEO
+// 🌦️ WEATHER API
 // ======================================================
 
 async function getLiveWeather(
@@ -800,20 +835,32 @@ async function getLiveWeather(
             `https://api.open-meteo.com/v1/forecast?` +
             `latitude=${latitude}` +
             `&longitude=${longitude}` +
-            `&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,rain,weather_code,wind_speed_10m` +
-            `&hourly=precipitation_probability,soil_moisture_0_to_1cm` +
+            `&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m` +
+            `&hourly=precipitation_probability` +
             `&forecast_days=1` +
             `&timezone=auto`;
+
+
+        console.log(
+            "🌦️ Weather API:",
+            url
+        );
 
 
         const response =
             await fetch(url);
 
 
+        console.log(
+            "🌦️ Weather response:",
+            response.status
+        );
+
+
         if (!response.ok) {
 
             throw new Error(
-                "Weather API request failed"
+                `Weather API error: ${response.status}`
             );
 
         }
@@ -823,6 +870,12 @@ async function getLiveWeather(
             await response.json();
 
 
+        console.log(
+            "🌦️ Weather data:",
+            data
+        );
+
+
         updateWeatherUI(data);
 
     }
@@ -830,7 +883,7 @@ async function getLiveWeather(
     catch (error) {
 
         console.error(
-            "Weather Error:",
+            "❌ Weather Error:",
             error
         );
 
@@ -880,23 +933,52 @@ async function getLiveWeather(
             );
 
 
-        if (temperature)
-            temperature.textContent = "--°C";
+        if (temperature) {
 
-        if (humidity)
-            humidity.textContent = "--%";
+            temperature.textContent =
+                "--°C";
 
-        if (weather)
-            weather.textContent = "Unavailable";
+        }
 
-        if (rain)
-            rain.textContent = "--%";
 
-        if (wind)
-            wind.textContent = "-- km/h";
+        if (humidity) {
 
-        if (soil)
-            soil.textContent = "--";
+            humidity.textContent =
+                "--%";
+
+        }
+
+
+        if (weather) {
+
+            weather.textContent =
+                "Unavailable";
+
+        }
+
+
+        if (rain) {
+
+            rain.textContent =
+                "--%";
+
+        }
+
+
+        if (wind) {
+
+            wind.textContent =
+                "-- km/h";
+
+        }
+
+
+        if (soil) {
+
+            soil.textContent =
+                "--";
+
+        }
     }
 }
 
@@ -962,7 +1044,7 @@ function getWeatherDescription(code) {
 
 
 // ======================================================
-// 🌦️ UPDATE WEATHER CARDS
+// 🌦️ UPDATE WEATHER UI
 // ======================================================
 
 function updateWeatherUI(data) {
@@ -972,70 +1054,122 @@ function updateWeatherUI(data) {
 
 
     // 🌡️ TEMPERATURE
+
     const temperature =
         Math.round(
             current.temperature_2m
         );
 
 
-    document.getElementById(
-        "temperature-value"
-    ).textContent =
-        `${temperature}°C`;
+    const temperatureValue =
+        document.getElementById(
+            "temperature-value"
+        );
 
 
-    document.getElementById(
-        "temperature-message"
-    ).textContent =
-        `Feels like ${Math.round(
-            current.apparent_temperature
-        )}°C`;
+    if (temperatureValue) {
+
+        temperatureValue.textContent =
+            `${temperature}°C`;
+
+    }
+
+
+    const temperatureMessage =
+        document.getElementById(
+            "temperature-message"
+        );
+
+
+    if (temperatureMessage) {
+
+        temperatureMessage.textContent =
+            `Feels like ${Math.round(
+                current.apparent_temperature
+            )}°C`;
+
+    }
 
 
     // 💧 HUMIDITY
+
     const humidity =
         Math.round(
             current.relative_humidity_2m
         );
 
 
-    document.getElementById(
-        "humidity-value"
-    ).textContent =
-        `${humidity}%`;
+    const humidityValue =
+        document.getElementById(
+            "humidity-value"
+        );
 
 
-    document.getElementById(
-        "humidity-message"
-    ).textContent =
+    if (humidityValue) {
 
-        humidity > 80
-            ? "High humidity"
-            : humidity > 50
-                ? "Moderate humidity"
-                : "Low humidity";
+        humidityValue.textContent =
+            `${humidity}%`;
+
+    }
+
+
+    const humidityMessage =
+        document.getElementById(
+            "humidity-message"
+        );
+
+
+    if (humidityMessage) {
+
+        humidityMessage.textContent =
+
+            humidity > 80
+                ? "High humidity"
+                : humidity > 50
+                    ? "Moderate humidity"
+                    : "Low humidity";
+
+    }
 
 
     // ☁️ WEATHER
+
     const weather =
         getWeatherDescription(
             current.weather_code
         );
 
 
-    document.getElementById(
-        "weather-value"
-    ).textContent =
-        weather;
+    const weatherValue =
+        document.getElementById(
+            "weather-value"
+        );
 
 
-    document.getElementById(
-        "weather-message"
-    ).textContent =
-        "Current conditions";
+    if (weatherValue) {
+
+        weatherValue.textContent =
+            weather;
+
+    }
+
+
+    const weatherMessage =
+        document.getElementById(
+            "weather-message"
+        );
+
+
+    if (weatherMessage) {
+
+        weatherMessage.textContent =
+            "Current conditions";
+
+    }
 
 
     // 🌧️ RAIN CHANCE
+
     let rainChance = 0;
 
 
@@ -1047,81 +1181,111 @@ function updateWeatherUI(data) {
         rainChance =
             data.hourly
                 .precipitation_probability[0] || 0;
+
     }
 
 
-    document.getElementById(
-        "rain-value"
-    ).textContent =
-        `${rainChance}%`;
+    const rainValue =
+        document.getElementById(
+            "rain-value"
+        );
 
 
-    document.getElementById(
-        "rain-message"
-    ).textContent =
+    if (rainValue) {
 
-        rainChance > 60
-            ? "High chance of rain"
-            : rainChance > 30
-                ? "Possible rain"
-                : "Low chance of rain";
+        rainValue.textContent =
+            `${rainChance}%`;
+
+    }
+
+
+    const rainMessage =
+        document.getElementById(
+            "rain-message"
+        );
+
+
+    if (rainMessage) {
+
+        rainMessage.textContent =
+
+            rainChance > 60
+                ? "High chance of rain"
+                : rainChance > 30
+                    ? "Possible rain"
+                    : "Low chance of rain";
+
+    }
 
 
     // 💨 WIND
+
     const wind =
         Math.round(
             current.wind_speed_10m
         );
 
 
-    document.getElementById(
-        "wind-value"
-    ).textContent =
-        `${wind} km/h`;
+    const windValue =
+        document.getElementById(
+            "wind-value"
+        );
 
 
-    document.getElementById(
-        "wind-message"
-    ).textContent =
+    if (windValue) {
 
-        wind > 25
-            ? "Strong winds"
-            : "Normal wind conditions";
+        windValue.textContent =
+            `${wind} km/h`;
 
-
-    // 🌱 SOIL MOISTURE
-    let soilMoisture = null;
-
-
-    if (
-        data.hourly &&
-        data.hourly.soil_moisture_0_to_1cm
-    ) {
-
-        soilMoisture =
-            data.hourly
-                .soil_moisture_0_to_1cm[0];
     }
 
 
-    if (soilMoisture !== null) {
-
-        const soilPercent =
-            Math.round(
-                soilMoisture * 100
-            );
+    const windMessage =
+        document.getElementById(
+            "wind-message"
+        );
 
 
+    if (windMessage) {
+
+        windMessage.textContent =
+
+            wind > 25
+                ? "Strong winds"
+                : "Normal wind conditions";
+
+    }
+
+
+    // 🌱 SOIL MOISTURE
+    // This version does not request soil moisture
+    // from the API, so we clearly show that it
+    // is unavailable instead of creating fake data.
+
+    const soilValue =
         document.getElementById(
             "soil-value"
-        ).textContent =
-            `${soilPercent}%`;
+        );
 
 
+    const soilMessage =
         document.getElementById(
             "soil-message"
-        ).textContent =
-            "Model-based estimate";
+        );
+
+
+    if (soilValue) {
+
+        soilValue.textContent =
+            "N/A";
+
+    }
+
+
+    if (soilMessage) {
+
+        soilMessage.textContent =
+            "No soil sensor connected";
 
     }
 
@@ -1162,48 +1326,45 @@ function updateSmartSuggestions(
         );
 
 
-    if (!irrigationTitle ||
-        !irrigationText) {
-
-        return;
-    }
+    if (irrigationTitle &&
+        irrigationText) {
 
 
-    // 💧 IRRIGATION
+        if (rainChance >= 60) {
 
-    if (rainChance >= 60) {
-
-        irrigationTitle.textContent =
-            "Delay Irrigation";
+            irrigationTitle.textContent =
+                "Delay Irrigation";
 
 
-        irrigationText.textContent =
-            "Rain is likely, so irrigation may not be necessary.";
+            irrigationText.textContent =
+                "Rain is likely, so irrigation may not be necessary.";
 
-    }
+        }
 
-    else if (
-        temperature >= 32 &&
-        humidity < 60
-    ) {
+        else if (
+            temperature >= 32 &&
+            humidity < 60
+        ) {
 
-        irrigationTitle.textContent =
-            "Irrigation Recommended";
-
-
-        irrigationText.textContent =
-            "Hot and relatively dry conditions may increase crop water demand.";
-
-    }
-
-    else {
-
-        irrigationTitle.textContent =
-            "Normal Irrigation";
+            irrigationTitle.textContent =
+                "Irrigation Recommended";
 
 
-        irrigationText.textContent =
-            "Current weather does not indicate unusually high water demand.";
+            irrigationText.textContent =
+                "Hot and relatively dry conditions may increase crop water demand.";
+
+        }
+
+        else {
+
+            irrigationTitle.textContent =
+                "Normal Irrigation";
+
+
+            irrigationText.textContent =
+                "Current weather does not indicate unusually high water demand.";
+
+        }
     }
 
 
@@ -1221,8 +1382,10 @@ function updateSmartSuggestions(
         );
 
 
-    if (weatherTitle &&
-        weatherText) {
+    if (
+        weatherTitle &&
+        weatherText
+    ) {
 
 
         if (rainChance >= 60) {
@@ -1255,6 +1418,7 @@ function updateSmartSuggestions(
 
             weatherText.textContent =
                 `Current weather: ${weather}.`;
+
         }
     }
 
@@ -1273,8 +1437,10 @@ function updateSmartSuggestions(
         );
 
 
-    if (cropTitle &&
-        cropText) {
+    if (
+        cropTitle &&
+        cropText
+    ) {
 
 
         if (temperature >= 35) {
@@ -1307,6 +1473,7 @@ function updateSmartSuggestions(
 
             cropText.textContent =
                 "Continue regular crop monitoring and farm activities.";
+
         }
     }
 }
@@ -1349,6 +1516,7 @@ function updateGreeting() {
 
         greeting.textContent =
             "Good Evening, Farmer 🌙";
+
     }
 }
 
@@ -1365,13 +1533,13 @@ function setupNavigation() {
         );
 
 
-    links.forEach(link => {
+    links.forEach(function (link) {
 
         link.addEventListener(
             "click",
-            () => {
+            function () {
 
-                links.forEach(item => {
+                links.forEach(function (item) {
 
                     item.classList.remove(
                         "active"
@@ -1392,7 +1560,7 @@ function setupNavigation() {
 
 
 // ======================================================
-// 👨‍🌾 PROFILE BUTTON
+// 👨‍🌾 PROFILE
 // ======================================================
 
 function setupProfile() {
@@ -1408,7 +1576,7 @@ function setupProfile() {
 
     profileButton.addEventListener(
         "click",
-        () => {
+        function () {
 
             showMessage(
                 "👨‍🌾 Farmer Profile • AgriCare Dashboard",
@@ -1421,7 +1589,7 @@ function setupProfile() {
 
 
 // ======================================================
-// 🛡️ SECURITY
+// 🛡️ ESCAPE HTML
 // ======================================================
 
 function escapeHTML(value) {
