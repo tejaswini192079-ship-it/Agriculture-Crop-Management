@@ -2,17 +2,30 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AgriCare | Agriculture Crop Management</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style.css">
+    <title>
+        AgriCare | Agriculture Crop Management
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
 </head>
+
 
 <body>
 
-    <!-- ================= NAVIGATION ================= -->
+
+    <!-- ==================================================
+         🌾 NAVIGATION
+    ================================================== -->
 
     <header class="navbar">
 
@@ -20,12 +33,31 @@
             🌾 <span>AgriCare</span>
         </div>
 
+
         <nav>
-            <a href="#dashboard">Dashboard</a>
-            <a href="#fields">My Fields</a>
-            <a href="#activities">Activities</a>
-            <a href="#harvest">Harvest</a>
+
+            <a href="#dashboard">
+                Dashboard
+            </a>
+
+            <a href="#fields">
+                My Fields
+            </a>
+
+            <a href="#activities">
+                Activities
+            </a>
+
+            <a href="#conditions">
+                Farm Conditions
+            </a>
+
+            <a href="#harvest">
+                Harvest
+            </a>
+
         </nav>
+
 
         <button class="profile-btn">
             👨‍🌾 Farmer
@@ -34,13 +66,22 @@
     </header>
 
 
-    <!-- ================= MAIN CONTENT ================= -->
+
+    <!-- ==================================================
+         🌱 MAIN CONTENT
+    ================================================== -->
 
     <main>
 
-        <!-- ================= DASHBOARD ================= -->
 
-        <section id="dashboard" class="hero">
+        <!-- ==================================================
+             🌾 DASHBOARD
+        ================================================== -->
+
+        <section
+            id="dashboard"
+            class="hero">
+
 
             <div class="hero-content">
 
@@ -48,43 +89,61 @@
                     YOUR FARM • YOUR JOURNEY • YOUR HARVEST
                 </p>
 
+
                 <h1>
                     Good morning, Farmer! 👋
                 </h1>
+
 
                 <p>
                     Manage your fields, crops and daily farm activities
                     from one simple place.
                 </p>
 
+
                 <div class="hero-buttons">
+
 
                     <button
                         class="primary-btn"
                         onclick="showTasks()">
+
                         🌱 View Today's Tasks
+
                     </button>
+
 
                     <button
                         class="secondary-btn"
                         onclick="showAddFieldForm()">
+
                         + Add New Field
+
                     </button>
+
 
                 </div>
 
             </div>
 
+
             <div class="hero-icon">
                 🌾
             </div>
 
+
         </section>
 
 
-        <!-- ================= OVERVIEW ================= -->
+
+        <!-- ==================================================
+             📊 FARM OVERVIEW
+        ================================================== -->
 
         <section class="overview">
+
+
+            <!-- ACTIVE FIELDS -->
 
             <div class="stat-card">
 
@@ -93,12 +152,21 @@
                 </div>
 
                 <div>
-                    <h3 id="fieldCount">3</h3>
-                    <p>Active Fields</p>
+
+                    <h3 id="fieldCount">
+                        3
+                    </h3>
+
+                    <p>
+                        Active Fields
+                    </p>
+
                 </div>
 
             </div>
 
+
+            <!-- IRRIGATION -->
 
             <div class="stat-card">
 
@@ -107,12 +175,21 @@
                 </div>
 
                 <div>
-                    <h3>2</h3>
-                    <p>Today's Irrigation</p>
+
+                    <h3>
+                        2
+                    </h3>
+
+                    <p>
+                        Today's Irrigation
+                    </p>
+
                 </div>
 
             </div>
 
+
+            <!-- PEST -->
 
             <div class="stat-card">
 
@@ -121,12 +198,21 @@
                 </div>
 
                 <div>
-                    <h3>1</h3>
-                    <p>Pest Observation</p>
+
+                    <h3>
+                        1
+                    </h3>
+
+                    <p>
+                        Pest Observation
+                    </p>
+
                 </div>
 
             </div>
 
+
+            <!-- HARVEST -->
 
             <div class="stat-card">
 
@@ -135,21 +221,33 @@
                 </div>
 
                 <div>
-                    <h3 id="dashboardProgress">86%</h3>
-                    <p>Harvest Readiness</p>
+
+                    <h3 id="dashboardProgress">
+                        86%
+                    </h3>
+
+                    <p>
+                        Harvest Readiness
+                    </p>
+
                 </div>
 
             </div>
 
+
         </section>
 
 
-        <!-- ================= TODAY'S TASKS ================= -->
+
+        <!-- ==================================================
+             🌾 TODAY'S TASKS
+        ================================================== -->
 
         <section
             id="tasks"
             class="section"
             style="display:none;">
+
 
             <div class="section-heading">
 
@@ -172,13 +270,18 @@
             </div>
 
 
+
             <div class="activity-grid">
+
+
+                <!-- IRRIGATION TASK -->
 
                 <article class="activity-card">
 
                     <div class="activity-icon irrigation">
                         💧
                     </div>
+
 
                     <div>
 
@@ -196,18 +299,26 @@
 
                     </div>
 
-                    <button onclick="completeTask(this)">
+
+                    <button
+                        onclick="completeTask(this)">
+
                         Mark Done
+
                     </button>
 
                 </article>
 
+
+
+                <!-- FERTILIZER TASK -->
 
                 <article class="activity-card">
 
                     <div class="activity-icon fertilizer">
                         🧪
                     </div>
+
 
                     <div>
 
@@ -225,18 +336,26 @@
 
                     </div>
 
-                    <button onclick="completeTask(this)">
+
+                    <button
+                        onclick="completeTask(this)">
+
                         View
+
                     </button>
 
                 </article>
 
+
+
+                <!-- PEST TASK -->
 
                 <article class="activity-card">
 
                     <div class="activity-icon pest">
                         🐛
                     </div>
+
 
                     <div>
 
@@ -254,22 +373,35 @@
 
                     </div>
 
-                    <button onclick="completeTask(this)">
+
+                    <button
+                        onclick="completeTask(this)">
+
                         Inspect
+
                     </button>
 
                 </article>
 
+
             </div>
+
 
         </section>
 
 
-        <!-- ================= MY FIELDS ================= -->
 
-        <section id="fields" class="section">
+        <!-- ==================================================
+             🌾 MY FIELDS
+        ================================================== -->
+
+        <section
+            id="fields"
+            class="section">
+
 
             <div class="section-heading">
+
 
                 <div>
 
@@ -277,15 +409,18 @@
                         FIELD MANAGEMENT
                     </p>
 
+
                     <h2>
                         My Fields
                     </h2>
+
 
                     <p>
                         Keep track of every crop from planting to harvest.
                     </p>
 
                 </div>
+
 
 
                 <button
@@ -296,19 +431,25 @@
 
                 </button>
 
+
             </div>
 
 
-            <!-- ================= EXISTING FIELDS ================= -->
+
+            <!-- ==================================================
+                 EXISTING FIELDS
+            ================================================== -->
 
             <div
                 class="field-grid"
                 id="fieldList">
 
 
+
                 <!-- FIELD 1 -->
 
                 <article class="field-card">
+
 
                     <div class="field-top">
 
@@ -316,36 +457,60 @@
                             🌾
                         </span>
 
+
                         <span class="status healthy">
                             ● Healthy
                         </span>
 
                     </div>
 
+
                     <h3>
                         Green Valley Field
                     </h3>
+
 
                     <p class="field-location">
                         📍 Field A • 2.5 Acres
                     </p>
 
+
+
                     <div class="crop-info">
 
-                        <div>
-                            <span>Crop</span>
-                            <strong>Rice</strong>
-                        </div>
 
                         <div>
-                            <span>Stage</span>
-                            <strong>🌿 Vegetative</strong>
+
+                            <span>
+                                Crop
+                            </span>
+
+                            <strong>
+                                Rice
+                            </strong>
+
                         </div>
+
+
+                        <div>
+
+                            <span>
+                                Stage
+                            </span>
+
+                            <strong>
+                                🌿 Vegetative
+                            </strong>
+
+                        </div>
+
 
                     </div>
 
 
+
                     <div class="progress-area">
+
 
                         <div class="progress-text">
 
@@ -359,6 +524,7 @@
 
                         </div>
 
+
                         <div class="progress-bar">
 
                             <div style="width:58%">
@@ -366,11 +532,14 @@
 
                         </div>
 
+
                         <p>
                             Crop Progress: 58%
                         </p>
 
+
                     </div>
+
 
 
                     <button
@@ -386,12 +555,15 @@
 
                     </button>
 
+
                 </article>
+
 
 
                 <!-- FIELD 2 -->
 
                 <article class="field-card">
+
 
                     <div class="field-top">
 
@@ -399,36 +571,60 @@
                             🍅
                         </span>
 
+
                         <span class="status attention">
                             ● Needs Attention
                         </span>
 
                     </div>
 
+
                     <h3>
                         Sunrise Field
                     </h3>
+
 
                     <p class="field-location">
                         📍 Field B • 1.5 Acres
                     </p>
 
+
+
                     <div class="crop-info">
 
-                        <div>
-                            <span>Crop</span>
-                            <strong>Tomato</strong>
-                        </div>
 
                         <div>
-                            <span>Stage</span>
-                            <strong>🌼 Flowering</strong>
+
+                            <span>
+                                Crop
+                            </span>
+
+                            <strong>
+                                Tomato
+                            </strong>
+
                         </div>
+
+
+                        <div>
+
+                            <span>
+                                Stage
+                            </span>
+
+                            <strong>
+                                🌼 Flowering
+                            </strong>
+
+                        </div>
+
 
                     </div>
 
 
+
                     <div class="progress-area">
+
 
                         <div class="progress-text">
 
@@ -442,6 +638,7 @@
 
                         </div>
 
+
                         <div class="progress-bar">
 
                             <div style="width:72%">
@@ -449,11 +646,14 @@
 
                         </div>
 
+
                         <p>
                             Crop Progress: 72%
                         </p>
 
+
                     </div>
+
 
 
                     <button
@@ -469,12 +669,15 @@
 
                     </button>
 
+
                 </article>
+
 
 
                 <!-- FIELD 3 -->
 
                 <article class="field-card">
+
 
                     <div class="field-top">
 
@@ -482,36 +685,60 @@
                             🌽
                         </span>
 
+
                         <span class="status healthy">
                             ● Healthy
                         </span>
 
                     </div>
 
+
                     <h3>
                         Harvest Hope Field
                     </h3>
+
 
                     <p class="field-location">
                         📍 Field C • 3 Acres
                     </p>
 
+
+
                     <div class="crop-info">
 
-                        <div>
-                            <span>Crop</span>
-                            <strong>Maize</strong>
-                        </div>
 
                         <div>
-                            <span>Stage</span>
-                            <strong>🌾 Maturity</strong>
+
+                            <span>
+                                Crop
+                            </span>
+
+                            <strong>
+                                Maize
+                            </strong>
+
                         </div>
+
+
+                        <div>
+
+                            <span>
+                                Stage
+                            </span>
+
+                            <strong>
+                                🌾 Maturity
+                            </strong>
+
+                        </div>
+
 
                     </div>
 
 
+
                     <div class="progress-area">
+
 
                         <div class="progress-text">
 
@@ -525,6 +752,7 @@
 
                         </div>
 
+
                         <div class="progress-bar">
 
                             <div style="width:86%">
@@ -532,11 +760,14 @@
 
                         </div>
 
+
                         <p>
                             Crop Progress: 86%
                         </p>
 
+
                     </div>
+
 
 
                     <button
@@ -552,19 +783,26 @@
 
                     </button>
 
+
                 </article>
+
 
             </div>
 
 
-            <!-- ================= ADD NEW FIELD FORM ================= -->
+
+            <!-- ==================================================
+                 ➕ ADD NEW FIELD
+            ================================================== -->
 
             <section
                 id="addFieldForm"
                 class="section"
                 style="display:none;">
 
+
                 <div class="section-heading">
+
 
                     <div>
 
@@ -572,9 +810,11 @@
                             FIELD MANAGEMENT
                         </p>
 
+
                         <h2>
                             ➕ Add New Field
                         </h2>
+
 
                         <p>
                             Enter the basic information about your new field.
@@ -582,16 +822,18 @@
 
                     </div>
 
+
                 </div>
+
 
 
                 <div class="field-card">
 
-                    <!-- CROP NAME -->
 
                     <label for="cropName">
                         Crop Name:
                     </label>
+
 
                     <input
                         type="text"
@@ -599,14 +841,15 @@
                         placeholder="Example: Wheat">
 
 
+
                     <br><br>
 
 
-                    <!-- ACRES -->
 
                     <label for="cropAcres">
                         Acres:
                     </label>
+
 
                     <input
                         type="number"
@@ -615,14 +858,15 @@
                         step="0.1">
 
 
+
                     <br><br>
 
 
-                    <!-- CROP PROGRESS -->
 
                     <label for="cropProgress">
                         Crop Progress (%):
                     </label>
+
 
                     <input
                         type="number"
@@ -632,10 +876,10 @@
                         max="100">
 
 
+
                     <br><br>
 
 
-                    <!-- SAVE BUTTON -->
 
                     <button
                         class="primary-btn"
@@ -645,66 +889,100 @@
 
                     </button>
 
+
                 </div>
+
 
             </section>
 
 
-            <!-- ================= NEW FIELDS ================= -->
 
-            <div id="newFields"></div>
+            <!-- ==================================================
+                 NEW FIELDS
+            ================================================== -->
+
+            <div id="newFields">
+            </div>
 
 
-            <!-- ================= FIELD DETAILS ================= -->
+
+            <!-- ==================================================
+                 FIELD DETAILS
+            ================================================== -->
 
             <section
                 id="fieldDetails"
                 class="section"
                 style="display:none;">
 
+
                 <div class="field-card">
+
 
                     <h2>
                         🌾 Field Details
                     </h2>
 
+
                     <h3 id="detailName">
                         Green Valley Field
                     </h3>
 
+
                     <p>
+
                         🌱 Crop:
+
                         <strong id="detailCrop">
                             Rice
                         </strong>
+
                     </p>
 
+
                     <p>
+
                         🌿 Stage:
+
                         <strong id="detailStage">
                             Vegetative
                         </strong>
+
                     </p>
 
+
                     <p>
+
                         📊 Progress:
+
                         <strong id="detailProgress">
                             58%
                         </strong>
+
                     </p>
+
 
                 </div>
 
+
             </section>
+
 
         </section>
 
 
-        <!-- ================= ACTIVITIES ================= -->
 
-        <section id="activities" class="section">
+        <!-- ==================================================
+             💧 ACTIVITIES
+        ================================================== -->
+
+        <section
+            id="activities"
+            class="section">
+
 
             <div class="section-heading">
+
 
                 <div>
 
@@ -712,9 +990,11 @@
                         DAILY FARM CARE
                     </p>
 
+
                     <h2>
                         Today's Activities
                     </h2>
+
 
                     <p>
                         Small actions today lead to a healthier harvest tomorrow.
@@ -722,18 +1002,23 @@
 
                 </div>
 
+
             </div>
 
 
+
             <div class="activity-grid">
+
 
                 <!-- IRRIGATION -->
 
                 <article class="activity-card">
 
+
                     <div class="activity-icon irrigation">
                         💧
                     </div>
+
 
                     <div>
 
@@ -741,9 +1026,11 @@
                             IRRIGATION
                         </span>
 
+
                         <h3>
                             Water Green Valley Field
                         </h3>
+
 
                         <p>
                             Scheduled today • 1200 litres
@@ -751,20 +1038,28 @@
 
                     </div>
 
-                    <button onclick="completeTask(this)">
+
+                    <button
+                        onclick="completeTask(this)">
+
                         Mark Done
+
                     </button>
 
+
                 </article>
+
 
 
                 <!-- FERTILIZER -->
 
                 <article class="activity-card">
 
+
                     <div class="activity-icon fertilizer">
                         🧪
                     </div>
+
 
                     <div>
 
@@ -772,9 +1067,11 @@
                             FERTILIZER
                         </span>
 
+
                         <h3>
                             Apply NPK Fertilizer
                         </h3>
+
 
                         <p>
                             Sunrise Field • Due tomorrow
@@ -782,20 +1079,28 @@
 
                     </div>
 
-                    <button onclick="completeTask(this)">
+
+                    <button
+                        onclick="completeTask(this)">
+
                         View
+
                     </button>
 
+
                 </article>
+
 
 
                 <!-- PEST -->
 
                 <article class="activity-card">
 
+
                     <div class="activity-icon pest">
                         🐛
                     </div>
+
 
                     <div>
 
@@ -803,9 +1108,11 @@
                             PEST OBSERVATION
                         </span>
 
+
                         <h3>
                             Check Tomato Leaves
                         </h3>
+
 
                         <p>
                             Medium attention • Sunrise Field
@@ -813,86 +1120,153 @@
 
                     </div>
 
-                    <button onclick="completeTask(this)">
+
+                    <button
+                        onclick="completeTask(this)">
+
                         Inspect
+
                     </button>
+
 
                 </article>
 
+
             </div>
+
 
         </section>
 
 
-        <!-- ================= CROP JOURNEY ================= -->
+
+        <!-- ==================================================
+             🌱 CROP JOURNEY
+        ================================================== -->
 
         <section class="journey section">
 
+
             <div class="journey-content">
+
 
                 <p class="section-label">
                     FROM SEED TO HARVEST
                 </p>
 
+
                 <h2>
                     Every Crop Has a Journey 🌱
                 </h2>
+
 
                 <p>
                     Follow the cultivation stage of your crop and never miss
                     an important farming activity.
                 </p>
 
+
             </div>
+
 
 
             <div class="timeline">
 
+
                 <div class="stage active">
-                    <span>🌱</span>
-                    <strong>Planting</strong>
+
+                    <span>
+                        🌱
+                    </span>
+
+                    <strong>
+                        Planting
+                    </strong>
+
                 </div>
+
 
                 <div class="line"></div>
 
+
                 <div class="stage active">
-                    <span>🌿</span>
-                    <strong>Vegetative</strong>
+
+                    <span>
+                        🌿
+                    </span>
+
+                    <strong>
+                        Vegetative
+                    </strong>
+
                 </div>
+
 
                 <div class="line"></div>
 
+
                 <div class="stage active">
-                    <span>🌼</span>
-                    <strong>Flowering</strong>
+
+                    <span>
+                        🌼
+                    </span>
+
+                    <strong>
+                        Flowering
+                    </strong>
+
                 </div>
 
+
                 <div class="line"></div>
+
 
                 <div class="stage">
-                    <span>🌾</span>
-                    <strong>Maturity</strong>
+
+                    <span>
+                        🌾
+                    </span>
+
+                    <strong>
+                        Maturity
+                    </strong>
+
                 </div>
+
 
                 <div class="line"></div>
 
+
                 <div class="stage">
-                    <span>🚜</span>
-                    <strong>Harvest</strong>
+
+                    <span>
+                        🚜
+                    </span>
+
+                    <strong>
+                        Harvest
+                    </strong>
+
                 </div>
+
 
             </div>
+
 
         </section>
 
 
-        <!-- ================= CROP YIELD CALCULATOR ================= -->
+
+        <!-- ==================================================
+             🧮 CROP YIELD CALCULATOR
+        ================================================== -->
 
         <section
             id="calculator"
             class="section">
 
+
             <div class="section-heading">
+
 
                 <div>
 
@@ -900,24 +1274,31 @@
                         FARM ESTIMATION
                     </p>
 
+
                     <h2>
                         🌾 Crop Yield Calculator
                     </h2>
+
 
                     <p>
                         Estimate your expected harvest based on land area.
                     </p>
 
+
                 </div>
+
 
             </div>
 
 
+
             <div class="field-card">
+
 
                 <label for="acres">
                     Enter Acres:
                 </label>
+
 
                 <input
                     type="number"
@@ -926,12 +1307,15 @@
                     step="0.1">
 
 
+
                 <br><br>
+
 
 
                 <label for="yieldPerAcre">
                     Yield per Acre (kg):
                 </label>
+
 
                 <input
                     type="number"
@@ -939,7 +1323,9 @@
                     placeholder="Example: 500">
 
 
+
                 <br><br>
+
 
 
                 <button
@@ -953,59 +1339,437 @@
 
                 <p id="result"></p>
 
+
             </div>
+
 
         </section>
 
 
-        <!-- ================= HARVEST ================= -->
+
+        <!-- ==================================================
+             🌦️ FARM CONDITIONS
+        ================================================== -->
+
+        <section
+            id="conditions"
+            class="section farm-conditions">
+
+
+            <div class="section-heading">
+
+
+                <div>
+
+                    <p class="section-label">
+                        SMART FARM MONITORING
+                    </p>
+
+
+                    <h2>
+                        🌦️ Farm Conditions
+                    </h2>
+
+
+                    <p>
+                        Monitor important conditions that can affect your crops.
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ==================================================
+                 CONDITION CARDS
+            ================================================== -->
+
+            <div class="condition-grid">
+
+
+                <!-- TEMPERATURE -->
+
+                <div class="condition-card">
+
+
+                    <div class="condition-icon">
+                        🌡️
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            TEMPERATURE
+                        </span>
+
+
+                        <h3>
+                            29°C
+                        </h3>
+
+
+                        <p>
+                            Comfortable for crops
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- SOIL MOISTURE -->
+
+                <div class="condition-card">
+
+
+                    <div class="condition-icon">
+                        💧
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            SOIL MOISTURE
+                        </span>
+
+
+                        <h3>
+                            68%
+                        </h3>
+
+
+                        <p>
+                            Moisture level is good
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- WEATHER -->
+
+                <div class="condition-card">
+
+
+                    <div class="condition-icon">
+                        ☁️
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            WEATHER
+                        </span>
+
+
+                        <h3>
+                            Partly Cloudy
+                        </h3>
+
+
+                        <p>
+                            Mild conditions today
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- RAIN -->
+
+                <div class="condition-card">
+
+
+                    <div class="condition-icon">
+                        🌧️
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            RAIN CHANCE
+                        </span>
+
+
+                        <h3>
+                            30%
+                        </h3>
+
+
+                        <p>
+                            Low chance of rainfall
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- WIND -->
+
+                <div class="condition-card">
+
+
+                    <div class="condition-icon">
+                        💨
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            WIND SPEED
+                        </span>
+
+
+                        <h3>
+                            12 km/h
+                        </h3>
+
+
+                        <p>
+                            Light wind conditions
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ==================================================
+                 💡 SMART SUGGESTIONS
+            ================================================== -->
+
+            <div class="smart-suggestions">
+
+
+                <div class="suggestion-heading">
+
+
+                    <div>
+
+                        <p class="section-label">
+                            FARM INTELLIGENCE
+                        </p>
+
+
+                        <h2>
+                            💡 Smart Farm Suggestions
+                        </h2>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="suggestion-grid">
+
+
+                    <!-- IRRIGATION -->
+
+                    <div class="suggestion-card">
+
+
+                        <div class="suggestion-icon">
+                            💧
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                IRRIGATION
+                            </span>
+
+
+                            <h3>
+                                Monitor Soil Moisture
+                            </h3>
+
+
+                            <p>
+                                Soil moisture is currently 68%.
+                                Monitor the field before scheduling
+                                the next irrigation.
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- CROP HEALTH -->
+
+                    <div class="suggestion-card">
+
+
+                        <div class="suggestion-icon">
+                            🐛
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                CROP HEALTH
+                            </span>
+
+
+                            <h3>
+                                Check Tomato Leaves
+                            </h3>
+
+
+                            <p>
+                                Sunrise Field has a pest observation
+                                scheduled today. Inspect the leaves
+                                for early signs of pests.
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- HARVEST -->
+
+                    <div class="suggestion-card">
+
+
+                        <div class="suggestion-icon">
+                            🌾
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                HARVEST
+                            </span>
+
+
+                            <h3>
+                                Harvest Preparation
+                            </h3>
+
+
+                            <p>
+                                Harvest Hope Field has reached
+                                86% maturity. Start preparing
+                                harvesting equipment.
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ==================================================
+             🚜 HARVEST
+        ================================================== -->
 
         <section
             id="harvest"
             class="section harvest-section">
 
+
             <div>
+
 
                 <p class="section-label">
                     HARVEST TRACKER
                 </p>
 
+
                 <h2>
                     Harvest is Getting Closer 🚜
                 </h2>
 
+
                 <p>
+
                     Harvest Hope Field is currently at
+
                     <strong id="harvestPercentage">
                         86%
                     </strong>
+
                     maturity.
+
                 </p>
+
 
 
                 <!-- HARVEST PROGRESS -->
 
                 <div class="harvest-progress">
 
+
                     <div class="progress-text">
+
 
                         <span>
                             Harvest readiness
                         </span>
 
+
                         <strong id="currentProgress">
                             86%
                         </strong>
 
+
                     </div>
 
 
+
                     <div class="progress-bar large">
+
 
                         <div
                             id="progress-fill"
                             style="width:86%">
                         </div>
+
 
                     </div>
 
@@ -1014,48 +1778,66 @@
                         Harvest Readiness: 86%
                     </p>
 
+
                 </div>
+
 
             </div>
 
 
+
+            <!-- EXPECTED HARVEST -->
+
             <div class="harvest-date">
+
 
                 <span>
                     EXPECTED HARVEST
                 </span>
 
+
                 <strong>
                     18 October
                 </strong>
+
 
                 <small>
                     Maize • Field C
                 </small>
 
+
             </div>
+
 
         </section>
 
 
-        <!-- ================= UPDATE HARVEST PROGRESS ================= -->
+
+        <!-- ==================================================
+             📊 UPDATE HARVEST PROGRESS
+        ================================================== -->
 
         <section class="section">
 
+
             <div class="field-card">
+
 
                 <h2>
                     🚜 Update Harvest Progress
                 </h2>
+
 
                 <p>
                     Enter the current harvest readiness percentage.
                 </p>
 
 
+
                 <label for="progressInput">
                     Harvest Readiness (%):
                 </label>
+
 
 
                 <input
@@ -1066,7 +1848,9 @@
                     max="100">
 
 
+
                 <br><br>
+
 
 
                 <button
@@ -1078,20 +1862,28 @@
                 </button>
 
 
+
                 <p id="progress-message">
                     Harvest Readiness: 86%
                 </p>
 
+
             </div>
 
+
         </section>
+
 
     </main>
 
 
-    <!-- ================= FOOTER ================= -->
+
+    <!-- ==================================================
+         🌾 FOOTER
+    ================================================== -->
 
     <footer>
+
 
         <div>
 
@@ -1099,22 +1891,29 @@
                 🌾 AgriCare
             </strong>
 
+
             <p>
                 Simple technology for smarter farm management.
             </p>
 
         </div>
 
+
         <p>
             CSE326 HTML Project • Agriculture Crop Management Platform
         </p>
 
+
     </footer>
 
 
-    <!-- ================= JAVASCRIPT ================= -->
+
+    <!-- ==================================================
+         📜 JAVASCRIPT
+    ================================================== -->
 
     <script src="script.js"></script>
+
 
 </body>
 
