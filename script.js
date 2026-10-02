@@ -1,6 +1,8 @@
-// 🌱 AGRICARE - Smart Agriculture Management System
+// ======================================================
+// 🌱 AGRICARE - SMART AGRICULTURE MANAGEMENT SYSTEM
 // ======================================================
 // Features:
+// • Dashboard
 // • Field Management
 // • Crop Progress
 // • Farm Activities
@@ -9,6 +11,7 @@
 // • Live Weather
 // • Smart Farm Suggestions
 // • Local Storage
+// • NO DEVICE LOCATION ACCESS
 // ======================================================
 
 
@@ -18,39 +21,25 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    console.log("🌱 AgriCare Platform loaded successfully!");
+    console.log("🌱 AgriCare loaded successfully!");
 
-    // Load saved data
     loadSavedFields();
+
     loadSavedHarvestProgress();
 
-    // Start live weather
     initLiveWeather();
 
-    // Greeting
     updateGreeting();
 
-    // Navigation
     setupNavigation();
 
-    // Profile button
     setupProfile();
-
-    // Welcome message
-    setTimeout(function () {
-
-        showMessage(
-            "🌱 Welcome to AgriCare! Your smart farm dashboard is ready.",
-            "success"
-        );
-
-    }, 800);
 
 });
 
 
 // ======================================================
-// 💬 MESSAGE
+// 💬 MESSAGE SYSTEM
 // ======================================================
 
 function showMessage(message, type = "success") {
@@ -62,34 +51,37 @@ function showMessage(message, type = "success") {
         oldMessage.remove();
     }
 
-    const messageBox =
+    const box =
         document.createElement("div");
 
-    messageBox.className = "agri-message";
+    box.className = "agri-message";
 
-    messageBox.textContent = message;
+    box.textContent = message;
 
-    messageBox.style.position = "fixed";
-    messageBox.style.top = "85px";
-    messageBox.style.right = "25px";
-    messageBox.style.zIndex = "9999";
-    messageBox.style.padding = "14px 20px";
-    messageBox.style.borderRadius = "12px";
-    messageBox.style.background = "#14532d";
-    messageBox.style.color = "white";
-    messageBox.style.fontWeight = "600";
-    messageBox.style.boxShadow =
+    box.style.position = "fixed";
+    box.style.top = "85px";
+    box.style.right = "25px";
+    box.style.zIndex = "9999";
+    box.style.padding = "14px 20px";
+    box.style.borderRadius = "12px";
+    box.style.background =
+        type === "error"
+            ? "#b91c1c"
+            : "#14532d";
+    box.style.color = "white";
+    box.style.fontWeight = "600";
+    box.style.boxShadow =
         "0 10px 25px rgba(0,0,0,0.15)";
 
-    document.body.appendChild(messageBox);
+    document.body.appendChild(box);
 
     setTimeout(function () {
 
-        messageBox.style.opacity = "0";
-        messageBox.style.transition = "0.4s";
+        box.style.opacity = "0";
+        box.style.transition = "0.4s";
 
         setTimeout(function () {
-            messageBox.remove();
+            box.remove();
         }, 400);
 
     }, 3000);
@@ -102,22 +94,21 @@ function showMessage(message, type = "success") {
 
 function showTasks() {
 
-    const taskSection =
+    const section =
         document.getElementById("tasks");
 
-    if (!taskSection) {
+    if (!section) {
 
         showMessage(
-            "Today's farm tasks are ready to review.",
-            "success"
+            "Today's farm tasks are ready to review."
         );
 
         return;
     }
 
-    taskSection.style.display = "block";
+    section.style.display = "block";
 
-    taskSection.scrollIntoView({
+    section.scrollIntoView({
         behavior: "smooth"
     });
 }
@@ -155,7 +146,7 @@ function showAddFieldForm() {
 
 
 // ======================================================
-// 🌱 SAVE FIELD
+// 🌱 SAVE NEW FIELD
 // ======================================================
 
 function saveField() {
@@ -163,11 +154,15 @@ function saveField() {
     const cropName =
         document.getElementById("cropName").value.trim();
 
-    const cropAcres =
-        document.getElementById("cropAcres").value;
+    const acres =
+        Number(
+            document.getElementById("cropAcres").value
+        );
 
-    const cropProgress =
-        document.getElementById("cropProgress").value;
+    const progress =
+        Number(
+            document.getElementById("cropProgress").value
+        );
 
 
     if (!cropName) {
@@ -181,10 +176,7 @@ function saveField() {
     }
 
 
-    if (
-        cropAcres === "" ||
-        Number(cropAcres) <= 0
-    ) {
+    if (!acres || acres <= 0) {
 
         showMessage(
             "Please enter valid acres.",
@@ -196,9 +188,9 @@ function saveField() {
 
 
     if (
-        cropProgress === "" ||
-        Number(cropProgress) < 0 ||
-        Number(cropProgress) > 100
+        isNaN(progress) ||
+        progress < 0 ||
+        progress > 100
     ) {
 
         showMessage(
@@ -216,9 +208,9 @@ function saveField() {
 
         crop: cropName,
 
-        acres: Number(cropAcres),
+        acres: acres,
 
-        progress: Number(cropProgress)
+        progress: progress
 
     };
 
@@ -229,7 +221,9 @@ function saveField() {
 
         fields =
             JSON.parse(
-                localStorage.getItem("agriCareFields")
+                localStorage.getItem(
+                    "agriCareFields"
+                )
             ) || [];
 
     } catch (error) {
@@ -253,9 +247,17 @@ function saveField() {
     updateFieldCount();
 
 
-    document.getElementById("cropName").value = "";
-    document.getElementById("cropAcres").value = "";
-    document.getElementById("cropProgress").value = "";
+    document.getElementById(
+        "cropName"
+    ).value = "";
+
+    document.getElementById(
+        "cropAcres"
+    ).value = "";
+
+    document.getElementById(
+        "cropProgress"
+    ).value = "";
 
 
     const form =
@@ -267,8 +269,7 @@ function saveField() {
 
 
     showMessage(
-        `🌱 ${cropName} field added successfully!`,
-        "success"
+        `🌱 ${cropName} field added successfully!`
     );
 }
 
@@ -329,7 +330,6 @@ function displayField(field) {
 
             </div>
 
-
             <div class="field-progress">
 
                 <strong>
@@ -346,7 +346,6 @@ function displayField(field) {
                 </div>
 
             </div>
-
 
             <button
                 class="primary-btn"
@@ -376,7 +375,9 @@ function loadSavedFields() {
 
         fields =
             JSON.parse(
-                localStorage.getItem("agriCareFields")
+                localStorage.getItem(
+                    "agriCareFields"
+                )
             ) || [];
 
     } catch (error) {
@@ -403,33 +404,32 @@ function loadSavedFields() {
 
 function updateFieldCount() {
 
-    const fieldCount =
+    const count =
         document.getElementById("fieldCount");
 
-    if (!fieldCount) return;
+    if (!count) return;
 
 
-    let savedFields = [];
+    let fields = [];
 
     try {
 
-        savedFields =
+        fields =
             JSON.parse(
-                localStorage.getItem("agriCareFields")
+                localStorage.getItem(
+                    "agriCareFields"
+                )
             ) || [];
 
     } catch (error) {
 
-        savedFields = [];
+        fields = [];
 
     }
 
 
-    const total =
-        3 + savedFields.length;
-
-
-    fieldCount.textContent = total;
+    count.textContent =
+        3 + fields.length;
 }
 
 
@@ -445,7 +445,9 @@ function viewField(id) {
 
         fields =
             JSON.parse(
-                localStorage.getItem("agriCareFields")
+                localStorage.getItem(
+                    "agriCareFields"
+                )
             ) || [];
 
     } catch (error) {
@@ -457,7 +459,9 @@ function viewField(id) {
 
     const field =
         fields.find(function (item) {
+
             return item.id === id;
+
         });
 
 
@@ -465,14 +469,15 @@ function viewField(id) {
 
 
     const details =
-        document.getElementById("fieldDetails");
+        document.getElementById(
+            "fieldDetails"
+        );
 
 
     if (!details) {
 
         showMessage(
-            `${field.crop} • ${field.acres} acres • ${field.progress}% complete`,
-            "success"
+            `${field.crop} • ${field.acres} acres • ${field.progress}% complete`
         );
 
         return;
@@ -498,7 +503,6 @@ function viewField(id) {
 
     details.style.display = "block";
 
-
     details.scrollIntoView({
         behavior: "smooth"
     });
@@ -513,8 +517,8 @@ function completeTask(button) {
 
     if (!button) return;
 
-
-    button.textContent = "✓ Completed";
+    button.textContent =
+        "✓ Completed";
 
     button.disabled = true;
 
@@ -522,8 +526,7 @@ function completeTask(button) {
 
 
     showMessage(
-        "✅ Farm task completed!",
-        "success"
+        "✅ Farm task completed!"
     );
 }
 
@@ -536,16 +539,22 @@ function calculateYield() {
 
     const acres =
         Number(
-            document.getElementById("acres").value
+            document.getElementById(
+                "acres"
+            ).value
         );
 
     const yieldPerAcre =
         Number(
-            document.getElementById("yieldPerAcre").value
+            document.getElementById(
+                "yieldPerAcre"
+            ).value
         );
 
     const result =
-        document.getElementById("result");
+        document.getElementById(
+            "result"
+        );
 
 
     if (
@@ -578,7 +587,9 @@ function calculateYield() {
 function updateProgress() {
 
     const input =
-        document.getElementById("progressInput");
+        document.getElementById(
+            "progressInput"
+        );
 
     if (!input) return;
 
@@ -612,8 +623,25 @@ function updateProgress() {
     );
 
 
+    updateHarvestUI(progress);
+
+
+    showMessage(
+        "🌾 Harvest progress updated!"
+    );
+}
+
+
+// ======================================================
+// 📊 UPDATE HARVEST UI
+// ======================================================
+
+function updateHarvestUI(progress) {
+
     const fill =
-        document.getElementById("progress-fill");
+        document.getElementById(
+            "progress-fill"
+        );
 
     if (fill) {
 
@@ -623,84 +651,88 @@ function updateProgress() {
     }
 
 
-    const currentProgress =
-        document.getElementById("currentProgress");
+    const current =
+        document.getElementById(
+            "currentProgress"
+        );
 
-    if (currentProgress) {
+    if (current) {
 
-        currentProgress.textContent =
+        current.textContent =
             `${progress}%`;
 
     }
 
 
-    const harvestPercentage =
-        document.getElementById("harvestPercentage");
+    const percentage =
+        document.getElementById(
+            "harvestPercentage"
+        );
 
-    if (harvestPercentage) {
+    if (percentage) {
 
-        harvestPercentage.textContent =
+        percentage.textContent =
             `${progress}%`;
 
     }
 
 
-    const dashboardProgress =
-        document.getElementById("dashboardProgress");
+    const dashboard =
+        document.getElementById(
+            "dashboardProgress"
+        );
 
-    if (dashboardProgress) {
+    if (dashboard) {
 
-        dashboardProgress.textContent =
+        dashboard.textContent =
             `${progress}%`;
 
     }
 
 
-    const progressText =
-        document.getElementById("progress-text");
+    const text =
+        document.getElementById(
+            "progress-text"
+        );
 
-    if (progressText) {
+    if (text) {
 
-        progressText.textContent =
+        text.textContent =
             `${progress}% complete`;
 
     }
 
 
     const message =
-        document.getElementById("progress-message");
+        document.getElementById(
+            "progress-message"
+        );
 
 
-    if (message) {
+    if (!message) return;
 
-        if (progress >= 100) {
 
-            message.textContent =
-                "🎉 Harvest completed!";
+    if (progress >= 100) {
 
-        } else if (progress >= 80) {
+        message.textContent =
+            "🎉 Harvest completed!";
 
-            message.textContent =
-                "🌾 Harvest is almost ready.";
+    } else if (progress >= 80) {
 
-        } else if (progress >= 50) {
+        message.textContent =
+            "🌾 Harvest is almost ready.";
 
-            message.textContent =
-                "🌱 Crop is progressing well.";
+    } else if (progress >= 50) {
 
-        } else {
+        message.textContent =
+            "🌱 Crop is progressing well.";
 
-            message.textContent =
-                "🌱 Crop is still developing.";
+    } else {
 
-        }
+        message.textContent =
+            "🌱 Crop is still developing.";
+
     }
-
-
-    showMessage(
-        "🌾 Harvest progress updated!",
-        "success"
-    );
 }
 
 
@@ -730,84 +762,36 @@ function loadSavedHarvestProgress() {
     ) return;
 
 
-    const fill =
-        document.getElementById("progress-fill");
-
-    if (fill) {
-
-        fill.style.width =
-            `${progress}%`;
-
-    }
-
-
-    const currentProgress =
-        document.getElementById("currentProgress");
-
-    if (currentProgress) {
-
-        currentProgress.textContent =
-            `${progress}%`;
-
-    }
-
-
-    const harvestPercentage =
-        document.getElementById("harvestPercentage");
-
-    if (harvestPercentage) {
-
-        harvestPercentage.textContent =
-            `${progress}%`;
-
-    }
-
-
-    const dashboardProgress =
-        document.getElementById("dashboardProgress");
-
-    if (dashboardProgress) {
-
-        dashboardProgress.textContent =
-            `${progress}%`;
-
-    }
-
-
-    const progressText =
-        document.getElementById("progress-text");
-
-    if (progressText) {
-
-        progressText.textContent =
-            `${progress}% complete`;
-
-    }
+    updateHarvestUI(progress);
 }
 
 
 // ======================================================
 // 🌦️ LIVE WEATHER
-// 📍 FIXED LOCATION: PHAGWARA, PUNJAB
-// ❌ NO BROWSER LOCATION ACCESS
+// ======================================================
+// 📍 Fixed location: Phagwara, Punjab
+// ❌ No browser location
+// ❌ No location permission
 // ======================================================
 
 function initLiveWeather() {
 
-    const latitude = 31.2240;
+    const latitude =
+        31.2240;
 
-    const longitude = 75.7708;
+    const longitude =
+        75.7708;
 
 
-    const locationElement =
+    const location =
         document.getElementById(
             "weather-location"
         );
 
 
-    if (locationElement) {
+    if (location) {
 
-        locationElement.textContent =
+        location.textContent =
             "📍 Phagwara, Punjab";
 
     }
@@ -821,7 +805,7 @@ function initLiveWeather() {
 
 
 // ======================================================
-// 🌦️ WEATHER API
+// 🌦️ FETCH WEATHER
 // ======================================================
 
 async function getLiveWeather(
@@ -832,18 +816,22 @@ async function getLiveWeather(
     try {
 
         const url =
-            `https://api.open-meteo.com/v1/forecast?` +
-            `latitude=${latitude}` +
-            `&longitude=${longitude}` +
-            `&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m` +
-            `&hourly=precipitation_probability` +
-            `&forecast_days=1` +
-            `&timezone=auto`;
+            "https://api.open-meteo.com/v1/forecast" +
+            "?latitude=" + latitude +
+            "&longitude=" + longitude +
+            "&current=" +
+            "temperature_2m," +
+            "relative_humidity_2m," +
+            "apparent_temperature," +
+            "weather_code," +
+            "wind_speed_10m" +
+            "&hourly=precipitation_probability" +
+            "&forecast_days=1" +
+            "&timezone=auto";
 
 
         console.log(
-            "🌦️ Weather API:",
-            url
+            "🌦️ Requesting weather..."
         );
 
 
@@ -851,16 +839,11 @@ async function getLiveWeather(
             await fetch(url);
 
 
-        console.log(
-            "🌦️ Weather response:",
-            response.status
-        );
-
-
         if (!response.ok) {
 
             throw new Error(
-                `Weather API error: ${response.status}`
+                "Weather API returned " +
+                response.status
             );
 
         }
@@ -871,114 +854,199 @@ async function getLiveWeather(
 
 
         console.log(
-            "🌦️ Weather data:",
+            "✅ Weather received:",
             data
         );
 
 
-        updateWeatherUI(data);
+        displayWeather(data);
 
     }
 
     catch (error) {
 
         console.error(
-            "❌ Weather Error:",
+            "❌ Weather error:",
             error
         );
 
 
-        const locationElement =
-            document.getElementById(
-                "weather-location"
-            );
+        showWeatherError();
+    }
+}
 
 
-        if (locationElement) {
+// ======================================================
+// ❌ WEATHER ERROR
+// ======================================================
 
-            locationElement.textContent =
-                "📍 Phagwara, Punjab • Weather unavailable";
+function showWeatherError() {
 
-        }
-
-
-        const temperature =
-            document.getElementById(
-                "temperature-value"
-            );
-
-        const humidity =
-            document.getElementById(
-                "humidity-value"
-            );
-
-        const weather =
-            document.getElementById(
-                "weather-value"
-            );
-
-        const rain =
-            document.getElementById(
-                "rain-value"
-            );
-
-        const wind =
-            document.getElementById(
-                "wind-value"
-            );
-
-        const soil =
-            document.getElementById(
-                "soil-value"
-            );
+    const location =
+        document.getElementById(
+            "weather-location"
+        );
 
 
-        if (temperature) {
+    if (location) {
 
-            temperature.textContent =
-                "--°C";
+        location.textContent =
+            "📍 Phagwara, Punjab • Live weather unavailable";
 
-        }
-
-
-        if (humidity) {
-
-            humidity.textContent =
-                "--%";
-
-        }
+    }
 
 
-        if (weather) {
-
-            weather.textContent =
-                "Unavailable";
-
-        }
+    const temperature =
+        document.getElementById(
+            "temperature-value"
+        );
 
 
-        if (rain) {
-
-            rain.textContent =
-                "--%";
-
-        }
+    const humidity =
+        document.getElementById(
+            "humidity-value"
+        );
 
 
-        if (wind) {
-
-            wind.textContent =
-                "-- km/h";
-
-        }
+    const weather =
+        document.getElementById(
+            "weather-value"
+        );
 
 
-        if (soil) {
+    const rain =
+        document.getElementById(
+            "rain-value"
+        );
 
-            soil.textContent =
-                "--";
 
-        }
+    const wind =
+        document.getElementById(
+            "wind-value"
+        );
+
+
+    const soil =
+        document.getElementById(
+            "soil-value"
+        );
+
+
+    if (temperature) {
+
+        temperature.textContent =
+            "--°C";
+
+    }
+
+
+    if (humidity) {
+
+        humidity.textContent =
+            "--%";
+
+    }
+
+
+    if (weather) {
+
+        weather.textContent =
+            "Unavailable";
+
+    }
+
+
+    if (rain) {
+
+        rain.textContent =
+            "--%";
+
+    }
+
+
+    if (wind) {
+
+        wind.textContent =
+            "-- km/h";
+
+    }
+
+
+    if (soil) {
+
+        soil.textContent =
+            "N/A";
+
+    }
+
+
+    const temperatureMessage =
+        document.getElementById(
+            "temperature-message"
+        );
+
+
+    const humidityMessage =
+        document.getElementById(
+            "humidity-message"
+        );
+
+
+    const weatherMessage =
+        document.getElementById(
+            "weather-message"
+        );
+
+
+    const rainMessage =
+        document.getElementById(
+            "rain-message"
+        );
+
+
+    const windMessage =
+        document.getElementById(
+            "wind-message"
+        );
+
+
+    if (temperatureMessage) {
+
+        temperatureMessage.textContent =
+            "Live data unavailable.";
+
+    }
+
+
+    if (humidityMessage) {
+
+        humidityMessage.textContent =
+            "Live data unavailable.";
+
+    }
+
+
+    if (weatherMessage) {
+
+        weatherMessage.textContent =
+            "Weather service unavailable.";
+
+    }
+
+
+    if (rainMessage) {
+
+        rainMessage.textContent =
+            "Live data unavailable.";
+
+    }
+
+
+    if (windMessage) {
+
+        windMessage.textContent =
+            "Live data unavailable.";
+
     }
 }
 
@@ -989,7 +1057,7 @@ async function getLiveWeather(
 
 function getWeatherDescription(code) {
 
-    const weatherCodes = {
+    const codes = {
 
         0: "Clear Sky",
 
@@ -1036,24 +1104,21 @@ function getWeatherDescription(code) {
     };
 
 
-    return (
-        weatherCodes[code] ||
-        "Unknown Weather"
-    );
+    return codes[code] || "Unknown Weather";
 }
 
 
 // ======================================================
-// 🌦️ UPDATE WEATHER UI
+// 🌦️ DISPLAY WEATHER
 // ======================================================
 
-function updateWeatherUI(data) {
+function displayWeather(data) {
 
     const current =
         data.current;
 
 
-    // 🌡️ TEMPERATURE
+    // 🌡️ Temperature
 
     const temperature =
         Math.round(
@@ -1091,7 +1156,7 @@ function updateWeatherUI(data) {
     }
 
 
-    // 💧 HUMIDITY
+    // 💧 Humidity
 
     const humidity =
         Math.round(
@@ -1123,16 +1188,16 @@ function updateWeatherUI(data) {
 
         humidityMessage.textContent =
 
-            humidity > 80
+            humidity >= 80
                 ? "High humidity"
-                : humidity > 50
+                : humidity >= 50
                     ? "Moderate humidity"
                     : "Low humidity";
 
     }
 
 
-    // ☁️ WEATHER
+    // ☁️ Weather
 
     const weather =
         getWeatherDescription(
@@ -1168,7 +1233,7 @@ function updateWeatherUI(data) {
     }
 
 
-    // 🌧️ RAIN CHANCE
+    // 🌧️ Rain probability
 
     let rainChance = 0;
 
@@ -1180,7 +1245,14 @@ function updateWeatherUI(data) {
 
         rainChance =
             data.hourly
-                .precipitation_probability[0] || 0;
+                .precipitation_probability[0];
+
+    }
+
+
+    if (rainChance === undefined) {
+
+        rainChance = 0;
 
     }
 
@@ -1209,16 +1281,16 @@ function updateWeatherUI(data) {
 
         rainMessage.textContent =
 
-            rainChance > 60
+            rainChance >= 60
                 ? "High chance of rain"
-                : rainChance > 30
+                : rainChance >= 30
                     ? "Possible rain"
                     : "Low chance of rain";
 
     }
 
 
-    // 💨 WIND
+    // 💨 Wind
 
     const wind =
         Math.round(
@@ -1250,17 +1322,14 @@ function updateWeatherUI(data) {
 
         windMessage.textContent =
 
-            wind > 25
+            wind >= 25
                 ? "Strong winds"
                 : "Normal wind conditions";
 
     }
 
 
-    // 🌱 SOIL MOISTURE
-    // This version does not request soil moisture
-    // from the API, so we clearly show that it
-    // is unavailable instead of creating fake data.
+    // 🌱 Soil moisture
 
     const soilValue =
         document.getElementById(
@@ -1285,12 +1354,12 @@ function updateWeatherUI(data) {
     if (soilMessage) {
 
         soilMessage.textContent =
-            "No soil sensor connected";
+            "No live soil sensor connected";
 
     }
 
 
-    // 💡 SMART SUGGESTIONS
+    // 💡 Suggestions
 
     updateSmartSuggestions(
         temperature,
@@ -1326,15 +1395,15 @@ function updateSmartSuggestions(
         );
 
 
-    if (irrigationTitle &&
-        irrigationText) {
-
+    if (
+        irrigationTitle &&
+        irrigationText
+    ) {
 
         if (rainChance >= 60) {
 
             irrigationTitle.textContent =
                 "Delay Irrigation";
-
 
             irrigationText.textContent =
                 "Rain is likely, so irrigation may not be necessary.";
@@ -1349,7 +1418,6 @@ function updateSmartSuggestions(
             irrigationTitle.textContent =
                 "Irrigation Recommended";
 
-
             irrigationText.textContent =
                 "Hot and relatively dry conditions may increase crop water demand.";
 
@@ -1360,15 +1428,12 @@ function updateSmartSuggestions(
             irrigationTitle.textContent =
                 "Normal Irrigation";
 
-
             irrigationText.textContent =
                 "Current weather does not indicate unusually high water demand.";
 
         }
     }
 
-
-    // 🌦️ WEATHER SUGGESTION
 
     const weatherTitle =
         document.getElementById(
@@ -1387,12 +1452,10 @@ function updateSmartSuggestions(
         weatherText
     ) {
 
-
         if (rainChance >= 60) {
 
             weatherTitle.textContent =
                 "Rain Expected";
-
 
             weatherText.textContent =
                 "Consider protecting harvested crops and avoiding unnecessary field operations.";
@@ -1404,7 +1467,6 @@ function updateSmartSuggestions(
             weatherTitle.textContent =
                 "Windy Conditions";
 
-
             weatherText.textContent =
                 "Monitor young plants and support vulnerable crops.";
 
@@ -1415,15 +1477,12 @@ function updateSmartSuggestions(
             weatherTitle.textContent =
                 "Favorable Conditions";
 
-
             weatherText.textContent =
                 `Current weather: ${weather}.`;
 
         }
     }
 
-
-    // 🌱 CROP CARE
 
     const cropTitle =
         document.getElementById(
@@ -1442,15 +1501,13 @@ function updateSmartSuggestions(
         cropText
     ) {
 
-
         if (temperature >= 35) {
 
             cropTitle.textContent =
                 "Heat Monitoring";
 
-
             cropText.textContent =
-                "High temperature may increase crop stress. Monitor soil moisture and irrigation needs.";
+                "High temperature may increase crop stress. Monitor irrigation needs.";
 
         }
 
@@ -1459,9 +1516,8 @@ function updateSmartSuggestions(
             cropTitle.textContent =
                 "Humidity Monitoring";
 
-
             cropText.textContent =
-                "High humidity can increase the risk of fungal crop diseases. Monitor plants regularly.";
+                "High humidity can increase the risk of fungal crop diseases.";
 
         }
 
@@ -1469,7 +1525,6 @@ function updateSmartSuggestions(
 
             cropTitle.textContent =
                 "Crop Conditions Normal";
-
 
             cropText.textContent =
                 "Continue regular crop monitoring and farm activities.";
@@ -1539,13 +1594,15 @@ function setupNavigation() {
             "click",
             function () {
 
-                links.forEach(function (item) {
+                links.forEach(
+                    function (item) {
 
-                    item.classList.remove(
-                        "active"
-                    );
+                        item.classList.remove(
+                            "active"
+                        );
 
-                });
+                    }
+                );
 
 
                 link.classList.add(
@@ -1565,22 +1622,21 @@ function setupNavigation() {
 
 function setupProfile() {
 
-    const profileButton =
+    const button =
         document.querySelector(
             ".profile-btn"
         );
 
 
-    if (!profileButton) return;
+    if (!button) return;
 
 
-    profileButton.addEventListener(
+    button.addEventListener(
         "click",
         function () {
 
             showMessage(
-                "👨‍🌾 Farmer Profile • AgriCare Dashboard",
-                "success"
+                "👨‍🌾 Farmer Profile • AgriCare Dashboard"
             );
 
         }
@@ -1596,28 +1652,13 @@ function escapeHTML(value) {
 
     return String(value)
 
-        .replace(
-            /&/g,
-            "&amp;"
-        )
+        .replace(/&/g, "&amp;")
 
-        .replace(
-            /</g,
-            "&lt;"
-        )
+        .replace(/</g, "&lt;")
 
-        .replace(
-            />/g,
-            "&gt;"
-        )
+        .replace(/>/g, "&gt;")
 
-        .replace(
-            /"/g,
-            "&quot;"
-        )
+        .replace(/"/g, "&quot;")
 
-        .replace(
-            /'/g,
-            "&#039;"
-        );
+        .replace(/'/g, "&#039;");
 }
