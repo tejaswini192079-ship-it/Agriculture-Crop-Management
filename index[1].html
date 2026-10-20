@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1f5b3b">
+  <title>Harvestly | Farm Management Platform</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#dashboard" aria-label="Harvestly home">
+        <span class="brand-mark">🌱</span>
+        <span class="brand-copy"><strong>harvestly</strong><small>FARM MANAGEMENT</small></span>
+      </a>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="side-nav" id="sideNav" aria-label="Main navigation"></nav>
+      <div class="sidebar-bottom">
+        <div class="season-card"><span class="season-icon">☀</span><div><strong>Kharif season</strong><small>Demo season · India</small></div><span class="season-dot"></span></div>
+        <div class="sidebar-note"><span>ⓘ</span><p>Demo application using sample farming records. Not connected to live farm data.</p></div>
+      </div>
+    </aside>
+
+    <div class="main-column">
+      <header class="topbar">
+        <button class="icon-button mobile-menu" id="menuToggle" aria-label="Toggle menu">☰</button>
+        <div class="breadcrumb"><span>Workspace</span><span class="crumb-sep">/</span><strong id="breadcrumbCurrent">Dashboard</strong></div>
+        <div class="top-actions">
+          <label class="role-control"><span>Demo view</span><select id="roleSelect" aria-label="Select demo role"><option value="farmer">Farmer</option><option value="admin">Administrator</option></select></label>
+          <label class="farmer-control" id="farmerControl"><span>Viewing</span><select id="activeFarmer" aria-label="Select demo farmer"></select></label>
+          <button class="avatar-button" id="profileButton" title="Current demo profile"><span id="avatarInitials">AD</span></button>
+        </div>
+      </header>
+
+      <main class="main-content">
+        <div class="page-header" id="pageHeader"></div>
+        <section id="appContent" aria-live="polite"></section>
+      </main>
+      <footer class="app-footer"><span>© 2026 Harvestly · Farm Management Platform</span><span><i class="live-dot"></i> Front-end demo <b>·</b> Saved in this browser</span></footer>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modalBackdrop" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header"><div><span class="eyebrow" id="modalEyebrow">RECORD DETAILS</span><h2 id="modalTitle">Add record</h2></div><button class="icon-button" type="button" data-close-modal aria-label="Close dialog">✕</button></div>
+      <form id="recordForm"><div class="modal-body" id="modalBody"></div><div class="modal-footer"><button class="btn btn-quiet" type="button" data-close-modal>Cancel</button><button class="btn btn-primary" type="submit" id="saveRecordButton">Save record <span>→</span></button></div></form>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <input type="file" id="importFile" accept="application/json" hidden>
+  <script src="app.js"></script>
+</body>
+</html>
