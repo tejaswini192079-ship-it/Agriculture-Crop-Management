@@ -37,10 +37,10 @@ const localDate = (offset = 0) => {
 const makeId = (prefix) => `${prefix}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 7)}`;
 const initialData = () => ({
   farmers: [
-    { id: 'farmer-1', name: 'Ananya Devi', village: 'Ludhiana, Punjab', phone: 'Demo contact', status: 'Active' },
-    { id: 'farmer-2', name: 'Ramesh Patel', village: 'Anand, Gujarat', phone: 'Demo contact', status: 'Active' },
-    { id: 'farmer-3', name: 'Kavitha Reddy', village: 'Guntur, Andhra Pradesh', phone: 'Demo contact', status: 'Active' },
-    { id: 'farmer-4', name: 'Suresh Kumar', village: 'Thanjavur, Tamil Nadu', phone: 'Demo contact', status: 'Active' }
+    { id: 'farmer-1', name: 'farmer-1', village: 'Ludhiana, Punjab', phone: 'Demo contact', status: 'Active' },
+    { id: 'farmer-2', name: 'farmer-2', village: 'Anand, Gujarat', phone: 'Demo contact', status: 'Active' },
+    { id: 'farmer-3', name: 'farmer-3', village: 'Guntur, Andhra Pradesh', phone: 'Demo contact', status: 'Active' },
+    { id: 'farmer-4', name: 'farmer-4', village: 'Thanjavur, Tamil Nadu', phone: 'Demo contact', status: 'Active' }
   ],
   farms: [
     { id: 'farm-1', ownerId: 'farmer-1', name: 'Green Valley Farm', location: 'Ludhiana, Punjab', totalArea: 12.5 },
