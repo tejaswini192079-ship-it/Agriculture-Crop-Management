@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,293 +14,108 @@ body{
   background:#f4f8f1;
   color:#243629;
 }
-
 button,input,select{font:inherit}
 button{cursor:pointer;border:0;border-radius:9px;padding:11px 14px}
 button:focus-visible,input:focus-visible,select:focus-visible{
-  outline:3px solid #8acb75;
-  outline-offset:2px;
+  outline:3px solid #8acb75;outline-offset:2px
 }
-
+.hidden{display:none!important}
 .app{display:flex;min-height:100vh}
-
-.sidebar{
-  width:235px;
-  flex-shrink:0;
-  background:#183e2b;
-  color:white;
-  padding:25px 18px;
-}
-
+.sidebar{width:235px;flex-shrink:0;background:#183e2b;color:white;padding:25px 18px}
 .brand{font-size:27px;font-weight:800;color:#b9ef8a}
 .brand-sub{font-size:10px;letter-spacing:2px;margin-top:5px;color:#d4e8d8}
 .nav-title{font-size:11px;color:#b6cbb9;margin:35px 10px 12px}
-
-.nav button{
-  display:block;
-  width:100%;
-  text-align:left;
-  color:#e4efe5;
-  background:transparent;
-  margin:5px 0;
-  padding:13px;
-}
-
+.nav button{display:block;width:100%;text-align:left;color:#e4efe5;background:transparent;margin:5px 0;padding:13px}
 .nav button.active,.nav button:hover{background:#315b3e}
-
-.season{
-  background:#315b3e;
-  border-radius:12px;
-  padding:15px;
-  margin-top:35px;
-  font-size:13px;
-  line-height:1.8;
-}
-
+.season{background:#315b3e;border-radius:12px;padding:15px;margin-top:35px;font-size:13px;line-height:1.8}
 .main{flex:1;min-width:0;padding:28px}
-
-.topbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-  flex-wrap:wrap;
-  margin-bottom:25px;
-}
-
-.eyebrow{
-  color:#62826a;
-  font-size:12px;
-  text-transform:uppercase;
-  letter-spacing:1.5px;
-  margin-bottom:8px;
-}
-
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:25px}
+.eyebrow{color:#62826a;font-size:12px;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
 h1{font-size:29px;margin-bottom:8px}
 .subtitle{color:#738075;font-size:14px;line-height:1.6}
-
-.user-chip{
-  background:white;
-  border:1px solid #e1e9df;
-  padding:11px 15px;
-  border-radius:25px;
-}
-
-.hero{
-  background:linear-gradient(110deg,#244d31,#4e8445);
-  border-radius:18px;
-  padding:27px;
-  color:white;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:20px;
-  margin-bottom:23px;
-}
-
+.user-chip{background:white;border:1px solid #e1e9df;padding:11px 15px;border-radius:25px}
+.hero{background:linear-gradient(110deg,#244d31,#4e8445);border-radius:18px;padding:27px;color:white;display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:23px}
 .hero h2{font-size:25px;margin-bottom:10px}
 .hero p{max-width:520px;color:#e2f0df;line-height:1.7;font-size:14px}
 .hero-icon{font-size:62px}
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:15px;
-  margin-bottom:25px;
-}
-
-.stat,.panel,.field-card{
-  background:white;
-  border:1px solid #e5ece2;
-  border-radius:15px;
-}
-
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin-bottom:25px}
+.stat,.panel,.field-card{background:white;border:1px solid #e5ece2;border-radius:15px}
 .stat{padding:19px}
 .stat-icon{font-size:24px;margin-bottom:12px}
 .stat-label{color:#748075;font-size:12px}
 .stat-value{font-size:28px;font-weight:800;margin:7px 0}
 .stat-note{font-size:11px;color:#56865a}
-
-.section-heading{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  flex-wrap:wrap;
-  margin:25px 0 15px;
-}
-
+.section-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:25px 0 15px}
 .section-heading h2{font-size:20px}
-
 .green-btn{background:#2f693b;color:white}
 .green-btn:hover{background:#24562f}
 .light-btn{background:#eaf3e6;color:#2d6336}
 .light-btn:hover{background:#dcebd6}
-
-.fields{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:17px;
-}
-
+.fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
 .field-card{overflow:hidden;min-width:0}
-
-.field-image{
-  height:190px;
-  position:relative;
-  overflow:hidden;
-  background:#dcebd5;
-}
-
-.field-image img{
-  width:100%;
-  height:100%;
-  display:block;
-  object-fit:cover;
-}
-
-.stage-tag{
-  position:absolute;
-  top:12px;
-  left:12px;
-  background:white;
-  padding:7px 10px;
-  border-radius:20px;
-  font-size:11px;
-  font-weight:bold;
-  color:#2b6238;
-}
-
+.field-image{height:190px;position:relative;overflow:hidden;background:#dcebd5}
+.field-image img{width:100%;height:100%;display:block;object-fit:cover}
+.stage-tag{position:absolute;top:12px;left:12px;background:white;padding:7px 10px;border-radius:20px;font-size:11px;font-weight:bold;color:#2b6238}
 .field-body{padding:17px}
 .field-title{font-size:17px;font-weight:bold;margin-bottom:6px}
 .field-meta{color:#778278;font-size:12px;margin-bottom:16px}
-
-.progress-row{
-  display:flex;
-  justify-content:space-between;
-  font-size:12px;
-  margin-bottom:8px;
-}
-
-.progress{
-  height:8px;
-  background:#e9efe7;
-  border-radius:10px;
-  overflow:hidden;
-  margin-bottom:17px;
-}
-
-.progress span{
-  display:block;
-  height:100%;
-  background:#79c76b;
-  border-radius:10px;
-}
-
+.progress-row{display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px}
+.progress{height:8px;background:#e9efe7;border-radius:10px;overflow:hidden;margin-bottom:17px}
+.progress span{display:block;height:100%;background:#79c76b;border-radius:10px}
 .field-actions{display:flex;gap:8px}
 .field-actions button{flex:1;font-size:12px;padding:10px 6px}
-
-.two-col{
-  display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:18px;
-  margin-top:22px;
-}
-
+.two-col{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-top:22px}
 .panel{padding:21px}
 .panel h3{margin-bottom:16px}
-
-.task{
-  display:flex;
-  align-items:flex-start;
-  gap:12px;
-  padding:12px 0;
-  border-bottom:1px solid #edf1eb;
-  font-size:13px;
-  line-height:1.6;
-}
-
+.task{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid #edf1eb;font-size:13px;line-height:1.6}
 .task:last-child{border-bottom:0}
+.task input[type=checkbox]{width:auto;margin-top:5px}
 .task-icon{background:#edf5e9;border-radius:9px;padding:10px;flex-shrink:0}
 .task small{display:block;color:#7b887c;margin-top:4px}
-
-.voice-panel{
-  background:#f0f7eb;
-  border-radius:12px;
-  padding:17px;
-}
-
-.voice-panel p{
-  font-size:13px;
-  line-height:1.7;
-  color:#536653;
-  margin:10px 0;
-}
-
-select,input{
-  padding:11px;
-  border:1px solid #dce6d9;
-  border-radius:9px;
-  background:white;
-  max-width:100%;
-}
-
+.voice-panel{background:#f0f7eb;border-radius:12px;padding:17px}
+.voice-panel p{font-size:13px;line-height:1.7;color:#536653;margin:10px 0}
+select,input{padding:11px;border:1px solid #dce6d9;border-radius:9px;background:white;max-width:100%}
 select{width:100%}
-input[type="text"]{width:100%}
-
-.voice-controls{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-}
-
+input[type=text],input[type=password]{width:100%}
+.voice-controls{display:flex;gap:8px;flex-wrap:wrap}
 .voice-controls button{flex:1;min-width:100px}
-
-.answer-box{
-  margin-top:14px;
-  background:white;
-  padding:13px;
-  border-radius:10px;
-  border:1px solid #e1ebdc;
-  font-size:13px;
-  line-height:1.8;
-  overflow-wrap:anywhere;
-}
-
-.answer-label{
-  display:block;
-  font-size:11px;
-  color:#62826a;
-  text-transform:uppercase;
-  letter-spacing:1px;
-  margin-bottom:5px;
-  font-weight:bold;
-}
-
-.notice{
-  margin-top:12px;
-  font-size:12px;
-  color:#426d47;
-  line-height:1.7;
-}
-
-.hidden{display:none!important}
+.answer-box{margin-top:14px;background:white;padding:13px;border-radius:10px;border:1px solid #e1ebdc;font-size:13px;line-height:1.8;overflow-wrap:anywhere}
+.answer-label{display:block;font-size:11px;color:#62826a;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;font-weight:bold}
+.notice{margin-top:12px;font-size:12px;color:#426d47;line-height:1.7}
 .page-section{margin-top:10px}
+.field-detail-image{width:100%;max-width:420px;height:220px;object-fit:cover;border-radius:12px;margin:15px 0}
 
-.field-detail-image{
-  width:100%;
-  max-width:420px;
-  height:220px;
-  object-fit:cover;
-  border-radius:12px;
-  margin:15px 0;
+/* LOGIN PAGE */
+.login-page{
+  position:fixed;inset:0;z-index:9999;
+  display:flex;justify-content:center;align-items:center;
+  padding:20px;overflow-y:auto;
+  background:linear-gradient(135deg,#e8f3e3,#f7faf4);
 }
+.login-card{
+  width:100%;max-width:440px;background:white;padding:30px;
+  border-radius:22px;text-align:center;border:1px solid #e1eadc;
+  box-shadow:0 15px 50px rgba(35,74,42,.12);
+}
+.login-logo{font-size:38px;margin-bottom:5px}
+.login-card h1{color:#2f693b;font-size:32px;margin-bottom:5px}
+.login-tagline{color:#81917e;font-size:10px;letter-spacing:3px;margin-bottom:20px}
+.login-image{height:145px;border-radius:14px;overflow:hidden;margin-bottom:22px;background:#e4efdf}
+.login-image img{width:100%;height:100%;object-fit:cover}
+.login-card h2{font-size:23px;margin-bottom:10px;color:#243629}
+.login-description{font-size:13px;color:#758174;line-height:1.7;margin-bottom:22px}
+#loginForm{text-align:left}
+#loginForm label{display:block;margin:15px 0 7px;font-size:13px;font-weight:bold;color:#344a36}
+#loginForm input{padding:13px;border:1px solid #dce6d9;border-radius:10px}
+.login-button{width:100%;padding:14px;margin-top:22px;color:white;background:#2f693b;font-weight:bold;border-radius:10px}
+.login-button:hover{background:#214f2c}
+.login-error{color:#b42318;font-size:12px;margin-top:12px}
+.login-footer{font-size:12px;color:#718571;margin-top:22px}
 
 @media(max-width:1050px){
   .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
   .fields{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
-
 @media(max-width:720px){
   .app{display:block}
   .sidebar{width:100%;padding:17px}
@@ -312,23 +128,56 @@ input[type="text"]{width:100%}
   .two-col{grid-template-columns:1fr}
   .fields{grid-template-columns:1fr}
 }
-
 @media(max-width:420px){
   .stats{grid-template-columns:1fr 1fr}
   .stat{padding:13px}
   .stat-value{font-size:23px}
-  h1{font-size:24px}
+  .main h1{font-size:24px}
+  .login-card{padding:22px}
+  .login-image{height:120px}
 }
 </style>
 </head>
 
 <body>
+
+<!-- LOGIN PAGE -->
+<section id="loginPage" class="login-page">
+  <div class="login-card">
+    <div class="login-logo">🌱</div>
+    <h1>harvestly</h1>
+    <p class="login-tagline">GROW BETTER, EVERY DAY</p>
+
+    <div class="login-image">
+      <img
+        src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=80"
+        alt="Green agricultural fields"
+        onerror="this.onerror=null;this.src='https://images.pexels.com/photos/2132250/pexels-photo-2132250.jpeg?auto=compress&cs=tinysrgb&w=900';">
+    </div>
+
+    <h2>Welcome, Farmer! 👋</h2>
+    <p class="login-description">Your farm, your crops, your progress — all in one place.</p>
+
+    <form id="loginForm">
+      <label for="loginName">Your name</label>
+      <input type="text" id="loginName" placeholder="Enter your name" required>
+
+      <label for="loginPassword">Password</label>
+      <input type="password" id="loginPassword" placeholder="Enter any password" required>
+
+      <button type="submit" class="login-button">Login to Harvestly →</button>
+    </form>
+
+    <p id="loginError" class="login-error" role="alert"></p>
+    <p class="login-footer">🌿 Simple farming. Smarter growing.</p>
+  </div>
+</section>
+
 <div class="app">
 
 <aside class="sidebar">
   <div class="brand">🌱 harvestly</div>
   <div class="brand-sub">FARM MANAGEMENT</div>
-
   <div class="nav-title">WORKSPACE</div>
 
   <nav class="nav">
@@ -358,7 +207,6 @@ input[type="text"]{width:100%}
 
 <!-- DASHBOARD -->
 <section id="dashboard" class="page-section">
-
   <div class="hero">
     <div>
       <div class="eyebrow" style="color:#d1efbd">YOUR FARM, YOUR FUTURE</div>
@@ -369,30 +217,10 @@ input[type="text"]{width:100%}
   </div>
 
   <div class="stats">
-    <div class="stat">
-      <div class="stat-icon">🌱</div>
-      <div class="stat-label">Active Fields</div>
-      <div class="stat-value">3</div>
-      <div class="stat-note">All fields monitored</div>
-    </div>
-    <div class="stat">
-      <div class="stat-icon">💧</div>
-      <div class="stat-label">Irrigation Tasks</div>
-      <div class="stat-value">2</div>
-      <div class="stat-note">Today's schedule</div>
-    </div>
-    <div class="stat">
-      <div class="stat-icon">🐛</div>
-      <div class="stat-label">Crop Observations</div>
-      <div class="stat-value">1</div>
-      <div class="stat-note">Needs attention</div>
-    </div>
-    <div class="stat">
-      <div class="stat-icon">🧺</div>
-      <div class="stat-label">Harvest Readiness</div>
-      <div class="stat-value">80%</div>
-      <div class="stat-note">Demo estimate</div>
-    </div>
+    <div class="stat"><div class="stat-icon">🌱</div><div class="stat-label">Active Fields</div><div class="stat-value">3</div><div class="stat-note">All fields monitored</div></div>
+    <div class="stat"><div class="stat-icon">💧</div><div class="stat-label">Irrigation Tasks</div><div class="stat-value">2</div><div class="stat-note">Today's schedule</div></div>
+    <div class="stat"><div class="stat-icon">🐛</div><div class="stat-label">Crop Observations</div><div class="stat-value">1</div><div class="stat-note">Needs attention</div></div>
+    <div class="stat"><div class="stat-icon">🧺</div><div class="stat-label">Harvest Readiness</div><div class="stat-value">80%</div><div class="stat-note">Demo estimate</div></div>
   </div>
 
   <div class="section-heading">
@@ -402,12 +230,11 @@ input[type="text"]{width:100%}
 
   <div class="fields">
 
-    <!-- GREEN VALLEY -->
     <article class="field-card">
       <div class="field-image">
         <img
           src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=85"
-          alt="Green agricultural field for Green Valley rice crop"
+          alt="Green Valley agricultural field"
           onerror="this.onerror=null;this.src='https://images.pexels.com/photos/2132250/pexels-photo-2132250.jpeg?auto=compress&cs=tinysrgb&w=900';">
         <span class="stage-tag">🌱 Vegetative</span>
       </div>
@@ -423,12 +250,11 @@ input[type="text"]{width:100%}
       </div>
     </article>
 
-    <!-- TOMATO FIELD -->
     <article class="field-card">
       <div class="field-image">
         <img
           src="https://images.pexels.com/photos/1327838/pexels-photo-1327838.jpeg?auto=compress&cs=tinysrgb&w=900"
-          alt="Tomato plants growing in a farm"
+          alt="Tomato plants"
           onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1592841200221-a6898f307baa?auto=format&fit=crop&w=900&q=80';">
         <span class="stage-tag">🌼 Flowering</span>
       </div>
@@ -444,7 +270,6 @@ input[type="text"]{width:100%}
       </div>
     </article>
 
-    <!-- MAIZE FIELD -->
     <article class="field-card">
       <div class="field-image">
         <img
@@ -468,34 +293,21 @@ input[type="text"]{width:100%}
   </div>
 
   <div class="two-col">
-
     <div class="panel">
       <h3>📋 Today's Farm Activities</h3>
-      <label class="task">
-        <input type="checkbox" style="width:auto">
-        <span><strong>Water the rice field</strong><small>Green Valley · Check soil moisture</small></span>
-      </label>
-      <label class="task">
-        <input type="checkbox" style="width:auto">
-        <span><strong>Check tomato plants</strong><small>Sunrise Farm · Inspect leaves and flowers</small></span>
-      </label>
-      <label class="task">
-        <input type="checkbox" style="width:auto">
-        <span><strong>Inspect crop health</strong><small>Green Valley · Check for pests</small></span>
-      </label>
+      <label class="task"><input type="checkbox"><span><strong>Water the rice field</strong><small>Green Valley · Check soil moisture</small></span></label>
+      <label class="task"><input type="checkbox"><span><strong>Check tomato plants</strong><small>Sunrise Farm · Inspect leaves and flowers</small></span></label>
+      <label class="task"><input type="checkbox"><span><strong>Inspect crop health</strong><small>Green Valley · Check for pests</small></span></label>
     </div>
 
-    <!-- MULTILINGUAL VOICE ASSISTANT -->
     <div class="panel">
       <h3>🎙️ Talk to Harvestly</h3>
-
       <div class="voice-panel">
         <strong>Farm help in your language</strong>
-        <p>Choose a language, type your question or use the microphone. Press Speak Answer to hear the reply.</p>
+        <p>Choose a language, type a question or use the microphone.</p>
 
         <label for="language"><strong>Choose language</strong></label>
         <div style="height:7px"></div>
-
         <select id="language">
           <option value="en-IN">🇬🇧 English</option>
           <option value="te-IN">తెలుగు — Telugu</option>
@@ -505,56 +317,41 @@ input[type="text"]{width:100%}
         </select>
 
         <div style="height:12px"></div>
-
         <label for="question"><strong>Write your question</strong></label>
         <div style="height:7px"></div>
-
-        <input
-          type="text"
-          id="question"
-          placeholder="e.g. How do I care for rice?"
-          onkeydown="if(event.key==='Enter')askQuestion()">
+        <input type="text" id="question" placeholder="How do I care for rice?" onkeydown="if(event.key==='Enter')askQuestion()">
 
         <div style="height:12px"></div>
-
         <div class="voice-controls">
           <button class="green-btn" onclick="askQuestion()">Ask</button>
           <button class="light-btn" onclick="startVoice()">🎤 Speak</button>
         </div>
 
         <div style="height:8px"></div>
-
         <button class="green-btn" style="width:100%" onclick="speakAnswer()">🔊 Speak Answer</button>
 
         <div class="answer-box" aria-live="polite">
           <span class="answer-label">Harvestly's answer</span>
-          <div id="voiceAnswer">Hello, farmer! Select your language and ask a question about your crops.</div>
+          <div id="voiceAnswer">Hello, farmer! Select your language and ask about your crops.</div>
         </div>
 
         <div class="voice-controls" style="margin-top:10px">
           <button class="light-btn" onclick="stopVoice()">⏹ Stop Voice</button>
           <button class="light-btn" onclick="clearQuestion()">Clear</button>
         </div>
-
-        <div id="voiceStatus" class="notice">
-          Ready. Your browser must support speech features for microphone input and spoken answers.
-        </div>
+        <div id="voiceStatus" class="notice" role="status">Ready to help.</div>
       </div>
     </div>
-
   </div>
 </section>
 
 <!-- MY FIELDS -->
 <section id="fields" class="page-section hidden">
-  <div class="section-heading">
-    <h2>🌾 My Fields</h2>
-    <button class="green-btn" onclick="addField()">+ Add Field</button>
-  </div>
+  <div class="section-heading"><h2>🌾 My Fields</h2><button class="green-btn" onclick="addField()">+ Add Field</button></div>
   <p class="subtitle">Monitor crop stages and progress across your farm.</p>
   <div id="fieldDetails" class="panel" style="margin-top:18px">
     <h3>Select a field from the dashboard</h3>
-    <p class="subtitle">Use Inspect or View Details on a field to see more information.</p>
+    <p class="subtitle">Use Inspect or View Details to see field information.</p>
   </div>
 </section>
 
@@ -563,10 +360,10 @@ input[type="text"]{width:100%}
   <div class="section-heading"><h2>✓ Farm Activities</h2></div>
   <div class="panel">
     <h3>Today's checklist</h3>
-    <label class="task"><input type="checkbox" style="width:auto"> Water Green Valley rice field</label>
-    <label class="task"><input type="checkbox" style="width:auto"> Inspect Sunrise Farm tomato plants</label>
-    <label class="task"><input type="checkbox" style="width:auto"> Check Harvest Hope maize maturity</label>
-    <label class="task"><input type="checkbox" style="width:auto"> Record pest observations</label>
+    <label class="task"><input type="checkbox"> Water Green Valley rice field</label>
+    <label class="task"><input type="checkbox"> Inspect Sunrise Farm tomato plants</label>
+    <label class="task"><input type="checkbox"> Check Harvest Hope maize maturity</label>
+    <label class="task"><input type="checkbox"> Record pest observations</label>
   </div>
 </section>
 
@@ -576,36 +373,40 @@ input[type="text"]{width:100%}
   <div class="panel">
     <h3>Harvest Hope — Maize</h3>
     <p class="subtitle">Demo harvest readiness tracker</p>
-    <div class="progress" style="margin-top:18px">
-      <span id="harvestProgress" style="width:80%"></span>
-    </div>
+    <div class="progress" style="margin-top:18px"><span id="harvestProgress" style="width:80%"></span></div>
     <label for="harvestRange">Update demo readiness</label>
-    <input id="harvestRange" type="range" min="0" max="100" value="80"
-      oninput="updateHarvest(this.value)" style="width:100%;margin-top:15px">
+    <input id="harvestRange" type="range" min="0" max="100" value="80" oninput="updateHarvest(this.value)" style="width:100%;margin-top:15px">
     <p id="harvestLabel" class="notice">80% ready</p>
     <p class="notice">This is a sample tracker, not a prediction of actual crop maturity.</p>
   </div>
 </section>
 
 <div id="message" class="notice" role="status"></div>
-
 </main>
 </div>
 
 <script>
-/* ---------------- PAGE NAVIGATION ---------------- */
+/* LOGIN */
+document.getElementById('loginForm').addEventListener('submit',function(event){
+  event.preventDefault();
+  const name=document.getElementById('loginName').value.trim();
+  const password=document.getElementById('loginPassword').value;
+  const error=document.getElementById('loginError');
 
+  if(!name||!password.trim()){
+    error.textContent='Please enter your name and password.';
+    return;
+  }
+
+  document.getElementById('farmerName').textContent=name;
+  document.getElementById('loginPage').style.display='none';
+});
+
+/* NAVIGATION */
 function showPage(page,button){
-  document.querySelectorAll('.page-section').forEach(section=>{
-    section.classList.add('hidden');
-  });
-
+  document.querySelectorAll('.page-section').forEach(section=>section.classList.add('hidden'));
   document.getElementById(page).classList.remove('hidden');
-
-  document.querySelectorAll('.nav button').forEach(item=>{
-    item.classList.remove('active');
-  });
-
+  document.querySelectorAll('.nav button').forEach(item=>item.classList.remove('active'));
   if(button)button.classList.add('active');
 
   const titles={
@@ -614,7 +415,6 @@ function showPage(page,button){
     activities:['Farm Activities ✓','Keep track of your daily farm work.'],
     harvest:['Harvest Tracker 🧺','Follow your crop readiness.']
   };
-
   document.getElementById('pageTitle').textContent=titles[page][0];
   document.getElementById('pageSubtitle').textContent=titles[page][1];
 }
@@ -625,42 +425,38 @@ function showMessage(message){
 
 function viewField(name,crop,stage,progress){
   showPage('fields',document.querySelectorAll('.nav button')[1]);
-
   const details=document.getElementById('fieldDetails');
   details.replaceChildren();
 
   const heading=document.createElement('h3');
   heading.textContent=name;
 
-  const photo=document.createElement('img');
-  photo.className='field-detail-image';
-  photo.alt=name+' crop field';
-  photo.src='https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=85';
-  photo.onerror=function(){
+  const image=document.createElement('img');
+  image.className='field-detail-image';
+  image.alt=name+' agricultural field';
+  image.src='https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=85';
+  image.onerror=function(){
     this.onerror=null;
     this.src='https://images.pexels.com/photos/2132250/pexels-photo-2132250.jpeg?auto=compress&cs=tinysrgb&w=900';
   };
 
-  details.append(heading,photo);
-
+  details.append(heading,image);
   [
     'Crop: '+crop,
     'Growth stage: '+stage,
     'Growing progress: '+progress,
-    'Tip: Observe crop health regularly and follow locally recommended farming practices.'
+    'Tip: Observe crop health and follow locally recommended farming practices.'
   ].forEach(text=>{
-    const paragraph=document.createElement('p');
-    paragraph.className='notice';
-    paragraph.textContent=text;
-    details.appendChild(paragraph);
+    const p=document.createElement('p');
+    p.className='notice';
+    p.textContent=text;
+    details.appendChild(p);
   });
 }
 
 function addField(){
   const name=prompt('Enter your new field name:');
-  if(name&&name.trim()){
-    showMessage('Field "'+name.trim()+'" noted for this demo. Permanent saving requires a database.');
-  }
+  if(name&&name.trim())showMessage('Field "'+name.trim()+'" noted for this demo. Permanent saving requires a database.');
 }
 
 function updateHarvest(value){
@@ -668,126 +464,93 @@ function updateHarvest(value){
   document.getElementById('harvestLabel').textContent=value+'% ready';
 }
 
-/* ---------------- MULTILINGUAL ANSWERS ---------------- */
-
+/* MULTILINGUAL ANSWERS */
 const answers={
-  'en-IN':{
-    greeting:'Hello, farmer! How can I help you with your crops?',
-    rice:'For rice in the vegetative stage, check soil moisture, monitor weeds and pests, and follow local irrigation and fertilizer recommendations.',
-    water:'Before watering, check soil moisture and the crop stage. Avoid unnecessary overwatering.',
-    pest:'Check both sides of leaves for unusual spots, insects, or damage. Ask a local agriculture officer before using any pesticide.',
-    tomato:'For tomatoes, monitor soil moisture and inspect leaves and flowers regularly.',
-    harvest:'Check crop maturity and local agricultural guidance before deciding when to harvest.',
-    fertilizer:'Use fertilizer according to the crop, soil test, and local agricultural recommendations. Avoid applying more than recommended.'
-  },
-
-  'te-IN':{
-    greeting:'నమస్కారం రైతు గారు! మీ పంటలకు ఎలా సహాయం చేయగలను?',
-    rice:'వరి పెరుగుదల దశలో నేల తేమను గమనించండి. కలుపు మొక్కలు, పురుగులను పరిశీలించండి. స్థానిక వ్యవసాయ సూచనలను పాటించండి.',
-    water:'నీరు పెట్టే ముందు నేల తేమను, పంట దశను పరిశీలించండి. అవసరానికి మించి నీరు పెట్టవద్దు.',
-    pest:'ఆకులపై మచ్చలు లేదా పురుగులు ఉన్నాయా చూడండి. పురుగుమందు వాడే ముందు వ్యవసాయ అధికారిని సంప్రదించండి.',
-    tomato:'టమాటా మొక్కలకు నేల తేమను గమనించండి. ఆకులు, పూలను క్రమం తప్పకుండా పరిశీలించండి.',
-    harvest:'పంట కోతకు ముందు పంట పరిపక్వతను పరిశీలించి స్థానిక వ్యవసాయ సూచనలను పాటించండి.',
-    fertilizer:'నేల పరీక్ష మరియు పంట అవసరాల ఆధారంగా ఎరువులు వాడండి. స్థానిక వ్యవసాయ అధికారుల సూచనలు పాటించండి.'
-  },
-
-  'hi-IN':{
-    greeting:'नमस्ते किसान जी! मैं आपकी फसल में कैसे मदद कर सकता हूँ?',
-    rice:'धान की बढ़वार के समय मिट्टी की नमी देखें। खरपतवार और कीटों की जाँच करें तथा स्थानीय कृषि सलाह का पालन करें।',
-    water:'पानी देने से पहले मिट्टी की नमी और फसल की अवस्था जाँचें। जरूरत से ज्यादा पानी न दें।',
-    pest:'पत्तियों पर धब्बे, कीट या नुकसान देखें। कीटनाशक इस्तेमाल करने से पहले कृषि अधिकारी से सलाह लें।',
-    tomato:'टमाटर की मिट्टी की नमी देखें और पत्तियों तथा फूलों की नियमित जाँच करें।',
-    harvest:'कटाई से पहले फसल की परिपक्वता जाँचें और स्थानीय कृषि सलाह लें।',
-    fertilizer:'मिट्टी की जाँच और फसल की जरूरत के अनुसार खाद का उपयोग करें। स्थानीय कृषि सलाह का पालन करें।'
-  },
-
-  'ta-IN':{
-    greeting:'வணக்கம் விவசாயி! உங்கள் பயிர்களுக்கு நான் எப்படி உதவலாம்?',
-    rice:'நெற்பயிரின் வளர்ச்சி நிலையில் மண்ணின் ஈரப்பதத்தை கவனியுங்கள். களைகள் மற்றும் பூச்சிகளைச் சரிபார்த்து உள்ளூர் வேளாண் ஆலோசனையைப் பின்பற்றுங்கள்.',
-    water:'நீர் பாய்ச்சுவதற்கு முன் மண்ணின் ஈரப்பதத்தையும் பயிரின் நிலையையும் சரிபாருங்கள். தேவைக்கு அதிகமாக நீர் பாய்ச்ச வேண்டாம்.',
-    pest:'இலைகளில் புள்ளிகள் அல்லது பூச்சிகள் உள்ளனவா பாருங்கள். மருந்து பயன்படுத்துவதற்கு முன் வேளாண் அதிகாரியிடம் ஆலோசனை பெறுங்கள்.',
-    tomato:'தக்காளி செடிகளின் மண்ணின் ஈரப்பதத்தையும் இலைகள் மற்றும் பூக்களையும் தொடர்ந்து கவனியுங்கள்.',
-    harvest:'அறுவடைக்கு முன் பயிரின் முதிர்ச்சியைச் சரிபார்த்து உள்ளூர் வேளாண் ஆலோசனையைப் பின்பற்றுங்கள்.',
-    fertilizer:'மண் பரிசோதனை மற்றும் பயிரின் தேவைக்கு ஏற்ப உரங்களைப் பயன்படுத்துங்கள். உள்ளூர் வேளாண் ஆலோசனையைப் பின்பற்றுங்கள்.'
-  },
-
-  'ml-IN':{
-    greeting:'നമസ്കാരം കർഷക സുഹൃത്തേ! നിങ്ങളുടെ വിളകളെക്കുറിച്ച് എങ്ങനെ സഹായിക്കാം?',
-    rice:'നെല്ലിന്റെ വളർച്ചാ ഘട്ടത്തിൽ മണ്ണിലെ ഈർപ്പം ശ്രദ്ധിക്കുക. കളകളും കീടങ്ങളും പരിശോധിച്ച് പ്രാദേശിക കാർഷിക നിർദേശങ്ങൾ പാലിക്കുക.',
-    water:'നനയ്ക്കുന്നതിന് മുമ്പ് മണ്ണിലെ ഈർപ്പവും വിളയുടെ ഘട്ടവും പരിശോധിക്കുക. ആവശ്യത്തിലധികം വെള്ളം നൽകാതിരിക്കുക.',
-    pest:'ഇലകളിൽ പാടുകളോ കീടങ്ങളോ ഉണ്ടോ പരിശോധിക്കുക. മരുന്ന് ഉപയോഗിക്കുന്നതിന് മുമ്പ് കൃഷി ഓഫീസറുടെ ഉപദേശം തേടുക.',
-    tomato:'തക്കാളി ചെടികളുടെ മണ്ണിലെ ഈർപ്പം ശ്രദ്ധിക്കുകയും ഇലകളും പൂക്കളും പരിശോധിക്കുകയും ചെയ്യുക.',
-    harvest:'വിളവെടുപ്പിന് മുമ്പ് വിളയുടെ പാകം പരിശോധിച്ച് പ്രാദേശിക കാർഷിക നിർദേശങ്ങൾ പാലിക്കുക.',
-    fertilizer:'മണ്ണ് പരിശോധനയുടെയും വിളയുടെ ആവശ്യത്തിന്റെയും അടിസ്ഥാനത്തിൽ വളം ഉപയോഗിക്കുക. പ്രാദേശിക കാർഷിക നിർദേശങ്ങൾ പാലിക്കുക.'
-  }
+'en-IN':{
+greeting:'Hello, farmer! How can I help you with your crops?',
+rice:'For rice in the vegetative stage, check soil moisture, monitor weeds and pests, and follow local irrigation and fertilizer recommendations.',
+water:'Before watering, check soil moisture and the crop stage. Avoid unnecessary overwatering.',
+pest:'Check both sides of leaves for unusual spots, insects, or damage. Ask a local agriculture officer before using any pesticide.',
+tomato:'For tomatoes, monitor soil moisture and inspect leaves and flowers regularly.',
+harvest:'Check crop maturity and local agricultural guidance before deciding when to harvest.',
+fertilizer:'Use fertilizer according to the crop, soil test, and local agricultural recommendations.'
+},
+'te-IN':{
+greeting:'నమస్కారం రైతు గారు! మీ పంటలకు ఎలా సహాయం చేయగలను?',
+rice:'వరి పెరుగుదల దశలో నేల తేమను గమనించండి. కలుపు మొక్కలు, పురుగులను పరిశీలించండి. స్థానిక వ్యవసాయ సూచనలను పాటించండి.',
+water:'నీరు పెట్టే ముందు నేల తేమను, పంట దశను పరిశీలించండి. అవసరానికి మించి నీరు పెట్టవద్దు.',
+pest:'ఆకులపై మచ్చలు లేదా పురుగులు ఉన్నాయా చూడండి. పురుగుమందు వాడే ముందు వ్యవసాయ అధికారిని సంప్రదించండి.',
+tomato:'టమాటా మొక్కలకు నేల తేమను గమనించండి. ఆకులు, పూలను క్రమం తప్పకుండా పరిశీలించండి.',
+harvest:'పంట కోతకు ముందు పంట పరిపక్వతను పరిశీలించి స్థానిక వ్యవసాయ సూచనలను పాటించండి.',
+fertilizer:'నేల పరీక్ష మరియు పంట అవసరాల ఆధారంగా ఎరువులు వాడండి. స్థానిక వ్యవసాయ అధికారుల సూచనలు పాటించండి.'
+},
+'hi-IN':{
+greeting:'नमस्ते किसान जी! मैं आपकी फसल में कैसे मदद कर सकता हूँ?',
+rice:'धान की बढ़वार के समय मिट्टी की नमी देखें। खरपतवार और कीटों की जाँच करें तथा स्थानीय कृषि सलाह का पालन करें।',
+water:'पानी देने से पहले मिट्टी की नमी और फसल की अवस्था जाँचें। जरूरत से ज्यादा पानी न दें।',
+pest:'पत्तियों पर धब्बे, कीट या नुकसान देखें। कीटनाशक इस्तेमाल करने से पहले कृषि अधिकारी से सलाह लें।',
+tomato:'टमाटर की मिट्टी की नमी देखें और पत्तियों तथा फूलों की नियमित जाँच करें।',
+harvest:'कटाई से पहले फसल की परिपक्वता जाँचें और स्थानीय कृषि सलाह लें।',
+fertilizer:'मिट्टी की जाँच और फसल की जरूरत के अनुसार खाद का उपयोग करें। स्थानीय कृषि सलाह का पालन करें।'
+},
+'ta-IN':{
+greeting:'வணக்கம் விவசாயி! உங்கள் பயிர்களுக்கு நான் எப்படி உதவலாம்?',
+rice:'நெற்பயிரின் வளர்ச்சி நிலையில் மண்ணின் ஈரப்பதத்தை கவனியுங்கள். களைகள் மற்றும் பூச்சிகளைச் சரிபார்த்து உள்ளூர் வேளாண் ஆலோசனையைப் பின்பற்றுங்கள்.',
+water:'நீர் பாய்ச்சுவதற்கு முன் மண்ணின் ஈரப்பதத்தையும் பயிரின் நிலையையும் சரிபாருங்கள். தேவைக்கு அதிகமாக நீர் பாய்ச்ச வேண்டாம்.',
+pest:'இலைகளில் புள்ளிகள் அல்லது பூச்சிகள் உள்ளனவா பாருங்கள். மருந்து பயன்படுத்துவதற்கு முன் வேளாண் அதிகாரியிடம் ஆலோசனை பெறுங்கள்.',
+tomato:'தக்காளி செடிகளின் மண்ணின் ஈரப்பதத்தையும் இலைகள் மற்றும் பூக்களையும் தொடர்ந்து கவனியுங்கள்.',
+harvest:'அறுவடைக்கு முன் பயிரின் முதிர்ச்சியைச் சரிபார்த்து உள்ளூர் வேளாண் ஆலோசனையைப் பின்பற்றுங்கள்.',
+fertilizer:'மண் பரிசோதனை மற்றும் பயிரின் தேவைக்கு ஏற்ப உரங்களைப் பயன்படுத்துங்கள். உள்ளூர் வேளாண் ஆலோசனையைப் பின்பற்றுங்கள்.'
+},
+'ml-IN':{
+greeting:'നമസ്കാരം കർഷക സുഹൃത്തേ! നിങ്ങളുടെ വിളകളെക്കുറിച്ച് എങ്ങനെ സഹായിക്കാം?',
+rice:'നെല്ലിന്റെ വളർച്ചാ ഘട്ടത്തിൽ മണ്ണിലെ ഈർപ്പം ശ്രദ്ധിക്കുക. കളകളും കീടങ്ങളും പരിശോധിച്ച് പ്രാദേശിക കാർഷിക നിർദേശങ്ങൾ പാലിക്കുക.',
+water:'നനയ്ക്കുന്നതിന് മുമ്പ് മണ്ണിലെ ഈർപ്പവും വിളയുടെ ഘട്ടവും പരിശോധിക്കുക. ആവശ്യത്തിലധികം വെള്ളം നൽകാതിരിക്കുക.',
+pest:'ഇലകളിൽ പാടുകളോ കീടങ്ങളോ ഉണ്ടോ പരിശോധിക്കുക. മരുന്ന് ഉപയോഗിക്കുന്നതിന് മുമ്പ് കൃഷി ഓഫീസറുടെ ഉപദേശം തേടുക.',
+tomato:'തക്കാളി ചെടികളുടെ മണ്ണിലെ ഈർപ്പം ശ്രദ്ധിക്കുകയും ഇലകളും പൂക്കളും പരിശോധിക്കുകയും ചെയ്യുക.',
+harvest:'വിളവെടുപ്പിന് മുമ്പ് വിളയുടെ പാകം പരിശോധിച്ച് പ്രാദേശിക കാർഷിക നിർദേശങ്ങൾ പാലിക്കുക.',
+fertilizer:'മണ്ണ് പരിശോധനയുടെയും വിളയുടെ ആവശ്യത്തിന്റെയും അടിസ്ഥാനത്തിൽ വളം ഉപയോഗിക്കുക. പ്രാദേശിക കാർഷിക നിർദേശങ്ങൾ പാലിക്കുക.'
+}
 };
 
 let currentAnswer=answers['en-IN'].greeting;
 let recognition=null;
 
+function languageName(language){
+  return {
+    'en-IN':'English','te-IN':'Telugu','hi-IN':'Hindi',
+    'ta-IN':'Tamil','ml-IN':'Malayalam'
+  }[language]||'selected language';
+}
+
 function detectQuestion(question){
   const q=question.toLowerCase();
-
-  if(/water|watering|irrigat|నీరు|నీటిపారుదల|पानी|सिंचाई|தண்ணீர்|நீர்ப்பாசனம்|വെള്ളം|നനയ്ക്ക|ਪਾਣੀ/.test(q)){
-    return 'water';
-  }
-
-  if(/pest|insect|bug|పురుగు|కీటక|कीट|कीड़ा|பூச்சி|കീടം|കീടങ്ങൾ|ਕੀੜੇ/.test(q)){
-    return 'pest';
-  }
-
-  if(/tomato|టమాటా|టొమాటో|टमाटर|தக்காளி|തക്കാളി/.test(q)){
-    return 'tomato';
-  }
-
-  if(/harvest|mature|crop ready|కోత|పంట కోత|कटाई|फसल|அறுவடை|വിളവെടുപ്പ്|ਵਾਢੀ/.test(q)){
-    return 'harvest';
-  }
-
-  if(/fertilizer|fertiliser|manure|fertil|ఎరువు|ఎరువులు|खाद|उर्वरक|உரம்|വളം|ਖਾਦ/.test(q)){
-    return 'fertilizer';
-  }
-
+  if(/water|watering|irrigat|నీరు|పారుదల|पानी|सिंचाई|தண்ணீர்|நீர்ப்பாசனம்|വെള്ളം|നനയ്ക്ക|ਪਾਣੀ/.test(q))return 'water';
+  if(/pest|insect|bug|పురుగు|కీటక|कीट|कीड़ा|பூச்சி|കീടം|ਕੀੜੇ/.test(q))return 'pest';
+  if(/tomato|టమాటా|టొమాటో|टमाटर|தக்காளி|തക്കാളി/.test(q))return 'tomato';
+  if(/harvest|mature|crop ready|కోత|పంట కోత|कटाई|फसल|அறுவடை|വിളവെടുപ്പ്|ਵਾਢੀ/.test(q))return 'harvest';
+  if(/fertilizer|fertiliser|manure|fertil|ఎరువు|ఎరువులు|खाद|उर्वरक|உரம்|വളം|ਖਾਦ/.test(q))return 'fertilizer';
   return 'rice';
 }
 
 function askQuestion(){
   const language=document.getElementById('language').value;
   const question=document.getElementById('question').value.trim();
-
   if(!question){
-    setStatus('Please type a question or press the Speak button.');
+    setStatus('Please type a question or press Speak.');
     return;
   }
-
   const languageAnswers=answers[language]||answers['en-IN'];
-  const key=detectQuestion(question);
-
-  currentAnswer=languageAnswers[key]||languageAnswers.rice;
+  currentAnswer=languageAnswers[detectQuestion(question)]||languageAnswers.rice;
   document.getElementById('voiceAnswer').textContent=currentAnswer;
-
-  setStatus('Answer ready in '+languageName(language)+'. Press Speak Answer to hear it.');
-
-  // Speak immediately when possible; the dedicated button also lets the user retry.
+  setStatus('Answer ready in '+languageName(language)+'.');
   speakAnswer();
 }
 
-function languageName(language){
-  const names={
-    'en-IN':'English',
-    'te-IN':'Telugu',
-    'hi-IN':'Hindi',
-    'ta-IN':'Tamil',
-    'ml-IN':'Malayalam'
-  };
-  return names[language]||'your selected language';
-}
-
-/* ---------------- TEXT-TO-SPEECH ---------------- */
-
+/* TEXT TO SPEECH */
 function speakAnswer(){
   if(!('speechSynthesis' in window)){
-    setStatus('Your browser does not support spoken answers. Try the latest Chrome browser.');
+    setStatus('Spoken answers are not supported in this browser. Try updated Chrome.');
     return;
   }
 
@@ -795,59 +558,40 @@ function speakAnswer(){
 
   const language=document.getElementById('language').value;
   const utterance=new SpeechSynthesisUtterance(currentAnswer);
-
   utterance.lang=language;
   utterance.rate=0.9;
   utterance.pitch=1;
   utterance.volume=1;
 
   const voices=window.speechSynthesis.getVoices();
-  const languagePrefix=language.split('-')[0];
+  const prefix=language.split('-')[0];
+  const voice=voices.find(v=>v.lang.toLowerCase()===language.toLowerCase())
+    ||voices.find(v=>v.lang.toLowerCase().startsWith(prefix+'-'));
 
-  const matchingVoice=voices.find(voice=>
-    voice.lang.toLowerCase()===language.toLowerCase()
-  )||voices.find(voice=>
-    voice.lang.toLowerCase().startsWith(languagePrefix+'-')
-  );
+  if(voice)utterance.voice=voice;
 
-  if(matchingVoice){
-    utterance.voice=matchingVoice;
-    setStatus('Speaking in '+languageName(language)+'.');
-  }else{
-    setStatus('Trying to speak in '+languageName(language)+'. If silent, your device may need a voice for this language installed.');
-  }
-
-  utterance.onend=function(){
-    setStatus('Finished speaking. You can ask another question.');
-  };
-
-  utterance.onerror=function(event){
-    setStatus('Speech could not play ('+event.error+'). Try Chrome, check your sound, and press Speak Answer again.');
-  };
+  utterance.onstart=()=>setStatus('Speaking in '+languageName(language)+'...');
+  utterance.onend=()=>setStatus('Finished speaking. You can ask another question.');
+  utterance.onerror=(event)=>setStatus('Speech error: '+event.error+'. Check sound and available language voices.');
 
   window.speechSynthesis.speak(utterance);
 }
 
-/* Load available voices when the browser provides them asynchronously. */
 if('speechSynthesis' in window){
   window.speechSynthesis.getVoices();
-  window.speechSynthesis.onvoiceschanged=function(){
-    window.speechSynthesis.getVoices();
-  };
+  window.speechSynthesis.onvoiceschanged=()=>window.speechSynthesis.getVoices();
 }
 
-/* ---------------- SPEECH RECOGNITION ---------------- */
-
+/* SPEECH TO TEXT */
 function startVoice(){
   const Recognition=window.SpeechRecognition||window.webkitSpeechRecognition;
-
   if(!Recognition){
-    setStatus('Microphone input is not supported here. Open the site in Chrome and use HTTPS, or type your question instead.');
+    setStatus('Microphone input is unavailable in this browser. Try Chrome over HTTPS or type your question.');
     return;
   }
 
   if(recognition){
-    try{recognition.abort();}catch(error){}
+    try{recognition.abort()}catch(e){}
   }
 
   recognition=new Recognition();
@@ -855,42 +599,24 @@ function startVoice(){
   recognition.interimResults=false;
   recognition.maxAlternatives=1;
 
-  recognition.onstart=function(){
-    setStatus('Listening... Please speak your question clearly.');
-  };
-
-  recognition.onresult=function(event){
-    const spokenText=event.results[0][0].transcript;
-    document.getElementById('question').value=spokenText;
-    setStatus('I heard: '+spokenText);
+  recognition.onstart=()=>setStatus('Listening... Please speak clearly.');
+  recognition.onresult=(event)=>{
+    document.getElementById('question').value=event.results[0][0].transcript;
     askQuestion();
   };
+  recognition.onerror=(event)=>setStatus('Microphone error: '+event.error+'. Check microphone permission or type your question.');
+  recognition.onend=()=>{recognition=null};
 
-  recognition.onerror=function(event){
-    setStatus('Microphone issue: '+event.error+'. Allow microphone access or type your question.');
-  };
-
-  recognition.onend=function(){
-    recognition=null;
-  };
-
-  try{
-    recognition.start();
-  }catch(error){
-    setStatus('Could not start the microphone. Please try again.');
-  }
+  try{recognition.start()}
+  catch(e){setStatus('Could not start microphone. Please try again.')}
 }
 
 function stopVoice(){
   if(recognition){
-    try{recognition.stop();}catch(error){}
+    try{recognition.stop()}catch(e){}
     recognition=null;
   }
-
-  if('speechSynthesis' in window){
-    window.speechSynthesis.cancel();
-  }
-
+  if('speechSynthesis' in window)window.speechSynthesis.cancel();
   setStatus('Voice stopped.');
 }
 
@@ -905,19 +631,11 @@ function setStatus(message){
   document.getElementById('voiceStatus').textContent=message;
 }
 
-/* Ask in the newly selected language. */
 document.getElementById('language').addEventListener('change',function(){
-  const language=this.value;
-  currentAnswer=(answers[language]||answers['en-IN']).greeting;
+  currentAnswer=(answers[this.value]||answers['en-IN']).greeting;
   document.getElementById('voiceAnswer').textContent=currentAnswer;
-  setStatus('Language selected: '+languageName(language)+'. Type a question or press Speak.');
+  setStatus('Selected '+languageName(this.value)+'. Type a question or press Speak.');
 });
-
-/* Optional farmer display name. */
-const farmerName=prompt('Welcome to Harvestly! What should we call you?');
-if(farmerName&&farmerName.trim()){
-  document.getElementById('farmerName').textContent=farmerName.trim();
-}
 </script>
 
 </body>
