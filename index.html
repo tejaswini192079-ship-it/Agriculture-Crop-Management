@@ -1,562 +1,758 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Harvestly | Farm Management</title>
+<title>Harvestly | Farmer Login</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#f4f8f1;color:#243629}
-button,input,select{font:inherit}
-button{cursor:pointer;border:0;border-radius:9px;padding:12px}
-input,select{width:100%;padding:12px;border:1px solid #d6e2d2;border-radius:9px;background:white}
-button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #8bc77b;outline-offset:2px}
-.hidden{display:none!important}
+:root {
+  --green: #216b45;
+  --light-green: #eaf5ed;
+  --text: #20372b;
+  --muted: #607266;
+  --white: #ffffff;
+}
 
-/* LOGIN */
-.login-page{
- position:fixed;inset:0;z-index:10000;overflow-y:auto;
- display:flex;align-items:center;justify-content:center;
- padding:20px;background:linear-gradient(135deg,#e2f0db,#f8faf5)
+* {
+  box-sizing: border-box;
 }
-.login-card{
- width:100%;max-width:430px;padding:30px;background:white;
- border-radius:22px;text-align:center;
- box-shadow:0 15px 45px #234a2a20;border:1px solid #e0e9dc
-}
-.login-logo{font-size:42px}
-.login-brand{font-size:32px;font-weight:bold;color:#2f693b;margin:5px}
-.login-tagline{font-size:10px;letter-spacing:3px;color:#81917e;margin-bottom:20px}
-.login-photo{width:100%;height:145px;object-fit:cover;border-radius:13px;margin-bottom:20px}
-.login-card h2{font-size:23px;margin-bottom:9px}
-.login-description{font-size:13px;line-height:1.7;color:#728072;margin-bottom:18px}
-.login-card label{display:block;text-align:left;font-size:13px;font-weight:bold;margin:14px 0 7px}
-.login-card input{text-align:left}
-.login-button{width:100%;background:#2f693b;color:white;margin-top:20px;font-weight:bold;padding:14px}
-.login-button:hover{background:#214f2c}
-.login-error{color:#b42318;font-size:13px;margin-top:12px}
-.login-footer{font-size:12px;color:#758675;margin-top:20px}
 
-/* APP LAYOUT */
-.app{display:flex;min-height:100vh}
-.sidebar{width:235px;flex-shrink:0;background:#183e2b;color:white;padding:24px 17px}
-.brand{font-size:27px;font-weight:bold;color:#b9ef8a}
-.brand-sub{font-size:10px;letter-spacing:2px;margin-top:5px;color:#d4e8d8}
-.nav-title{font-size:11px;color:#b6cbb9;margin:34px 10px 12px}
-.nav button{display:block;width:100%;text-align:left;background:transparent;color:white;margin:5px 0;padding:13px}
-.nav button.active,.nav button:hover{background:#315b3e}
-.season{background:#315b3e;border-radius:12px;padding:15px;margin-top:30px;font-size:13px;line-height:1.8}
-.main{flex:1;min-width:0;padding:27px}
-.topbar{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-bottom:24px}
-.eyebrow{color:#62826a;font-size:12px;letter-spacing:1.5px;margin-bottom:8px}
-h1{font-size:28px;margin-bottom:7px}
-.subtitle{font-size:14px;line-height:1.6;color:#748174}
-.user-chip{background:white;border:1px solid #e1e9df;border-radius:25px;padding:11px 15px}
-.hero{display:flex;align-items:center;justify-content:space-between;gap:20px;background:linear-gradient(110deg,#244d31,#5b904d);color:white;border-radius:17px;padding:27px;margin-bottom:22px}
-.hero h2{font-size:25px;margin-bottom:10px}
-.hero p{font-size:14px;line-height:1.8;color:#e4f1df}
-.hero-icon{font-size:55px}
-.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-bottom:25px}
-.stat,.panel,.field-card{background:white;border:1px solid #e4ebe1;border-radius:14px}
-.stat{padding:17px}
-.stat-icon{font-size:23px;margin-bottom:10px}
-.stat-label{font-size:12px;color:#748075}
-.stat-value{font-size:27px;font-weight:bold;margin:8px 0}
-.stat-note{font-size:11px;color:#56865a}
-.section-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:25px 0 15px}
-.section-heading h2{font-size:20px}
-.green-btn{background:#2f693b;color:white}
-.green-btn:hover{background:#24562f}
-.light-btn{background:#eaf3e6;color:#2d6336}
-.fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.field-card{overflow:hidden;min-width:0}
-.field-image{height:175px;background:#e1ecd9}
-.field-image img{width:100%;height:100%;object-fit:cover;display:block}
-.field-body{padding:16px}
-.field-title{font-weight:bold;font-size:17px;margin-bottom:7px}
-.field-meta{font-size:12px;color:#778278;margin-bottom:15px}
-.stage{font-size:11px;color:#397346;background:#edf6e9;border-radius:20px;padding:6px 9px;display:inline-block;margin-bottom:12px}
-.progress-row{display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px}
-.progress{height:8px;border-radius:10px;background:#e9efe7;overflow:hidden;margin-bottom:16px}
-.progress span{height:100%;display:block;background:#79c76b}
-.field-actions{display:flex;gap:7px}
-.field-actions button{flex:1;font-size:12px;padding:10px 5px}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:23px}
-.panel{padding:20px;min-width:0}
-.panel h3{margin-bottom:15px}
-.task{display:flex;gap:10px;padding:12px 0;border-bottom:1px solid #edf1eb;font-size:13px;line-height:1.6}
-.task input{width:auto;margin-top:5px}
-.task small{display:block;color:#7b887c;margin-top:4px}
-.voice-panel{background:#f0f7eb;border-radius:12px;padding:16px}
-.voice-panel p{font-size:13px;line-height:1.7;color:#536653;margin:10px 0}
-.voice-panel label{display:block;font-size:13px;font-weight:bold;margin:13px 0 7px}
-.voice-buttons{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.voice-buttons button{flex:1;min-width:100px}
-.answer-box{background:white;border:1px solid #e1ebdc;border-radius:10px;padding:14px;margin-top:14px;font-size:14px;line-height:1.8;overflow-wrap:anywhere;min-height:75px}
-.answer-label{font-size:10px;color:#62826a;letter-spacing:1px;display:block;font-weight:bold;margin-bottom:5px}
-.status{font-size:12px;line-height:1.7;color:#426d47;margin-top:10px}
-.page-section{margin-top:10px}
-.detail-image{width:100%;max-width:400px;height:220px;object-fit:cover;border-radius:12px;margin:15px 0}
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: var(--text);
+  background: linear-gradient(135deg, #eef8ef, #f8f7ed);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
-@media(max-width:1050px){
- .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
- .fields{grid-template-columns:repeat(2,minmax(0,1fr))}
+header {
+  padding: 20px 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
 }
-@media(max-width:760px){
- .app{display:block}
- .sidebar{width:100%;padding:16px}
- .nav-title,.season{display:none}
- .nav{display:flex;gap:5px;overflow-x:auto;margin-top:14px}
- .nav button{white-space:nowrap;width:auto;margin:0;padding:10px}
- .main{padding:16px}
- .fields{grid-template-columns:1fr}
- .two-col{grid-template-columns:1fr}
- .hero{padding:21px}
+
+.brand {
+  font-size: 25px;
+  font-weight: bold;
+  color: var(--green);
 }
-@media(max-width:420px){
- .stats{grid-template-columns:1fr 1fr}
- .stat{padding:12px}
- .stat-value{font-size:23px}
- .login-card{padding:22px}
- .login-photo{height:120px}
+
+.brand small {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin-top: 4px;
+}
+
+.language {
+  padding: 12px;
+  border: 1px solid #c8d9cb;
+  border-radius: 10px;
+  background: white;
+  font-size: 16px;
+  max-width: 100%;
+}
+
+main {
+  width: min(1000px, 92%);
+  margin: auto;
+  padding: 20px 0 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: center;
+}
+
+.welcome, .login-card {
+  padding: 32px;
+  border-radius: 22px;
+  background: rgba(255,255,255,.93);
+  box-shadow: 0 12px 40px rgba(30,75,45,.08);
+}
+
+.illustration {
+  font-size: 65px;
+  margin-bottom: 15px;
+}
+
+h1 {
+  font-size: clamp(28px, 4vw, 40px);
+  margin: 12px 0;
+  line-height: 1.2;
+}
+
+p {
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.accessibility {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  border-radius: 12px;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  background: var(--green);
+  color: white;
+}
+
+button:focus, input:focus, select:focus {
+  outline: 3px solid #f2c65c;
+  outline-offset: 3px;
+}
+
+button.secondary {
+  color: var(--green);
+  background: var(--light-green);
+}
+
+button:disabled {
+  opacity: .65;
+  cursor: not-allowed;
+}
+
+.login-card h2 {
+  margin-top: 0;
+  font-size: 27px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin: 18px 0 8px;
+}
+
+input {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #c9d7cc;
+  border-radius: 10px;
+  font-size: 17px;
+}
+
+.password-row {
+  display: flex;
+  gap: 8px;
+}
+
+.password-row input {
+  min-width: 0;
+}
+
+.password-row button {
+  padding: 10px;
+  font-size: 14px;
+}
+
+.help-text {
+  font-size: 13px;
+}
+
+#status {
+  min-height: 48px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #f2f7f2;
+  margin-top: 15px;
+  overflow-wrap: anywhere;
+}
+
+#voiceStatus {
+  font-weight: bold;
+  color: var(--green);
+  margin-top: 12px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+@media (max-width: 700px) {
+  main {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .welcome, .login-card {
+    padding: 24px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN PAGE: SHOWN FIRST -->
-<section id="loginPage" class="login-page">
- <div class="login-card">
-  <div class="login-logo">🌱</div>
-  <div class="login-brand">harvestly</div>
-  <div class="login-tagline">GROW BETTER, EVERY DAY</div>
+<header>
+  <div class="brand">
+    🌱 Harvestly
+    <small>FARM MANAGEMENT PLATFORM</small>
+  </div>
 
-  <img class="login-photo"
-   src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=80"
-   alt="Green farming fields"
-   onerror="this.onerror=null;this.src='https://images.pexels.com/photos/2132250/pexels-photo-2132250.jpeg?auto=compress&cs=tinysrgb&w=900'">
+  <label for="language" style="margin:0">
+    <span id="languageLabel">Choose language</span>
+    <select id="language" class="language" aria-label="Choose language">
+      <option value="en">English</option>
+      <option value="hi">हिन्दी — Hindi</option>
+      <option value="pa">ਪੰਜਾਬੀ — Punjabi</option>
+      <option value="te">తెలుగు — Telugu</option>
+      <option value="ta">தமிழ் — Tamil</option>
+    </select>
+  </label>
+</header>
 
-  <h2>Welcome, Farmer! 👋</h2>
-  <p class="login-description">Manage your fields, care for your crops, and plan a better harvest — all in one place.</p>
+<main>
+  <section class="welcome">
+    <div class="illustration" aria-hidden="true">🌾 🚜 🌱</div>
+    <h1 id="welcomeTitle">Welcome, Farmer!</h1>
+    <p id="welcomeText">
+      Manage your fields, crops, irrigation and harvest in one simple place.
+      You can listen to instructions or use voice assistance.
+    </p>
 
-  <form id="loginForm">
-   <label for="username">Username</label>
-   <input id="username" name="username" type="text" placeholder="Enter your username" autocomplete="username" required>
-
-   <label for="password">Password</label>
-   <input id="password" name="password" type="password" placeholder="Enter your password" autocomplete="current-password" required>
-
-   <button class="login-button" type="submit">Login to Harvestly →</button>
-  </form>
-  <p id="loginError" class="login-error" role="alert"></p>
-  <p class="login-footer">🌿 Simple farming. Smarter growing.</p>
- </div>
-</section>
-
-<!-- DASHBOARD: HIDDEN UNTIL LOGIN -->
-<div id="farmApp" class="app hidden">
- <aside class="sidebar">
-  <div class="brand">🌱 harvestly</div>
-  <div class="brand-sub">FARM MANAGEMENT</div>
-  <div class="nav-title">WORKSPACE</div>
-  <nav class="nav">
-   <button class="active" onclick="showPage('dashboard',this)">▦ Dashboard</button>
-   <button onclick="showPage('fields',this)">🌾 My Fields</button>
-   <button onclick="showPage('activities',this)">✓ Activities</button>
-   <button onclick="showPage('harvest',this)">🧺 Harvest</button>
-  </nav>
-  <div class="season">🌤️ <strong>Kharif season</strong><br>Demo season · India<br>June – October</div>
- </aside>
-
- <main class="main">
-  <header class="topbar">
-   <div>
-    <div class="eyebrow">FARM OVERVIEW</div>
-    <h1 id="pageTitle">Good day, Farmer! 🌿</h1>
-    <p class="subtitle" id="pageSubtitle">Here is what is happening on your farm today.</p>
-   </div>
-   <div class="user-chip">👨‍🌾 <span id="farmerName">Farmer</span></div>
-  </header>
-
-  <section id="dashboard" class="page-section">
-   <div class="hero">
-    <div>
-     <div class="eyebrow" style="color:#d1efbd">YOUR FARM, YOUR FUTURE</div>
-     <h2>Grow better, every day.</h2>
-     <p>Track your crops, organize farm activities, and prepare for a healthy harvest in one simple place.</p>
-    </div>
-    <div class="hero-icon">🌾</div>
-   </div>
-
-   <div class="stats">
-    <div class="stat"><div class="stat-icon">🌱</div><div class="stat-label">Active Fields</div><div class="stat-value">3</div><div class="stat-note">Demo fields</div></div>
-    <div class="stat"><div class="stat-icon">💧</div><div class="stat-label">Irrigation Tasks</div><div class="stat-value">2</div><div class="stat-note">Today's schedule</div></div>
-    <div class="stat"><div class="stat-icon">🐛</div><div class="stat-label">Crop Observations</div><div class="stat-value">1</div><div class="stat-note">Needs attention</div></div>
-    <div class="stat"><div class="stat-icon">🧺</div><div class="stat-label">Harvest Readiness</div><div class="stat-value">80%</div><div class="stat-note">Demo estimate</div></div>
-   </div>
-
-   <div class="section-heading">
-    <h2>🌿 Your Fields</h2>
-    <button class="green-btn" onclick="addField()">+ Add Field</button>
-   </div>
-
-   <div class="fields">
-    <article class="field-card">
-     <div class="field-image">
-      <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=85"
-       alt="Green Valley rice field"
-       onerror="this.onerror=null;this.src='https://images.pexels.com/photos/2132250/pexels-photo-2132250.jpeg?auto=compress&cs=tinysrgb&w=900'">
-     </div>
-     <div class="field-body">
-      <span class="stage">🌱 Vegetative stage</span>
-      <div class="field-title">Green Valley</div>
-      <div class="field-meta">Rice · 2.5 acres</div>
-      <div class="progress-row"><span>Growing progress</span><strong>58%</strong></div>
-      <div class="progress"><span style="width:58%"></span></div>
-      <div class="field-actions">
-       <button class="light-btn" onclick="showMessage('Green Valley: check soil moisture and follow local irrigation advice.')">💧 Care tips</button>
-       <button class="light-btn" onclick="viewField('Green Valley','Rice','Vegetative','58%')">Inspect</button>
-      </div>
-     </div>
-    </article>
-
-    <article class="field-card">
-     <div class="field-image">
-      <img src="https://images.pexels.com/photos/1327838/pexels-photo-1327838.jpeg?auto=compress&cs=tinysrgb&w=900"
-       alt="Tomato crop"
-       onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1592841200221-a6898f307baa?auto=format&fit=crop&w=900&q=80'">
-     </div>
-     <div class="field-body">
-      <span class="stage">🌼 Flowering stage</span>
-      <div class="field-title">Sunrise Farm</div>
-      <div class="field-meta">Tomato · 1.5 acres</div>
-      <div class="progress-row"><span>Growing progress</span><strong>72%</strong></div>
-      <div class="progress"><span style="width:72%"></span></div>
-      <div class="field-actions">
-       <button class="light-btn" onclick="viewField('Sunrise Farm','Tomato','Flowering','72%')">View details</button>
-       <button class="light-btn" onclick="showMessage('Sunrise Farm: inspect tomato leaves, flowers and soil moisture.')">Inspect</button>
-      </div>
-     </div>
-    </article>
-
-    <article class="field-card">
-     <div class="field-image">
-      <img src="https://images.pexels.com/photos/547263/pexels-photo-547263.jpeg?auto=compress&cs=tinysrgb&w=900"
-       alt="Maize crop field"
-       onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=85'">
-     </div>
-     <div class="field-body">
-      <span class="stage">🌾 Maturity stage</span>
-      <div class="field-title">Harvest Hope</div>
-      <div class="field-meta">Maize · 3 acres</div>
-      <div class="progress-row"><span>Growing progress</span><strong>86%</strong></div>
-      <div class="progress"><span style="width:86%"></span></div>
-      <div class="field-actions">
-       <button class="light-btn" onclick="viewField('Harvest Hope','Maize','Maturity','86%')">View details</button>
-       <button class="light-btn" onclick="showMessage('Harvest Hope: inspect crop maturity before planning harvest.')">Inspect</button>
-      </div>
-     </div>
-    </article>
-   </div>
-
-   <div class="two-col">
-    <div class="panel">
-     <h3>📋 Farm Activity Checklist</h3>
-     <label class="task"><input type="checkbox"><span><strong>Check rice field moisture</strong><small>Green Valley</small></span></label>
-     <label class="task"><input type="checkbox"><span><strong>Inspect tomato plants</strong><small>Sunrise Farm</small></span></label>
-     <label class="task"><input type="checkbox"><span><strong>Observe maize maturity</strong><small>Harvest Hope</small></span></label>
-     <label class="task"><input type="checkbox"><span><strong>Record any pest observations</strong><small>All fields</small></span></label>
+    <div class="accessibility">
+      <button type="button" id="readButton">🔊 Read this page aloud</button>
+      <button type="button" class="secondary" id="voiceButton">
+        🎤 Start voice assistance
+      </button>
+      <button type="button" class="secondary" id="stopButton">
+        ⏹ Stop voice
+      </button>
     </div>
 
-    <!-- MULTILINGUAL VOICE ASSISTANT -->
-    <div class="panel">
-     <h3>🎙️ Ask Harvestly</h3>
-     <div class="voice-panel">
-      <strong>Your farming assistant</strong>
-      <p>Choose your language. Type your question or press the microphone and ask aloud. Harvestly will show and speak an answer.</p>
+    <p id="voiceStatus" role="status" aria-live="polite">
+      Voice assistance is ready.
+    </p>
+  </section>
 
-      <label for="language">Choose your language / భాష ఎంచుకోండి / भाषा चुनें</label>
-      <select id="language">
-       <option value="en-IN">🇬🇧 English</option>
-       <option value="te-IN">తెలుగు — Telugu</option>
-       <option value="hi-IN">हिन्दी — Hindi</option>
-       <option value="ta-IN">தமிழ் — Tamil</option>
-       <option value="ml-IN">മലയാളം — Malayalam</option>
-       <option value="kn-IN">ಕನ್ನಡ — Kannada</option>
-      </select>
+  <section class="login-card">
+    <h2 id="loginTitle">Farmer Login</h2>
+    <p id="loginDescription">Enter your registered mobile number and password.</p>
 
-      <label for="question">Write your question / మీ ప్రశ్న / अपना सवाल</label>
-      <input id="question" type="text" placeholder="Example: How do I care for rice?" autocomplete="off">
+    <form id="loginForm">
+      <label for="phone" id="phoneLabel">Mobile number</label>
+      <input
+        id="phone"
+        name="phone"
+        type="tel"
+        inputmode="numeric"
+        autocomplete="username"
+        placeholder="Enter mobile number"
+        maxlength="15"
+        required
+      >
 
-      <div class="voice-buttons">
-       <button class="green-btn" onclick="askQuestion()">Ask Question</button>
-       <button class="light-btn" onclick="startListening()">🎤 Speak Question</button>
+      <p class="help-text" id="phoneHelp">
+        You can type your number or use the microphone.
+      </p>
+
+      <label for="password" id="passwordLabel">Password</label>
+      <div class="password-row">
+        <input
+          id="password"
+          name="password"
+          type="password"
+          autocomplete="current-password"
+          placeholder="Enter password"
+          required
+        >
+        <button type="button" class="secondary" id="showPassword">
+          Show
+        </button>
       </div>
 
-      <div class="answer-box" aria-live="polite">
-       <span class="answer-label">Harvestly's answer</span>
-       <div id="answer">Hello, farmer! Choose your language and ask a farming question.</div>
-      </div>
+      <p class="help-text" id="passwordHelp">
+        Keep your password private. Do not say it aloud in a public place.
+      </p>
 
-      <div class="voice-buttons">
-       <button class="green-btn" onclick="speakAnswer()">🔊 Read Answer</button>
-       <button class="light-btn" onclick="stopSpeech()">⏹ Stop</button>
-      </div>
-      <div id="voiceStatus" class="status" role="status">Ready. Select a language to begin.</div>
-     </div>
+      <button type="submit" id="loginButton" style="width:100%; margin-top:20px">
+        Login
+      </button>
+    </form>
+
+    <div id="status" role="status" aria-live="polite">
+      Please choose your language to begin.
     </div>
-   </div>
-   <div id="dashboardMessage" class="status" role="status"></div>
-  </section>
 
-  <section id="fields" class="page-section hidden">
-   <div class="section-heading"><h2>🌾 My Fields</h2><button class="green-btn" onclick="addField()">+ Add Field</button></div>
-   <div class="panel" id="fieldDetails"><h3>Select a field to inspect</h3><p class="subtitle">Go to Dashboard and select Inspect or View details.</p></div>
+    <p class="help-text" id="demoNotice">
+      Demo page: real account login requires secure authentication.
+    </p>
   </section>
+</main>
 
-  <section id="activities" class="page-section hidden">
-   <div class="section-heading"><h2>✓ Farm Activities</h2></div>
-   <div class="panel">
-    <h3>Daily checklist</h3>
-    <label class="task"><input type="checkbox"> Water Green Valley rice field if needed</label>
-    <label class="task"><input type="checkbox"> Inspect Sunrise Farm tomato plants</label>
-    <label class="task"><input type="checkbox"> Check Harvest Hope maize maturity</label>
-    <label class="task"><input type="checkbox"> Record crop health observations</label>
-   </div>
-  </section>
-
-  <section id="harvest" class="page-section hidden">
-   <div class="section-heading"><h2>🧺 Harvest Tracker</h2></div>
-   <div class="panel">
-    <h3>Harvest Hope — Maize</h3>
-    <p class="subtitle">Sample harvest readiness tracker</p>
-    <div class="progress"><span id="harvestBar" style="width:80%"></span></div>
-    <label for="harvestRange">Adjust demo readiness</label>
-    <input id="harvestRange" type="range" min="0" max="100" value="80" oninput="updateHarvest(this.value)" style="margin-top:12px">
-    <p id="harvestLabel" class="status">80% ready</p>
-    <p class="status">This is a sample estimate, not a prediction of actual crop maturity.</p>
-   </div>
-  </section>
- </main>
-</div>
+<footer id="footerText">
+  Harvestly • Simple farming tools for everyone
+</footer>
 
 <script>
-/* LOGIN: DASHBOARD APPEARS ONLY AFTER FORM SUBMISSION */
-document.getElementById('loginForm').addEventListener('submit',function(event){
- event.preventDefault();
- const username=document.getElementById('username').value.trim();
- const password=document.getElementById('password').value;
- if(!username||!password.trim()){
-  document.getElementById('loginError').textContent='Please enter both username and password.';
-  return;
- }
- document.getElementById('farmerName').textContent=username;
- document.getElementById('pageTitle').textContent='Welcome, '+username+'! 🌿';
- document.getElementById('loginPage').classList.add('hidden');
- document.getElementById('farmApp').classList.remove('hidden');
-});
+const translations = {
+  en: {
+    languageLabel: "Choose language",
+    welcomeTitle: "Welcome, Farmer!",
+    welcomeText: "Manage your fields, crops, irrigation and harvest in one simple place. You can listen to instructions or use voice assistance.",
+    loginTitle: "Farmer Login",
+    loginDescription: "Enter your registered mobile number and password.",
+    phoneLabel: "Mobile number",
+    phonePlaceholder: "Enter mobile number",
+    phoneHelp: "You can type your number or use the microphone.",
+    passwordLabel: "Password",
+    passwordPlaceholder: "Enter password",
+    passwordHelp: "Keep your password private. Do not say it aloud in a public place.",
+    showPassword: "Show",
+    hidePassword: "Hide",
+    loginButton: "Login",
+    readButton: "🔊 Read this page aloud",
+    voiceButton: "🎤 Start voice assistance",
+    stopButton: "⏹ Stop voice",
+    ready: "Voice assistance is ready.",
+    choose: "Please choose your language to begin.",
+    demoNotice: "Demo page: real account login requires secure authentication.",
+    footerText: "Harvestly • Simple farming tools for everyone",
+    instructions: "Welcome to Harvestly. Choose your language. Enter your mobile number and password. Press Login to continue. You can use the microphone for voice assistance. Keep your password private.",
+    listening: "Listening. Please speak now.",
+    unsupported: "Voice recognition is not supported in this browser. Please use the read aloud button or type your details.",
+    permission: "Microphone could not start. Check browser microphone permission.",
+    noSpeech: "No clear speech detected. Please try again or type your details.",
+    heard: "I heard: ",
+    numberPrompt: "Please say your mobile number.",
+    numberSaved: "Mobile number entered. Please enter your password using the keyboard.",
+    loginDemo: "Your details were checked for this demo only. No account was logged in. Connect a secure authentication service to enable real login.",
+    invalidPhone: "Please enter a valid mobile number using digits.",
+    missingPassword: "Please enter your password.",
+    help: "You can say: read page, enter mobile number, or login. You must still enter your password privately.",
+    voiceError: "Voice assistance stopped. Please try again.",
+    loginCommand: "Login cannot be completed until a real authentication service is connected."
+  },
 
-/* NAVIGATION */
-function showPage(page,button){
- document.querySelectorAll('.page-section').forEach(s=>s.classList.add('hidden'));
- document.getElementById(page).classList.remove('hidden');
- document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
- if(button)button.classList.add('active');
- const titles={
-  dashboard:['Good day, '+document.getElementById('farmerName').textContent+'! 🌿',"Here is what's happening on your farm today."],
-  fields:['My Fields 🌾','Monitor your fields and crops.'],
-  activities:['Farm Activities ✓','Keep track of farm work.'],
-  harvest:['Harvest Tracker 🧺','Follow your crop readiness.']
- };
- document.getElementById('pageTitle').textContent=titles[page][0];
- document.getElementById('pageSubtitle').textContent=titles[page][1];
-}
-function showMessage(text){document.getElementById('dashboardMessage').textContent=text}
-function addField(){
- const name=prompt('Enter your field name:');
- if(name&&name.trim())showMessage('Field "'+name.trim()+'" noted for this demo. Permanent saving requires a database.');
-}
-function viewField(name,crop,stage,progress){
- showPage('fields',document.querySelectorAll('.nav button')[1]);
- const box=document.getElementById('fieldDetails');
- box.replaceChildren();
- const h=document.createElement('h3');h.textContent=name;box.appendChild(h);
- const img=document.createElement('img');
- img.className='detail-image';img.alt='Agricultural field';
- img.src='https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=85';
- img.onerror=function(){this.onerror=null;this.src='https://images.pexels.com/photos/2132250/pexels-photo-2132250.jpeg?auto=compress&cs=tinysrgb&w=900'};
- box.appendChild(img);
- ['Crop: '+crop,'Growth stage: '+stage,'Demo progress: '+progress,'Tip: Monitor crop health and follow local agricultural advice.'].forEach(t=>{
-  const p=document.createElement('p');p.className='status';p.textContent=t;box.appendChild(p);
- });
-}
-function updateHarvest(value){
- document.getElementById('harvestBar').style.width=value+'%';
- document.getElementById('harvestLabel').textContent=value+'% ready';
-}
+  hi: {
+    languageLabel: "भाषा चुनें",
+    welcomeTitle: "नमस्ते किसान!",
+    welcomeText: "अपने खेत, फसल, सिंचाई और कटाई का काम एक ही जगह पर संभालें। निर्देश सुनें या आवाज़ से सहायता लें।",
+    loginTitle: "किसान लॉगिन",
+    loginDescription: "अपना पंजीकृत मोबाइल नंबर और पासवर्ड दर्ज करें।",
+    phoneLabel: "मोबाइल नंबर",
+    phonePlaceholder: "मोबाइल नंबर दर्ज करें",
+    phoneHelp: "नंबर लिखें या माइक्रोफ़ोन का उपयोग करें।",
+    passwordLabel: "पासवर्ड",
+    passwordPlaceholder: "पासवर्ड दर्ज करें",
+    passwordHelp: "अपना पासवर्ड गोपनीय रखें। इसे सार्वजनिक जगह पर बोलकर न बताएं।",
+    showPassword: "दिखाएं",
+    hidePassword: "छिपाएं",
+    loginButton: "लॉगिन करें",
+    readButton: "🔊 पेज सुनें",
+    voiceButton: "🎤 आवाज़ से सहायता लें",
+    stopButton: "⏹ आवाज़ रोकें",
+    ready: "आवाज़ से सहायता तैयार है।",
+    choose: "शुरू करने के लिए अपनी भाषा चुनें।",
+    demoNotice: "यह डेमो पेज है। असली लॉगिन के लिए सुरक्षित प्रमाणीकरण आवश्यक है।",
+    footerText: "Harvestly • सभी के लिए आसान खेती के साधन",
+    instructions: "हार्वेस्टली में आपका स्वागत है। अपनी भाषा चुनें। मोबाइल नंबर और पासवर्ड दर्ज करें। आगे बढ़ने के लिए लॉगिन दबाएं। माइक्रोफ़ोन से सहायता ले सकते हैं। अपना पासवर्ड गोपनीय रखें।",
+    listening: "सुन रहा है। कृपया बोलें।",
+    unsupported: "इस ब्राउज़र में आवाज़ पहचान उपलब्ध नहीं है। पेज सुनें या जानकारी लिखें।",
+    permission: "माइक्रोफ़ोन शुरू नहीं हो सका। ब्राउज़र की माइक्रोफ़ोन अनुमति जांचें।",
+    noSpeech: "आवाज़ स्पष्ट नहीं मिली। फिर कोशिश करें या जानकारी लिखें।",
+    heard: "आपने कहा: ",
+    numberPrompt: "कृपया अपना मोबाइल नंबर बोलें।",
+    numberSaved: "मोबाइल नंबर दर्ज हो गया। पासवर्ड कीबोर्ड से दर्ज करें।",
+    loginDemo: "यह केवल डेमो है। किसी खाते में लॉगिन नहीं हुआ। असली लॉगिन के लिए सुरक्षित प्रमाणीकरण जोड़ें।",
+    invalidPhone: "कृपया अंकों में सही मोबाइल नंबर दर्ज करें।",
+    missingPassword: "कृपया अपना पासवर्ड दर्ज करें।",
+    help: "आप कह सकते हैं: पेज पढ़ें, मोबाइल नंबर दर्ज करें, या लॉगिन। पासवर्ड खुद और गोपनीय तरीके से दर्ज करें।",
+    voiceError: "आवाज़ सहायता रुक गई। फिर कोशिश करें।",
+    loginCommand: "असली प्रमाणीकरण सेवा जुड़ने तक लॉगिन पूरा नहीं हो सकता।"
+  },
 
-/* ANSWERS IN SIX LANGUAGES */
-const responses={
-'en-IN':{
-greeting:'Hello, farmer! How can I help you with your crops?',
-rice:'For rice in the vegetative stage, check soil moisture, monitor weeds and pests, and follow local irrigation and fertilizer recommendations.',
-water:'Before watering, check soil moisture and the crop stage. Avoid unnecessary overwatering.',
-pest:'Check leaves for unusual spots, insects, or damage. Ask a local agriculture officer before using pesticides.',
-tomato:'For tomatoes, monitor soil moisture and inspect leaves and flowers regularly.',
-harvest:'Check crop maturity and local agricultural guidance before deciding when to harvest.',
-fertilizer:'Use fertilizer according to the crop, soil test, and local agricultural recommendations.',
-general:'I can help with rice, watering, pests, tomatoes, fertilizer, and harvest questions. Please ask a specific question.'
-},
-'te-IN':{
-greeting:'నమస్కారం రైతు గారు! మీ పంటలకు ఎలా సహాయం చేయగలను?',
-rice:'వరి పెరుగుదల దశలో నేల తేమను గమనించండి. కలుపు మొక్కలు, పురుగులను పరిశీలించండి. స్థానిక వ్యవసాయ సూచనలను పాటించండి.',
-water:'నీరు పెట్టే ముందు నేల తేమను, పంట దశను పరిశీలించండి. అవసరానికి మించి నీరు పెట్టవద్దు.',
-pest:'ఆకులపై మచ్చలు లేదా పురుగులు ఉన్నాయా చూడండి. పురుగుమందు వాడే ముందు వ్యవసాయ అధికారిని సంప్రదించండి.',
-tomato:'టమాటా మొక్కలకు నేల తేమను గమనించండి. ఆకులు, పూలను క్రమం తప్పకుండా పరిశీలించండి.',
-harvest:'పంట కోతకు ముందు పంట పరిపక్వతను పరిశీలించి స్థానిక వ్యవసాయ సూచనలను పాటించండి.',
-fertilizer:'నేల పరీక్ష మరియు పంట అవసరాల ఆధారంగా ఎరువులు వాడండి.',
-general:'వరి, నీరు, పురుగులు, టమాటా, ఎరువులు, పంట కోత గురించి అడగండి.'
-},
-'hi-IN':{
-greeting:'नमस्ते किसान जी! मैं आपकी फसल में कैसे मदद कर सकता हूँ?',
-rice:'धान की बढ़वार के समय मिट्टी की नमी देखें। खरपतवार और कीटों की जाँच करें तथा स्थानीय कृषि सलाह का पालन करें।',
-water:'पानी देने से पहले मिट्टी की नमी और फसल की अवस्था जाँचें। जरूरत से ज्यादा पानी न दें।',
-pest:'पत्तियों पर धब्बे, कीट या नुकसान देखें। कीटनाशक इस्तेमाल करने से पहले कृषि अधिकारी से सलाह लें।',
-tomato:'टमाटर की मिट्टी की नमी देखें और पत्तियों तथा फूलों की नियमित जाँच करें।',
-harvest:'कटाई से पहले फसल की परिपक्वता जाँचें और स्थानीय कृषि सलाह लें।',
-fertilizer:'मिट्टी की जाँच और फसल की जरूरत के अनुसार खाद का उपयोग करें।',
-general:'आप धान, पानी, कीट, टमाटर, खाद या कटाई के बारे में पूछ सकते हैं।'
-},
-'ta-IN':{
-greeting:'வணக்கம் விவசாயி! உங்கள் பயிர்களுக்கு நான் எப்படி உதவலாம்?',
-rice:'நெற்பயிரின் வளர்ச்சி நிலையில் மண்ணின் ஈரப்பதத்தை கவனியுங்கள். களைகள் மற்றும் பூச்சிகளைச் சரிபார்த்து உள்ளூர் வேளாண் ஆலோசனையைப் பின்பற்றுங்கள்.',
-water:'நீர் பாய்ச்சுவதற்கு முன் மண்ணின் ஈரப்பதத்தையும் பயிரின் நிலையையும் சரிபாருங்கள்.',
-pest:'இலைகளில் புள்ளிகள் அல்லது பூச்சிகள் உள்ளனவா பாருங்கள். மருந்து பயன்படுத்துவதற்கு முன் வேளாண் அதிகாரியிடம் ஆலோசனை பெறுங்கள்.',
-tomato:'தக்காளி செடிகளின் மண்ணின் ஈரப்பதத்தையும் இலைகள் மற்றும் பூக்களையும் தொடர்ந்து கவனியுங்கள்.',
-harvest:'அறுவடைக்கு முன் பயிரின் முதிர்ச்சியைச் சரிபார்த்து உள்ளூர் வேளாண் ஆலோசனையைப் பின்பற்றுங்கள்.',
-fertilizer:'மண் பரிசோதனை மற்றும் பயிரின் தேவைக்கு ஏற்ப உரங்களைப் பயன்படுத்துங்கள்.',
-general:'நெல், நீர், பூச்சிகள், தக்காளி, உரம் அல்லது அறுவடை பற்றி கேளுங்கள்.'
-},
-'ml-IN':{
-greeting:'നമസ്കാരം കർഷക സുഹൃത്തേ! നിങ്ങളുടെ വിളകളെക്കുറിച്ച് എങ്ങനെ സഹായിക്കാം?',
-rice:'നെല്ലിന്റെ വളർച്ചാ ഘട്ടത്തിൽ മണ്ണിലെ ഈർപ്പം ശ്രദ്ധിക്കുക. കളകളും കീടങ്ങളും പരിശോധിച്ച് പ്രാദേശിക കാർഷിക നിർദേശങ്ങൾ പാലിക്കുക.',
-water:'നനയ്ക്കുന്നതിന് മുമ്പ് മണ്ണിലെ ഈർപ്പവും വിളയുടെ ഘട്ടവും പരിശോധിക്കുക.',
-pest:'ഇലകളിൽ പാടുകളോ കീടങ്ങളോ ഉണ്ടോ പരിശോധിക്കുക. മരുന്ന് ഉപയോഗിക്കുന്നതിന് മുമ്പ് കൃഷി ഓഫീസറുടെ ഉപദേശം തേടുക.',
-tomato:'തക്കാളി ചെടികളുടെ മണ്ണിലെ ഈർപ്പം ശ്രദ്ധിക്കുകയും ഇലകളും പൂക്കളും പരിശോധിക്കുകയും ചെയ്യുക.',
-harvest:'വിളവെടുപ്പിന് മുമ്പ് വിളയുടെ പാകം പരിശോധിച്ച് പ്രാദേശിക കാർഷിക നിർദേശങ്ങൾ പാലിക്കുക.',
-fertilizer:'മണ്ണ് പരിശോധനയുടെയും വിളയുടെ ആവശ്യത്തിന്റെയും അടിസ്ഥാനത്തിൽ വളം ഉപയോഗിക്കുക.',
-general:'നെല്ല്, വെള്ളം, കീടങ്ങൾ, തക്കാളി, വളം, വിളവെടുപ്പ് എന്നിവയെക്കുറിച്ച് ചോദിക്കാം.'
-},
-'kn-IN':{
-greeting:'ನಮಸ್ಕಾರ ರೈತರೇ! ನಿಮ್ಮ ಬೆಳೆಗಳಿಗೆ ನಾನು ಹೇಗೆ ಸಹಾಯ ಮಾಡಲಿ?',
-rice:'ಭತ್ತದ ಬೆಳವಣಿಗೆಯ ಹಂತದಲ್ಲಿ ಮಣ್ಣಿನ ತೇವಾಂಶ ಗಮನಿಸಿ. ಕಳೆ ಮತ್ತು ಕೀಟಗಳನ್ನು ಪರಿಶೀಲಿಸಿ ಸ್ಥಳೀಯ ಕೃಷಿ ಸಲಹೆಗಳನ್ನು ಪಾಲಿಸಿ.',
-water:'ನೀರು ಹಾಕುವ ಮೊದಲು ಮಣ್ಣಿನ ತೇವಾಂಶ ಮತ್ತು ಬೆಳೆಯ ಹಂತವನ್ನು ಪರಿಶೀಲಿಸಿ. ಅಗತ್ಯಕ್ಕಿಂತ ಹೆಚ್ಚು ನೀರು ಹಾಕಬೇಡಿ.',
-pest:'ಎಲೆಗಳಲ್ಲಿ ಕಲೆಗಳು ಅಥವಾ ಕೀಟಗಳಿವೆಯೇ ಪರಿಶೀಲಿಸಿ. ಕೀಟನಾಶಕ ಬಳಸುವ ಮೊದಲು ಕೃಷಿ ಅಧಿಕಾರಿಯನ್ನು ಸಂಪರ್ಕಿಸಿ.',
-tomato:'ಟೊಮೇಟೊ ಗಿಡಗಳ ಮಣ್ಣಿನ ತೇವಾಂಶವನ್ನು ಗಮನಿಸಿ. ಎಲೆಗಳು ಮತ್ತು ಹೂಗಳನ್ನು ನಿಯಮಿತವಾಗಿ ಪರಿಶೀಲಿಸಿ.',
-harvest:'ಕೊಯ್ಲಿಗೆ ಮೊದಲು ಬೆಳೆಯ ಪಕ್ವತೆಯನ್ನು ಪರಿಶೀಲಿಸಿ ಸ್ಥಳೀಯ ಕೃಷಿ ಸಲಹೆಗಳನ್ನು ಪಾಲಿಸಿ.',
-fertilizer:'ಮಣ್ಣಿನ ಪರೀಕ್ಷೆ ಮತ್ತು ಬೆಳೆಯ ಅಗತ್ಯಕ್ಕೆ ಅನುಗುಣವಾಗಿ ಗೊಬ್ಬರ ಬಳಸಿ.',
-general:'ಭತ್ತ, ನೀರು, ಕೀಟಗಳು, ಟೊಮೇಟೊ, ಗೊಬ್ಬರ ಅಥವಾ ಕೊಯ್ಲಿನ ಬಗ್ಗೆ ಕೇಳಿ.'
-}
+  pa: {
+    languageLabel: "ਭਾਸ਼ਾ ਚੁਣੋ",
+    welcomeTitle: "ਜੀ ਆਇਆਂ ਨੂੰ, ਕਿਸਾਨ ਜੀ!",
+    welcomeText: "ਆਪਣੇ ਖੇਤਾਂ, ਫ਼ਸਲਾਂ, ਸਿੰਚਾਈ ਅਤੇ ਵਾਢੀ ਦਾ ਕੰਮ ਇੱਕੋ ਥਾਂ ਸੰਭਾਲੋ। ਹਦਾਇਤਾਂ ਸੁਣੋ ਜਾਂ ਆਵਾਜ਼ ਰਾਹੀਂ ਮਦਦ ਲਵੋ।",
+    loginTitle: "ਕਿਸਾਨ ਲੌਗਇਨ",
+    loginDescription: "ਆਪਣਾ ਰਜਿਸਟਰ ਕੀਤਾ ਮੋਬਾਈਲ ਨੰਬਰ ਅਤੇ ਪਾਸਵਰਡ ਭਰੋ।",
+    phoneLabel: "ਮੋਬਾਈਲ ਨੰਬਰ",
+    phonePlaceholder: "ਮੋਬਾਈਲ ਨੰਬਰ ਭਰੋ",
+    phoneHelp: "ਨੰਬਰ ਲਿਖੋ ਜਾਂ ਮਾਈਕ੍ਰੋਫ਼ੋਨ ਵਰਤੋ।",
+    passwordLabel: "ਪਾਸਵਰਡ",
+    passwordPlaceholder: "ਪਾਸਵਰਡ ਭਰੋ",
+    passwordHelp: "ਆਪਣਾ ਪਾਸਵਰਡ ਗੁਪਤ ਰੱਖੋ। ਜਨਤਕ ਥਾਂ 'ਤੇ ਇਸਨੂੰ ਬੋਲ ਕੇ ਨਾ ਦੱਸੋ।",
+    showPassword: "ਵਿਖਾਓ",
+    hidePassword: "ਲੁਕਾਓ",
+    loginButton: "ਲੌਗਇਨ ਕਰੋ",
+    readButton: "🔊 ਪੰਨਾ ਸੁਣੋ",
+    voiceButton: "🎤 ਆਵਾਜ਼ ਰਾਹੀਂ ਮਦਦ ਲਵੋ",
+    stopButton: "⏹ ਆਵਾਜ਼ ਰੋਕੋ",
+    ready: "ਆਵਾਜ਼ ਰਾਹੀਂ ਮਦਦ ਤਿਆਰ ਹੈ।",
+    choose: "ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਆਪਣੀ ਭਾਸ਼ਾ ਚੁਣੋ।",
+    demoNotice: "ਇਹ ਡੈਮੋ ਪੰਨਾ ਹੈ। ਅਸਲੀ ਲੌਗਇਨ ਲਈ ਸੁਰੱਖਿਅਤ ਪ੍ਰਮਾਣਿਕਤਾ ਲੋੜੀਂਦੀ ਹੈ।",
+    footerText: "Harvestly • ਹਰ ਕਿਸੇ ਲਈ ਸੌਖੇ ਖੇਤੀ ਸਾਧਨ",
+    instructions: "ਹਾਰਵੈਸਟਲੀ ਵਿੱਚ ਤੁਹਾਡਾ ਸਵਾਗਤ ਹੈ। ਆਪਣੀ ਭਾਸ਼ਾ ਚੁਣੋ। ਮੋਬਾਈਲ ਨੰਬਰ ਅਤੇ ਪਾਸਵਰਡ ਭਰੋ। ਅੱਗੇ ਜਾਣ ਲਈ ਲੌਗਇਨ ਦਬਾਓ। ਮਾਈਕ੍ਰੋਫ਼ੋਨ ਰਾਹੀਂ ਮਦਦ ਲਵੋ। ਆਪਣਾ ਪਾਸਵਰਡ ਗੁਪਤ ਰੱਖੋ।",
+    listening: "ਸੁਣ ਰਿਹਾ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਬੋਲੋ।",
+    unsupported: "ਇਸ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਆਵਾਜ਼ ਪਛਾਣ ਉਪਲਬਧ ਨਹੀਂ ਹੈ। ਪੰਨਾ ਸੁਣੋ ਜਾਂ ਜਾਣਕਾਰੀ ਲਿਖੋ।",
+    permission: "ਮਾਈਕ੍ਰੋਫ਼ੋਨ ਸ਼ੁਰੂ ਨਹੀਂ ਹੋ ਸਕਿਆ। ਬ੍ਰਾਊਜ਼ਰ ਦੀ ਇਜਾਜ਼ਤ ਜਾਂਚੋ।",
+    noSpeech: "ਆਵਾਜ਼ ਸਪਸ਼ਟ ਨਹੀਂ ਮਿਲੀ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜਾਂ ਜਾਣਕਾਰੀ ਲਿਖੋ।",
+    heard: "ਤੁਸੀਂ ਕਿਹਾ: ",
+    numberPrompt: "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਮੋਬਾਈਲ ਨੰਬਰ ਬੋਲੋ।",
+    numberSaved: "ਮੋਬਾਈਲ ਨੰਬਰ ਭਰ ਦਿੱਤਾ ਗਿਆ ਹੈ। ਪਾਸਵਰਡ ਕੀਬੋਰਡ ਰਾਹੀਂ ਭਰੋ।",
+    loginDemo: "ਇਹ ਸਿਰਫ਼ ਡੈਮੋ ਹੈ। ਕਿਸੇ ਖਾਤੇ ਵਿੱਚ ਲੌਗਇਨ ਨਹੀਂ ਹੋਇਆ। ਅਸਲੀ ਲੌਗਇਨ ਲਈ ਸੁਰੱਖਿਅਤ ਪ੍ਰਮਾਣਿਕਤਾ ਜੋੜੋ।",
+    invalidPhone: "ਕਿਰਪਾ ਕਰਕੇ ਅੰਕਾਂ ਵਿੱਚ ਸਹੀ ਮੋਬਾਈਲ ਨੰਬਰ ਭਰੋ।",
+    missingPassword: "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਪਾਸਵਰਡ ਭਰੋ।",
+    help: "ਤੁਸੀਂ ਕਹਿ ਸਕਦੇ ਹੋ: ਪੰਨਾ ਪੜ੍ਹੋ, ਮੋਬਾਈਲ ਨੰਬਰ ਭਰੋ, ਜਾਂ ਲੌਗਇਨ। ਆਪਣਾ ਪਾਸਵਰਡ ਗੁਪਤ ਰੱਖੋ।",
+    voiceError: "ਆਵਾਜ਼ ਸਹਾਇਤਾ ਰੁਕ ਗਈ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।",
+    loginCommand: "ਅਸਲੀ ਪ੍ਰਮਾਣਿਕਤਾ ਸੇਵਾ ਜੋੜਨ ਤੋਂ ਬਾਅਦ ਹੀ ਲੌਗਇਨ ਹੋ ਸਕੇਗਾ।"
+  },
+
+  te: {
+    languageLabel: "భాషను ఎంచుకోండి",
+    welcomeTitle: "స్వాగతం రైతన్న!",
+    welcomeText: "మీ పొలాలు, పంటలు, నీటిపారుదల, కోత పనులను ఒకే చోట నిర్వహించండి. సూచనలను వినండి లేదా వాయిస్ సహాయం పొందండి.",
+    loginTitle: "రైతు లాగిన్",
+    loginDescription: "మీ నమోదిత మొబైల్ నంబర్ మరియు పాస్‌వర్డ్ నమోదు చేయండి.",
+    phoneLabel: "మొబైల్ నంబర్",
+    phonePlaceholder: "మొబైల్ నంబర్ నమోదు చేయండి",
+    phoneHelp: "నంబర్ టైప్ చేయండి లేదా మైక్రోఫోన్ ఉపయోగించండి.",
+    passwordLabel: "పాస్‌వర్డ్",
+    passwordPlaceholder: "పాస్‌వర్డ్ నమోదు చేయండి",
+    passwordHelp: "మీ పాస్‌వర్డ్‌ను రహస్యంగా ఉంచండి. బహిరంగ ప్రదేశంలో గట్టిగా చెప్పకండి.",
+    showPassword: "చూపించు",
+    hidePassword: "దాచు",
+    loginButton: "లాగిన్",
+    readButton: "🔊 పేజీని వినండి",
+    voiceButton: "🎤 వాయిస్ సహాయం ప్రారంభించండి",
+    stopButton: "⏹ వాయిస్ ఆపండి",
+    ready: "వాయిస్ సహాయం సిద్ధంగా ఉంది.",
+    choose: "ప్రారంభించడానికి మీ భాషను ఎంచుకోండి.",
+    demoNotice: "ఇది డెమో పేజీ. నిజమైన లాగిన్‌కు సురక్షిత ధృవీకరణ అవసరం.",
+    footerText: "Harvestly • అందరికీ సులభమైన వ్యవసాయ సాధనాలు",
+    instructions: "హార్వెస్ట్లీకి స్వాగతం. మీ భాషను ఎంచుకోండి. మొబైల్ నంబర్ మరియు పాస్‌వర్డ్ నమోదు చేయండి. కొనసాగడానికి లాగిన్ నొక్కండి. మైక్రోఫోన్ ద్వారా సహాయం పొందవచ్చు. మీ పాస్‌వర్డ్‌ను రహస్యంగా ఉంచండి.",
+    listening: "వింటున్నాను. దయచేసి మాట్లాడండి.",
+    unsupported: "ఈ బ్రౌజర్‌లో వాయిస్ గుర్తింపు అందుబాటులో లేదు. పేజీని వినండి లేదా వివరాలను టైప్ చేయండి.",
+    permission: "మైక్రోఫోన్ ప్రారంభం కాలేదు. బ్రౌజర్ అనుమతులను తనిఖీ చేయండి.",
+    noSpeech: "స్పష్టమైన మాటలు గుర్తించలేదు. మళ్లీ ప్రయత్నించండి లేదా టైప్ చేయండి.",
+    heard: "మీరు చెప్పింది: ",
+    numberPrompt: "దయచేసి మీ మొబైల్ నంబర్ చెప్పండి.",
+    numberSaved: "మొబైల్ నంబర్ నమోదు అయింది. పాస్‌వర్డ్‌ను కీబోర్డ్‌తో నమోదు చేయండి.",
+    loginDemo: "ఇది డెమో మాత్రమే. ఏ ఖాతాలోనూ లాగిన్ కాలేదు. నిజమైన లాగిన్ కోసం సురక్షిత ధృవీకరణను జోడించండి.",
+    invalidPhone: "దయచేసి సరైన మొబైల్ నంబర్‌ను అంకెలతో నమోదు చేయండి.",
+    missingPassword: "దయచేసి పాస్‌వర్డ్ నమోదు చేయండి.",
+    help: "మీరు పేజీ చదవండి, మొబైల్ నంబర్ నమోదు చేయండి లేదా లాగిన్ అని చెప్పవచ్చు. పాస్‌వర్డ్‌ను మీరే రహస్యంగా నమోదు చేయండి.",
+    voiceError: "వాయిస్ సహాయం ఆగిపోయింది. మళ్లీ ప్రయత్నించండి.",
+    loginCommand: "నిజమైన ధృవీకరణ సేవను అనుసంధానించిన తర్వాతే లాగిన్ చేయవచ్చు."
+  },
+
+  ta: {
+    languageLabel: "மொழியைத் தேர்ந்தெடுக்கவும்",
+    welcomeTitle: "விவசாயி, வரவேற்கிறோம்!",
+    welcomeText: "உங்கள் வயல்கள், பயிர்கள், நீர்ப்பாசனம் மற்றும் அறுவடைப் பணிகளை ஒரே இடத்தில் நிர்வகிக்கவும். வழிமுறைகளைக் கேட்கலாம் அல்லது குரல் உதவியைப் பயன்படுத்தலாம்.",
+    loginTitle: "விவசாயி உள்நுழைவு",
+    loginDescription: "பதிவு செய்த கைப்பேசி எண் மற்றும் கடவுச்சொல்லை உள்ளிடவும்.",
+    phoneLabel: "கைப்பேசி எண்",
+    phonePlaceholder: "கைப்பேசி எண்ணை உள்ளிடவும்",
+    phoneHelp: "எண்ணைத் தட்டச்சு செய்யவும் அல்லது ஒலிவாங்கியைப் பயன்படுத்தவும்.",
+    passwordLabel: "கடவுச்சொல்",
+    passwordPlaceholder: "கடவுச்சொல்லை உள்ளிடவும்",
+    passwordHelp: "கடவுச்சொல்லை ரகசியமாக வைத்திருக்கவும். பொது இடத்தில் சத்தமாகச் சொல்ல வேண்டாம்.",
+    showPassword: "காட்டு",
+    hidePassword: "மறை",
+    loginButton: "உள்நுழைக",
+    readButton: "🔊 இந்தப் பக்கத்தைக் கேளுங்கள்",
+    voiceButton: "🎤 குரல் உதவியைத் தொடங்கவும்",
+    stopButton: "⏹ குரலை நிறுத்தவும்",
+    ready: "குரல் உதவி தயாராக உள்ளது.",
+    choose: "தொடங்க உங்கள் மொழியைத் தேர்ந்தெடுக்கவும்.",
+    demoNotice: "இது ஒரு மாதிரிப் பக்கம். உண்மையான உள்நுழைவுக்குப் பாதுகாப்பான அங்கீகாரம் தேவை.",
+    footerText: "Harvestly • அனைவருக்கும் எளிய விவசாயக் கருவிகள்",
+    instructions: "ஹார்வெஸ்ட்லிக்கு வரவேற்கிறோம். உங்கள் மொழியைத் தேர்ந்தெடுக்கவும். கைப்பேசி எண்ணையும் கடவுச்சொல்லையும் உள்ளிடவும். தொடர உள்நுழைவை அழுத்தவும். ஒலிவாங்கி மூலம் உதவி பெறலாம். கடவுச்சொல்லை ரகசியமாக வைத்திருக்கவும்.",
+    listening: "கேட்கிறது. தயவுசெய்து பேசவும்.",
+    unsupported: "இந்த உலாவியில் குரல் அடையாளம் காணுதல் கிடைக்கவில்லை. பக்கத்தைக் கேளுங்கள் அல்லது விவரங்களைத் தட்டச்சு செய்யுங்கள்.",
+    permission: "ஒலிவாங்கியைத் தொடங்க முடியவில்லை. உலாவி அனுமதியைச் சரிபார்க்கவும்.",
+    noSpeech: "தெளிவான பேச்சு கண்டறியப்படவில்லை. மீண்டும் முயற்சிக்கவும் அல்லது தட்டச்சு செய்யவும்.",
+    heard: "நீங்கள் கூறியது: ",
+    numberPrompt: "உங்கள் கைப்பேசி எண்ணைக் கூறவும்.",
+    numberSaved: "கைப்பேசி எண் உள்ளிடப்பட்டது. கடவுச்சொல்லை விசைப்பலகையில் உள்ளிடவும்.",
+    loginDemo: "இது ஒரு மாதிரி மட்டுமே. எந்தக் கணக்கிலும் உள்நுழையவில்லை. உண்மையான உள்நுழைவுக்கு பாதுகாப்பான அங்கீகாரத்தை இணைக்கவும்.",
+    invalidPhone: "சரியான கைப்பேசி எண்ணை இலக்கங்களுடன் உள்ளிடவும்.",
+    missingPassword: "உங்கள் கடவுச்சொல்லை உள்ளிடவும்.",
+    help: "பக்கத்தைப் படி, கைப்பேசி எண்ணை உள்ளிடு அல்லது உள்நுழை என்று கூறலாம். கடவுச்சொல்லை நீங்களே ரகசியமாக உள்ளிடவும்.",
+    voiceError: "குரல் உதவி நிறுத்தப்பட்டது. மீண்டும் முயற்சிக்கவும்.",
+    loginCommand: "உண்மையான அங்கீகார சேவையை இணைத்த பிறகே உள்நுழைய முடியும்."
+  }
 };
 
-let currentAnswer=responses['en-IN'].greeting;
-let recognition=null;
+const speechLocales = {
+  en: "en-IN",
+  hi: "hi-IN",
+  pa: "pa-IN",
+  te: "te-IN",
+  ta: "ta-IN"
+};
 
-function selectedLanguage(){return document.getElementById('language').value}
-function setStatus(text){document.getElementById('voiceStatus').textContent=text}
+const languageSelect = document.getElementById("language");
+const phoneInput = document.getElementById("phone");
+const passwordInput = document.getElementById("password");
+const statusBox = document.getElementById("status");
+const voiceStatus = document.getElementById("voiceStatus");
 
-function identifyTopic(question){
- const q=question.toLowerCase();
- if(/water|watering|irrigat|నీరు|పారుదల|पानी|सिंचाई|தண்ணீர்|நீர்ப்பாசனம்|വെള്ളം|ನೀರು|ನೀರಾವರಿ/.test(q))return 'water';
- if(/pest|insect|bug|పురుగు|కీటక|कीट|कीड़ा|பூச்சி|കീടം|ಕೀಟ|ಹುಳು/.test(q))return 'pest';
- if(/tomato|టమాటా|టొమాటో|टमाटर|தக்காளி|തക്കാളി|ಟೊಮೇಟೊ/.test(q))return 'tomato';
- if(/harvest|mature|crop ready|కోత|పంట కోత|कटाई|फसल|அறுவடை|വിളവെടുപ്പ്|ಕೊಯ್ಲು/.test(q))return 'harvest';
- if(/fertilizer|fertiliser|manure|fertil|ఎరువు|ఎరువులు|खाद|उर्वरक|உரம்|വളം|ಗೊಬ್ಬರ/.test(q))return 'fertilizer';
- if(/rice|paddy|వరి|धान|நெல்|നെല്ല്|ಭತ್ತ/.test(q))return 'rice';
- return 'general';
+let currentLanguage = "en";
+let recognition = null;
+
+function t(key) {
+  return translations[currentLanguage][key] || translations.en[key] || key;
 }
 
-function askQuestion(){
- const question=document.getElementById('question').value.trim();
- if(!question){setStatus('Please type a question or press Speak Question.');return}
- const lang=selectedLanguage();
- const pack=responses[lang]||responses['en-IN'];
- const topic=identifyTopic(question);
- currentAnswer=pack[topic]||pack.general;
- document.getElementById('answer').textContent=currentAnswer;
- speakAnswer();
+function speak(message) {
+  if (!("speechSynthesis" in window)) {
+    voiceStatus.textContent = t("unsupported");
+    return;
+  }
+
+  window.speechSynthesis.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(message);
+  utterance.lang = speechLocales[currentLanguage];
+  utterance.rate = 0.85;
+  utterance.pitch = 1;
+
+  window.speechSynthesis.speak(utterance);
 }
 
-function speakAnswer(){
- if(!('speechSynthesis' in window)){
-  setStatus('Speech is not supported by this browser. Try an updated version of Chrome.');
-  return;
- }
- window.speechSynthesis.cancel();
- const lang=selectedLanguage();
- const utterance=new SpeechSynthesisUtterance(currentAnswer);
- utterance.lang=lang;
- utterance.rate=0.88;
- utterance.pitch=1;
- utterance.volume=1;
-
- const voices=window.speechSynthesis.getVoices();
- const prefix=lang.split('-')[0].toLowerCase();
- const voice=voices.find(v=>v.lang.toLowerCase()===lang.toLowerCase())
-  ||voices.find(v=>v.lang.toLowerCase().startsWith(prefix+'-'));
- if(voice)utterance.voice=voice;
-
- utterance.onstart=()=>setStatus('Speaking the answer in '+lang+'...');
- utterance.onend=()=>setStatus('Finished speaking. Ask another question whenever you like.');
- utterance.onerror=(event)=>setStatus('Could not speak: '+event.error+'. Check device sound and available voices.');
- window.speechSynthesis.speak(utterance);
+function setText(id, key) {
+  document.getElementById(id).textContent = t(key);
 }
 
-function startListening(){
- const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
- if(!SpeechRecognition){
-  setStatus('Voice input is not supported here. Try Chrome on the published HTTPS website, or type your question.');
-  return;
- }
- if(recognition){try{recognition.abort()}catch(e){}}
- recognition=new SpeechRecognition();
- recognition.lang=selectedLanguage();
- recognition.interimResults=false;
- recognition.maxAlternatives=1;
- recognition.onstart=()=>setStatus('Listening... Please ask your question clearly.');
- recognition.onresult=(event)=>{
-  document.getElementById('question').value=event.results[0][0].transcript;
-  askQuestion();
- };
- recognition.onerror=(event)=>setStatus('Microphone issue: '+event.error+'. Allow microphone permission or type your question.');
- recognition.onend=()=>{recognition=null};
- try{recognition.start()}catch(e){setStatus('Could not start microphone. Please try again.')}
+function applyLanguage() {
+  currentLanguage = languageSelect.value;
+  document.documentElement.lang = speechLocales[currentLanguage];
+
+  setText("languageLabel", "languageLabel");
+  setText("welcomeTitle", "welcomeTitle");
+  setText("welcomeText", "welcomeText");
+  setText("loginTitle", "loginTitle");
+  setText("loginDescription", "loginDescription");
+  setText("phoneLabel", "phoneLabel");
+  setText("phoneHelp", "phoneHelp");
+  setText("passwordLabel", "passwordLabel");
+  setText("passwordHelp", "passwordHelp");
+  setText("loginButton", "loginButton");
+  setText("readButton", "readButton");
+  setText("voiceButton", "voiceButton");
+  setText("stopButton", "stopButton");
+  setText("demoNotice", "demoNotice");
+  setText("footerText", "footerText");
+
+  phoneInput.placeholder = t("phonePlaceholder");
+  passwordInput.placeholder = t("passwordPlaceholder");
+  document.getElementById("showPassword").textContent =
+    passwordInput.type === "password" ? t("showPassword") : t("hidePassword");
+
+  voiceStatus.textContent = t("ready");
+  statusBox.textContent = t("choose");
+
+  if ("speechSynthesis" in window) {
+    window.speechSynthesis.cancel();
+  }
+
+  setupRecognition();
 }
 
-function stopSpeech(){
- if(recognition){try{recognition.abort()}catch(e){}recognition=null}
- if('speechSynthesis' in window)window.speechSynthesis.cancel();
- setStatus('Voice stopped.');
+function setupRecognition() {
+  const SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+
+  recognition = null;
+
+  if (!SpeechRecognition) return;
+
+  recognition = new SpeechRecognition();
+  recognition.lang = speechLocales[currentLanguage];
+  recognition.continuous = false;
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    voiceStatus.textContent = t("listening");
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results[0][0].transcript.trim();
+    const command = transcript.toLowerCase();
+
+    voiceStatus.textContent = t("heard") + transcript;
+
+    if (
+      command.includes("read page") ||
+      command.includes("पेज पढ़") ||
+      command.includes("ਪੰਨਾ ਪੜ੍ਹ") ||
+      command.includes("పేజీ చద") ||
+      command.includes("பக்கத்தைப் படி")
+    ) {
+      readPage();
+      return;
+    }
+
+    if (
+      command.includes("mobile") ||
+      command.includes("number") ||
+      command.includes("नंबर") ||
+      command.includes("ਮੋਬਾਈਲ") ||
+      command.includes("నంబర్") ||
+      command.includes("எண்")
+    ) {
+      askForPhone();
+      return;
+    }
+
+    if (
+      command.includes("login") ||
+      command.includes("लॉगिन") ||
+      command.includes("ਲੌਗਇਨ") ||
+      command.includes("లాగిన్") ||
+      command.includes("உள்நுழை")
+    ) {
+      statusBox.textContent = t("loginCommand");
+      speak(t("loginCommand"));
+      return;
+    }
+
+    // Accept a spoken number only when the result contains digits.
+    // Spoken number words may be recognized differently by each browser.
+    const digits = transcript.replace(/\D/g, "");
+
+    if (digits.length >= 10 && digits.length <= 15) {
+      phoneInput.value = digits;
+      statusBox.textContent = t("numberSaved");
+      speak(t("numberSaved"));
+      return;
+    }
+
+    statusBox.textContent = t("help");
+    speak(t("help"));
+  };
+
+  recognition.onerror = event => {
+    if (event.error === "not-allowed" || event.error === "service-not-allowed") {
+      voiceStatus.textContent = t("permission");
+    } else if (event.error === "no-speech") {
+      voiceStatus.textContent = t("noSpeech");
+    } else {
+      voiceStatus.textContent = t("voiceError");
+    }
+  };
+
+  recognition.onend = () => {
+    document.getElementById("voiceButton").disabled = false;
+  };
 }
 
-document.getElementById('question').addEventListener('keydown',function(event){
- if(event.key==='Enter'){event.preventDefault();askQuestion()}
+function readPage() {
+  const message = [
+    t("welcomeTitle"),
+    t("welcomeText"),
+    t("loginTitle"),
+    t("loginDescription"),
+    t("phoneLabel"),
+    t("passwordLabel"),
+    t("help")
+  ].join(". ");
+
+  speak(message);
+}
+
+function askForPhone() {
+  speak(t("numberPrompt"));
+
+  if (recognition) {
+    // Start a new recognition request after the spoken prompt.
+    setTimeout(() => {
+      try {
+        recognition.start();
+      } catch (error) {
+        voiceStatus.textContent = t("listening");
+      }
+    }, 1000);
+  }
+}
+
+languageSelect.addEventListener("change", applyLanguage);
+
+document.getElementById("readButton").addEventListener("click", readPage);
+
+document.getElementById("voiceButton").addEventListener("click", () => {
+  if (!recognition) {
+    voiceStatus.textContent = t("unsupported");
+    speak(t("unsupported"));
+    return;
+  }
+
+  try {
+    recognition.start();
+  } catch (error) {
+    voiceStatus.textContent = t("listening");
+  }
 });
 
-document.getElementById('language').addEventListener('change',function(){
- const lang=this.value;
- currentAnswer=(responses[lang]||responses['en-IN']).greeting;
- document.getElementById('answer').textContent=currentAnswer;
- setStatus('Language selected. Type a question or press Speak Question.');
+document.getElementById("stopButton").addEventListener("click", () => {
+  if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+
+  if (recognition) {
+    try {
+      recognition.stop();
+    } catch (error) {
+      // Recognition may already be stopped.
+    }
+  }
+
+  voiceStatus.textContent = t("ready");
 });
 
-if('speechSynthesis' in window){
- window.speechSynthesis.getVoices();
- window.speechSynthesis.onvoiceschanged=()=>window.speechSynthesis.getVoices();
-}
+document.getElementById("showPassword").addEventListener("click", () => {
+  const showing = passwordInput.type === "password";
+  passwordInput.type = showing ? "text" : "password";
+  document.getElementById("showPassword").textContent =
+    showing ? t("hidePassword") : t("showPassword");
+});
+
+document.getElementById("loginForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  const phone = phoneInput.value.trim();
+  const password = passwordInput.value;
+
+  if (!/^\d{10,15}$/.test(phone)) {
+    statusBox.textContent = t("invalidPhone");
+    speak(t("invalidPhone"));
+    phoneInput.focus();
+    return;
+  }
+
+  if (!password.trim()) {
+    statusBox.textContent = t("missingPassword");
+    speak(t("missingPassword"));
+    passwordInput.focus();
+    return;
+  }
+
+  // Demonstration only: do not store or send passwords in this demo.
+  statusBox.textContent = t("loginDemo");
+  speak(t("loginDemo"));
+});
+
+applyLanguage();
 </script>
+
 </body>
 </html>
-```
