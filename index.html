@@ -1,757 +1,122 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Harvestly | Farmer Login</title>
-
-<style>
-:root {
-  --green: #216b45;
-  --light-green: #eaf5ed;
-  --text: #20372b;
-  --muted: #607266;
-  --white: #ffffff;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  color: var(--text);
-  background: linear-gradient(135deg, #eef8ef, #f8f7ed);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-header {
-  padding: 20px 6%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-.brand {
-  font-size: 25px;
-  font-weight: bold;
-  color: var(--green);
-}
-
-.brand small {
-  display: block;
-  font-size: 11px;
-  letter-spacing: 2px;
-  margin-top: 4px;
-}
-
-.language {
-  padding: 12px;
-  border: 1px solid #c8d9cb;
-  border-radius: 10px;
-  background: white;
-  font-size: 16px;
-  max-width: 100%;
-}
-
-main {
-  width: min(1000px, 92%);
-  margin: auto;
-  padding: 20px 0 40px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  align-items: center;
-}
-
-.welcome, .login-card {
-  padding: 32px;
-  border-radius: 22px;
-  background: rgba(255,255,255,.93);
-  box-shadow: 0 12px 40px rgba(30,75,45,.08);
-}
-
-.illustration {
-  font-size: 65px;
-  margin-bottom: 15px;
-}
-
-h1 {
-  font-size: clamp(28px, 4vw, 40px);
-  margin: 12px 0;
-  line-height: 1.2;
-}
-
-p {
-  line-height: 1.7;
-  color: var(--muted);
-}
-
-.accessibility {
-  display: grid;
-  gap: 12px;
-  margin-top: 24px;
-}
-
-button {
-  cursor: pointer;
-  border: 0;
-  border-radius: 12px;
-  padding: 15px;
-  font-size: 16px;
-  font-weight: bold;
-  background: var(--green);
-  color: white;
-}
-
-button:focus, input:focus, select:focus {
-  outline: 3px solid #f2c65c;
-  outline-offset: 3px;
-}
-
-button.secondary {
-  color: var(--green);
-  background: var(--light-green);
-}
-
-button:disabled {
-  opacity: .65;
-  cursor: not-allowed;
-}
-
-.login-card h2 {
-  margin-top: 0;
-  font-size: 27px;
-}
-
-label {
-  display: block;
-  font-weight: bold;
-  margin: 18px 0 8px;
-}
-
-input {
-  width: 100%;
-  padding: 15px;
-  border: 1px solid #c9d7cc;
-  border-radius: 10px;
-  font-size: 17px;
-}
-
-.password-row {
-  display: flex;
-  gap: 8px;
-}
-
-.password-row input {
-  min-width: 0;
-}
-
-.password-row button {
-  padding: 10px;
-  font-size: 14px;
-}
-
-.help-text {
-  font-size: 13px;
-}
-
-#status {
-  min-height: 48px;
-  padding: 12px;
-  border-radius: 10px;
-  background: #f2f7f2;
-  margin-top: 15px;
-  overflow-wrap: anywhere;
-}
-
-#voiceStatus {
-  font-weight: bold;
-  color: var(--green);
-  margin-top: 12px;
-}
-
-footer {
-  text-align: center;
-  padding: 20px;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-@media (max-width: 700px) {
-  main {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-
-  .welcome, .login-card {
-    padding: 24px;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#216b45">
+  <title>Harvestly | Farmer Login</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
-
 <body>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="Harvestly home">
+      <span class="brand-icon">🌱</span>
+      <span>
+        <strong>Harvestly</strong>
+        <small>FARM MANAGEMENT PLATFORM</small>
+      </span>
+    </a>
 
-<header>
-  <div class="brand">
-    🌱 Harvestly
-    <small>FARM MANAGEMENT PLATFORM</small>
-  </div>
-
-  <label for="language" style="margin:0">
-    <span id="languageLabel">Choose language</span>
-    <select id="language" class="language" aria-label="Choose language">
-      <option value="en">English</option>
-      <option value="hi">हिन्दी — Hindi</option>
-      <option value="pa">ਪੰਜਾਬੀ — Punjabi</option>
-      <option value="te">తెలుగు — Telugu</option>
-      <option value="ta">தமிழ் — Tamil</option>
-    </select>
-  </label>
-</header>
-
-<main>
-  <section class="welcome">
-    <div class="illustration" aria-hidden="true">🌾 🚜 🌱</div>
-    <h1 id="welcomeTitle">Welcome, Farmer!</h1>
-    <p id="welcomeText">
-      Manage your fields, crops, irrigation and harvest in one simple place.
-      You can listen to instructions or use voice assistance.
-    </p>
-
-    <div class="accessibility">
-      <button type="button" id="readButton">🔊 Read this page aloud</button>
-      <button type="button" class="secondary" id="voiceButton">
-        🎤 Start voice assistance
-      </button>
-      <button type="button" class="secondary" id="stopButton">
-        ⏹ Stop voice
-      </button>
+    <div class="language-box">
+      <label for="language" id="languageLabel">Choose language</label>
+      <select id="language">
+        <option value="en">English</option>
+        <option value="hi">हिन्दी — Hindi</option>
+        <option value="pa">ਪੰਜਾਬੀ — Punjabi</option>
+        <option value="te">తెలుగు — Telugu</option>
+        <option value="ta">தமிழ் — Tamil</option>
+      </select>
     </div>
+  </header>
 
-    <p id="voiceStatus" role="status" aria-live="polite">
-      Voice assistance is ready.
-    </p>
-  </section>
-
-  <section class="login-card">
-    <h2 id="loginTitle">Farmer Login</h2>
-    <p id="loginDescription">Enter your registered mobile number and password.</p>
-
-    <form id="loginForm">
-      <label for="phone" id="phoneLabel">Mobile number</label>
-      <input
-        id="phone"
-        name="phone"
-        type="tel"
-        inputmode="numeric"
-        autocomplete="username"
-        placeholder="Enter mobile number"
-        maxlength="15"
-        required
-      >
-
-      <p class="help-text" id="phoneHelp">
-        You can type your number or use the microphone.
+  <main class="layout">
+    <section class="welcome-card">
+      <div class="farm-art" aria-hidden="true">🌾 🚜 🌱</div>
+      <span class="eyebrow" id="eyebrow">YOUR FARM, SIMPLIFIED</span>
+      <h1 id="welcomeTitle">Welcome, Farmer!</h1>
+      <p id="welcomeText">
+        Manage your fields, crops, irrigation and harvest in one simple place.
+        Listen to instructions or use voice assistance.
       </p>
 
-      <label for="password" id="passwordLabel">Password</label>
-      <div class="password-row">
-        <input
-          id="password"
-          name="password"
-          type="password"
-          autocomplete="current-password"
-          placeholder="Enter password"
-          required
-        >
-        <button type="button" class="secondary" id="showPassword">
-          Show
+      <div class="voice-panel">
+        <h2 id="accessTitle">Easy access</h2>
+        <button type="button" id="readButton" class="button primary">
+          🔊 Read this page aloud
         </button>
+        <button type="button" id="voiceButton" class="button secondary">
+          🎤 Start voice assistance
+        </button>
+        <button type="button" id="stopButton" class="button quiet">
+          ⏹ Stop voice
+        </button>
+        <p id="voiceStatus" class="voice-status" role="status" aria-live="polite">
+          Voice assistance is ready.
+        </p>
+      </div>
+    </section>
+
+    <section class="login-card">
+      <div class="login-heading">
+        <span class="login-icon" aria-hidden="true">👨‍🌾</span>
+        <h2 id="loginTitle">Farmer Login</h2>
+        <p id="loginDescription">
+          Enter your registered mobile number and password.
+        </p>
       </div>
 
-      <p class="help-text" id="passwordHelp">
-        Keep your password private. Do not say it aloud in a public place.
+      <form id="loginForm">
+        <label for="phone" id="phoneLabel">Mobile number</label>
+        <input
+          id="phone"
+          name="phone"
+          type="tel"
+          inputmode="numeric"
+          autocomplete="username"
+          placeholder="Enter mobile number"
+          maxlength="15"
+          required
+        >
+        <p class="help-text" id="phoneHelp">
+          Type your number or use voice assistance.
+        </p>
+
+        <label for="password" id="passwordLabel">Password</label>
+        <div class="password-row">
+          <input
+            id="password"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            placeholder="Enter password"
+            required
+          >
+          <button type="button" id="showPassword" class="button secondary show-button">
+            Show
+          </button>
+        </div>
+        <p class="help-text" id="passwordHelp">
+          Keep your password private. Enter it using the keyboard.
+        </p>
+
+        <button type="submit" id="loginButton" class="button primary login-button">
+          Login
+        </button>
+      </form>
+
+      <p id="status" class="status-box" role="status" aria-live="polite">
+        Choose your language to begin.
       </p>
+      <p class="demo-notice" id="demoNotice">
+        Demo only. Real login requires secure authentication.
+      </p>
+    </section>
+  </main>
 
-      <button type="submit" id="loginButton" style="width:100%; margin-top:20px">
-        Login
-      </button>
-    </form>
-
-    <div id="status" role="status" aria-live="polite">
-      Please choose your language to begin.
-    </div>
-
-    <p class="help-text" id="demoNotice">
-      Demo page: real account login requires secure authentication.
-    </p>
-  </section>
-</main>
-
-<footer id="footerText">
-  Harvestly • Simple farming tools for everyone
-</footer>
-
-<script>
-const translations = {
-  en: {
-    languageLabel: "Choose language",
-    welcomeTitle: "Welcome, Farmer!",
-    welcomeText: "Manage your fields, crops, irrigation and harvest in one simple place. You can listen to instructions or use voice assistance.",
-    loginTitle: "Farmer Login",
-    loginDescription: "Enter your registered mobile number and password.",
-    phoneLabel: "Mobile number",
-    phonePlaceholder: "Enter mobile number",
-    phoneHelp: "You can type your number or use the microphone.",
-    passwordLabel: "Password",
-    passwordPlaceholder: "Enter password",
-    passwordHelp: "Keep your password private. Do not say it aloud in a public place.",
-    showPassword: "Show",
-    hidePassword: "Hide",
-    loginButton: "Login",
-    readButton: "🔊 Read this page aloud",
-    voiceButton: "🎤 Start voice assistance",
-    stopButton: "⏹ Stop voice",
-    ready: "Voice assistance is ready.",
-    choose: "Please choose your language to begin.",
-    demoNotice: "Demo page: real account login requires secure authentication.",
-    footerText: "Harvestly • Simple farming tools for everyone",
-    instructions: "Welcome to Harvestly. Choose your language. Enter your mobile number and password. Press Login to continue. You can use the microphone for voice assistance. Keep your password private.",
-    listening: "Listening. Please speak now.",
-    unsupported: "Voice recognition is not supported in this browser. Please use the read aloud button or type your details.",
-    permission: "Microphone could not start. Check browser microphone permission.",
-    noSpeech: "No clear speech detected. Please try again or type your details.",
-    heard: "I heard: ",
-    numberPrompt: "Please say your mobile number.",
-    numberSaved: "Mobile number entered. Please enter your password using the keyboard.",
-    loginDemo: "Your details were checked for this demo only. No account was logged in. Connect a secure authentication service to enable real login.",
-    invalidPhone: "Please enter a valid mobile number using digits.",
-    missingPassword: "Please enter your password.",
-    help: "You can say: read page, enter mobile number, or login. You must still enter your password privately.",
-    voiceError: "Voice assistance stopped. Please try again.",
-    loginCommand: "Login cannot be completed until a real authentication service is connected."
-  },
-
-  hi: {
-    languageLabel: "भाषा चुनें",
-    welcomeTitle: "नमस्ते किसान!",
-    welcomeText: "अपने खेत, फसल, सिंचाई और कटाई का काम एक ही जगह पर संभालें। निर्देश सुनें या आवाज़ से सहायता लें।",
-    loginTitle: "किसान लॉगिन",
-    loginDescription: "अपना पंजीकृत मोबाइल नंबर और पासवर्ड दर्ज करें।",
-    phoneLabel: "मोबाइल नंबर",
-    phonePlaceholder: "मोबाइल नंबर दर्ज करें",
-    phoneHelp: "नंबर लिखें या माइक्रोफ़ोन का उपयोग करें।",
-    passwordLabel: "पासवर्ड",
-    passwordPlaceholder: "पासवर्ड दर्ज करें",
-    passwordHelp: "अपना पासवर्ड गोपनीय रखें। इसे सार्वजनिक जगह पर बोलकर न बताएं।",
-    showPassword: "दिखाएं",
-    hidePassword: "छिपाएं",
-    loginButton: "लॉगिन करें",
-    readButton: "🔊 पेज सुनें",
-    voiceButton: "🎤 आवाज़ से सहायता लें",
-    stopButton: "⏹ आवाज़ रोकें",
-    ready: "आवाज़ से सहायता तैयार है।",
-    choose: "शुरू करने के लिए अपनी भाषा चुनें।",
-    demoNotice: "यह डेमो पेज है। असली लॉगिन के लिए सुरक्षित प्रमाणीकरण आवश्यक है।",
-    footerText: "Harvestly • सभी के लिए आसान खेती के साधन",
-    instructions: "हार्वेस्टली में आपका स्वागत है। अपनी भाषा चुनें। मोबाइल नंबर और पासवर्ड दर्ज करें। आगे बढ़ने के लिए लॉगिन दबाएं। माइक्रोफ़ोन से सहायता ले सकते हैं। अपना पासवर्ड गोपनीय रखें।",
-    listening: "सुन रहा है। कृपया बोलें।",
-    unsupported: "इस ब्राउज़र में आवाज़ पहचान उपलब्ध नहीं है। पेज सुनें या जानकारी लिखें।",
-    permission: "माइक्रोफ़ोन शुरू नहीं हो सका। ब्राउज़र की माइक्रोफ़ोन अनुमति जांचें।",
-    noSpeech: "आवाज़ स्पष्ट नहीं मिली। फिर कोशिश करें या जानकारी लिखें।",
-    heard: "आपने कहा: ",
-    numberPrompt: "कृपया अपना मोबाइल नंबर बोलें।",
-    numberSaved: "मोबाइल नंबर दर्ज हो गया। पासवर्ड कीबोर्ड से दर्ज करें।",
-    loginDemo: "यह केवल डेमो है। किसी खाते में लॉगिन नहीं हुआ। असली लॉगिन के लिए सुरक्षित प्रमाणीकरण जोड़ें।",
-    invalidPhone: "कृपया अंकों में सही मोबाइल नंबर दर्ज करें।",
-    missingPassword: "कृपया अपना पासवर्ड दर्ज करें।",
-    help: "आप कह सकते हैं: पेज पढ़ें, मोबाइल नंबर दर्ज करें, या लॉगिन। पासवर्ड खुद और गोपनीय तरीके से दर्ज करें।",
-    voiceError: "आवाज़ सहायता रुक गई। फिर कोशिश करें।",
-    loginCommand: "असली प्रमाणीकरण सेवा जुड़ने तक लॉगिन पूरा नहीं हो सकता।"
-  },
-
-  pa: {
-    languageLabel: "ਭਾਸ਼ਾ ਚੁਣੋ",
-    welcomeTitle: "ਜੀ ਆਇਆਂ ਨੂੰ, ਕਿਸਾਨ ਜੀ!",
-    welcomeText: "ਆਪਣੇ ਖੇਤਾਂ, ਫ਼ਸਲਾਂ, ਸਿੰਚਾਈ ਅਤੇ ਵਾਢੀ ਦਾ ਕੰਮ ਇੱਕੋ ਥਾਂ ਸੰਭਾਲੋ। ਹਦਾਇਤਾਂ ਸੁਣੋ ਜਾਂ ਆਵਾਜ਼ ਰਾਹੀਂ ਮਦਦ ਲਵੋ।",
-    loginTitle: "ਕਿਸਾਨ ਲੌਗਇਨ",
-    loginDescription: "ਆਪਣਾ ਰਜਿਸਟਰ ਕੀਤਾ ਮੋਬਾਈਲ ਨੰਬਰ ਅਤੇ ਪਾਸਵਰਡ ਭਰੋ।",
-    phoneLabel: "ਮੋਬਾਈਲ ਨੰਬਰ",
-    phonePlaceholder: "ਮੋਬਾਈਲ ਨੰਬਰ ਭਰੋ",
-    phoneHelp: "ਨੰਬਰ ਲਿਖੋ ਜਾਂ ਮਾਈਕ੍ਰੋਫ਼ੋਨ ਵਰਤੋ।",
-    passwordLabel: "ਪਾਸਵਰਡ",
-    passwordPlaceholder: "ਪਾਸਵਰਡ ਭਰੋ",
-    passwordHelp: "ਆਪਣਾ ਪਾਸਵਰਡ ਗੁਪਤ ਰੱਖੋ। ਜਨਤਕ ਥਾਂ 'ਤੇ ਇਸਨੂੰ ਬੋਲ ਕੇ ਨਾ ਦੱਸੋ।",
-    showPassword: "ਵਿਖਾਓ",
-    hidePassword: "ਲੁਕਾਓ",
-    loginButton: "ਲੌਗਇਨ ਕਰੋ",
-    readButton: "🔊 ਪੰਨਾ ਸੁਣੋ",
-    voiceButton: "🎤 ਆਵਾਜ਼ ਰਾਹੀਂ ਮਦਦ ਲਵੋ",
-    stopButton: "⏹ ਆਵਾਜ਼ ਰੋਕੋ",
-    ready: "ਆਵਾਜ਼ ਰਾਹੀਂ ਮਦਦ ਤਿਆਰ ਹੈ।",
-    choose: "ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਆਪਣੀ ਭਾਸ਼ਾ ਚੁਣੋ।",
-    demoNotice: "ਇਹ ਡੈਮੋ ਪੰਨਾ ਹੈ। ਅਸਲੀ ਲੌਗਇਨ ਲਈ ਸੁਰੱਖਿਅਤ ਪ੍ਰਮਾਣਿਕਤਾ ਲੋੜੀਂਦੀ ਹੈ।",
-    footerText: "Harvestly • ਹਰ ਕਿਸੇ ਲਈ ਸੌਖੇ ਖੇਤੀ ਸਾਧਨ",
-    instructions: "ਹਾਰਵੈਸਟਲੀ ਵਿੱਚ ਤੁਹਾਡਾ ਸਵਾਗਤ ਹੈ। ਆਪਣੀ ਭਾਸ਼ਾ ਚੁਣੋ। ਮੋਬਾਈਲ ਨੰਬਰ ਅਤੇ ਪਾਸਵਰਡ ਭਰੋ। ਅੱਗੇ ਜਾਣ ਲਈ ਲੌਗਇਨ ਦਬਾਓ। ਮਾਈਕ੍ਰੋਫ਼ੋਨ ਰਾਹੀਂ ਮਦਦ ਲਵੋ। ਆਪਣਾ ਪਾਸਵਰਡ ਗੁਪਤ ਰੱਖੋ।",
-    listening: "ਸੁਣ ਰਿਹਾ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਬੋਲੋ।",
-    unsupported: "ਇਸ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਆਵਾਜ਼ ਪਛਾਣ ਉਪਲਬਧ ਨਹੀਂ ਹੈ। ਪੰਨਾ ਸੁਣੋ ਜਾਂ ਜਾਣਕਾਰੀ ਲਿਖੋ।",
-    permission: "ਮਾਈਕ੍ਰੋਫ਼ੋਨ ਸ਼ੁਰੂ ਨਹੀਂ ਹੋ ਸਕਿਆ। ਬ੍ਰਾਊਜ਼ਰ ਦੀ ਇਜਾਜ਼ਤ ਜਾਂਚੋ।",
-    noSpeech: "ਆਵਾਜ਼ ਸਪਸ਼ਟ ਨਹੀਂ ਮਿਲੀ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜਾਂ ਜਾਣਕਾਰੀ ਲਿਖੋ।",
-    heard: "ਤੁਸੀਂ ਕਿਹਾ: ",
-    numberPrompt: "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਮੋਬਾਈਲ ਨੰਬਰ ਬੋਲੋ।",
-    numberSaved: "ਮੋਬਾਈਲ ਨੰਬਰ ਭਰ ਦਿੱਤਾ ਗਿਆ ਹੈ। ਪਾਸਵਰਡ ਕੀਬੋਰਡ ਰਾਹੀਂ ਭਰੋ।",
-    loginDemo: "ਇਹ ਸਿਰਫ਼ ਡੈਮੋ ਹੈ। ਕਿਸੇ ਖਾਤੇ ਵਿੱਚ ਲੌਗਇਨ ਨਹੀਂ ਹੋਇਆ। ਅਸਲੀ ਲੌਗਇਨ ਲਈ ਸੁਰੱਖਿਅਤ ਪ੍ਰਮਾਣਿਕਤਾ ਜੋੜੋ।",
-    invalidPhone: "ਕਿਰਪਾ ਕਰਕੇ ਅੰਕਾਂ ਵਿੱਚ ਸਹੀ ਮੋਬਾਈਲ ਨੰਬਰ ਭਰੋ।",
-    missingPassword: "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਪਾਸਵਰਡ ਭਰੋ।",
-    help: "ਤੁਸੀਂ ਕਹਿ ਸਕਦੇ ਹੋ: ਪੰਨਾ ਪੜ੍ਹੋ, ਮੋਬਾਈਲ ਨੰਬਰ ਭਰੋ, ਜਾਂ ਲੌਗਇਨ। ਆਪਣਾ ਪਾਸਵਰਡ ਗੁਪਤ ਰੱਖੋ।",
-    voiceError: "ਆਵਾਜ਼ ਸਹਾਇਤਾ ਰੁਕ ਗਈ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।",
-    loginCommand: "ਅਸਲੀ ਪ੍ਰਮਾਣਿਕਤਾ ਸੇਵਾ ਜੋੜਨ ਤੋਂ ਬਾਅਦ ਹੀ ਲੌਗਇਨ ਹੋ ਸਕੇਗਾ।"
-  },
-
-  te: {
-    languageLabel: "భాషను ఎంచుకోండి",
-    welcomeTitle: "స్వాగతం రైతన్న!",
-    welcomeText: "మీ పొలాలు, పంటలు, నీటిపారుదల, కోత పనులను ఒకే చోట నిర్వహించండి. సూచనలను వినండి లేదా వాయిస్ సహాయం పొందండి.",
-    loginTitle: "రైతు లాగిన్",
-    loginDescription: "మీ నమోదిత మొబైల్ నంబర్ మరియు పాస్‌వర్డ్ నమోదు చేయండి.",
-    phoneLabel: "మొబైల్ నంబర్",
-    phonePlaceholder: "మొబైల్ నంబర్ నమోదు చేయండి",
-    phoneHelp: "నంబర్ టైప్ చేయండి లేదా మైక్రోఫోన్ ఉపయోగించండి.",
-    passwordLabel: "పాస్‌వర్డ్",
-    passwordPlaceholder: "పాస్‌వర్డ్ నమోదు చేయండి",
-    passwordHelp: "మీ పాస్‌వర్డ్‌ను రహస్యంగా ఉంచండి. బహిరంగ ప్రదేశంలో గట్టిగా చెప్పకండి.",
-    showPassword: "చూపించు",
-    hidePassword: "దాచు",
-    loginButton: "లాగిన్",
-    readButton: "🔊 పేజీని వినండి",
-    voiceButton: "🎤 వాయిస్ సహాయం ప్రారంభించండి",
-    stopButton: "⏹ వాయిస్ ఆపండి",
-    ready: "వాయిస్ సహాయం సిద్ధంగా ఉంది.",
-    choose: "ప్రారంభించడానికి మీ భాషను ఎంచుకోండి.",
-    demoNotice: "ఇది డెమో పేజీ. నిజమైన లాగిన్‌కు సురక్షిత ధృవీకరణ అవసరం.",
-    footerText: "Harvestly • అందరికీ సులభమైన వ్యవసాయ సాధనాలు",
-    instructions: "హార్వెస్ట్లీకి స్వాగతం. మీ భాషను ఎంచుకోండి. మొబైల్ నంబర్ మరియు పాస్‌వర్డ్ నమోదు చేయండి. కొనసాగడానికి లాగిన్ నొక్కండి. మైక్రోఫోన్ ద్వారా సహాయం పొందవచ్చు. మీ పాస్‌వర్డ్‌ను రహస్యంగా ఉంచండి.",
-    listening: "వింటున్నాను. దయచేసి మాట్లాడండి.",
-    unsupported: "ఈ బ్రౌజర్‌లో వాయిస్ గుర్తింపు అందుబాటులో లేదు. పేజీని వినండి లేదా వివరాలను టైప్ చేయండి.",
-    permission: "మైక్రోఫోన్ ప్రారంభం కాలేదు. బ్రౌజర్ అనుమతులను తనిఖీ చేయండి.",
-    noSpeech: "స్పష్టమైన మాటలు గుర్తించలేదు. మళ్లీ ప్రయత్నించండి లేదా టైప్ చేయండి.",
-    heard: "మీరు చెప్పింది: ",
-    numberPrompt: "దయచేసి మీ మొబైల్ నంబర్ చెప్పండి.",
-    numberSaved: "మొబైల్ నంబర్ నమోదు అయింది. పాస్‌వర్డ్‌ను కీబోర్డ్‌తో నమోదు చేయండి.",
-    loginDemo: "ఇది డెమో మాత్రమే. ఏ ఖాతాలోనూ లాగిన్ కాలేదు. నిజమైన లాగిన్ కోసం సురక్షిత ధృవీకరణను జోడించండి.",
-    invalidPhone: "దయచేసి సరైన మొబైల్ నంబర్‌ను అంకెలతో నమోదు చేయండి.",
-    missingPassword: "దయచేసి పాస్‌వర్డ్ నమోదు చేయండి.",
-    help: "మీరు పేజీ చదవండి, మొబైల్ నంబర్ నమోదు చేయండి లేదా లాగిన్ అని చెప్పవచ్చు. పాస్‌వర్డ్‌ను మీరే రహస్యంగా నమోదు చేయండి.",
-    voiceError: "వాయిస్ సహాయం ఆగిపోయింది. మళ్లీ ప్రయత్నించండి.",
-    loginCommand: "నిజమైన ధృవీకరణ సేవను అనుసంధానించిన తర్వాతే లాగిన్ చేయవచ్చు."
-  },
-
-  ta: {
-    languageLabel: "மொழியைத் தேர்ந்தெடுக்கவும்",
-    welcomeTitle: "விவசாயி, வரவேற்கிறோம்!",
-    welcomeText: "உங்கள் வயல்கள், பயிர்கள், நீர்ப்பாசனம் மற்றும் அறுவடைப் பணிகளை ஒரே இடத்தில் நிர்வகிக்கவும். வழிமுறைகளைக் கேட்கலாம் அல்லது குரல் உதவியைப் பயன்படுத்தலாம்.",
-    loginTitle: "விவசாயி உள்நுழைவு",
-    loginDescription: "பதிவு செய்த கைப்பேசி எண் மற்றும் கடவுச்சொல்லை உள்ளிடவும்.",
-    phoneLabel: "கைப்பேசி எண்",
-    phonePlaceholder: "கைப்பேசி எண்ணை உள்ளிடவும்",
-    phoneHelp: "எண்ணைத் தட்டச்சு செய்யவும் அல்லது ஒலிவாங்கியைப் பயன்படுத்தவும்.",
-    passwordLabel: "கடவுச்சொல்",
-    passwordPlaceholder: "கடவுச்சொல்லை உள்ளிடவும்",
-    passwordHelp: "கடவுச்சொல்லை ரகசியமாக வைத்திருக்கவும். பொது இடத்தில் சத்தமாகச் சொல்ல வேண்டாம்.",
-    showPassword: "காட்டு",
-    hidePassword: "மறை",
-    loginButton: "உள்நுழைக",
-    readButton: "🔊 இந்தப் பக்கத்தைக் கேளுங்கள்",
-    voiceButton: "🎤 குரல் உதவியைத் தொடங்கவும்",
-    stopButton: "⏹ குரலை நிறுத்தவும்",
-    ready: "குரல் உதவி தயாராக உள்ளது.",
-    choose: "தொடங்க உங்கள் மொழியைத் தேர்ந்தெடுக்கவும்.",
-    demoNotice: "இது ஒரு மாதிரிப் பக்கம். உண்மையான உள்நுழைவுக்குப் பாதுகாப்பான அங்கீகாரம் தேவை.",
-    footerText: "Harvestly • அனைவருக்கும் எளிய விவசாயக் கருவிகள்",
-    instructions: "ஹார்வெஸ்ட்லிக்கு வரவேற்கிறோம். உங்கள் மொழியைத் தேர்ந்தெடுக்கவும். கைப்பேசி எண்ணையும் கடவுச்சொல்லையும் உள்ளிடவும். தொடர உள்நுழைவை அழுத்தவும். ஒலிவாங்கி மூலம் உதவி பெறலாம். கடவுச்சொல்லை ரகசியமாக வைத்திருக்கவும்.",
-    listening: "கேட்கிறது. தயவுசெய்து பேசவும்.",
-    unsupported: "இந்த உலாவியில் குரல் அடையாளம் காணுதல் கிடைக்கவில்லை. பக்கத்தைக் கேளுங்கள் அல்லது விவரங்களைத் தட்டச்சு செய்யுங்கள்.",
-    permission: "ஒலிவாங்கியைத் தொடங்க முடியவில்லை. உலாவி அனுமதியைச் சரிபார்க்கவும்.",
-    noSpeech: "தெளிவான பேச்சு கண்டறியப்படவில்லை. மீண்டும் முயற்சிக்கவும் அல்லது தட்டச்சு செய்யவும்.",
-    heard: "நீங்கள் கூறியது: ",
-    numberPrompt: "உங்கள் கைப்பேசி எண்ணைக் கூறவும்.",
-    numberSaved: "கைப்பேசி எண் உள்ளிடப்பட்டது. கடவுச்சொல்லை விசைப்பலகையில் உள்ளிடவும்.",
-    loginDemo: "இது ஒரு மாதிரி மட்டுமே. எந்தக் கணக்கிலும் உள்நுழையவில்லை. உண்மையான உள்நுழைவுக்கு பாதுகாப்பான அங்கீகாரத்தை இணைக்கவும்.",
-    invalidPhone: "சரியான கைப்பேசி எண்ணை இலக்கங்களுடன் உள்ளிடவும்.",
-    missingPassword: "உங்கள் கடவுச்சொல்லை உள்ளிடவும்.",
-    help: "பக்கத்தைப் படி, கைப்பேசி எண்ணை உள்ளிடு அல்லது உள்நுழை என்று கூறலாம். கடவுச்சொல்லை நீங்களே ரகசியமாக உள்ளிடவும்.",
-    voiceError: "குரல் உதவி நிறுத்தப்பட்டது. மீண்டும் முயற்சிக்கவும்.",
-    loginCommand: "உண்மையான அங்கீகார சேவையை இணைத்த பிறகே உள்நுழைய முடியும்."
-  }
-};
-
-const speechLocales = {
-  en: "en-IN",
-  hi: "hi-IN",
-  pa: "pa-IN",
-  te: "te-IN",
-  ta: "ta-IN"
-};
-
-const languageSelect = document.getElementById("language");
-const phoneInput = document.getElementById("phone");
-const passwordInput = document.getElementById("password");
-const statusBox = document.getElementById("status");
-const voiceStatus = document.getElementById("voiceStatus");
-
-let currentLanguage = "en";
-let recognition = null;
-
-function t(key) {
-  return translations[currentLanguage][key] || translations.en[key] || key;
-}
-
-function speak(message) {
-  if (!("speechSynthesis" in window)) {
-    voiceStatus.textContent = t("unsupported");
-    return;
-  }
-
-  window.speechSynthesis.cancel();
-
-  const utterance = new SpeechSynthesisUtterance(message);
-  utterance.lang = speechLocales[currentLanguage];
-  utterance.rate = 0.85;
-  utterance.pitch = 1;
-
-  window.speechSynthesis.speak(utterance);
-}
-
-function setText(id, key) {
-  document.getElementById(id).textContent = t(key);
-}
-
-function applyLanguage() {
-  currentLanguage = languageSelect.value;
-  document.documentElement.lang = speechLocales[currentLanguage];
-
-  setText("languageLabel", "languageLabel");
-  setText("welcomeTitle", "welcomeTitle");
-  setText("welcomeText", "welcomeText");
-  setText("loginTitle", "loginTitle");
-  setText("loginDescription", "loginDescription");
-  setText("phoneLabel", "phoneLabel");
-  setText("phoneHelp", "phoneHelp");
-  setText("passwordLabel", "passwordLabel");
-  setText("passwordHelp", "passwordHelp");
-  setText("loginButton", "loginButton");
-  setText("readButton", "readButton");
-  setText("voiceButton", "voiceButton");
-  setText("stopButton", "stopButton");
-  setText("demoNotice", "demoNotice");
-  setText("footerText", "footerText");
-
-  phoneInput.placeholder = t("phonePlaceholder");
-  passwordInput.placeholder = t("passwordPlaceholder");
-  document.getElementById("showPassword").textContent =
-    passwordInput.type === "password" ? t("showPassword") : t("hidePassword");
-
-  voiceStatus.textContent = t("ready");
-  statusBox.textContent = t("choose");
-
-  if ("speechSynthesis" in window) {
-    window.speechSynthesis.cancel();
-  }
-
-  setupRecognition();
-}
-
-function setupRecognition() {
-  const SpeechRecognition =
-    window.SpeechRecognition || window.webkitSpeechRecognition;
-
-  recognition = null;
-
-  if (!SpeechRecognition) return;
-
-  recognition = new SpeechRecognition();
-  recognition.lang = speechLocales[currentLanguage];
-  recognition.continuous = false;
-  recognition.interimResults = false;
-  recognition.maxAlternatives = 1;
-
-  recognition.onstart = () => {
-    voiceStatus.textContent = t("listening");
-  };
-
-  recognition.onresult = event => {
-    const transcript = event.results[0][0].transcript.trim();
-    const command = transcript.toLowerCase();
-
-    voiceStatus.textContent = t("heard") + transcript;
-
-    if (
-      command.includes("read page") ||
-      command.includes("पेज पढ़") ||
-      command.includes("ਪੰਨਾ ਪੜ੍ਹ") ||
-      command.includes("పేజీ చద") ||
-      command.includes("பக்கத்தைப் படி")
-    ) {
-      readPage();
-      return;
-    }
-
-    if (
-      command.includes("mobile") ||
-      command.includes("number") ||
-      command.includes("नंबर") ||
-      command.includes("ਮੋਬਾਈਲ") ||
-      command.includes("నంబర్") ||
-      command.includes("எண்")
-    ) {
-      askForPhone();
-      return;
-    }
-
-    if (
-      command.includes("login") ||
-      command.includes("लॉगिन") ||
-      command.includes("ਲੌਗਇਨ") ||
-      command.includes("లాగిన్") ||
-      command.includes("உள்நுழை")
-    ) {
-      statusBox.textContent = t("loginCommand");
-      speak(t("loginCommand"));
-      return;
-    }
-
-    // Accept a spoken number only when the result contains digits.
-    // Spoken number words may be recognized differently by each browser.
-    const digits = transcript.replace(/\D/g, "");
-
-    if (digits.length >= 10 && digits.length <= 15) {
-      phoneInput.value = digits;
-      statusBox.textContent = t("numberSaved");
-      speak(t("numberSaved"));
-      return;
-    }
-
-    statusBox.textContent = t("help");
-    speak(t("help"));
-  };
-
-  recognition.onerror = event => {
-    if (event.error === "not-allowed" || event.error === "service-not-allowed") {
-      voiceStatus.textContent = t("permission");
-    } else if (event.error === "no-speech") {
-      voiceStatus.textContent = t("noSpeech");
-    } else {
-      voiceStatus.textContent = t("voiceError");
-    }
-  };
-
-  recognition.onend = () => {
-    document.getElementById("voiceButton").disabled = false;
-  };
-}
-
-function readPage() {
-  const message = [
-    t("welcomeTitle"),
-    t("welcomeText"),
-    t("loginTitle"),
-    t("loginDescription"),
-    t("phoneLabel"),
-    t("passwordLabel"),
-    t("help")
-  ].join(". ");
-
-  speak(message);
-}
-
-function askForPhone() {
-  speak(t("numberPrompt"));
-
-  if (recognition) {
-    // Start a new recognition request after the spoken prompt.
-    setTimeout(() => {
-      try {
-        recognition.start();
-      } catch (error) {
-        voiceStatus.textContent = t("listening");
-      }
-    }, 1000);
-  }
-}
-
-languageSelect.addEventListener("change", applyLanguage);
-
-document.getElementById("readButton").addEventListener("click", readPage);
-
-document.getElementById("voiceButton").addEventListener("click", () => {
-  if (!recognition) {
-    voiceStatus.textContent = t("unsupported");
-    speak(t("unsupported"));
-    return;
-  }
-
-  try {
-    recognition.start();
-  } catch (error) {
-    voiceStatus.textContent = t("listening");
-  }
-});
-
-document.getElementById("stopButton").addEventListener("click", () => {
-  if ("speechSynthesis" in window) window.speechSynthesis.cancel();
-
-  if (recognition) {
-    try {
-      recognition.stop();
-    } catch (error) {
-      // Recognition may already be stopped.
-    }
-  }
-
-  voiceStatus.textContent = t("ready");
-});
-
-document.getElementById("showPassword").addEventListener("click", () => {
-  const showing = passwordInput.type === "password";
-  passwordInput.type = showing ? "text" : "password";
-  document.getElementById("showPassword").textContent =
-    showing ? t("hidePassword") : t("showPassword");
-});
-
-document.getElementById("loginForm").addEventListener("submit", event => {
-  event.preventDefault();
-
-  const phone = phoneInput.value.trim();
-  const password = passwordInput.value;
-
-  if (!/^\d{10,15}$/.test(phone)) {
-    statusBox.textContent = t("invalidPhone");
-    speak(t("invalidPhone"));
-    phoneInput.focus();
-    return;
-  }
-
-  if (!password.trim()) {
-    statusBox.textContent = t("missingPassword");
-    speak(t("missingPassword"));
-    passwordInput.focus();
-    return;
-  }
-
-  // Demonstration only: do not store or send passwords in this demo.
-  statusBox.textContent = t("loginDemo");
-  speak(t("loginDemo"));
-});
-
-applyLanguage();
-</script>
-
+  <footer id="footerText">
+    Harvestly · Simple farming tools for everyone
+  </footer>
 </body>
 </html>
