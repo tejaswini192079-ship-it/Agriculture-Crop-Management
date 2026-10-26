@@ -1,4 +1,3 @@
-
 /* =====================================================
    SMART FARMING — COMPLETE JAVASCRIPT
    Six languages | Dashboard | Records | Demo login
