@@ -1,210 +1,270 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f1f6ec">
-  <title>Farm Manager | Smart Agriculture</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <meta name="theme-color" content="#f2f7ed">
+  <meta name="description" content="Smart Farming - a multilingual farm management dashboard.">
+  <title>Smart Farming | Farm Manager</title>
+
+  <!-- Keep these filenames exactly the same as your GitHub files -->
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
 </head>
+
 <body>
-
   <!-- LOGIN SCREEN -->
-  <section id="loginScreen" class="login-screen">
-    <div class="login-visual">
-      <div class="visual-badge">🌱 SMART FARMING</div>
-      <div class="login-illustration">🌾</div>
-      <h1 data-i18n="welcome">Grow smarter. Farm better.</h1>
-      <p data-i18n="welcomeText">
-        Your farm, your crops, your progress — all in one place.
-      </p>
-      <div class="visual-bottom">🌿 Better farming starts here.</div>
-    </div>
+  <main id="loginScreen" class="login-screen">
+    <section class="login-visual">
+      <a class="brand" href="#" aria-label="Smart Farming home">
+        <span class="brand-icon">🌱</span>
+        <span>SMART FARMING</span>
+      </a>
 
-    <div class="login-panel">
-      <div class="login-top">
-        <div class="brand-mark">🌱</div>
-        <div>
-          <h2>Farm Manager</h2>
-          <p data-i18n="tagline">Your digital farming companion</p>
+      <div class="visual-content">
+        <span class="eyebrow" data-i18n="tagline">YOUR DIGITAL FARMING COMPANION</span>
+        <h1 data-i18n="welcome">Grow smarter.<br>Farm better.</h1>
+        <p data-i18n="welcomeText">
+          Your farm, your crops, your progress — all in one place.
+        </p>
+
+        <div class="visual-art" aria-hidden="true">
+          <div class="sun"></div>
+          <div class="hill hill-one"></div>
+          <div class="hill hill-two"></div>
+          <div class="crop-row crop-row-one">🌾 🌱 🌾 🌱 🌾</div>
+          <div class="crop-row crop-row-two">🌱 🌾 🌱 🌾 🌱</div>
+          <div class="farm-caption">
+            <span class="caption-icon">🌿</span>
+            <span data-i18n="visualCaption">Better farming starts here.</span>
+          </div>
         </div>
       </div>
 
-      <div class="language-control">
+      <div class="visual-footer">
+        <span>🌱</span>
+        <span data-i18n="footerText">Growing a greener future, one field at a time.</span>
+      </div>
+    </section>
+
+    <section class="login-panel">
+      <div class="login-card">
+        <div class="mobile-brand brand">
+          <span class="brand-icon">🌱</span>
+          <span>SMART FARMING</span>
+        </div>
+
+        <div class="login-icon">🌾</div>
+        <span class="eyebrow" data-i18n="farmerLogin">FARMER LOGIN</span>
+        <h2 data-i18n="loginTitle">Welcome back!</h2>
+        <p class="muted" data-i18n="loginText">
+          Sign in to manage your farm with ease.
+        </p>
+
         <label for="loginLanguage" data-i18n="chooseLanguage">
           Choose your language
         </label>
-        <select id="loginLanguage" aria-label="Choose language">
-          <option value="en">🇬🇧 English</option>
-          <option value="hi">🇮🇳 हिन्दी</option>
-          <option value="pa">🇮🇳 ਪੰਜਾਬੀ</option>
-          <option value="te">🇮🇳 తెలుగు</option>
-          <option value="ml">🇮🇳 മലയാളം</option>
-          <option value="ta">🇮🇳 தமிழ்</option>
-        </select>
+        <div class="select-wrap language-wrap">
+          <span aria-hidden="true">🌐</span>
+          <select id="loginLanguage" aria-label="Choose your language">
+            <option value="en">English</option>
+            <option value="hi">हिन्दी — Hindi</option>
+            <option value="pa">ਪੰਜਾਬੀ — Punjabi</option>
+            <option value="te">తెలుగు — Telugu</option>
+            <option value="ml">മലയാളം — Malayalam</option>
+            <option value="ta">தமிழ் — Tamil</option>
+          </select>
+        </div>
+
+        <form id="loginForm">
+          <label for="username" data-i18n="usernameLabel">Your name</label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            autocomplete="name"
+            data-i18n-placeholder="usernamePlaceholder"
+            placeholder="Enter your name"
+            required
+          >
+
+          <label for="password" data-i18n="passwordLabel">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            data-i18n-placeholder="passwordPlaceholder"
+            placeholder="Enter any demo password"
+            required
+          >
+
+          <button class="primary-button login-button" type="submit">
+            <span data-i18n="signIn">Enter my farm</span>
+            <span aria-hidden="true">→</span>
+          </button>
+        </form>
+
+        <p class="demo-note">
+          <span aria-hidden="true">ℹ️</span>
+          <span data-i18n="demoNote">
+            Demo website: use any name and password to continue.
+          </span>
+        </p>
+
+        <div class="login-bottom">
+          <span>🌱</span>
+          <span data-i18n="loginFooter">Farm Manager · Made for farmers</span>
+        </div>
       </div>
+    </section>
+  </main>
 
-      <div class="login-heading">
-        <span class="eyebrow" data-i18n="farmerLogin">FARMER LOGIN</span>
-        <h1 data-i18n="loginTitle">Welcome back!</h1>
-        <p data-i18n="loginText">Sign in to manage your farm with ease.</p>
-      </div>
-
-      <form id="loginForm">
-        <label for="username" data-i18n="usernameLabel">Your name</label>
-        <input id="username" type="text" placeholder="Enter your name"
-          data-i18n-placeholder="usernamePlaceholder" required>
-
-        <label for="password" data-i18n="passwordLabel">Password</label>
-        <input id="password" type="password" placeholder="Enter any demo password"
-          data-i18n-placeholder="passwordPlaceholder" required>
-
-        <button class="primary-button login-button" type="submit">
-          <span data-i18n="signIn">Enter my farm</span>
-          <span>→</span>
-        </button>
-      </form>
-
-      <p class="demo-note" data-i18n="demoNote">
-        Demo website: use any name and password to continue.
+  <!-- LOADING SCREEN: HIDDEN UNTIL LOGIN -->
+  <section id="loadingScreen" class="loading-screen hidden"
+    aria-live="polite">
+    <div class="loading-card">
+      <div class="loading-logo">🌱</div>
+      <span class="eyebrow" data-i18n="loadingLabel">PLEASE WAIT</span>
+      <h2 data-i18n="loadingTitle">Loading your farm data...</h2>
+      <p class="muted" data-i18n="loadingCaption">
+        Preparing your farm dashboard...
       </p>
 
-      <div class="login-footer">🌱 Farm Manager <span>•</span> Made for farmers</div>
-    </div>
-  </section>
-
-  <!-- LOADING SCREEN -->
-  <section id="loadingScreen" class="loading-screen hidden">
-    <div class="loading-card">
-      <div class="loading-heading">
-        <div>
-          <span class="eyebrow" data-i18n="loadingLabel">PLEASE WAIT</span>
-          <h1 data-i18n="loadingTitle">Loading your farm data...</h1>
-        </div>
-        <span class="loading-leaf">🌿</span>
+      <div class="loading-track">
+        <div id="loadingProgress" class="loading-progress"></div>
       </div>
 
-      <div class="progress-track">
-        <div id="loadingProgress" class="progress-fill"></div>
-      </div>
-
-      <div id="loadingTasks" class="loading-tasks">
+      <div class="loading-tasks">
         <div class="loading-task" data-task="fields">
           <span class="task-check">✓</span>
           <span data-i18n="fields">Fields</span>
-          <strong>5</strong>
+          <strong id="loadFields">5</strong>
         </div>
         <div class="loading-task" data-task="crops">
           <span class="task-check">✓</span>
           <span data-i18n="crops">Crops</span>
-          <strong>5</strong>
+          <strong id="loadCrops">5</strong>
         </div>
         <div class="loading-task" data-task="irrigation">
           <span class="task-check">✓</span>
           <span data-i18n="irrigation">Irrigation</span>
-          <strong>8</strong>
+          <strong id="loadIrrigation">8</strong>
         </div>
         <div class="loading-task" data-task="fertilizer">
           <span class="task-check">✓</span>
           <span data-i18n="fertilizer">Fertilizer</span>
-          <strong>6</strong>
+          <strong id="loadFertilizer">6</strong>
         </div>
         <div class="loading-task" data-task="pests">
           <span class="task-check">✓</span>
           <span data-i18n="pests">Pests</span>
-          <strong>5</strong>
+          <strong id="loadPests">5</strong>
         </div>
         <div class="loading-task" data-task="harvest">
-          <span class="task-check"></span>
+          <span class="task-check">✓</span>
           <span data-i18n="harvest">Harvest</span>
-          <strong>5</strong>
+          <strong id="loadHarvest">5</strong>
         </div>
       </div>
-      <p class="loading-caption" data-i18n="loadingCaption">
-        Preparing your farm dashboard...
-      </p>
     </div>
   </section>
 
-  <!-- MAIN APPLICATION -->
+  <!-- MAIN FARM APPLICATION -->
   <div id="appScreen" class="app-screen hidden">
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
     <aside id="sidebar" class="sidebar">
       <div class="sidebar-brand">
-        <div class="brand-mark">🌱</div>
-        <div>
-          <h2>Farm Manager</h2>
-          <span data-i18n="farmManagement">FARM MANAGEMENT</span>
-        </div>
-        <button id="closeSidebar" class="icon-button mobile-close"
-          aria-label="Close menu">✕</button>
+        <a class="brand" href="#" data-go="home">
+          <span class="brand-icon">🌱</span>
+          <span class="brand-name">Harvestly</span>
+        </a>
+        <button id="closeSidebar" class="icon-button close-sidebar"
+          type="button" aria-label="Close menu">×</button>
       </div>
 
-      <div class="farm-profile">
-        <div class="farm-avatar">🌾</div>
-        <div>
+      <p class="brand-subtitle" data-i18n="farmManagement">
+        FARM MANAGEMENT
+      </p>
+
+      <div class="profile-card">
+        <div id="userAvatar" class="avatar">F</div>
+        <div class="profile-info">
           <strong id="farmerName">Farmer</strong>
           <span data-i18n="farmOwner">Farm owner</span>
         </div>
         <span class="online-dot"></span>
       </div>
 
-      <p class="nav-caption" data-i18n="workspace">WORKSPACE</p>
-      <nav id="sideNav" class="side-nav">
-        <button class="nav-link active" data-page="home">
-          <span class="nav-icon">⌂</span><span data-i18n="home">Home</span>
+      <p class="nav-label" data-i18n="workspace">WORKSPACE</p>
+
+      <nav id="sideNav" class="side-nav" aria-label="Farm navigation">
+        <button class="nav-link active" type="button" data-page="home">
+          <span class="nav-icon">⌂</span>
+          <span data-i18n="home">Home</span>
         </button>
-        <button class="nav-link" data-page="fields">
-          <span class="nav-icon">▦</span><span data-i18n="fields">Fields</span>
+        <button class="nav-link" type="button" data-page="fields">
+          <span class="nav-icon">▦</span>
+          <span data-i18n="fields">Fields</span>
+          <span class="nav-count" id="navFields">5</span>
         </button>
-        <button class="nav-link" data-page="crops">
-          <span class="nav-icon">🌱</span><span data-i18n="crops">Crops</span>
+        <button class="nav-link" type="button" data-page="crops">
+          <span class="nav-icon">🌱</span>
+          <span data-i18n="crops">Crops</span>
         </button>
-        <button class="nav-link" data-page="irrigation">
-          <span class="nav-icon">💧</span><span data-i18n="irrigation">Irrigation</span>
+        <button class="nav-link" type="button" data-page="irrigation">
+          <span class="nav-icon">💧</span>
+          <span data-i18n="irrigation">Irrigation</span>
         </button>
-        <button class="nav-link" data-page="fertilizer">
-          <span class="nav-icon">🌿</span><span data-i18n="fertilizer">Fertilizer</span>
+        <button class="nav-link" type="button" data-page="fertilizer">
+          <span class="nav-icon">♧</span>
+          <span data-i18n="fertilizer">Fertilizer</span>
         </button>
-        <button class="nav-link" data-page="pests">
-          <span class="nav-icon">🐛</span><span data-i18n="pests">Pests</span>
+        <button class="nav-link" type="button" data-page="pests">
+          <span class="nav-icon">🐛</span>
+          <span data-i18n="pests">Pests</span>
         </button>
-        <button class="nav-link" data-page="harvest">
-          <span class="nav-icon">🌾</span><span data-i18n="harvest">Harvest</span>
+        <button class="nav-link" type="button" data-page="harvest">
+          <span class="nav-icon">🌾</span>
+          <span data-i18n="harvest">Harvest</span>
         </button>
       </nav>
 
-      <div class="sidebar-bottom">
-        <div class="season-card">
-          <span class="season-icon">☀️</span>
-          <div>
-            <strong data-i18n="seasonTitle">Kharif season</strong>
-            <span data-i18n="seasonText">Demo season · India</span>
-          </div>
+      <div class="season-card">
+        <span class="season-icon">☀️</span>
+        <div>
+          <strong data-i18n="seasonTitle">Kharif season</strong>
+          <p data-i18n="seasonText">Demo season · India</p>
         </div>
-        <button id="logoutButton" class="logout-button">
-          <span>↪</span><span data-i18n="logout">Log out</span>
-        </button>
       </div>
+
+      <button id="logoutButton" class="logout-button" type="button">
+        <span>↪</span>
+        <span data-i18n="logout">Log out</span>
+      </button>
     </aside>
 
-    <div id="sidebarOverlay" class="sidebar-overlay"></div>
-
-    <main class="main-content">
+    <main class="main-area">
       <header class="topbar">
         <div class="topbar-left">
           <button id="menuButton" class="icon-button menu-button"
-            aria-label="Open menu">☰</button>
+            type="button" aria-label="Open menu">☰</button>
           <div>
-            <p class="topbar-date" id="todayDate"></p>
+            <p class="topbar-overline" data-i18n="goodDay">GROW WITH CONFIDENCE</p>
             <h2 data-i18n="dashboard">Farm dashboard</h2>
           </div>
         </div>
 
-        <div class="topbar-actions">
-          <div class="language-control header-language">
+        <div class="topbar-right">
+          <div class="date-display">
+            <span>▦</span>
+            <span id="todayDate"></span>
+          </div>
+          <div class="select-wrap dashboard-language-wrap">
             <span>🌐</span>
-            <select id="dashboardLanguage" aria-label="Dashboard language">
+            <select id="dashboardLanguage" aria-label="Change language">
               <option value="en">English</option>
               <option value="hi">हिन्दी</option>
               <option value="pa">ਪੰਜਾਬੀ</option>
@@ -213,133 +273,155 @@
               <option value="ta">தமிழ்</option>
             </select>
           </div>
-          <div class="user-avatar" id="userAvatar">F</div>
         </div>
       </header>
 
-      <div class="page-container">
-        <section class="welcome-banner">
-          <div class="welcome-content">
-            <span class="welcome-pill">🌿 <span data-i18n="goodDay">GROW WITH CONFIDENCE</span></span>
-            <h1><span data-i18n="hello">Hello</span>, <span id="welcomeName">Farmer</span>! 👋</h1>
-            <p data-i18n="bannerText">
-              Here's what's happening on your farm today.
-            </p>
-            <button class="banner-button" data-go="fields">
-              <span data-i18n="exploreFields">Explore my fields</span> →
-            </button>
-          </div>
-          <div class="banner-art" aria-hidden="true">
-            <span class="sun">☀️</span>
-            <span class="cloud">☁️</span>
-            <div class="hill hill-back"></div>
-            <div class="hill hill-front"></div>
-            <div class="crop-art">🌾 🌱 🌾</div>
-          </div>
-        </section>
-
-        <section class="stats-grid">
-          <article class="stat-card">
-            <div class="stat-top">
-              <span data-i18n="totalFields">Total fields</span>
-              <span class="stat-icon green">▦</span>
-            </div>
-            <div class="stat-value" id="statFields">5</div>
-            <p data-i18n="fieldsManaged">Fields being managed</p>
-          </article>
-          <article class="stat-card">
-            <div class="stat-top">
-              <span data-i18n="activeCrops">Active crops</span>
-              <span class="stat-icon yellow">🌱</span>
-            </div>
-            <div class="stat-value" id="statCrops">5</div>
-            <p data-i18n="cropsGrowing">Crops growing this season</p>
-          </article>
-          <article class="stat-card">
-            <div class="stat-top">
-              <span data-i18n="waterToday">Watering records</span>
-              <span class="stat-icon blue">💧</span>
-            </div>
-            <div class="stat-value" id="statWater">8</div>
-            <p data-i18n="irrigationTracked">Irrigation records tracked</p>
-          </article>
-          <article class="stat-card">
-            <div class="stat-top">
-              <span data-i18n="harvestReady">Harvest progress</span>
-              <span class="stat-icon orange">🌾</span>
-            </div>
-            <div class="stat-value">80%</div>
-            <p data-i18n="harvestProgress">Demo readiness indicator</p>
-          </article>
-        </section>
-
-        <section class="content-grid">
-          <article class="panel fields-panel">
-            <div class="panel-heading">
-              <div>
-                <span class="eyebrow" data-i18n="yourFarm">YOUR FARM</span>
-                <h2 data-i18n="myFields">My fields</h2>
-              </div>
-              <button class="text-button" data-go="fields">
-                <span data-i18n="viewAll">View all</span> →
+      <div class="page-content">
+        <!-- DASHBOARD HOME -->
+        <section id="homePage">
+          <div class="hero-banner">
+            <div class="hero-copy">
+              <span class="hero-eyebrow">🌿 <span data-i18n="tagline">YOUR DIGITAL FARMING COMPANION</span></span>
+              <h1><span data-i18n="hello">Hello</span>, <span id="welcomeName">Farmer</span>! 👋</h1>
+              <p data-i18n="bannerText">
+                Here's what's happening on your farm today.
+              </p>
+              <button class="primary-button hero-button" type="button"
+                data-go="fields">
+                <span data-i18n="exploreFields">Explore my fields</span>
+                <span>→</span>
               </button>
             </div>
-            <div id="featuredFields" class="featured-fields"></div>
-          </article>
+            <div class="hero-illustration" aria-hidden="true">
+              <div class="hero-sun"></div>
+              <span class="hero-plant plant-a">🌾</span>
+              <span class="hero-plant plant-b">🌱</span>
+              <span class="hero-plant plant-c">🌿</span>
+              <div class="hero-ground"></div>
+            </div>
+          </div>
 
-          <article class="panel activity-panel">
+          <section class="stats-grid" aria-label="Farm statistics">
+            <article class="stat-card">
+              <div class="stat-top">
+                <span class="stat-icon icon-green">▦</span>
+                <span class="stat-tag" data-i18n="live">LIVE</span>
+              </div>
+              <p data-i18n="totalFields">Total fields</p>
+              <strong id="statFields">5</strong>
+              <span class="stat-note" data-i18n="fieldsManaged">Fields being managed</span>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top">
+                <span class="stat-icon icon-yellow">🌱</span>
+                <span class="stat-tag" data-i18n="live">LIVE</span>
+              </div>
+              <p data-i18n="activeCrops">Active crops</p>
+              <strong id="statCrops">5</strong>
+              <span class="stat-note" data-i18n="cropsGrowing">Crops growing this season</span>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top">
+                <span class="stat-icon icon-blue">💧</span>
+                <span class="stat-tag" data-i18n="live">LIVE</span>
+              </div>
+              <p data-i18n="waterToday">Watering records</p>
+              <strong id="statWater">8</strong>
+              <span class="stat-note" data-i18n="irrigationTracked">Irrigation records tracked</span>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top">
+                <span class="stat-icon icon-purple">🌾</span>
+                <span class="stat-tag" data-i18n="live">LIVE</span>
+              </div>
+              <p data-i18n="harvestReady">Harvest progress</p>
+              <strong id="statHarvest">57%</strong>
+              <span class="stat-note" data-i18n="harvestProgress">Demo readiness indicator</span>
+            </article>
+          </section>
+
+          <div class="content-grid">
+            <section class="panel fields-panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="section-overline" data-i18n="yourFarm">YOUR FARM</p>
+                  <h2 data-i18n="myFields">My fields</h2>
+                </div>
+                <button class="text-button" type="button" data-go="fields">
+                  <span data-i18n="viewAll">View all</span> →
+                </button>
+              </div>
+              <div id="featuredFields" class="featured-fields"></div>
+              <button class="add-field-button" type="button" data-add="fields">
+                <span>＋</span> <span data-i18n="addField">Add a field</span>
+              </button>
+            </section>
+
+            <section class="panel activity-panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="section-overline" data-i18n="stayUpdated">STAY UPDATED</p>
+                  <h2 data-i18n="recentActivity">Recent activity</h2>
+                </div>
+                <span class="live-indicator"><span></span><span data-i18n="live">LIVE</span></span>
+              </div>
+              <div id="recentActivity" class="activity-list"></div>
+            </section>
+          </div>
+
+          <section class="panel quick-panel">
             <div class="panel-heading">
               <div>
-                <span class="eyebrow" data-i18n="stayUpdated">STAY UPDATED</span>
-                <h2 data-i18n="recentActivity">Recent activity</h2>
+                <p class="section-overline" data-i18n="getStarted">GET STARTED</p>
+                <h2 data-i18n="quickActions">Quick actions</h2>
               </div>
-              <span class="activity-live">● <span data-i18n="live">LIVE</span></span>
             </div>
-            <div id="recentActivity" class="activity-list"></div>
-          </article>
+            <div class="quick-actions">
+              <button class="quick-action" type="button" data-add="fields">
+                <span class="quick-icon green">＋</span>
+                <span data-i18n="addField">Add a field</span>
+                <span class="quick-arrow">↗</span>
+              </button>
+              <button class="quick-action" type="button" data-add="crops">
+                <span class="quick-icon yellow">🌱</span>
+                <span data-i18n="addCrop">Add a crop</span>
+                <span class="quick-arrow">↗</span>
+              </button>
+              <button class="quick-action" type="button" data-add="irrigation">
+                <span class="quick-icon blue">💧</span>
+                <span data-i18n="recordWater">Record irrigation</span>
+                <span class="quick-arrow">↗</span>
+              </button>
+              <button class="quick-action" type="button" data-add="harvest">
+                <span class="quick-icon purple">🌾</span>
+                <span data-i18n="updateHarvest">Update harvest</span>
+                <span class="quick-arrow">↗</span>
+              </button>
+            </div>
+          </section>
         </section>
 
-        <section class="panel quick-panel">
-          <div class="panel-heading">
-            <div>
-              <span class="eyebrow" data-i18n="getStarted">GET STARTED</span>
-              <h2 data-i18n="quickActions">Quick actions</h2>
+        <!-- MANAGEMENT TABLE PAGE -->
+        <section id="managementPage" class="hidden">
+          <div class="panel management-panel">
+            <div class="panel-heading management-heading">
+              <div>
+                <p class="section-overline" data-i18n="farmRecords">FARM RECORDS</p>
+                <h2 id="managementTitle">Fields</h2>
+              </div>
+              <button id="addRecordButton" class="primary-button" type="button">
+                ＋ <span data-i18n="addNew">Add new</span>
+              </button>
             </div>
-          </div>
-          <div class="quick-actions">
-            <button class="quick-action" data-add="fields">
-              <span class="quick-icon green">＋</span>
-              <span data-i18n="addField">Add a field</span><span>→</span>
-            </button>
-            <button class="quick-action" data-add="crops">
-              <span class="quick-icon lime">🌱</span>
-              <span data-i18n="addCrop">Add a crop</span><span>→</span>
-            </button>
-            <button class="quick-action" data-add="irrigation">
-              <span class="quick-icon blue">💧</span>
-              <span data-i18n="recordWater">Record irrigation</span><span>→</span>
-            </button>
-            <button class="quick-action" data-add="harvest">
-              <span class="quick-icon orange">🌾</span>
-              <span data-i18n="updateHarvest">Update harvest</span><span>→</span>
-            </button>
+            <div id="managementContent" class="table-container"></div>
           </div>
         </section>
 
-        <section id="managementPage" class="panel management-panel hidden">
-          <div class="panel-heading">
-            <div>
-              <span class="eyebrow" data-i18n="farmRecords">FARM RECORDS</span>
-              <h2 id="managementTitle">Fields</h2>
-            </div>
-            <button id="addRecordButton" class="primary-button">＋ <span data-i18n="addNew">Add new</span></button>
-          </div>
-          <div id="managementContent"></div>
-        </section>
-
-        <footer class="app-footer">
-          <span>🌱 Farm Manager</span>
+        <footer class="page-footer">
+          <span>🌱</span>
           <span data-i18n="footerText">Growing a greener future, one field at a time.</span>
+          <span class="footer-dot">•</span>
+          <span>Smart Farming</span>
         </footer>
       </div>
     </main>
@@ -347,24 +429,30 @@
 
   <!-- ADD RECORD MODAL -->
   <div id="recordModal" class="modal-backdrop hidden">
-    <div class="modal-card">
+    <section class="modal-card" role="dialog" aria-modal="true"
+      aria-labelledby="modalTitle">
       <div class="modal-heading">
         <div>
-          <span class="eyebrow" data-i18n="farmRecords">FARM RECORDS</span>
-          <h2 id="modalTitle">Add record</h2>
+          <p class="section-overline" data-i18n="farmRecords">FARM RECORDS</p>
+          <h2 id="modalTitle">Add new record</h2>
         </div>
-        <button id="closeModal" class="icon-button" aria-label="Close">✕</button>
+        <button id="closeModal" class="icon-button" type="button"
+          aria-label="Close">×</button>
       </div>
+
       <form id="recordForm">
-        <div id="recordFormFields" class="form-fields"></div>
+        <div id="recordFormFields" class="modal-form-grid"></div>
         <div class="modal-actions">
-          <button type="button" id="cancelModal" class="secondary-button" data-i18n="cancel">Cancel</button>
-          <button type="submit" class="primary-button" data-i18n="saveRecord">Save record</button>
+          <button id="cancelModal" class="secondary-button" type="button"
+            data-i18n="cancel">Cancel</button>
+          <button class="primary-button" type="submit"
+            data-i18n="saveRecord">Save record</button>
         </div>
       </form>
-    </div>
+    </section>
   </div>
 
+  <!-- TOAST MESSAGE -->
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
