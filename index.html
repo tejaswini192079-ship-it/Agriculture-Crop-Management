@@ -3,264 +3,368 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#6558d3">
-  <meta name="description" content="A multilingual student learning and faculty communication platform.">
-  <title>ClassBridge | Learn Without Losing a Thing</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <meta name="theme-color" content="#f1f6ec">
+  <title>Farm Manager | Smart Agriculture</title>
+  <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 <body>
-  <div class="app-shell">
-    <aside class="sidebar" id="sidebar">
-      <a href="#" class="brand" aria-label="ClassBridge home">
-        <span class="brand-icon">✳</span>
-        <span>Class<span class="brand-accent">Bridge</span>
-          <small>STUDENT LEARNING SPACE</small>
-        </span>
-      </a>
 
-      <div class="sidebar-label" data-i18n="workspace">WORKSPACE</div>
-      <nav class="side-nav" aria-label="Main navigation">
-        <a class="nav-link active" href="#home">
-          <span>⌂</span><span data-i18n="navHome">Home</span>
-        </a>
-        <a class="nav-link" href="#notes">
-          <span>▤</span><span data-i18n="navNotes">My notes</span>
-        </a>
-        <a class="nav-link" href="#questions">
-          <span>☏</span><span data-i18n="navQuestions">My questions</span>
-        </a>
-        <a class="nav-link" href="#help">
-          <span>✦</span><span data-i18n="navHelp">Study assistant</span>
-        </a>
+  <!-- LOGIN SCREEN -->
+  <section id="loginScreen" class="login-screen">
+    <div class="login-visual">
+      <div class="visual-badge">🌱 SMART FARMING</div>
+      <div class="login-illustration">🌾</div>
+      <h1 data-i18n="welcome">Grow smarter. Farm better.</h1>
+      <p data-i18n="welcomeText">
+        Your farm, your crops, your progress — all in one place.
+      </p>
+      <div class="visual-bottom">🌿 Better farming starts here.</div>
+    </div>
+
+    <div class="login-panel">
+      <div class="login-top">
+        <div class="brand-mark">🌱</div>
+        <div>
+          <h2>Farm Manager</h2>
+          <p data-i18n="tagline">Your digital farming companion</p>
+        </div>
+      </div>
+
+      <div class="language-control">
+        <label for="loginLanguage" data-i18n="chooseLanguage">
+          Choose your language
+        </label>
+        <select id="loginLanguage" aria-label="Choose language">
+          <option value="en">🇬🇧 English</option>
+          <option value="hi">🇮🇳 हिन्दी</option>
+          <option value="pa">🇮🇳 ਪੰਜਾਬੀ</option>
+          <option value="te">🇮🇳 తెలుగు</option>
+          <option value="ml">🇮🇳 മലയാളം</option>
+          <option value="ta">🇮🇳 தமிழ்</option>
+        </select>
+      </div>
+
+      <div class="login-heading">
+        <span class="eyebrow" data-i18n="farmerLogin">FARMER LOGIN</span>
+        <h1 data-i18n="loginTitle">Welcome back!</h1>
+        <p data-i18n="loginText">Sign in to manage your farm with ease.</p>
+      </div>
+
+      <form id="loginForm">
+        <label for="username" data-i18n="usernameLabel">Your name</label>
+        <input id="username" type="text" placeholder="Enter your name"
+          data-i18n-placeholder="usernamePlaceholder" required>
+
+        <label for="password" data-i18n="passwordLabel">Password</label>
+        <input id="password" type="password" placeholder="Enter any demo password"
+          data-i18n-placeholder="passwordPlaceholder" required>
+
+        <button class="primary-button login-button" type="submit">
+          <span data-i18n="signIn">Enter my farm</span>
+          <span>→</span>
+        </button>
+      </form>
+
+      <p class="demo-note" data-i18n="demoNote">
+        Demo website: use any name and password to continue.
+      </p>
+
+      <div class="login-footer">🌱 Farm Manager <span>•</span> Made for farmers</div>
+    </div>
+  </section>
+
+  <!-- LOADING SCREEN -->
+  <section id="loadingScreen" class="loading-screen hidden">
+    <div class="loading-card">
+      <div class="loading-heading">
+        <div>
+          <span class="eyebrow" data-i18n="loadingLabel">PLEASE WAIT</span>
+          <h1 data-i18n="loadingTitle">Loading your farm data...</h1>
+        </div>
+        <span class="loading-leaf">🌿</span>
+      </div>
+
+      <div class="progress-track">
+        <div id="loadingProgress" class="progress-fill"></div>
+      </div>
+
+      <div id="loadingTasks" class="loading-tasks">
+        <div class="loading-task" data-task="fields">
+          <span class="task-check">✓</span>
+          <span data-i18n="fields">Fields</span>
+          <strong>5</strong>
+        </div>
+        <div class="loading-task" data-task="crops">
+          <span class="task-check">✓</span>
+          <span data-i18n="crops">Crops</span>
+          <strong>5</strong>
+        </div>
+        <div class="loading-task" data-task="irrigation">
+          <span class="task-check">✓</span>
+          <span data-i18n="irrigation">Irrigation</span>
+          <strong>8</strong>
+        </div>
+        <div class="loading-task" data-task="fertilizer">
+          <span class="task-check">✓</span>
+          <span data-i18n="fertilizer">Fertilizer</span>
+          <strong>6</strong>
+        </div>
+        <div class="loading-task" data-task="pests">
+          <span class="task-check">✓</span>
+          <span data-i18n="pests">Pests</span>
+          <strong>5</strong>
+        </div>
+        <div class="loading-task" data-task="harvest">
+          <span class="task-check"></span>
+          <span data-i18n="harvest">Harvest</span>
+          <strong>5</strong>
+        </div>
+      </div>
+      <p class="loading-caption" data-i18n="loadingCaption">
+        Preparing your farm dashboard...
+      </p>
+    </div>
+  </section>
+
+  <!-- MAIN APPLICATION -->
+  <div id="appScreen" class="app-screen hidden">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-mark">🌱</div>
+        <div>
+          <h2>Farm Manager</h2>
+          <span data-i18n="farmManagement">FARM MANAGEMENT</span>
+        </div>
+        <button id="closeSidebar" class="icon-button mobile-close"
+          aria-label="Close menu">✕</button>
+      </div>
+
+      <div class="farm-profile">
+        <div class="farm-avatar">🌾</div>
+        <div>
+          <strong id="farmerName">Farmer</strong>
+          <span data-i18n="farmOwner">Farm owner</span>
+        </div>
+        <span class="online-dot"></span>
+      </div>
+
+      <p class="nav-caption" data-i18n="workspace">WORKSPACE</p>
+      <nav id="sideNav" class="side-nav">
+        <button class="nav-link active" data-page="home">
+          <span class="nav-icon">⌂</span><span data-i18n="home">Home</span>
+        </button>
+        <button class="nav-link" data-page="fields">
+          <span class="nav-icon">▦</span><span data-i18n="fields">Fields</span>
+        </button>
+        <button class="nav-link" data-page="crops">
+          <span class="nav-icon">🌱</span><span data-i18n="crops">Crops</span>
+        </button>
+        <button class="nav-link" data-page="irrigation">
+          <span class="nav-icon">💧</span><span data-i18n="irrigation">Irrigation</span>
+        </button>
+        <button class="nav-link" data-page="fertilizer">
+          <span class="nav-icon">🌿</span><span data-i18n="fertilizer">Fertilizer</span>
+        </button>
+        <button class="nav-link" data-page="pests">
+          <span class="nav-icon">🐛</span><span data-i18n="pests">Pests</span>
+        </button>
+        <button class="nav-link" data-page="harvest">
+          <span class="nav-icon">🌾</span><span data-i18n="harvest">Harvest</span>
+        </button>
       </nav>
 
-      <div class="sidebar-spacer"></div>
-
-      <section class="sidebar-tip">
-        <div class="tip-spark">✦</div>
-        <h3 data-i18n="tipTitle">Every question matters.</h3>
-        <p data-i18n="tipText">Learning is better when you feel comfortable asking for help.</p>
-        <a href="#questions" class="tip-link" data-i18n="tipLink">Ask a question →</a>
-      </section>
-
-      <div class="sidebar-footer">
-        <span class="online-dot"></span>
-        <span data-i18n="localPrivate">Your personal learning space</span>
+      <div class="sidebar-bottom">
+        <div class="season-card">
+          <span class="season-icon">☀️</span>
+          <div>
+            <strong data-i18n="seasonTitle">Kharif season</strong>
+            <span data-i18n="seasonText">Demo season · India</span>
+          </div>
+        </div>
+        <button id="logoutButton" class="logout-button">
+          <span>↪</span><span data-i18n="logout">Log out</span>
+        </button>
       </div>
     </aside>
 
-    <main class="main-area" id="home">
-      <header class="topbar">
-        <button class="icon-button mobile-menu" id="menuButton"
-          aria-label="Open navigation" aria-expanded="false">☰</button>
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
 
-        <div class="breadcrumb">
-          <span data-i18n="breadcrumb">Your workspace</span>
-          <span class="breadcrumb-divider">/</span>
-          <strong data-i18n="navHome">Home</strong>
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button id="menuButton" class="icon-button menu-button"
+            aria-label="Open menu">☰</button>
+          <div>
+            <p class="topbar-date" id="todayDate"></p>
+            <h2 data-i18n="dashboard">Farm dashboard</h2>
+          </div>
         </div>
 
         <div class="topbar-actions">
-          <label class="language-control">
-            <span aria-hidden="true">◎</span>
-            <select id="languageSelect" aria-label="Choose language">
+          <div class="language-control header-language">
+            <span>🌐</span>
+            <select id="dashboardLanguage" aria-label="Dashboard language">
               <option value="en">English</option>
-              <option value="hi">हिन्दी · Hindi</option>
-              <option value="pa">ਪੰਜਾਬੀ · Punjabi</option>
-              <option value="te">తెలుగు · Telugu</option>
-              <option value="ml">മലയാളം · Malayalam</option>
-              <option value="ta">தமிழ் · Tamil</option>
+              <option value="hi">हिन्दी</option>
+              <option value="pa">ਪੰਜਾਬੀ</option>
+              <option value="te">తెలుగు</option>
+              <option value="ml">മലയാളം</option>
+              <option value="ta">தமிழ்</option>
             </select>
-          </label>
-          <div class="avatar" aria-label="Student profile">S</div>
+          </div>
+          <div class="user-avatar" id="userAvatar">F</div>
         </div>
       </header>
 
-      <div class="content-wrap">
-        <section class="welcome-row">
-          <div>
-            <div class="eyebrow"><span class="eyebrow-dot"></span>
-              <span data-i18n="eyebrow">YOUR LEARNING JOURNEY</span>
-            </div>
-            <h1 data-i18n="welcomeTitle">Understand it today.<br><span>Remember it tomorrow.</span></h1>
-            <p class="welcome-description" data-i18n="welcomeText">
-              Class moves fast. Your understanding doesn't have to.
-              Keep your notes, ask questions, and learn in your language.
+      <div class="page-container">
+        <section class="welcome-banner">
+          <div class="welcome-content">
+            <span class="welcome-pill">🌿 <span data-i18n="goodDay">GROW WITH CONFIDENCE</span></span>
+            <h1><span data-i18n="hello">Hello</span>, <span id="welcomeName">Farmer</span>! 👋</h1>
+            <p data-i18n="bannerText">
+              Here's what's happening on your farm today.
             </p>
-            <div class="welcome-actions">
-              <a href="#notes" class="primary-button">
-                <span>＋</span><span data-i18n="startNotes">Create a note</span>
-              </a>
-              <button class="secondary-button" id="readWelcome">
-                <span>◖))</span><span data-i18n="listen">Listen to introduction</span>
-              </button>
-            </div>
+            <button class="banner-button" data-go="fields">
+              <span data-i18n="exploreFields">Explore my fields</span> →
+            </button>
           </div>
-
-          <div class="hero-illustration" aria-hidden="true">
-            <div class="hero-orbit orbit-one"></div>
-            <div class="hero-orbit orbit-two"></div>
-            <div class="hero-card floating-card card-top">
-              <span class="mini-icon purple-bg">✦</span>
-              <span><strong data-i18n="heroCard1">Your pace</strong><small data-i18n="heroCard1Sub">Your way of learning</small></span>
-            </div>
-            <div class="hero-book">📚</div>
-            <div class="hero-card floating-card card-bottom">
-              <span class="mini-icon yellow-bg">✓</span>
-              <span><strong data-i18n="heroCard2">Keep growing</strong><small data-i18n="heroCard2Sub">One question at a time</small></span>
-            </div>
-            <span class="decor decor-star">✳</span>
-            <span class="decor decor-dot"></span>
+          <div class="banner-art" aria-hidden="true">
+            <span class="sun">☀️</span>
+            <span class="cloud">☁️</span>
+            <div class="hill hill-back"></div>
+            <div class="hill hill-front"></div>
+            <div class="crop-art">🌾 🌱 🌾</div>
           </div>
         </section>
 
-        <section class="stats-grid" aria-label="Learning overview">
+        <section class="stats-grid">
           <article class="stat-card">
-            <div class="stat-top"><span data-i18n="statNotes">Saved notes</span><span class="stat-icon lavender">▤</span></div>
-            <div class="stat-bottom"><strong id="notesCount">0</strong><span data-i18n="statNotesSub">Ideas worth keeping</span></div>
+            <div class="stat-top">
+              <span data-i18n="totalFields">Total fields</span>
+              <span class="stat-icon green">▦</span>
+            </div>
+            <div class="stat-value" id="statFields">5</div>
+            <p data-i18n="fieldsManaged">Fields being managed</p>
           </article>
           <article class="stat-card">
-            <div class="stat-top"><span data-i18n="statQuestions">My questions</span><span class="stat-icon peach">☏</span></div>
-            <div class="stat-bottom"><strong id="questionsCount">0</strong><span data-i18n="statQuestionsSub">Doubts you've written</span></div>
+            <div class="stat-top">
+              <span data-i18n="activeCrops">Active crops</span>
+              <span class="stat-icon yellow">🌱</span>
+            </div>
+            <div class="stat-value" id="statCrops">5</div>
+            <p data-i18n="cropsGrowing">Crops growing this season</p>
           </article>
           <article class="stat-card">
-            <div class="stat-top"><span data-i18n="statLanguages">Languages</span><span class="stat-icon mint">文</span></div>
-            <div class="stat-bottom"><strong>06</strong><span data-i18n="statLanguagesSub">Ways to feel understood</span></div>
+            <div class="stat-top">
+              <span data-i18n="waterToday">Watering records</span>
+              <span class="stat-icon blue">💧</span>
+            </div>
+            <div class="stat-value" id="statWater">8</div>
+            <p data-i18n="irrigationTracked">Irrigation records tracked</p>
+          </article>
+          <article class="stat-card">
+            <div class="stat-top">
+              <span data-i18n="harvestReady">Harvest progress</span>
+              <span class="stat-icon orange">🌾</span>
+            </div>
+            <div class="stat-value">80%</div>
+            <p data-i18n="harvestProgress">Demo readiness indicator</p>
           </article>
         </section>
 
-        <section class="feature-grid" id="help">
-          <article class="panel assistant-panel">
+        <section class="content-grid">
+          <article class="panel fields-panel">
             <div class="panel-heading">
               <div>
-                <div class="section-kicker" data-i18n="sectionTools">LEARNING TOOLS</div>
-                <h2 data-i18n="assistantTitle">Your study assistant</h2>
+                <span class="eyebrow" data-i18n="yourFarm">YOUR FARM</span>
+                <h2 data-i18n="myFields">My fields</h2>
               </div>
-              <span class="heading-icon">✦</span>
-            </div>
-            <p class="panel-description" data-i18n="assistantText">
-              Need to hear something again or prefer speaking instead of typing?
-              These tools can help.
-            </p>
-
-            <div class="assistant-options">
-              <button class="tool-option" id="readNotes">
-                <span class="tool-icon sound-icon">◖))</span>
-                <span class="tool-copy"><strong data-i18n="readAloud">Read my latest note</strong>
-                  <small data-i18n="readAloudSub">Listen to saved study content</small></span>
-                <span class="tool-arrow">→</span>
+              <button class="text-button" data-go="fields">
+                <span data-i18n="viewAll">View all</span> →
               </button>
-              <button class="tool-option" id="voiceQuestion">
-                <span class="tool-icon mic-icon">🎙</span>
-                <span class="tool-copy"><strong data-i18n="voiceInput">Speak a question</strong>
-                  <small data-i18n="voiceInputSub">Use your microphone if supported</small></span>
-                <span class="tool-arrow">→</span>
-              </button>
             </div>
-            <p class="status-message" id="voiceStatus" role="status" aria-live="polite"></p>
+            <div id="featuredFields" class="featured-fields"></div>
           </article>
 
-          <article class="panel prompt-panel">
-            <div class="prompt-decoration">✳</div>
-            <div class="section-kicker" data-i18n="gentleReminder">A GENTLE REMINDER</div>
-            <h2 data-i18n="promptTitle">It's okay to ask<br>again.</h2>
-            <p data-i18n="promptText">A question is not a weakness. It's the beginning of understanding.</p>
-            <a class="text-link" href="#questions"><span data-i18n="promptLink">Write down a doubt</span> ↗</a>
+          <article class="panel activity-panel">
+            <div class="panel-heading">
+              <div>
+                <span class="eyebrow" data-i18n="stayUpdated">STAY UPDATED</span>
+                <h2 data-i18n="recentActivity">Recent activity</h2>
+              </div>
+              <span class="activity-live">● <span data-i18n="live">LIVE</span></span>
+            </div>
+            <div id="recentActivity" class="activity-list"></div>
           </article>
         </section>
 
-        <section class="workspace-grid">
-          <article class="panel notes-panel" id="notes">
-            <div class="panel-heading">
-              <div>
-                <div class="section-kicker" data-i18n="personalWorkspace">YOUR PERSONAL SPACE</div>
-                <h2 data-i18n="notesTitle">Capture the important bits</h2>
-              </div>
-              <span class="heading-icon">▤</span>
+        <section class="panel quick-panel">
+          <div class="panel-heading">
+            <div>
+              <span class="eyebrow" data-i18n="getStarted">GET STARTED</span>
+              <h2 data-i18n="quickActions">Quick actions</h2>
             </div>
-            <p class="panel-description" data-i18n="notesDescription">
-              Write what you understood, what you want to remember, or what you want to revisit.
-            </p>
-
-            <form id="noteForm" class="form-stack">
-              <label for="noteTitle" data-i18n="noteTitleLabel">Note title</label>
-              <input id="noteTitle" maxlength="100" required
-                data-i18n-placeholder="noteTitlePlaceholder"
-                placeholder="e.g. Introduction to Python">
-
-              <label for="noteContent" data-i18n="noteContentLabel">Your notes</label>
-              <textarea id="noteContent" rows="4" maxlength="5000" required
-                data-i18n-placeholder="noteContentPlaceholder"
-                placeholder="Write down the key points from class..."></textarea>
-
-              <div class="form-footer">
-                <span class="form-hint" data-i18n="privateHint">Saved in this browser</span>
-                <button type="submit" class="primary-button">
-                  <span>＋</span><span data-i18n="saveNote">Save note</span>
-                </button>
-              </div>
-            </form>
-            <p class="status-message" id="noteStatus" role="status" aria-live="polite"></p>
-            <div class="saved-items" id="notesList"></div>
-          </article>
-
-          <article class="panel questions-panel" id="questions">
-            <div class="panel-heading">
-              <div>
-                <div class="section-kicker" data-i18n="speakUp">SPEAK UP, STUDENT</div>
-                <h2 data-i18n="questionsTitle">Questions deserve answers</h2>
-              </div>
-              <span class="heading-icon">☏</span>
-            </div>
-            <p class="panel-description" data-i18n="questionsDescription">
-              Record a doubt here so you don't forget it after class.
-            </p>
-
-            <form id="questionForm" class="form-stack">
-              <label for="questionSubject" data-i18n="subjectLabel">Subject or topic</label>
-              <input id="questionSubject" maxlength="100"
-                data-i18n-placeholder="subjectPlaceholder"
-                placeholder="e.g. Mathematics">
-
-              <label for="questionContent" data-i18n="questionLabel">What would you like help with?</label>
-              <textarea id="questionContent" rows="4" maxlength="3000" required
-                data-i18n-placeholder="questionPlaceholder"
-                placeholder="Write your question in your preferred language..."></textarea>
-
-              <div class="form-footer">
-                <span class="form-hint" data-i18n="questionHint">Your doubt, in your words</span>
-                <button type="submit" class="primary-button">
-                  <span>↗</span><span data-i18n="saveQuestion">Save question</span>
-                </button>
-              </div>
-            </form>
-            <p class="status-message" id="questionStatus" role="status" aria-live="polite"></p>
-            <div class="saved-items" id="questionsList"></div>
-          </article>
-        </section>
-
-        <section class="bottom-banner">
-          <div class="banner-symbol">✳</div>
-          <div>
-            <h2 data-i18n="bannerTitle">Your voice belongs in the classroom.</h2>
-            <p data-i18n="bannerText">Learn at your pace. Ask without fear. Keep moving forward.</p>
           </div>
-          <a href="#questions" class="banner-link" data-i18n="bannerLink">Share a doubt →</a>
+          <div class="quick-actions">
+            <button class="quick-action" data-add="fields">
+              <span class="quick-icon green">＋</span>
+              <span data-i18n="addField">Add a field</span><span>→</span>
+            </button>
+            <button class="quick-action" data-add="crops">
+              <span class="quick-icon lime">🌱</span>
+              <span data-i18n="addCrop">Add a crop</span><span>→</span>
+            </button>
+            <button class="quick-action" data-add="irrigation">
+              <span class="quick-icon blue">💧</span>
+              <span data-i18n="recordWater">Record irrigation</span><span>→</span>
+            </button>
+            <button class="quick-action" data-add="harvest">
+              <span class="quick-icon orange">🌾</span>
+              <span data-i18n="updateHarvest">Update harvest</span><span>→</span>
+            </button>
+          </div>
         </section>
 
-        <footer class="page-footer">
-          <a href="#home" class="footer-brand">✳ ClassBridge</a>
-          <p data-i18n="footerText">Made for clearer communication and more confident learning.</p>
-          <button id="clearData" class="clear-data" data-i18n="clearData">Clear my local data</button>
+        <section id="managementPage" class="panel management-panel hidden">
+          <div class="panel-heading">
+            <div>
+              <span class="eyebrow" data-i18n="farmRecords">FARM RECORDS</span>
+              <h2 id="managementTitle">Fields</h2>
+            </div>
+            <button id="addRecordButton" class="primary-button">＋ <span data-i18n="addNew">Add new</span></button>
+          </div>
+          <div id="managementContent"></div>
+        </section>
+
+        <footer class="app-footer">
+          <span>🌱 Farm Manager</span>
+          <span data-i18n="footerText">Growing a greener future, one field at a time.</span>
         </footer>
       </div>
     </main>
   </div>
 
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <!-- ADD RECORD MODAL -->
+  <div id="recordModal" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-heading">
+        <div>
+          <span class="eyebrow" data-i18n="farmRecords">FARM RECORDS</span>
+          <h2 id="modalTitle">Add record</h2>
+        </div>
+        <button id="closeModal" class="icon-button" aria-label="Close">✕</button>
+      </div>
+      <form id="recordForm">
+        <div id="recordFormFields" class="form-fields"></div>
+        <div class="modal-actions">
+          <button type="button" id="cancelModal" class="secondary-button" data-i18n="cancel">Cancel</button>
+          <button type="submit" class="primary-button" data-i18n="saveRecord">Save record</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
