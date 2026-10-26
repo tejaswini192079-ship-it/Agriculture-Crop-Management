@@ -1,121 +1,563 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#216b45">
-  <title>Harvestly | Farmer Login</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
-</head>
-<body>
-  <header class="topbar">
-    <a class="brand" href="index.html" aria-label="Harvestly home">
-      <span class="brand-icon">🌱</span>
-      <span>
-        <strong>Harvestly</strong>
-        <small>FARM MANAGEMENT PLATFORM</small>
-      </span>
-    </a>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harvestly | Farm Management</title>
 
-    <div class="language-box">
-      <label for="language" id="languageLabel">Choose language</label>
-      <select id="language">
-        <option value="en">English</option>
-        <option value="hi">हिन्दी — Hindi</option>
-        <option value="pa">ਪੰਜਾਬੀ — Punjabi</option>
-        <option value="te">తెలుగు — Telugu</option>
-        <option value="ta">தமிழ் — Tamil</option>
-      </select>
-    </div>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f4f8f1;color:#243629}
+button,input,select{font:inherit}
+button{cursor:pointer;border:0;border-radius:9px;padding:12px}
+input,select{width:100%;padding:12px;border:1px solid #d6e2d2;border-radius:9px;background:white}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #8bc77b;outline-offset:2px}
+.hidden{display:none!important}
+
+/* LOGIN */
+.login-page{
+ position:fixed;inset:0;z-index:10000;overflow-y:auto;
+ display:flex;align-items:center;justify-content:center;
+ padding:20px;background:linear-gradient(135deg,#e2f0db,#f8faf5)
+}
+.login-card{
+ width:100%;max-width:430px;padding:30px;background:white;
+ border-radius:22px;text-align:center;
+ box-shadow:0 15px 45px #234a2a20;border:1px solid #e0e9dc
+}
+.login-logo{font-size:42px}
+.login-brand{font-size:32px;font-weight:bold;color:#2f693b;margin:5px}
+.login-tagline{font-size:10px;letter-spacing:3px;color:#81917e;margin-bottom:20px}
+.login-photo{width:100%;height:145px;object-fit:cover;border-radius:13px;margin-bottom:20px}
+.login-card h2{font-size:23px;margin-bottom:9px}
+.login-description{font-size:13px;line-height:1.7;color:#728072;margin-bottom:18px}
+.login-card label{display:block;text-align:left;font-size:13px;font-weight:bold;margin:14px 0 7px}
+.login-card input{text-align:left}
+.login-button{width:100%;background:#2f693b;color:white;margin-top:20px;font-weight:bold;padding:14px}
+.login-button:hover{background:#214f2c}
+.login-error{color:#b42318;font-size:13px;margin-top:12px}
+.login-footer{font-size:12px;color:#758675;margin-top:20px}
+
+/* APP LAYOUT */
+.app{display:flex;min-height:100vh}
+.sidebar{width:235px;flex-shrink:0;background:#183e2b;color:white;padding:24px 17px}
+.brand{font-size:27px;font-weight:bold;color:#b9ef8a}
+.brand-sub{font-size:10px;letter-spacing:2px;margin-top:5px;color:#d4e8d8}
+.nav-title{font-size:11px;color:#b6cbb9;margin:34px 10px 12px}
+.nav button{display:block;width:100%;text-align:left;background:transparent;color:white;margin:5px 0;padding:13px}
+.nav button.active,.nav button:hover{background:#315b3e}
+.season{background:#315b3e;border-radius:12px;padding:15px;margin-top:30px;font-size:13px;line-height:1.8}
+.main{flex:1;min-width:0;padding:27px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-bottom:24px}
+.eyebrow{color:#62826a;font-size:12px;letter-spacing:1.5px;margin-bottom:8px}
+h1{font-size:28px;margin-bottom:7px}
+.subtitle{font-size:14px;line-height:1.6;color:#748174}
+.user-chip{background:white;border:1px solid #e1e9df;border-radius:25px;padding:11px 15px}
+.hero{display:flex;align-items:center;justify-content:space-between;gap:20px;background:linear-gradient(110deg,#244d31,#5b904d);color:white;border-radius:17px;padding:27px;margin-bottom:22px}
+.hero h2{font-size:25px;margin-bottom:10px}
+.hero p{font-size:14px;line-height:1.8;color:#e4f1df}
+.hero-icon{font-size:55px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-bottom:25px}
+.stat,.panel,.field-card{background:white;border:1px solid #e4ebe1;border-radius:14px}
+.stat{padding:17px}
+.stat-icon{font-size:23px;margin-bottom:10px}
+.stat-label{font-size:12px;color:#748075}
+.stat-value{font-size:27px;font-weight:bold;margin:8px 0}
+.stat-note{font-size:11px;color:#56865a}
+.section-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:25px 0 15px}
+.section-heading h2{font-size:20px}
+.green-btn{background:#2f693b;color:white}
+.green-btn:hover{background:#24562f}
+.light-btn{background:#eaf3e6;color:#2d6336}
+.fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.field-card{overflow:hidden;min-width:0}
+.field-image{height:175px;background:#e1ecd9}
+.field-image img{width:100%;height:100%;object-fit:cover;display:block}
+.field-body{padding:16px}
+.field-title{font-weight:bold;font-size:17px;margin-bottom:7px}
+.field-meta{font-size:12px;color:#778278;margin-bottom:15px}
+.stage{font-size:11px;color:#397346;background:#edf6e9;border-radius:20px;padding:6px 9px;display:inline-block;margin-bottom:12px}
+.progress-row{display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px}
+.progress{height:8px;border-radius:10px;background:#e9efe7;overflow:hidden;margin-bottom:16px}
+.progress span{height:100%;display:block;background:#79c76b}
+.field-actions{display:flex;gap:7px}
+.field-actions button{flex:1;font-size:12px;padding:10px 5px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:23px}
+.panel{padding:20px;min-width:0}
+.panel h3{margin-bottom:15px}
+.task{display:flex;gap:10px;padding:12px 0;border-bottom:1px solid #edf1eb;font-size:13px;line-height:1.6}
+.task input{width:auto;margin-top:5px}
+.task small{display:block;color:#7b887c;margin-top:4px}
+.voice-panel{background:#f0f7eb;border-radius:12px;padding:16px}
+.voice-panel p{font-size:13px;line-height:1.7;color:#536653;margin:10px 0}
+.voice-panel label{display:block;font-size:13px;font-weight:bold;margin:13px 0 7px}
+.voice-buttons{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.voice-buttons button{flex:1;min-width:100px}
+.answer-box{background:white;border:1px solid #e1ebdc;border-radius:10px;padding:14px;margin-top:14px;font-size:14px;line-height:1.8;overflow-wrap:anywhere;min-height:75px}
+.answer-label{font-size:10px;color:#62826a;letter-spacing:1px;display:block;font-weight:bold;margin-bottom:5px}
+.status{font-size:12px;line-height:1.7;color:#426d47;margin-top:10px}
+.page-section{margin-top:10px}
+.detail-image{width:100%;max-width:400px;height:220px;object-fit:cover;border-radius:12px;margin:15px 0}
+
+@media(max-width:1050px){
+ .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .fields{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:760px){
+ .app{display:block}
+ .sidebar{width:100%;padding:16px}
+ .nav-title,.season{display:none}
+ .nav{display:flex;gap:5px;overflow-x:auto;margin-top:14px}
+ .nav button{white-space:nowrap;width:auto;margin:0;padding:10px}
+ .main{padding:16px}
+ .fields{grid-template-columns:1fr}
+ .two-col{grid-template-columns:1fr}
+ .hero{padding:21px}
+}
+@media(max-width:420px){
+ .stats{grid-template-columns:1fr 1fr}
+ .stat{padding:12px}
+ .stat-value{font-size:23px}
+ .login-card{padding:22px}
+ .login-photo{height:120px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN PAGE: SHOWN FIRST -->
+<section id="loginPage" class="login-page">
+ <div class="login-card">
+  <div class="login-logo">🌱</div>
+  <div class="login-brand">harvestly</div>
+  <div class="login-tagline">GROW BETTER, EVERY DAY</div>
+
+  <img class="login-photo"
+   src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=80"
+   alt="Green farming fields"
+   onerror="this.onerror=null;this.src='https://images.pexels.com/photos/2132250/pexels-photo-2132250.jpeg?auto=compress&cs=tinysrgb&w=900'">
+
+  <h2>Welcome, Farmer! 👋</h2>
+  <p class="login-description">Manage your fields, care for your crops, and plan a better harvest — all in one place.</p>
+
+  <form id="loginForm">
+   <label for="username">Username</label>
+   <input id="username" name="username" type="text" placeholder="Enter your username" autocomplete="username" required>
+
+   <label for="password">Password</label>
+   <input id="password" name="password" type="password" placeholder="Enter your password" autocomplete="current-password" required>
+
+   <button class="login-button" type="submit">Login to Harvestly →</button>
+  </form>
+  <p id="loginError" class="login-error" role="alert"></p>
+  <p class="login-footer">🌿 Simple farming. Smarter growing.</p>
+ </div>
+</section>
+
+<!-- DASHBOARD: HIDDEN UNTIL LOGIN -->
+<div id="farmApp" class="app hidden">
+ <aside class="sidebar">
+  <div class="brand">🌱 harvestly</div>
+  <div class="brand-sub">FARM MANAGEMENT</div>
+  <div class="nav-title">WORKSPACE</div>
+  <nav class="nav">
+   <button class="active" onclick="showPage('dashboard',this)">▦ Dashboard</button>
+   <button onclick="showPage('fields',this)">🌾 My Fields</button>
+   <button onclick="showPage('activities',this)">✓ Activities</button>
+   <button onclick="showPage('harvest',this)">🧺 Harvest</button>
+  </nav>
+  <div class="season">🌤️ <strong>Kharif season</strong><br>Demo season · India<br>June – October</div>
+ </aside>
+
+ <main class="main">
+  <header class="topbar">
+   <div>
+    <div class="eyebrow">FARM OVERVIEW</div>
+    <h1 id="pageTitle">Good day, Farmer! 🌿</h1>
+    <p class="subtitle" id="pageSubtitle">Here is what is happening on your farm today.</p>
+   </div>
+   <div class="user-chip">👨‍🌾 <span id="farmerName">Farmer</span></div>
   </header>
 
-  <main class="layout">
-    <section class="welcome-card">
-      <div class="farm-art" aria-hidden="true">🌾 🚜 🌱</div>
-      <span class="eyebrow" id="eyebrow">YOUR FARM, SIMPLIFIED</span>
-      <h1 id="welcomeTitle">Welcome, Farmer!</h1>
-      <p id="welcomeText">
-        Manage your fields, crops, irrigation and harvest in one simple place.
-        Listen to instructions or use voice assistance.
-      </p>
+  <section id="dashboard" class="page-section">
+   <div class="hero">
+    <div>
+     <div class="eyebrow" style="color:#d1efbd">YOUR FARM, YOUR FUTURE</div>
+     <h2>Grow better, every day.</h2>
+     <p>Track your crops, organize farm activities, and prepare for a healthy harvest in one simple place.</p>
+    </div>
+    <div class="hero-icon">🌾</div>
+   </div>
 
-      <div class="voice-panel">
-        <h2 id="accessTitle">Easy access</h2>
-        <button type="button" id="readButton" class="button primary">
-          🔊 Read this page aloud
-        </button>
-        <button type="button" id="voiceButton" class="button secondary">
-          🎤 Start voice assistance
-        </button>
-        <button type="button" id="stopButton" class="button quiet">
-          ⏹ Stop voice
-        </button>
-        <p id="voiceStatus" class="voice-status" role="status" aria-live="polite">
-          Voice assistance is ready.
-        </p>
+   <div class="stats">
+    <div class="stat"><div class="stat-icon">🌱</div><div class="stat-label">Active Fields</div><div class="stat-value">3</div><div class="stat-note">Demo fields</div></div>
+    <div class="stat"><div class="stat-icon">💧</div><div class="stat-label">Irrigation Tasks</div><div class="stat-value">2</div><div class="stat-note">Today's schedule</div></div>
+    <div class="stat"><div class="stat-icon">🐛</div><div class="stat-label">Crop Observations</div><div class="stat-value">1</div><div class="stat-note">Needs attention</div></div>
+    <div class="stat"><div class="stat-icon">🧺</div><div class="stat-label">Harvest Readiness</div><div class="stat-value">80%</div><div class="stat-note">Demo estimate</div></div>
+   </div>
+
+   <div class="section-heading">
+    <h2>🌿 Your Fields</h2>
+    <button class="green-btn" onclick="addField()">+ Add Field</button>
+   </div>
+
+   <div class="fields">
+    <article class="field-card">
+     <div class="field-image">
+      <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=85"
+       alt="Green Valley rice field"
+       onerror="this.onerror=null;this.src='https://images.pexels.com/photos/2132250/pexels-photo-2132250.jpeg?auto=compress&cs=tinysrgb&w=900'">
+     </div>
+     <div class="field-body">
+      <span class="stage">🌱 Vegetative stage</span>
+      <div class="field-title">Green Valley</div>
+      <div class="field-meta">Rice · 2.5 acres</div>
+      <div class="progress-row"><span>Growing progress</span><strong>58%</strong></div>
+      <div class="progress"><span style="width:58%"></span></div>
+      <div class="field-actions">
+       <button class="light-btn" onclick="showMessage('Green Valley: check soil moisture and follow local irrigation advice.')">💧 Care tips</button>
+       <button class="light-btn" onclick="viewField('Green Valley','Rice','Vegetative','58%')">Inspect</button>
       </div>
-    </section>
+     </div>
+    </article>
 
-    <section class="login-card">
-      <div class="login-heading">
-        <span class="login-icon" aria-hidden="true">👨‍🌾</span>
-        <h2 id="loginTitle">Farmer Login</h2>
-        <p id="loginDescription">
-          Enter your registered mobile number and password.
-        </p>
+    <article class="field-card">
+     <div class="field-image">
+      <img src="https://images.pexels.com/photos/1327838/pexels-photo-1327838.jpeg?auto=compress&cs=tinysrgb&w=900"
+       alt="Tomato crop"
+       onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1592841200221-a6898f307baa?auto=format&fit=crop&w=900&q=80'">
+     </div>
+     <div class="field-body">
+      <span class="stage">🌼 Flowering stage</span>
+      <div class="field-title">Sunrise Farm</div>
+      <div class="field-meta">Tomato · 1.5 acres</div>
+      <div class="progress-row"><span>Growing progress</span><strong>72%</strong></div>
+      <div class="progress"><span style="width:72%"></span></div>
+      <div class="field-actions">
+       <button class="light-btn" onclick="viewField('Sunrise Farm','Tomato','Flowering','72%')">View details</button>
+       <button class="light-btn" onclick="showMessage('Sunrise Farm: inspect tomato leaves, flowers and soil moisture.')">Inspect</button>
+      </div>
+     </div>
+    </article>
+
+    <article class="field-card">
+     <div class="field-image">
+      <img src="https://images.pexels.com/photos/547263/pexels-photo-547263.jpeg?auto=compress&cs=tinysrgb&w=900"
+       alt="Maize crop field"
+       onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=85'">
+     </div>
+     <div class="field-body">
+      <span class="stage">🌾 Maturity stage</span>
+      <div class="field-title">Harvest Hope</div>
+      <div class="field-meta">Maize · 3 acres</div>
+      <div class="progress-row"><span>Growing progress</span><strong>86%</strong></div>
+      <div class="progress"><span style="width:86%"></span></div>
+      <div class="field-actions">
+       <button class="light-btn" onclick="viewField('Harvest Hope','Maize','Maturity','86%')">View details</button>
+       <button class="light-btn" onclick="showMessage('Harvest Hope: inspect crop maturity before planning harvest.')">Inspect</button>
+      </div>
+     </div>
+    </article>
+   </div>
+
+   <div class="two-col">
+    <div class="panel">
+     <h3>📋 Farm Activity Checklist</h3>
+     <label class="task"><input type="checkbox"><span><strong>Check rice field moisture</strong><small>Green Valley</small></span></label>
+     <label class="task"><input type="checkbox"><span><strong>Inspect tomato plants</strong><small>Sunrise Farm</small></span></label>
+     <label class="task"><input type="checkbox"><span><strong>Observe maize maturity</strong><small>Harvest Hope</small></span></label>
+     <label class="task"><input type="checkbox"><span><strong>Record any pest observations</strong><small>All fields</small></span></label>
+    </div>
+
+    <!-- MULTILINGUAL VOICE ASSISTANT -->
+    <div class="panel">
+     <h3>🎙️ Ask Harvestly</h3>
+     <div class="voice-panel">
+      <strong>Your farming assistant</strong>
+      <p>Choose your language. Type your question or press the microphone and ask aloud. Harvestly will show and speak an answer.</p>
+
+      <label for="language">Choose your language / భాష ఎంచుకోండి / भाषा चुनें</label>
+      <select id="language">
+       <option value="en-IN">🇬🇧 English</option>
+       <option value="te-IN">తెలుగు — Telugu</option>
+       <option value="hi-IN">हिन्दी — Hindi</option>
+       <option value="ta-IN">தமிழ் — Tamil</option>
+       <option value="ml-IN">മലയാളം — Malayalam</option>
+       <option value="kn-IN">ಕನ್ನಡ — Kannada</option>
+      </select>
+
+      <label for="question">Write your question / మీ ప్రశ్న / अपना सवाल</label>
+      <input id="question" type="text" placeholder="Example: How do I care for rice?" autocomplete="off">
+
+      <div class="voice-buttons">
+       <button class="green-btn" onclick="askQuestion()">Ask Question</button>
+       <button class="light-btn" onclick="startListening()">🎤 Speak Question</button>
       </div>
 
-      <form id="loginForm">
-        <label for="phone" id="phoneLabel">Mobile number</label>
-        <input
-          id="phone"
-          name="phone"
-          type="tel"
-          inputmode="numeric"
-          autocomplete="username"
-          placeholder="Enter mobile number"
-          maxlength="15"
-          required
-        >
-        <p class="help-text" id="phoneHelp">
-          Type your number or use voice assistance.
-        </p>
+      <div class="answer-box" aria-live="polite">
+       <span class="answer-label">Harvestly's answer</span>
+       <div id="answer">Hello, farmer! Choose your language and ask a farming question.</div>
+      </div>
 
-        <label for="password" id="passwordLabel">Password</label>
-        <div class="password-row">
-          <input
-            id="password"
-            name="password"
-            type="password"
-            autocomplete="current-password"
-            placeholder="Enter password"
-            required
-          >
-          <button type="button" id="showPassword" class="button secondary show-button">
-            Show
-          </button>
-        </div>
-        <p class="help-text" id="passwordHelp">
-          Keep your password private. Enter it using the keyboard.
-        </p>
+      <div class="voice-buttons">
+       <button class="green-btn" onclick="speakAnswer()">🔊 Read Answer</button>
+       <button class="light-btn" onclick="stopSpeech()">⏹ Stop</button>
+      </div>
+      <div id="voiceStatus" class="status" role="status">Ready. Select a language to begin.</div>
+     </div>
+    </div>
+   </div>
+   <div id="dashboardMessage" class="status" role="status"></div>
+  </section>
 
-        <button type="submit" id="loginButton" class="button primary login-button">
-          Login
-        </button>
-      </form>
+  <section id="fields" class="page-section hidden">
+   <div class="section-heading"><h2>🌾 My Fields</h2><button class="green-btn" onclick="addField()">+ Add Field</button></div>
+   <div class="panel" id="fieldDetails"><h3>Select a field to inspect</h3><p class="subtitle">Go to Dashboard and select Inspect or View details.</p></div>
+  </section>
 
-      <p id="status" class="status-box" role="status" aria-live="polite">
-        Choose your language to begin.
-      </p>
-      <p class="demo-notice" id="demoNotice">
-        Demo only. Real login requires secure authentication.
-      </p>
-    </section>
-  </main>
+  <section id="activities" class="page-section hidden">
+   <div class="section-heading"><h2>✓ Farm Activities</h2></div>
+   <div class="panel">
+    <h3>Daily checklist</h3>
+    <label class="task"><input type="checkbox"> Water Green Valley rice field if needed</label>
+    <label class="task"><input type="checkbox"> Inspect Sunrise Farm tomato plants</label>
+    <label class="task"><input type="checkbox"> Check Harvest Hope maize maturity</label>
+    <label class="task"><input type="checkbox"> Record crop health observations</label>
+   </div>
+  </section>
 
-  <footer id="footerText">
-    Harvestly · Simple farming tools for everyone
-  </footer>
+  <section id="harvest" class="page-section hidden">
+   <div class="section-heading"><h2>🧺 Harvest Tracker</h2></div>
+   <div class="panel">
+    <h3>Harvest Hope — Maize</h3>
+    <p class="subtitle">Sample harvest readiness tracker</p>
+    <div class="progress"><span id="harvestBar" style="width:80%"></span></div>
+    <label for="harvestRange">Adjust demo readiness</label>
+    <input id="harvestRange" type="range" min="0" max="100" value="80" oninput="updateHarvest(this.value)" style="margin-top:12px">
+    <p id="harvestLabel" class="status">80% ready</p>
+    <p class="status">This is a sample estimate, not a prediction of actual crop maturity.</p>
+   </div>
+  </section>
+ </main>
+</div>
+
+<script>
+/* LOGIN: DASHBOARD APPEARS ONLY AFTER FORM SUBMISSION */
+document.getElementById('loginForm').addEventListener('submit',function(event){
+ event.preventDefault();
+ const username=document.getElementById('username').value.trim();
+ const password=document.getElementById('password').value;
+ if(!username||!password.trim()){
+  document.getElementById('loginError').textContent='Please enter both username and password.';
+  return;
+ }
+ document.getElementById('farmerName').textContent=username;
+ document.getElementById('pageTitle').textContent='Welcome, '+username+'! 🌿';
+ document.getElementById('loginPage').classList.add('hidden');
+ document.getElementById('farmApp').classList.remove('hidden');
+});
+
+/* NAVIGATION */
+function showPage(page,button){
+ document.querySelectorAll('.page-section').forEach(s=>s.classList.add('hidden'));
+ document.getElementById(page).classList.remove('hidden');
+ document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
+ if(button)button.classList.add('active');
+ const titles={
+  dashboard:['Good day, '+document.getElementById('farmerName').textContent+'! 🌿',"Here is what's happening on your farm today."],
+  fields:['My Fields 🌾','Monitor your fields and crops.'],
+  activities:['Farm Activities ✓','Keep track of farm work.'],
+  harvest:['Harvest Tracker 🧺','Follow your crop readiness.']
+ };
+ document.getElementById('pageTitle').textContent=titles[page][0];
+ document.getElementById('pageSubtitle').textContent=titles[page][1];
+}
+function showMessage(text){document.getElementById('dashboardMessage').textContent=text}
+function addField(){
+ const name=prompt('Enter your field name:');
+ if(name&&name.trim())showMessage('Field "'+name.trim()+'" noted for this demo. Permanent saving requires a database.');
+}
+function viewField(name,crop,stage,progress){
+ showPage('fields',document.querySelectorAll('.nav button')[1]);
+ const box=document.getElementById('fieldDetails');
+ box.replaceChildren();
+ const h=document.createElement('h3');h.textContent=name;box.appendChild(h);
+ const img=document.createElement('img');
+ img.className='detail-image';img.alt='Agricultural field';
+ img.src='https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=85';
+ img.onerror=function(){this.onerror=null;this.src='https://images.pexels.com/photos/2132250/pexels-photo-2132250.jpeg?auto=compress&cs=tinysrgb&w=900'};
+ box.appendChild(img);
+ ['Crop: '+crop,'Growth stage: '+stage,'Demo progress: '+progress,'Tip: Monitor crop health and follow local agricultural advice.'].forEach(t=>{
+  const p=document.createElement('p');p.className='status';p.textContent=t;box.appendChild(p);
+ });
+}
+function updateHarvest(value){
+ document.getElementById('harvestBar').style.width=value+'%';
+ document.getElementById('harvestLabel').textContent=value+'% ready';
+}
+
+/* ANSWERS IN SIX LANGUAGES */
+const responses={
+'en-IN':{
+greeting:'Hello, farmer! How can I help you with your crops?',
+rice:'For rice in the vegetative stage, check soil moisture, monitor weeds and pests, and follow local irrigation and fertilizer recommendations.',
+water:'Before watering, check soil moisture and the crop stage. Avoid unnecessary overwatering.',
+pest:'Check leaves for unusual spots, insects, or damage. Ask a local agriculture officer before using pesticides.',
+tomato:'For tomatoes, monitor soil moisture and inspect leaves and flowers regularly.',
+harvest:'Check crop maturity and local agricultural guidance before deciding when to harvest.',
+fertilizer:'Use fertilizer according to the crop, soil test, and local agricultural recommendations.',
+general:'I can help with rice, watering, pests, tomatoes, fertilizer, and harvest questions. Please ask a specific question.'
+},
+'te-IN':{
+greeting:'నమస్కారం రైతు గారు! మీ పంటలకు ఎలా సహాయం చేయగలను?',
+rice:'వరి పెరుగుదల దశలో నేల తేమను గమనించండి. కలుపు మొక్కలు, పురుగులను పరిశీలించండి. స్థానిక వ్యవసాయ సూచనలను పాటించండి.',
+water:'నీరు పెట్టే ముందు నేల తేమను, పంట దశను పరిశీలించండి. అవసరానికి మించి నీరు పెట్టవద్దు.',
+pest:'ఆకులపై మచ్చలు లేదా పురుగులు ఉన్నాయా చూడండి. పురుగుమందు వాడే ముందు వ్యవసాయ అధికారిని సంప్రదించండి.',
+tomato:'టమాటా మొక్కలకు నేల తేమను గమనించండి. ఆకులు, పూలను క్రమం తప్పకుండా పరిశీలించండి.',
+harvest:'పంట కోతకు ముందు పంట పరిపక్వతను పరిశీలించి స్థానిక వ్యవసాయ సూచనలను పాటించండి.',
+fertilizer:'నేల పరీక్ష మరియు పంట అవసరాల ఆధారంగా ఎరువులు వాడండి.',
+general:'వరి, నీరు, పురుగులు, టమాటా, ఎరువులు, పంట కోత గురించి అడగండి.'
+},
+'hi-IN':{
+greeting:'नमस्ते किसान जी! मैं आपकी फसल में कैसे मदद कर सकता हूँ?',
+rice:'धान की बढ़वार के समय मिट्टी की नमी देखें। खरपतवार और कीटों की जाँच करें तथा स्थानीय कृषि सलाह का पालन करें।',
+water:'पानी देने से पहले मिट्टी की नमी और फसल की अवस्था जाँचें। जरूरत से ज्यादा पानी न दें।',
+pest:'पत्तियों पर धब्बे, कीट या नुकसान देखें। कीटनाशक इस्तेमाल करने से पहले कृषि अधिकारी से सलाह लें।',
+tomato:'टमाटर की मिट्टी की नमी देखें और पत्तियों तथा फूलों की नियमित जाँच करें।',
+harvest:'कटाई से पहले फसल की परिपक्वता जाँचें और स्थानीय कृषि सलाह लें।',
+fertilizer:'मिट्टी की जाँच और फसल की जरूरत के अनुसार खाद का उपयोग करें।',
+general:'आप धान, पानी, कीट, टमाटर, खाद या कटाई के बारे में पूछ सकते हैं।'
+},
+'ta-IN':{
+greeting:'வணக்கம் விவசாயி! உங்கள் பயிர்களுக்கு நான் எப்படி உதவலாம்?',
+rice:'நெற்பயிரின் வளர்ச்சி நிலையில் மண்ணின் ஈரப்பதத்தை கவனியுங்கள். களைகள் மற்றும் பூச்சிகளைச் சரிபார்த்து உள்ளூர் வேளாண் ஆலோசனையைப் பின்பற்றுங்கள்.',
+water:'நீர் பாய்ச்சுவதற்கு முன் மண்ணின் ஈரப்பதத்தையும் பயிரின் நிலையையும் சரிபாருங்கள்.',
+pest:'இலைகளில் புள்ளிகள் அல்லது பூச்சிகள் உள்ளனவா பாருங்கள். மருந்து பயன்படுத்துவதற்கு முன் வேளாண் அதிகாரியிடம் ஆலோசனை பெறுங்கள்.',
+tomato:'தக்காளி செடிகளின் மண்ணின் ஈரப்பதத்தையும் இலைகள் மற்றும் பூக்களையும் தொடர்ந்து கவனியுங்கள்.',
+harvest:'அறுவடைக்கு முன் பயிரின் முதிர்ச்சியைச் சரிபார்த்து உள்ளூர் வேளாண் ஆலோசனையைப் பின்பற்றுங்கள்.',
+fertilizer:'மண் பரிசோதனை மற்றும் பயிரின் தேவைக்கு ஏற்ப உரங்களைப் பயன்படுத்துங்கள்.',
+general:'நெல், நீர், பூச்சிகள், தக்காளி, உரம் அல்லது அறுவடை பற்றி கேளுங்கள்.'
+},
+'ml-IN':{
+greeting:'നമസ്കാരം കർഷക സുഹൃത്തേ! നിങ്ങളുടെ വിളകളെക്കുറിച്ച് എങ്ങനെ സഹായിക്കാം?',
+rice:'നെല്ലിന്റെ വളർച്ചാ ഘട്ടത്തിൽ മണ്ണിലെ ഈർപ്പം ശ്രദ്ധിക്കുക. കളകളും കീടങ്ങളും പരിശോധിച്ച് പ്രാദേശിക കാർഷിക നിർദേശങ്ങൾ പാലിക്കുക.',
+water:'നനയ്ക്കുന്നതിന് മുമ്പ് മണ്ണിലെ ഈർപ്പവും വിളയുടെ ഘട്ടവും പരിശോധിക്കുക.',
+pest:'ഇലകളിൽ പാടുകളോ കീടങ്ങളോ ഉണ്ടോ പരിശോധിക്കുക. മരുന്ന് ഉപയോഗിക്കുന്നതിന് മുമ്പ് കൃഷി ഓഫീസറുടെ ഉപദേശം തേടുക.',
+tomato:'തക്കാളി ചെടികളുടെ മണ്ണിലെ ഈർപ്പം ശ്രദ്ധിക്കുകയും ഇലകളും പൂക്കളും പരിശോധിക്കുകയും ചെയ്യുക.',
+harvest:'വിളവെടുപ്പിന് മുമ്പ് വിളയുടെ പാകം പരിശോധിച്ച് പ്രാദേശിക കാർഷിക നിർദേശങ്ങൾ പാലിക്കുക.',
+fertilizer:'മണ്ണ് പരിശോധനയുടെയും വിളയുടെ ആവശ്യത്തിന്റെയും അടിസ്ഥാനത്തിൽ വളം ഉപയോഗിക്കുക.',
+general:'നെല്ല്, വെള്ളം, കീടങ്ങൾ, തക്കാളി, വളം, വിളവെടുപ്പ് എന്നിവയെക്കുറിച്ച് ചോദിക്കാം.'
+},
+'kn-IN':{
+greeting:'ನಮಸ್ಕಾರ ರೈತರೇ! ನಿಮ್ಮ ಬೆಳೆಗಳಿಗೆ ನಾನು ಹೇಗೆ ಸಹಾಯ ಮಾಡಲಿ?',
+rice:'ಭತ್ತದ ಬೆಳವಣಿಗೆಯ ಹಂತದಲ್ಲಿ ಮಣ್ಣಿನ ತೇವಾಂಶ ಗಮನಿಸಿ. ಕಳೆ ಮತ್ತು ಕೀಟಗಳನ್ನು ಪರಿಶೀಲಿಸಿ ಸ್ಥಳೀಯ ಕೃಷಿ ಸಲಹೆಗಳನ್ನು ಪಾಲಿಸಿ.',
+water:'ನೀರು ಹಾಕುವ ಮೊದಲು ಮಣ್ಣಿನ ತೇವಾಂಶ ಮತ್ತು ಬೆಳೆಯ ಹಂತವನ್ನು ಪರಿಶೀಲಿಸಿ. ಅಗತ್ಯಕ್ಕಿಂತ ಹೆಚ್ಚು ನೀರು ಹಾಕಬೇಡಿ.',
+pest:'ಎಲೆಗಳಲ್ಲಿ ಕಲೆಗಳು ಅಥವಾ ಕೀಟಗಳಿವೆಯೇ ಪರಿಶೀಲಿಸಿ. ಕೀಟನಾಶಕ ಬಳಸುವ ಮೊದಲು ಕೃಷಿ ಅಧಿಕಾರಿಯನ್ನು ಸಂಪರ್ಕಿಸಿ.',
+tomato:'ಟೊಮೇಟೊ ಗಿಡಗಳ ಮಣ್ಣಿನ ತೇವಾಂಶವನ್ನು ಗಮನಿಸಿ. ಎಲೆಗಳು ಮತ್ತು ಹೂಗಳನ್ನು ನಿಯಮಿತವಾಗಿ ಪರಿಶೀಲಿಸಿ.',
+harvest:'ಕೊಯ್ಲಿಗೆ ಮೊದಲು ಬೆಳೆಯ ಪಕ್ವತೆಯನ್ನು ಪರಿಶೀಲಿಸಿ ಸ್ಥಳೀಯ ಕೃಷಿ ಸಲಹೆಗಳನ್ನು ಪಾಲಿಸಿ.',
+fertilizer:'ಮಣ್ಣಿನ ಪರೀಕ್ಷೆ ಮತ್ತು ಬೆಳೆಯ ಅಗತ್ಯಕ್ಕೆ ಅನುಗುಣವಾಗಿ ಗೊಬ್ಬರ ಬಳಸಿ.',
+general:'ಭತ್ತ, ನೀರು, ಕೀಟಗಳು, ಟೊಮೇಟೊ, ಗೊಬ್ಬರ ಅಥವಾ ಕೊಯ್ಲಿನ ಬಗ್ಗೆ ಕೇಳಿ.'
+}
+};
+
+let currentAnswer=responses['en-IN'].greeting;
+let recognition=null;
+
+function selectedLanguage(){return document.getElementById('language').value}
+function setStatus(text){document.getElementById('voiceStatus').textContent=text}
+
+function identifyTopic(question){
+ const q=question.toLowerCase();
+ if(/water|watering|irrigat|నీరు|పారుదల|पानी|सिंचाई|தண்ணீர்|நீர்ப்பாசனம்|വെള്ളം|ನೀರು|ನೀರಾವರಿ/.test(q))return 'water';
+ if(/pest|insect|bug|పురుగు|కీటక|कीट|कीड़ा|பூச்சி|കീടം|ಕೀಟ|ಹುಳು/.test(q))return 'pest';
+ if(/tomato|టమాటా|టొమాటో|टमाटर|தக்காளி|തക്കാളി|ಟೊಮೇಟೊ/.test(q))return 'tomato';
+ if(/harvest|mature|crop ready|కోత|పంట కోత|कटाई|फसल|அறுவடை|വിളവെടുപ്പ്|ಕೊಯ್ಲು/.test(q))return 'harvest';
+ if(/fertilizer|fertiliser|manure|fertil|ఎరువు|ఎరువులు|खाद|उर्वरक|உரம்|വളം|ಗೊಬ್ಬರ/.test(q))return 'fertilizer';
+ if(/rice|paddy|వరి|धान|நெல்|നെല്ല്|ಭತ್ತ/.test(q))return 'rice';
+ return 'general';
+}
+
+function askQuestion(){
+ const question=document.getElementById('question').value.trim();
+ if(!question){setStatus('Please type a question or press Speak Question.');return}
+ const lang=selectedLanguage();
+ const pack=responses[lang]||responses['en-IN'];
+ const topic=identifyTopic(question);
+ currentAnswer=pack[topic]||pack.general;
+ document.getElementById('answer').textContent=currentAnswer;
+ speakAnswer();
+}
+
+function speakAnswer(){
+ if(!('speechSynthesis' in window)){
+  setStatus('Speech is not supported by this browser. Try an updated version of Chrome.');
+  return;
+ }
+ window.speechSynthesis.cancel();
+ const lang=selectedLanguage();
+ const utterance=new SpeechSynthesisUtterance(currentAnswer);
+ utterance.lang=lang;
+ utterance.rate=0.88;
+ utterance.pitch=1;
+ utterance.volume=1;
+
+ const voices=window.speechSynthesis.getVoices();
+ const prefix=lang.split('-')[0].toLowerCase();
+ const voice=voices.find(v=>v.lang.toLowerCase()===lang.toLowerCase())
+  ||voices.find(v=>v.lang.toLowerCase().startsWith(prefix+'-'));
+ if(voice)utterance.voice=voice;
+
+ utterance.onstart=()=>setStatus('Speaking the answer in '+lang+'...');
+ utterance.onend=()=>setStatus('Finished speaking. Ask another question whenever you like.');
+ utterance.onerror=(event)=>setStatus('Could not speak: '+event.error+'. Check device sound and available voices.');
+ window.speechSynthesis.speak(utterance);
+}
+
+function startListening(){
+ const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
+ if(!SpeechRecognition){
+  setStatus('Voice input is not supported here. Try Chrome on the published HTTPS website, or type your question.');
+  return;
+ }
+ if(recognition){try{recognition.abort()}catch(e){}}
+ recognition=new SpeechRecognition();
+ recognition.lang=selectedLanguage();
+ recognition.interimResults=false;
+ recognition.maxAlternatives=1;
+ recognition.onstart=()=>setStatus('Listening... Please ask your question clearly.');
+ recognition.onresult=(event)=>{
+  document.getElementById('question').value=event.results[0][0].transcript;
+  askQuestion();
+ };
+ recognition.onerror=(event)=>setStatus('Microphone issue: '+event.error+'. Allow microphone permission or type your question.');
+ recognition.onend=()=>{recognition=null};
+ try{recognition.start()}catch(e){setStatus('Could not start microphone. Please try again.')}
+}
+
+function stopSpeech(){
+ if(recognition){try{recognition.abort()}catch(e){}recognition=null}
+ if('speechSynthesis' in window)window.speechSynthesis.cancel();
+ setStatus('Voice stopped.');
+}
+
+document.getElementById('question').addEventListener('keydown',function(event){
+ if(event.key==='Enter'){event.preventDefault();askQuestion()}
+});
+
+document.getElementById('language').addEventListener('change',function(){
+ const lang=this.value;
+ currentAnswer=(responses[lang]||responses['en-IN']).greeting;
+ document.getElementById('answer').textContent=currentAnswer;
+ setStatus('Language selected. Type a question or press Speak Question.');
+});
+
+if('speechSynthesis' in window){
+ window.speechSynthesis.getVoices();
+ window.speechSynthesis.onvoiceschanged=()=>window.speechSynthesis.getVoices();
+}
+</script>
 </body>
 </html>
+```
