@@ -1,990 +1,1497 @@
 /* =========================================
-   CLASSBRIDGE — INTERACTION & LANGUAGES
-   HTML + CSS + JavaScript only
-========================================= */
+   FARM MANAGER — JAVASCRIPT
+   Six languages | No external libraries
+   ========================================= */
 
 "use strict";
 
 const $ = (selector) => document.querySelector(selector);
+const $$ = (selector) => [...document.querySelectorAll(selector)];
+
+/* ---------- TRANSLATIONS ---------- */
 
 const translations = {
   en: {
+    welcome: "Grow smarter. Farm better.",
+    welcomeText: "Your farm, your crops, your progress — all in one place.",
+    tagline: "Your digital farming companion",
+    chooseLanguage: "Choose your language",
+    farmerLogin: "FARMER LOGIN",
+    loginTitle: "Welcome back!",
+    loginText: "Sign in to manage your farm with ease.",
+    usernameLabel: "Your name",
+    usernamePlaceholder: "Enter your name",
+    passwordLabel: "Password",
+    passwordPlaceholder: "Enter any demo password",
+    signIn: "Enter my farm",
+    demoNote: "Demo website: use any name and password to continue.",
+    loadingLabel: "PLEASE WAIT",
+    loadingTitle: "Loading your farm data...",
+    loadingCaption: "Preparing your farm dashboard...",
+    fields: "Fields",
+    crops: "Crops",
+    irrigation: "Irrigation",
+    fertilizer: "Fertilizer",
+    pests: "Pests",
+    harvest: "Harvest",
+    farmManagement: "FARM MANAGEMENT",
+    farmOwner: "Farm owner",
     workspace: "WORKSPACE",
-    navHome: "Home",
-    navNotes: "My notes",
-    navQuestions: "My questions",
-    navHelp: "Study assistant",
-    tipTitle: "Every question matters.",
-    tipText: "Learning is better when you feel comfortable asking for help.",
-    tipLink: "Ask a question →",
-    localPrivate: "Your personal learning space",
-    breadcrumb: "Your workspace",
-    eyebrow: "YOUR LEARNING JOURNEY",
-    welcomeTitle: 'Understand it today.<br><span>Remember it tomorrow.</span>',
-    welcomeText: "Class moves fast. Your understanding doesn't have to. Keep your notes, ask questions, and learn in your language.",
-    startNotes: "Create a note",
-    listen: "Listen to introduction",
-    heroCard1: "Your pace",
-    heroCard1Sub: "Your way of learning",
-    heroCard2: "Keep growing",
-    heroCard2Sub: "One question at a time",
-    statNotes: "Saved notes",
-    statNotesSub: "Ideas worth keeping",
-    statQuestions: "My questions",
-    statQuestionsSub: "Doubts you've written",
-    statLanguages: "Languages",
-    statLanguagesSub: "Ways to feel understood",
-    sectionTools: "LEARNING TOOLS",
-    assistantTitle: "Your study assistant",
-    assistantText: "Need to hear something again or prefer speaking instead of typing? These tools can help.",
-    readAloud: "Read my latest note",
-    readAloudSub: "Listen to saved study content",
-    voiceInput: "Speak a question",
-    voiceInputSub: "Use your microphone if supported",
-    gentleReminder: "A GENTLE REMINDER",
-    promptTitle: "It's okay to ask<br>again.",
-    promptText: "A question is not a weakness. It's the beginning of understanding.",
-    promptLink: "Write down a doubt",
-    personalWorkspace: "YOUR PERSONAL SPACE",
-    notesTitle: "Capture the important bits",
-    notesDescription: "Write what you understood, what you want to remember, or what you want to revisit.",
-    noteTitleLabel: "Note title",
-    noteTitlePlaceholder: "e.g. Introduction to Python",
-    noteContentLabel: "Your notes",
-    noteContentPlaceholder: "Write down the key points from class...",
-    privateHint: "Saved in this browser",
-    saveNote: "Save note",
-    speakUp: "SPEAK UP, STUDENT",
-    questionsTitle: "Questions deserve answers",
-    questionsDescription: "Record a doubt here so you don't forget it after class.",
-    subjectLabel: "Subject or topic",
-    subjectPlaceholder: "e.g. Mathematics",
-    questionLabel: "What would you like help with?",
-    questionPlaceholder: "Write your question in your preferred language...",
-    questionHint: "Your doubt, in your words",
-    saveQuestion: "Save question",
-    bannerTitle: "Your voice belongs in the classroom.",
-    bannerText: "Learn at your pace. Ask without fear. Keep moving forward.",
-    bannerLink: "Share a doubt →",
-    footerText: "Made for clearer communication and more confident learning.",
-    clearData: "Clear my local data",
-    emptyNotes: "Your notes will appear here after you save one.",
-    emptyQuestions: "Your saved questions will appear here.",
+    home: "Home",
+    seasonTitle: "Kharif season",
+    seasonText: "Demo season · India",
+    logout: "Log out",
+    dashboard: "Farm dashboard",
+    goodDay: "GROW WITH CONFIDENCE",
+    hello: "Hello",
+    bannerText: "Here's what's happening on your farm today.",
+    exploreFields: "Explore my fields",
+    totalFields: "Total fields",
+    activeCrops: "Active crops",
+    waterToday: "Watering records",
+    harvestReady: "Harvest progress",
+    fieldsManaged: "Fields being managed",
+    cropsGrowing: "Crops growing this season",
+    irrigationTracked: "Irrigation records tracked",
+    harvestProgress: "Demo readiness indicator",
+    yourFarm: "YOUR FARM",
+    myFields: "My fields",
+    viewAll: "View all",
+    stayUpdated: "STAY UPDATED",
+    recentActivity: "Recent activity",
+    live: "LIVE",
+    getStarted: "GET STARTED",
+    quickActions: "Quick actions",
+    addField: "Add a field",
+    addCrop: "Add a crop",
+    recordWater: "Record irrigation",
+    updateHarvest: "Update harvest",
+    farmRecords: "FARM RECORDS",
+    addNew: "Add new",
+    cancel: "Cancel",
+    saveRecord: "Save record",
+    footerText: "Growing a greener future, one field at a time.",
+    loadingFields: "Loading fields...",
+    loadingCrops: "Loading crops...",
+    loadingIrrigation: "Loading irrigation...",
+    loadingFertilizer: "Loading fertilizer...",
+    loadingPests: "Loading pest records...",
+    loadingHarvest: "Loading harvest records...",
+    vegetative: "Vegetative",
+    flowering: "Flowering",
+    maturity: "Maturity",
+    seedling: "Seedling",
+    healthy: "Healthy",
+    needsAttention: "Needs attention",
+    field: "Field",
+    crop: "Crop",
+    stage: "Stage",
+    progress: "Progress",
+    area: "Area (acres)",
+    name: "Name",
+    cropName: "Crop name",
+    fieldName: "Field name",
+    selectField: "Select field",
+    selectCrop: "Select crop",
+    date: "Date",
+    amount: "Amount",
+    unit: "Unit",
+    notes: "Notes",
+    type: "Type",
+    status: "Status",
+    activity: "Activity",
+    action: "Action",
+    actions: "Actions",
+    fertilizerType: "Fertilizer type",
+    pestName: "Pest observed",
+    harvestQuantity: "Harvest quantity",
     delete: "Delete",
-    saved: "Saved",
-    noteSaved: "Your note has been saved.",
-    questionSaved: "Your question has been saved.",
-    noteDeleted: "Note deleted.",
-    questionDeleted: "Question deleted.",
-    titleRequired: "Please enter a title and your note.",
-    questionRequired: "Please write your question.",
-    noNotes: "You haven't saved a note yet.",
-    noSpeech: "Speech recognition is not supported in this browser. Try a supported browser or type your question.",
-    listening: "Listening... Please speak now.",
-    recognitionError: "Couldn't recognise your speech. Please try again or type your question.",
-    speechEnded: "Voice input ended.",
-    reading: "Reading aloud...",
-    speechUnavailable: "Speech playback is not available in this browser.",
-    speechStopped: "Speech stopped.",
-    dataCleared: "Your saved notes and questions have been cleared.",
-    confirmClear: "Delete all locally saved notes and questions? This cannot be undone.",
-    storageWarning: "Browser storage is unavailable. Your information may not be saved.",
-    emptyTitle: "Untitled",
-    savedQuestion: "Saved question",
-    readIntroduction: "Welcome to ClassBridge. Keep your notes, write down your questions, and learn in your preferred language. Every question matters.",
-    deleteFailed: "Couldn't delete this item."
+    edit: "Edit",
+    noRecords: "No records yet. Add your first record!",
+    recordAdded: "Record added successfully!",
+    recordDeleted: "Record deleted.",
+    loginSuccess: "Welcome to your farm!",
+    logoutSuccess: "You have logged out.",
+    fillRequired: "Please complete all required fields.",
+    confirmDelete: "Delete this record?",
+    all: "All",
+    rice: "Rice",
+    tomato: "Tomato",
+    maize: "Maize",
+    wheat: "Wheat",
+    vegetables: "Vegetables",
+    waterActivity: "Irrigation recorded",
+    fertilizerActivity: "Fertilizer applied",
+    pestActivity: "Pest observation updated",
+    harvestActivity: "Harvest progress updated",
+    recentField: "Field added",
+    today: "Today",
+    yesterday: "Yesterday",
+    daysAgo: "days ago",
+    kg: "kg",
+    litres: "litres",
+    nitrogen: "Nitrogen fertilizer",
+    compost: "Organic compost",
+    aphids: "Aphids",
+    leafSpot: "Leaf spot",
+    expected: "Expected",
+    completed: "Completed",
+    inProgress: "In progress",
+    dateLabel: "Today's date",
+    homeGreeting: "Farm dashboard"
   },
 
   hi: {
-    workspace: "कार्यस्थल",
-    navHome: "होम",
-    navNotes: "मेरे नोट्स",
-    navQuestions: "मेरे सवाल",
-    navHelp: "अध्ययन सहायक",
-    tipTitle: "हर सवाल ज़रूरी है।",
-    tipText: "जब आप बेझिझक मदद माँगते हैं, तो सीखना आसान हो जाता है।",
-    tipLink: "सवाल पूछें →",
-    localPrivate: "आपका निजी अध्ययन स्थान",
-    breadcrumb: "आपका कार्यस्थल",
-    eyebrow: "आपकी सीखने की यात्रा",
-    welcomeTitle: 'आज समझें।<br><span>कल याद रखें।</span>',
-    welcomeText: "कक्षा तेज़ी से आगे बढ़ती है, लेकिन आपको जल्दबाज़ी करने की ज़रूरत नहीं। नोट्स बनाएँ, सवाल पूछें और अपनी भाषा में सीखें।",
-    startNotes: "नोट बनाएँ",
-    listen: "परिचय सुनें",
-    heroCard1: "आपकी गति",
-    heroCard1Sub: "आपका सीखने का तरीका",
-    heroCard2: "आगे बढ़ते रहें",
-    heroCard2Sub: "एक बार में एक सवाल",
-    statNotes: "सहेजे गए नोट्स",
-    statNotesSub: "ज़रूरी विचार",
-    statQuestions: "मेरे सवाल",
-    statQuestionsSub: "लिखे गए सवाल",
-    statLanguages: "भाषाएँ",
-    statLanguagesSub: "समझने के छह तरीके",
-    sectionTools: "सीखने के साधन",
-    assistantTitle: "आपका अध्ययन सहायक",
-    assistantText: "कुछ दोबारा सुनना है या लिखने के बजाय बोलना चाहते हैं? ये साधन मदद कर सकते हैं।",
-    readAloud: "मेरा नवीनतम नोट सुनें",
-    readAloudSub: "सहेजी गई पढ़ाई सुनें",
-    voiceInput: "बोलकर सवाल पूछें",
-    voiceInputSub: "समर्थित ब्राउज़र में माइक्रोफ़ोन इस्तेमाल करें",
-    gentleReminder: "एक छोटी याद दिलाने वाली बात",
-    promptTitle: "दोबारा पूछना<br>बिल्कुल ठीक है।",
-    promptText: "सवाल पूछना कमज़ोरी नहीं है। यह समझने की शुरुआत है।",
-    promptLink: "अपना सवाल लिखें",
-    personalWorkspace: "आपकी निजी जगह",
-    notesTitle: "ज़रूरी बातें लिखें",
-    notesDescription: "जो समझ आया, जो याद रखना है या जिसे दोबारा पढ़ना है, उसे यहाँ लिखें।",
-    noteTitleLabel: "नोट का शीर्षक",
-    noteTitlePlaceholder: "जैसे: पाइथन का परिचय",
-    noteContentLabel: "आपके नोट्स",
-    noteContentPlaceholder: "कक्षा की ज़रूरी बातें यहाँ लिखें...",
-    privateHint: "इसी ब्राउज़र में सहेजा जाएगा",
-    saveNote: "नोट सहेजें",
-    speakUp: "अपना सवाल पूछें",
-    questionsTitle: "हर सवाल का जवाब ज़रूरी है",
-    questionsDescription: "कक्षा के बाद भूलने से पहले अपना सवाल यहाँ लिखें।",
-    subjectLabel: "विषय या टॉपिक",
-    subjectPlaceholder: "जैसे: गणित",
-    questionLabel: "आपको किस बात में मदद चाहिए?",
-    questionPlaceholder: "अपनी पसंदीदा भाषा में सवाल लिखें...",
-    questionHint: "आपका सवाल, आपके शब्दों में",
-    saveQuestion: "सवाल सहेजें",
-    bannerTitle: "कक्षा में आपकी आवाज़ भी ज़रूरी है।",
-    bannerText: "अपनी गति से सीखें। बिना डर सवाल पूछें। आगे बढ़ें।",
-    bannerLink: "अपना सवाल लिखें →",
-    footerText: "बेहतर संवाद और आत्मविश्वास के साथ सीखने के लिए।",
-    clearData: "मेरा सहेजा डेटा मिटाएँ",
-    emptyNotes: "नोट सहेजने के बाद यहाँ दिखाई देंगे।",
-    emptyQuestions: "आपके सहेजे गए सवाल यहाँ दिखाई देंगे।",
+    welcome: "समझदारी से खेती करें। बेहतर उगाएँ।",
+    welcomeText: "आपका खेत, आपकी फसल और आपकी प्रगति — सब एक जगह।",
+    tagline: "आपका डिजिटल खेती सहायक",
+    chooseLanguage: "अपनी भाषा चुनें",
+    farmerLogin: "किसान लॉगिन",
+    loginTitle: "वापस स्वागत है!",
+    loginText: "अपने खेत को आसानी से प्रबंधित करें।",
+    usernameLabel: "आपका नाम",
+    usernamePlaceholder: "अपना नाम दर्ज करें",
+    passwordLabel: "पासवर्ड",
+    passwordPlaceholder: "कोई भी डेमो पासवर्ड दर्ज करें",
+    signIn: "मेरे खेत में जाएँ",
+    demoNote: "डेमो वेबसाइट: आगे बढ़ने के लिए कोई भी नाम और पासवर्ड डालें।",
+    loadingLabel: "कृपया प्रतीक्षा करें",
+    loadingTitle: "आपके खेत का डेटा लोड हो रहा है...",
+    loadingCaption: "आपका डैशबोर्ड तैयार हो रहा है...",
+    fields: "खेत",
+    crops: "फसलें",
+    irrigation: "सिंचाई",
+    fertilizer: "उर्वरक",
+    pests: "कीट",
+    harvest: "कटाई",
+    farmManagement: "खेत प्रबंधन",
+    farmOwner: "खेत के मालिक",
+    workspace: "मुख्य मेनू",
+    home: "होम",
+    seasonTitle: "खरीफ का मौसम",
+    seasonText: "डेमो मौसम · भारत",
+    logout: "लॉग आउट",
+    dashboard: "खेत डैशबोर्ड",
+    goodDay: "आत्मविश्वास से खेती करें",
+    hello: "नमस्ते",
+    bannerText: "आज आपके खेत में क्या हो रहा है, यहाँ देखें।",
+    exploreFields: "मेरे खेत देखें",
+    totalFields: "कुल खेत",
+    activeCrops: "सक्रिय फसलें",
+    waterToday: "सिंचाई रिकॉर्ड",
+    harvestReady: "कटाई की प्रगति",
+    fieldsManaged: "प्रबंधित किए जा रहे खेत",
+    cropsGrowing: "इस मौसम में उगाई जा रही फसलें",
+    irrigationTracked: "सिंचाई के रिकॉर्ड",
+    harvestProgress: "डेमो कटाई स्थिति",
+    yourFarm: "आपका खेत",
+    myFields: "मेरे खेत",
+    viewAll: "सभी देखें",
+    stayUpdated: "नई जानकारी",
+    recentActivity: "हाल की गतिविधियाँ",
+    live: "लाइव",
+    getStarted: "शुरू करें",
+    quickActions: "त्वरित कार्य",
+    addField: "खेत जोड़ें",
+    addCrop: "फसल जोड़ें",
+    recordWater: "सिंचाई दर्ज करें",
+    updateHarvest: "कटाई अपडेट करें",
+    farmRecords: "खेत के रिकॉर्ड",
+    addNew: "नया जोड़ें",
+    cancel: "रद्द करें",
+    saveRecord: "रिकॉर्ड सहेजें",
+    footerText: "हर खेत के साथ हरियाली बढ़ाएँ।",
+    vegetative: "विकास अवस्था",
+    flowering: "फूल आने की अवस्था",
+    maturity: "पकने की अवस्था",
+    seedling: "अंकुर अवस्था",
+    healthy: "स्वस्थ",
+    needsAttention: "ध्यान देने की आवश्यकता",
+    field: "खेत",
+    crop: "फसल",
+    stage: "अवस्था",
+    progress: "प्रगति",
+    area: "क्षेत्रफल (एकड़)",
+    name: "नाम",
+    cropName: "फसल का नाम",
+    fieldName: "खेत का नाम",
+    selectField: "खेत चुनें",
+    selectCrop: "फसल चुनें",
+    date: "तारीख",
+    amount: "मात्रा",
+    unit: "इकाई",
+    notes: "विवरण",
+    type: "प्रकार",
+    status: "स्थिति",
+    activity: "गतिविधि",
+    action: "कार्य",
+    actions: "कार्य",
+    fertilizerType: "उर्वरक का प्रकार",
+    pestName: "देखा गया कीट",
+    harvestQuantity: "कटाई की मात्रा",
     delete: "हटाएँ",
-    saved: "सहेजा गया",
-    noteSaved: "आपका नोट सहेज दिया गया है।",
-    questionSaved: "आपका सवाल सहेज दिया गया है।",
-    noteDeleted: "नोट हटा दिया गया।",
-    questionDeleted: "सवाल हटा दिया गया।",
-    titleRequired: "कृपया शीर्षक और नोट लिखें।",
-    questionRequired: "कृपया अपना सवाल लिखें।",
-    noNotes: "आपने अभी कोई नोट नहीं सहेजा है।",
-    noSpeech: "इस ब्राउज़र में आवाज़ पहचानने की सुविधा उपलब्ध नहीं है। किसी समर्थित ब्राउज़र का उपयोग करें या सवाल लिखें।",
-    listening: "सुन रहा है... अब बोलें।",
-    recognitionError: "आपकी आवाज़ समझ नहीं आई। फिर से कोशिश करें या सवाल लिखें।",
-    speechEnded: "आवाज़ से लिखने की प्रक्रिया समाप्त हुई।",
-    reading: "आवाज़ में पढ़ा जा रहा है...",
-    speechUnavailable: "इस ब्राउज़र में आवाज़ में पढ़ने की सुविधा उपलब्ध नहीं है।",
-    speechStopped: "आवाज़ बंद कर दी गई।",
-    dataCleared: "आपके सहेजे गए नोट्स और सवाल हटा दिए गए हैं।",
-    confirmClear: "क्या सभी सहेजे गए नोट्स और सवाल हटाने हैं? इसे वापस नहीं किया जा सकता।",
-    storageWarning: "ब्राउज़र स्टोरेज उपलब्ध नहीं है। आपका डेटा सहेजा नहीं जा सकता।",
-    emptyTitle: "बिना शीर्षक",
-    savedQuestion: "सहेजा गया सवाल",
-    readIntroduction: "क्लासब्रिज में आपका स्वागत है। अपने नोट्स सहेजें, सवाल लिखें और अपनी पसंदीदा भाषा में सीखें। हर सवाल ज़रूरी है।",
-    deleteFailed: "यह जानकारी हटाई नहीं जा सकी।"
+    edit: "बदलें",
+    noRecords: "अभी कोई रिकॉर्ड नहीं है। पहला रिकॉर्ड जोड़ें!",
+    recordAdded: "रिकॉर्ड सफलतापूर्वक जोड़ा गया!",
+    recordDeleted: "रिकॉर्ड हटा दिया गया।",
+    loginSuccess: "आपके खेत में स्वागत है!",
+    logoutSuccess: "आप लॉग आउट हो गए हैं।",
+    fillRequired: "कृपया सभी आवश्यक जानकारी भरें।",
+    confirmDelete: "क्या यह रिकॉर्ड हटाना है?",
+    all: "सभी",
+    rice: "धान",
+    tomato: "टमाटर",
+    maize: "मक्का",
+    wheat: "गेहूँ",
+    vegetables: "सब्जियाँ",
+    waterActivity: "सिंचाई दर्ज की गई",
+    fertilizerActivity: "उर्वरक डाला गया",
+    pestActivity: "कीट की जानकारी अपडेट हुई",
+    harvestActivity: "कटाई की प्रगति अपडेट हुई",
+    recentField: "खेत जोड़ा गया",
+    today: "आज",
+    yesterday: "कल",
+    daysAgo: "दिन पहले",
+    kg: "किलोग्राम",
+    litres: "लीटर",
+    nitrogen: "नाइट्रोजन उर्वरक",
+    compost: "जैविक खाद",
+    aphids: "माहू कीट",
+    leafSpot: "पत्ती धब्बा रोग",
+    expected: "अनुमानित",
+    completed: "पूरा हुआ",
+    inProgress: "जारी है",
+    dateLabel: "आज की तारीख",
+    homeGreeting: "खेत डैशबोर्ड"
   },
 
   pa: {
-    workspace: "ਕੰਮ ਕਰਨ ਦੀ ਥਾਂ",
-    navHome: "ਮੁੱਖ ਪੰਨਾ",
-    navNotes: "ਮੇਰੇ ਨੋਟਸ",
-    navQuestions: "ਮੇਰੇ ਸਵਾਲ",
-    navHelp: "ਪੜ੍ਹਾਈ ਸਹਾਇਕ",
-    tipTitle: "ਹਰ ਸਵਾਲ ਮਹੱਤਵਪੂਰਨ ਹੈ।",
-    tipText: "ਬਿਨਾਂ ਝਿਜਕ ਮਦਦ ਮੰਗਣ ਨਾਲ ਸਿੱਖਣਾ ਆਸਾਨ ਹੁੰਦਾ ਹੈ।",
-    tipLink: "ਸਵਾਲ ਪੁੱਛੋ →",
-    localPrivate: "ਤੁਹਾਡੀ ਨਿੱਜੀ ਪੜ੍ਹਾਈ ਦੀ ਥਾਂ",
-    breadcrumb: "ਤੁਹਾਡੀ ਥਾਂ",
-    eyebrow: "ਤੁਹਾਡੀ ਸਿੱਖਣ ਦੀ ਯਾਤਰਾ",
-    welcomeTitle: 'ਅੱਜ ਸਮਝੋ।<br><span>ਕੱਲ੍ਹ ਯਾਦ ਰੱਖੋ।</span>',
-    welcomeText: "ਕਲਾਸ ਤੇਜ਼ੀ ਨਾਲ ਅੱਗੇ ਵਧਦੀ ਹੈ, ਪਰ ਤੁਹਾਨੂੰ ਜਲਦੀ ਕਰਨ ਦੀ ਲੋੜ ਨਹੀਂ। ਨੋਟਸ ਬਣਾਓ, ਸਵਾਲ ਪੁੱਛੋ ਅਤੇ ਆਪਣੀ ਭਾਸ਼ਾ ਵਿੱਚ ਸਿੱਖੋ।",
-    startNotes: "ਨੋਟ ਬਣਾਓ",
-    listen: "ਜਾਣ-ਪਛਾਣ ਸੁਣੋ",
-    heroCard1: "ਤੁਹਾਡੀ ਰਫ਼ਤਾਰ",
-    heroCard1Sub: "ਤੁਹਾਡਾ ਸਿੱਖਣ ਦਾ ਤਰੀਕਾ",
-    heroCard2: "ਅੱਗੇ ਵਧਦੇ ਰਹੋ",
-    heroCard2Sub: "ਇੱਕ ਵਾਰ ਵਿੱਚ ਇੱਕ ਸਵਾਲ",
-    statNotes: "ਸੰਭਾਲੇ ਨੋਟਸ",
-    statNotesSub: "ਯਾਦ ਰੱਖਣ ਵਾਲੇ ਵਿਚਾਰ",
-    statQuestions: "ਮੇਰੇ ਸਵਾਲ",
-    statQuestionsSub: "ਲਿਖੇ ਹੋਏ ਸਵਾਲ",
-    statLanguages: "ਭਾਸ਼ਾਵਾਂ",
-    statLanguagesSub: "ਸਮਝਣ ਦੇ ਛੇ ਤਰੀਕੇ",
-    sectionTools: "ਸਿੱਖਣ ਦੇ ਸਾਧਨ",
-    assistantTitle: "ਤੁਹਾਡਾ ਪੜ੍ਹਾਈ ਸਹਾਇਕ",
-    assistantText: "ਕੁਝ ਦੁਬਾਰਾ ਸੁਣਨਾ ਹੈ ਜਾਂ ਲਿਖਣ ਦੀ ਬਜਾਏ ਬੋਲਣਾ ਚਾਹੁੰਦੇ ਹੋ? ਇਹ ਸਾਧਨ ਮਦਦ ਕਰ ਸਕਦੇ ਹਨ।",
-    readAloud: "ਮੇਰਾ ਨਵਾਂ ਨੋਟ ਸੁਣੋ",
-    readAloudSub: "ਸੰਭਾਲੀ ਪੜ੍ਹਾਈ ਸੁਣੋ",
-    voiceInput: "ਬੋਲ ਕੇ ਸਵਾਲ ਪੁੱਛੋ",
-    voiceInputSub: "ਸਹਾਇਕ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਮਾਈਕ੍ਰੋਫ਼ੋਨ ਵਰਤੋ",
-    gentleReminder: "ਇੱਕ ਛੋਟੀ ਜਿਹੀ ਯਾਦ",
-    promptTitle: "ਦੁਬਾਰਾ ਪੁੱਛਣਾ<br>ਬਿਲਕੁਲ ਠੀਕ ਹੈ।",
-    promptText: "ਸਵਾਲ ਪੁੱਛਣਾ ਕਮਜ਼ੋਰੀ ਨਹੀਂ ਹੈ। ਇਹ ਸਮਝਣ ਦੀ ਸ਼ੁਰੂਆਤ ਹੈ।",
-    promptLink: "ਆਪਣਾ ਸਵਾਲ ਲਿਖੋ",
-    personalWorkspace: "ਤੁਹਾਡੀ ਨਿੱਜੀ ਥਾਂ",
-    notesTitle: "ਜ਼ਰੂਰੀ ਗੱਲਾਂ ਲਿਖੋ",
-    notesDescription: "ਜੋ ਸਮਝ ਆਇਆ, ਜੋ ਯਾਦ ਰੱਖਣਾ ਹੈ ਜਾਂ ਜਿਸ ਨੂੰ ਦੁਬਾਰਾ ਪੜ੍ਹਨਾ ਹੈ, ਉਹ ਇੱਥੇ ਲਿਖੋ।",
-    noteTitleLabel: "ਨੋਟ ਦਾ ਸਿਰਲੇਖ",
-    noteTitlePlaceholder: "ਜਿਵੇਂ: ਪਾਇਥਨ ਦੀ ਜਾਣ-ਪਛਾਣ",
-    noteContentLabel: "ਤੁਹਾਡੇ ਨੋਟਸ",
-    noteContentPlaceholder: "ਕਲਾਸ ਦੀਆਂ ਜ਼ਰੂਰੀ ਗੱਲਾਂ ਇੱਥੇ ਲਿਖੋ...",
-    privateHint: "ਇਸੇ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਸੰਭਾਲਿਆ ਜਾਵੇਗਾ",
-    saveNote: "ਨੋਟ ਸੰਭਾਲੋ",
-    speakUp: "ਆਪਣਾ ਸਵਾਲ ਪੁੱਛੋ",
-    questionsTitle: "ਹਰ ਸਵਾਲ ਦਾ ਜਵਾਬ ਜ਼ਰੂਰੀ ਹੈ",
-    questionsDescription: "ਕਲਾਸ ਤੋਂ ਬਾਅਦ ਭੁੱਲਣ ਤੋਂ ਪਹਿਲਾਂ ਆਪਣਾ ਸਵਾਲ ਇੱਥੇ ਲਿਖੋ।",
-    subjectLabel: "ਵਿਸ਼ਾ ਜਾਂ ਟੌਪਿਕ",
-    subjectPlaceholder: "ਜਿਵੇਂ: ਗਣਿਤ",
-    questionLabel: "ਤੁਹਾਨੂੰ ਕਿਸ ਗੱਲ ਵਿੱਚ ਮਦਦ ਚਾਹੀਦੀ ਹੈ?",
-    questionPlaceholder: "ਆਪਣੀ ਪਸੰਦੀਦਾ ਭਾਸ਼ਾ ਵਿੱਚ ਸਵਾਲ ਲਿਖੋ...",
-    questionHint: "ਤੁਹਾਡਾ ਸਵਾਲ, ਤੁਹਾਡੇ ਸ਼ਬਦਾਂ ਵਿੱਚ",
-    saveQuestion: "ਸਵਾਲ ਸੰਭਾਲੋ",
-    bannerTitle: "ਕਲਾਸ ਵਿੱਚ ਤੁਹਾਡੀ ਆਵਾਜ਼ ਵੀ ਜ਼ਰੂਰੀ ਹੈ।",
-    bannerText: "ਆਪਣੀ ਰਫ਼ਤਾਰ ਨਾਲ ਸਿੱਖੋ। ਬਿਨਾਂ ਡਰ ਸਵਾਲ ਪੁੱਛੋ। ਅੱਗੇ ਵਧੋ।",
-    bannerLink: "ਸਵਾਲ ਸਾਂਝਾ ਕਰੋ →",
-    footerText: "ਬਿਹਤਰ ਗੱਲਬਾਤ ਅਤੇ ਭਰੋਸੇ ਨਾਲ ਸਿੱਖਣ ਲਈ।",
-    clearData: "ਮੇਰਾ ਸੰਭਾਲਿਆ ਡਾਟਾ ਮਿਟਾਓ",
-    emptyNotes: "ਨੋਟ ਸੰਭਾਲਣ ਤੋਂ ਬਾਅਦ ਇੱਥੇ ਦਿਖਾਈ ਦੇਣਗੇ।",
-    emptyQuestions: "ਤੁਹਾਡੇ ਸੰਭਾਲੇ ਸਵਾਲ ਇੱਥੇ ਦਿਖਾਈ ਦੇਣਗੇ।",
+    welcome: "ਸਮਝਦਾਰੀ ਨਾਲ ਖੇਤੀ ਕਰੋ। ਬਿਹਤਰ ਉਗਾਓ।",
+    welcomeText: "ਤੁਹਾਡਾ ਖੇਤ, ਤੁਹਾਡੀਆਂ ਫ਼ਸਲਾਂ ਅਤੇ ਤਰੱਕੀ — ਸਭ ਇੱਕ ਥਾਂ।",
+    tagline: "ਤੁਹਾਡਾ ਡਿਜੀਟਲ ਖੇਤੀ ਸਹਾਇਕ",
+    chooseLanguage: "ਆਪਣੀ ਭਾਸ਼ਾ ਚੁਣੋ",
+    farmerLogin: "ਕਿਸਾਨ ਲੌਗਇਨ",
+    loginTitle: "ਜੀ ਆਇਆਂ ਨੂੰ!",
+    loginText: "ਆਪਣੇ ਖੇਤ ਦਾ ਆਸਾਨੀ ਨਾਲ ਪ੍ਰਬੰਧਨ ਕਰੋ।",
+    usernameLabel: "ਤੁਹਾਡਾ ਨਾਮ",
+    usernamePlaceholder: "ਆਪਣਾ ਨਾਮ ਲਿਖੋ",
+    passwordLabel: "ਪਾਸਵਰਡ",
+    passwordPlaceholder: "ਕੋਈ ਵੀ ਡੈਮੋ ਪਾਸਵਰਡ ਲਿਖੋ",
+    signIn: "ਮੇਰੇ ਖੇਤ ਵਿੱਚ ਜਾਓ",
+    demoNote: "ਡੈਮੋ ਵੈੱਬਸਾਈਟ: ਅੱਗੇ ਵਧਣ ਲਈ ਕੋਈ ਵੀ ਨਾਮ ਅਤੇ ਪਾਸਵਰਡ ਵਰਤੋ।",
+    loadingLabel: "ਕਿਰਪਾ ਕਰਕੇ ਉਡੀਕ ਕਰੋ",
+    loadingTitle: "ਤੁਹਾਡੇ ਖੇਤ ਦਾ ਡਾਟਾ ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ...",
+    loadingCaption: "ਤੁਹਾਡਾ ਡੈਸ਼ਬੋਰਡ ਤਿਆਰ ਹੋ ਰਿਹਾ ਹੈ...",
+    fields: "ਖੇਤ",
+    crops: "ਫ਼ਸਲਾਂ",
+    irrigation: "ਸਿੰਚਾਈ",
+    fertilizer: "ਖਾਦ",
+    pests: "ਕੀੜੇ",
+    harvest: "ਵਾਢੀ",
+    farmManagement: "ਖੇਤੀ ਪ੍ਰਬੰਧਨ",
+    farmOwner: "ਖੇਤ ਦਾ ਮਾਲਕ",
+    workspace: "ਮੁੱਖ ਮੀਨੂ",
+    home: "ਮੁੱਖ ਪੰਨਾ",
+    seasonTitle: "ਸਾਉਣੀ ਦਾ ਮੌਸਮ",
+    seasonText: "ਡੈਮੋ ਮੌਸਮ · ਭਾਰਤ",
+    logout: "ਲੌਗ ਆਉਟ",
+    dashboard: "ਖੇਤੀ ਡੈਸ਼ਬੋਰਡ",
+    goodDay: "ਭਰੋਸੇ ਨਾਲ ਖੇਤੀ ਕਰੋ",
+    hello: "ਸਤ ਸ੍ਰੀ ਅਕਾਲ",
+    bannerText: "ਅੱਜ ਤੁਹਾਡੇ ਖੇਤ ਵਿੱਚ ਕੀ ਹੋ ਰਿਹਾ ਹੈ, ਇੱਥੇ ਦੇਖੋ।",
+    exploreFields: "ਮੇਰੇ ਖੇਤ ਵੇਖੋ",
+    totalFields: "ਕੁੱਲ ਖੇਤ",
+    activeCrops: "ਚੱਲ ਰਹੀਆਂ ਫ਼ਸਲਾਂ",
+    waterToday: "ਸਿੰਚਾਈ ਦੇ ਰਿਕਾਰਡ",
+    harvestReady: "ਵਾਢੀ ਦੀ ਤਰੱਕੀ",
+    fieldsManaged: "ਪ੍ਰਬੰਧਨ ਹੇਠ ਖੇਤ",
+    cropsGrowing: "ਇਸ ਮੌਸਮ ਦੀਆਂ ਫ਼ਸਲਾਂ",
+    irrigationTracked: "ਸਿੰਚਾਈ ਦੇ ਰਿਕਾਰਡ",
+    harvestProgress: "ਵਾਢੀ ਦੀ ਡੈਮੋ ਸਥਿਤੀ",
+    yourFarm: "ਤੁਹਾਡਾ ਖੇਤ",
+    myFields: "ਮੇਰੇ ਖੇਤ",
+    viewAll: "ਸਾਰੇ ਵੇਖੋ",
+    stayUpdated: "ਨਵੀਂ ਜਾਣਕਾਰੀ",
+    recentActivity: "ਹਾਲੀਆ ਗਤੀਵਿਧੀਆਂ",
+    live: "ਲਾਈਵ",
+    getStarted: "ਸ਼ੁਰੂ ਕਰੋ",
+    quickActions: "ਤੇਜ਼ ਕੰਮ",
+    addField: "ਖੇਤ ਜੋੜੋ",
+    addCrop: "ਫ਼ਸਲ ਜੋੜੋ",
+    recordWater: "ਸਿੰਚਾਈ ਦਰਜ ਕਰੋ",
+    updateHarvest: "ਵਾਢੀ ਅੱਪਡੇਟ ਕਰੋ",
+    farmRecords: "ਖੇਤੀ ਰਿਕਾਰਡ",
+    addNew: "ਨਵਾਂ ਜੋੜੋ",
+    cancel: "ਰੱਦ ਕਰੋ",
+    saveRecord: "ਰਿਕਾਰਡ ਸੰਭਾਲੋ",
+    footerText: "ਹਰ ਖੇਤ ਨਾਲ ਹਰਿਆਲੀ ਵਧਾਓ।",
+    vegetative: "ਵਾਧੇ ਦੀ ਅਵਸਥਾ",
+    flowering: "ਫੁੱਲਾਂ ਦੀ ਅਵਸਥਾ",
+    maturity: "ਪੱਕਣ ਦੀ ਅਵਸਥਾ",
+    seedling: "ਬੂਟੇ ਦੀ ਅਵਸਥਾ",
+    healthy: "ਸਿਹਤਮੰਦ",
+    needsAttention: "ਧਿਆਨ ਦੀ ਲੋੜ",
+    field: "ਖੇਤ",
+    crop: "ਫ਼ਸਲ",
+    stage: "ਅਵਸਥਾ",
+    progress: "ਤਰੱਕੀ",
+    area: "ਰਕਬਾ (ਏਕੜ)",
+    name: "ਨਾਮ",
+    cropName: "ਫ਼ਸਲ ਦਾ ਨਾਮ",
+    fieldName: "ਖੇਤ ਦਾ ਨਾਮ",
+    selectField: "ਖੇਤ ਚੁਣੋ",
+    selectCrop: "ਫ਼ਸਲ ਚੁਣੋ",
+    date: "ਤਾਰੀਖ",
+    amount: "ਮਾਤਰਾ",
+    unit: "ਇਕਾਈ",
+    notes: "ਵੇਰਵਾ",
+    type: "ਕਿਸਮ",
+    status: "ਸਥਿਤੀ",
+    activity: "ਗਤੀਵਿਧੀ",
+    action: "ਕੰਮ",
+    actions: "ਕੰਮ",
+    fertilizerType: "ਖਾਦ ਦੀ ਕਿਸਮ",
+    pestName: "ਦੇਖਿਆ ਗਿਆ ਕੀੜਾ",
+    harvestQuantity: "ਵਾਢੀ ਦੀ ਮਾਤਰਾ",
     delete: "ਮਿਟਾਓ",
-    saved: "ਸੰਭਾਲਿਆ ਗਿਆ",
-    noteSaved: "ਤੁਹਾਡਾ ਨੋਟ ਸੰਭਾਲਿਆ ਗਿਆ ਹੈ।",
-    questionSaved: "ਤੁਹਾਡਾ ਸਵਾਲ ਸੰਭਾਲਿਆ ਗਿਆ ਹੈ।",
-    noteDeleted: "ਨੋਟ ਮਿਟਾ ਦਿੱਤਾ ਗਿਆ।",
-    questionDeleted: "ਸਵਾਲ ਮਿਟਾ ਦਿੱਤਾ ਗਿਆ।",
-    titleRequired: "ਕਿਰਪਾ ਕਰਕੇ ਸਿਰਲੇਖ ਅਤੇ ਨੋਟ ਲਿਖੋ।",
-    questionRequired: "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਸਵਾਲ ਲਿਖੋ।",
-    noNotes: "ਤੁਸੀਂ ਅਜੇ ਕੋਈ ਨੋਟ ਨਹੀਂ ਸੰਭਾਲਿਆ।",
-    noSpeech: "ਇਸ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਆਵਾਜ਼ ਪਛਾਣਨ ਦੀ ਸਹੂਲਤ ਨਹੀਂ ਹੈ। ਕਿਸੇ ਸਹਾਇਕ ਬ੍ਰਾਊਜ਼ਰ ਦੀ ਵਰਤੋਂ ਕਰੋ ਜਾਂ ਸਵਾਲ ਲਿਖੋ।",
-    listening: "ਸੁਣ ਰਿਹਾ ਹੈ... ਹੁਣ ਬੋਲੋ।",
-    recognitionError: "ਤੁਹਾਡੀ ਆਵਾਜ਼ ਸਮਝ ਨਹੀਂ ਆਈ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜਾਂ ਸਵਾਲ ਲਿਖੋ।",
-    speechEnded: "ਆਵਾਜ਼ ਰਾਹੀਂ ਲਿਖਣ ਦੀ ਪ੍ਰਕਿਰਿਆ ਖਤਮ ਹੋਈ।",
-    reading: "ਆਵਾਜ਼ ਵਿੱਚ ਪੜ੍ਹਿਆ ਜਾ ਰਿਹਾ ਹੈ...",
-    speechUnavailable: "ਇਸ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਆਵਾਜ਼ ਵਿੱਚ ਪੜ੍ਹਨ ਦੀ ਸਹੂਲਤ ਨਹੀਂ ਹੈ।",
-    speechStopped: "ਆਵਾਜ਼ ਬੰਦ ਕਰ ਦਿੱਤੀ ਗਈ।",
-    dataCleared: "ਤੁਹਾਡੇ ਸੰਭਾਲੇ ਨੋਟਸ ਅਤੇ ਸਵਾਲ ਮਿਟਾ ਦਿੱਤੇ ਗਏ ਹਨ।",
-    confirmClear: "ਕੀ ਸਾਰੇ ਸੰਭਾਲੇ ਨੋਟਸ ਅਤੇ ਸਵਾਲ ਮਿਟਾਉਣੇ ਹਨ? ਇਹ ਵਾਪਸ ਨਹੀਂ ਹੋ ਸਕਦਾ।",
-    storageWarning: "ਬ੍ਰਾਊਜ਼ਰ ਸਟੋਰੇਜ ਉਪਲਬਧ ਨਹੀਂ ਹੈ। ਤੁਹਾਡਾ ਡਾਟਾ ਸੰਭਾਲਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।",
-    emptyTitle: "ਬਿਨਾਂ ਸਿਰਲੇਖ",
-    savedQuestion: "ਸੰਭਾਲਿਆ ਸਵਾਲ",
-    readIntroduction: "ਕਲਾਸਬ੍ਰਿਜ ਵਿੱਚ ਤੁਹਾਡਾ ਸਵਾਗਤ ਹੈ। ਆਪਣੇ ਨੋਟਸ ਸੰਭਾਲੋ, ਸਵਾਲ ਲਿਖੋ ਅਤੇ ਆਪਣੀ ਪਸੰਦੀਦਾ ਭਾਸ਼ਾ ਵਿੱਚ ਸਿੱਖੋ। ਹਰ ਸਵਾਲ ਮਹੱਤਵਪੂਰਨ ਹੈ।",
-    deleteFailed: "ਇਹ ਜਾਣਕਾਰੀ ਮਿਟਾਈ ਨਹੀਂ ਜਾ ਸਕੀ।"
+    edit: "ਬਦਲੋ",
+    noRecords: "ਹਾਲੇ ਕੋਈ ਰਿਕਾਰਡ ਨਹੀਂ। ਪਹਿਲਾ ਰਿਕਾਰਡ ਜੋੜੋ!",
+    recordAdded: "ਰਿਕਾਰਡ ਸਫਲਤਾਪੂਰਵਕ ਜੋੜਿਆ ਗਿਆ!",
+    recordDeleted: "ਰਿਕਾਰਡ ਮਿਟਾ ਦਿੱਤਾ ਗਿਆ।",
+    loginSuccess: "ਤੁਹਾਡੇ ਖੇਤ ਵਿੱਚ ਜੀ ਆਇਆਂ ਨੂੰ!",
+    logoutSuccess: "ਤੁਸੀਂ ਲੌਗ ਆਉਟ ਹੋ ਗਏ ਹੋ।",
+    fillRequired: "ਕਿਰਪਾ ਕਰਕੇ ਸਾਰੀ ਲੋੜੀਂਦੀ ਜਾਣਕਾਰੀ ਭਰੋ।",
+    confirmDelete: "ਕੀ ਇਹ ਰਿਕਾਰਡ ਮਿਟਾਉਣਾ ਹੈ?",
+    all: "ਸਾਰੇ",
+    rice: "ਝੋਨਾ",
+    tomato: "ਟਮਾਟਰ",
+    maize: "ਮੱਕੀ",
+    wheat: "ਕਣਕ",
+    vegetables: "ਸਬਜ਼ੀਆਂ",
+    waterActivity: "ਸਿੰਚਾਈ ਦਰਜ ਕੀਤੀ",
+    fertilizerActivity: "ਖਾਦ ਪਾਈ ਗਈ",
+    pestActivity: "ਕੀੜਿਆਂ ਦੀ ਜਾਣਕਾਰੀ ਅੱਪਡੇਟ ਹੋਈ",
+    harvestActivity: "ਵਾਢੀ ਦੀ ਤਰੱਕੀ ਅੱਪਡੇਟ ਹੋਈ",
+    recentField: "ਖੇਤ ਜੋੜਿਆ ਗਿਆ",
+    today: "ਅੱਜ",
+    yesterday: "ਕੱਲ੍ਹ",
+    daysAgo: "ਦਿਨ ਪਹਿਲਾਂ",
+    kg: "ਕਿਲੋਗ੍ਰਾਮ",
+    litres: "ਲੀਟਰ",
+    nitrogen: "ਨਾਈਟ੍ਰੋਜਨ ਖਾਦ",
+    compost: "ਜੈਵਿਕ ਖਾਦ",
+    aphids: "ਮਾਹੂ ਕੀੜੇ",
+    leafSpot: "ਪੱਤਿਆਂ ਦੇ ਧੱਬੇ",
+    expected: "ਅਨੁਮਾਨਿਤ",
+    completed: "ਪੂਰਾ ਹੋਇਆ",
+    inProgress: "ਜਾਰੀ ਹੈ",
+    dateLabel: "ਅੱਜ ਦੀ ਤਾਰੀਖ",
+    homeGreeting: "ਖੇਤੀ ਡੈਸ਼ਬੋਰਡ"
   },
 
   te: {
-    workspace: "వర్క్‌స్పేస్",
-    navHome: "హోమ్",
-    navNotes: "నా నోట్స్",
-    navQuestions: "నా ప్రశ్నలు",
-    navHelp: "అధ్యయన సహాయకుడు",
-    tipTitle: "ప్రతి ప్రశ్న ముఖ్యం.",
-    tipText: "సంకోచం లేకుండా సహాయం అడిగినప్పుడు నేర్చుకోవడం సులభమవుతుంది.",
-    tipLink: "ప్రశ్న అడగండి →",
-    localPrivate: "మీ వ్యక్తిగత అభ్యాస స్థలం",
-    breadcrumb: "మీ వర్క్‌స్పేస్",
-    eyebrow: "మీ అభ్యాస ప్రయాణం",
-    welcomeTitle: 'ఈరోజు అర్థం చేసుకోండి.<br><span>రేపు గుర్తుంచుకోండి.</span>',
-    welcomeText: "తరగతి వేగంగా సాగుతుంది. కానీ మీరు తొందరపడాల్సిన అవసరం లేదు. నోట్స్ రాయండి, ప్రశ్నలు అడగండి, మీ భాషలో నేర్చుకోండి.",
-    startNotes: "నోట్ సృష్టించండి",
-    listen: "పరిచయాన్ని వినండి",
-    heroCard1: "మీ వేగం",
-    heroCard1Sub: "మీ అభ్యాస విధానం",
-    heroCard2: "ముందుకు సాగండి",
-    heroCard2Sub: "ఒక్కోసారి ఒక్క ప్రశ్న",
-    statNotes: "సేవ్ చేసిన నోట్స్",
-    statNotesSub: "గుర్తుంచుకోవాల్సిన విషయాలు",
-    statQuestions: "నా ప్రశ్నలు",
-    statQuestionsSub: "మీరు రాసిన సందేహాలు",
-    statLanguages: "భాషలు",
-    statLanguagesSub: "అర్థం చేసుకునే ఆరు మార్గాలు",
-    sectionTools: "అభ్యాస సాధనాలు",
-    assistantTitle: "మీ అధ్యయన సహాయకుడు",
-    assistantText: "ఏదైనా మళ్లీ వినాలా? టైప్ చేయడానికి బదులుగా మాట్లాడాలనుకుంటున్నారా? ఈ సాధనాలు సహాయపడతాయి.",
-    readAloud: "నా తాజా నోట్ వినండి",
-    readAloudSub: "సేవ్ చేసిన విషయాలను వినండి",
-    voiceInput: "మాట్లాడి ప్రశ్న అడగండి",
-    voiceInputSub: "మద్దతు ఉన్న బ్రౌజర్‌లో మైక్రోఫోన్ ఉపయోగించండి",
-    gentleReminder: "ఒక చిన్న గుర్తు",
-    promptTitle: "మళ్లీ అడగడం<br>పూర్తిగా సరైనదే.",
-    promptText: "ప్రశ్న అడగడం బలహీనత కాదు. అది అర్థం చేసుకోవడానికి మొదటి అడుగు.",
-    promptLink: "మీ సందేహాన్ని రాయండి",
-    personalWorkspace: "మీ వ్యక్తిగత స్థలం",
-    notesTitle: "ముఖ్యమైన విషయాలను రాయండి",
-    notesDescription: "మీకు అర్థమైనది, గుర్తుంచుకోవాల్సినది లేదా మళ్లీ చూడాల్సినది ఇక్కడ రాయండి.",
-    noteTitleLabel: "నోట్ శీర్షిక",
-    noteTitlePlaceholder: "ఉదా: పైథాన్ పరిచయం",
-    noteContentLabel: "మీ నోట్స్",
-    noteContentPlaceholder: "తరగతిలోని ముఖ్యమైన విషయాలను రాయండి...",
-    privateHint: "ఈ బ్రౌజర్‌లో సేవ్ అవుతుంది",
-    saveNote: "నోట్ సేవ్ చేయండి",
-    speakUp: "మీ ప్రశ్న అడగండి",
-    questionsTitle: "ప్రశ్నలకు సమాధానాలు అవసరం",
-    questionsDescription: "తరగతి తర్వాత మర్చిపోకుండా మీ సందేహాన్ని ఇక్కడ రాయండి.",
-    subjectLabel: "విషయం లేదా టాపిక్",
-    subjectPlaceholder: "ఉదా: గణితం",
-    questionLabel: "మీకు ఏ విషయంలో సహాయం కావాలి?",
-    questionPlaceholder: "మీకు ఇష్టమైన భాషలో ప్రశ్న రాయండి...",
-    questionHint: "మీ మాటల్లో మీ సందేహం",
-    saveQuestion: "ప్రశ్నను సేవ్ చేయండి",
-    bannerTitle: "తరగతిలో మీ గొంతుకకు కూడా చోటుంది.",
-    bannerText: "మీ వేగంతో నేర్చుకోండి. భయం లేకుండా అడగండి. ముందుకు సాగండి.",
-    bannerLink: "సందేహాన్ని రాయండి →",
-    footerText: "మెరుగైన సంభాషణ, ఆత్మవిశ్వాసంతో నేర్చుకోవడం కోసం.",
-    clearData: "నా స్థానిక డేటాను తొలగించండి",
-    emptyNotes: "మీరు నోట్ సేవ్ చేసిన తర్వాత అది ఇక్కడ కనిపిస్తుంది.",
-    emptyQuestions: "మీరు సేవ్ చేసిన ప్రశ్నలు ఇక్కడ కనిపిస్తాయి.",
-    delete: "తొలగించండి",
-    saved: "సేవ్ అయింది",
-    noteSaved: "మీ నోట్ సేవ్ అయింది.",
-    questionSaved: "మీ ప్రశ్న సేవ్ అయింది.",
-    noteDeleted: "నోట్ తొలగించబడింది.",
-    questionDeleted: "ప్రశ్న తొలగించబడింది.",
-    titleRequired: "దయచేసి శీర్షిక మరియు నోట్ రాయండి.",
-    questionRequired: "దయచేసి మీ ప్రశ్న రాయండి.",
-    noNotes: "మీరు ఇంకా నోట్ సేవ్ చేయలేదు.",
-    noSpeech: "ఈ బ్రౌజర్‌లో మాటలను గుర్తించే సౌకర్యం లేదు. మద్దతు ఉన్న బ్రౌజర్‌ను ఉపయోగించండి లేదా టైప్ చేయండి.",
-    listening: "వింటోంది... ఇప్పుడు మాట్లాడండి.",
-    recognitionError: "మీ మాటలు గుర్తించలేకపోయాం. మళ్లీ ప్రయత్నించండి లేదా టైప్ చేయండి.",
-    speechEnded: "వాయిస్ ఇన్‌పుట్ ముగిసింది.",
-    reading: "చదివి వినిపిస్తోంది...",
-    speechUnavailable: "ఈ బ్రౌజర్‌లో చదివి వినిపించే సౌకర్యం లేదు.",
-    speechStopped: "వాయిస్ ఆపబడింది.",
-    dataCleared: "మీ సేవ్ చేసిన నోట్స్, ప్రశ్నలు తొలగించబడ్డాయి.",
-    confirmClear: "సేవ్ చేసిన అన్ని నోట్స్ మరియు ప్రశ్నలను తొలగించాలా? ఇది తిరిగి పొందలేరు.",
-    storageWarning: "బ్రౌజర్ స్టోరేజ్ అందుబాటులో లేదు. మీ డేటా సేవ్ కాకపోవచ్చు.",
-    emptyTitle: "శీర్షిక లేదు",
-    savedQuestion: "సేవ్ చేసిన ప్రశ్న",
-    readIntroduction: "క్లాస్‌బ్రిడ్జ్‌కు స్వాగతం. మీ నోట్స్ సేవ్ చేయండి, ప్రశ్నలు రాయండి, మీకు ఇష్టమైన భాషలో నేర్చుకోండి. ప్రతి ప్రశ్న ముఖ్యం.",
-    deleteFailed: "ఈ అంశాన్ని తొలగించలేకపోయాం."
+    welcome: "తెలివిగా సాగు చేయండి. మెరుగ్గా పండించండి.",
+    welcomeText: "మీ పొలం, మీ పంటలు, మీ పురోగతి — అన్నీ ఒకే చోట.",
+    tagline: "మీ డిజిటల్ వ్యవసాయ సహాయకుడు",
+    chooseLanguage: "మీ భాషను ఎంచుకోండి",
+    farmerLogin: "రైతు లాగిన్",
+    loginTitle: "మళ్లీ స్వాగతం!",
+    loginText: "మీ పొలాన్ని సులభంగా నిర్వహించండి.",
+    usernameLabel: "మీ పేరు",
+    usernamePlaceholder: "మీ పేరు నమోదు చేయండి",
+    passwordLabel: "పాస్‌వర్డ్",
+    passwordPlaceholder: "ఏదైనా డెమో పాస్‌వర్డ్ నమోదు చేయండి",
+    signIn: "నా పొలంలోకి వెళ్లండి",
+    demoNote: "డెమో వెబ్‌సైట్: కొనసాగడానికి ఏ పేరైనా, పాస్‌వర్డ్ అయినా ఉపయోగించండి.",
+    loadingLabel: "దయచేసి వేచి ఉండండి",
+    loadingTitle: "మీ పొలం డేటా లోడ్ అవుతోంది...",
+    loadingCaption: "మీ డాష్‌బోర్డ్ సిద్ధమవుతోంది...",
+    fields: "పొలాలు",
+    crops: "పంటలు",
+    irrigation: "నీటిపారుదల",
+    fertilizer: "ఎరువులు",
+    pests: "తెగుళ్లు",
+    harvest: "పంట కోత",
+    farmManagement: "వ్యవసాయ నిర్వహణ",
+    farmOwner: "పొలం యజమాని",
+    workspace: "ప్రధాన మెనూ",
+    home: "హోమ్",
+    seasonTitle: "ఖరీఫ్ సీజన్",
+    seasonText: "డెమో సీజన్ · భారతదేశం",
+    logout: "లాగ్ అవుట్",
+    dashboard: "వ్యవసాయ డాష్‌బోర్డ్",
+    goodDay: "నమ్మకంతో సాగు చేయండి",
+    hello: "నమస్కారం",
+    bannerText: "ఈరోజు మీ పొలంలో జరుగుతున్న విషయాలు ఇక్కడ చూడండి.",
+    exploreFields: "నా పొలాలను చూడండి",
+    totalFields: "మొత్తం పొలాలు",
+    activeCrops: "ప్రస్తుతం ఉన్న పంటలు",
+    waterToday: "నీటిపారుదల రికార్డులు",
+    harvestReady: "కోత పురోగతి",
+    fieldsManaged: "నిర్వహిస్తున్న పొలాలు",
+    cropsGrowing: "ఈ సీజన్‌లో పెరుగుతున్న పంటలు",
+    irrigationTracked: "నీటిపారుదల రికార్డులు",
+    harvestProgress: "డెమో కోత స్థితి",
+    yourFarm: "మీ పొలం",
+    myFields: "నా పొలాలు",
+    viewAll: "అన్నీ చూడండి",
+    stayUpdated: "తాజా సమాచారం",
+    recentActivity: "ఇటీవలి కార్యకలాపాలు",
+    live: "ప్రత్యక్షం",
+    getStarted: "ప్రారంభించండి",
+    quickActions: "త్వరిత చర్యలు",
+    addField: "పొలం జోడించండి",
+    addCrop: "పంట జోడించండి",
+    recordWater: "నీటిపారుదల నమోదు",
+    updateHarvest: "కోత వివరాలు నవీకరించండి",
+    farmRecords: "వ్యవసాయ రికార్డులు",
+    addNew: "కొత్తది జోడించండి",
+    cancel: "రద్దు",
+    saveRecord: "రికార్డు సేవ్ చేయండి",
+    footerText: "ప్రతి పొలంతో పచ్చదనాన్ని పెంచుదాం.",
+    vegetative: "పెరుగుదల దశ",
+    flowering: "పుష్పించే దశ",
+    maturity: "పక్వ దశ",
+    seedling: "మొలక దశ",
+    healthy: "ఆరోగ్యంగా ఉంది",
+    needsAttention: "శ్రద్ధ అవసరం",
+    field: "పొలం",
+    crop: "పంట",
+    stage: "దశ",
+    progress: "పురోగతి",
+    area: "విస్తీర్ణం (ఎకరాలు)",
+    name: "పేరు",
+    cropName: "పంట పేరు",
+    fieldName: "పొలం పేరు",
+    selectField: "పొలం ఎంచుకోండి",
+    selectCrop: "పంట ఎంచుకోండి",
+    date: "తేదీ",
+    amount: "పరిమాణం",
+    unit: "యూనిట్",
+    notes: "వివరాలు",
+    type: "రకం",
+    status: "స్థితి",
+    activity: "కార్యకలాపం",
+    action: "చర్య",
+    actions: "చర్యలు",
+    fertilizerType: "ఎరువు రకం",
+    pestName: "గమనించిన తెగులు",
+    harvestQuantity: "పంట కోత పరిమాణం",
+    delete: "తొలగించు",
+    edit: "మార్చు",
+    noRecords: "రికార్డులు లేవు. మొదటి రికార్డును జోడించండి!",
+    recordAdded: "రికార్డు విజయవంతంగా జోడించబడింది!",
+    recordDeleted: "రికార్డు తొలగించబడింది.",
+    loginSuccess: "మీ పొలానికి స్వాగతం!",
+    logoutSuccess: "మీరు లాగ్ అవుట్ అయ్యారు.",
+    fillRequired: "దయచేసి అవసరమైన వివరాలన్నీ నమోదు చేయండి.",
+    confirmDelete: "ఈ రికార్డును తొలగించాలా?",
+    all: "అన్నీ",
+    rice: "వరి",
+    tomato: "టమాటా",
+    maize: "మొక్కజొన్న",
+    wheat: "గోధుమ",
+    vegetables: "కూరగాయలు",
+    waterActivity: "నీటిపారుదల నమోదు చేయబడింది",
+    fertilizerActivity: "ఎరువు వేశారు",
+    pestActivity: "తెగులు వివరాలు నవీకరించబడ్డాయి",
+    harvestActivity: "కోత పురోగతి నవీకరించబడింది",
+    recentField: "పొలం జోడించబడింది",
+    today: "ఈరోజు",
+    yesterday: "నిన్న",
+    daysAgo: "రోజుల క్రితం",
+    kg: "కిలోలు",
+    litres: "లీటర్లు",
+    nitrogen: "నైట్రోజన్ ఎరువు",
+    compost: "సేంద్రీయ కంపోస్ట్",
+    aphids: "ఆఫిడ్స్",
+    leafSpot: "ఆకు మచ్చ తెగులు",
+    expected: "అంచనా",
+    completed: "పూర్తయింది",
+    inProgress: "కొనసాగుతోంది",
+    dateLabel: "ఈరోజు తేదీ",
+    homeGreeting: "వ్యవసాయ డాష్‌బోర్డ్"
   },
 
   ml: {
-    workspace: "പ്രവർത്തന ഇടം",
-    navHome: "ഹോം",
-    navNotes: "എന്റെ കുറിപ്പുകൾ",
-    navQuestions: "എന്റെ ചോദ്യങ്ങൾ",
-    navHelp: "പഠന സഹായി",
-    tipTitle: "ഓരോ ചോദ്യവും പ്രധാനമാണ്.",
-    tipText: "മടിക്കാതെ സഹായം ചോദിക്കുമ്പോൾ പഠനം എളുപ്പമാകും.",
-    tipLink: "ചോദ്യം ചോദിക്കൂ →",
-    localPrivate: "നിങ്ങളുടെ സ്വകാര്യ പഠന ഇടം",
-    breadcrumb: "നിങ്ങളുടെ പ്രവർത്തന ഇടം",
-    eyebrow: "നിങ്ങളുടെ പഠന യാത്ര",
-    welcomeTitle: 'ഇന്ന് മനസ്സിലാക്കൂ.<br><span>നാളെ ഓർത്തിരിക്കൂ.</span>',
-    welcomeText: "ക്ലാസ് വേഗത്തിൽ മുന്നോട്ടുപോകും. പക്ഷേ നിങ്ങൾ തിരക്കുകൂട്ടേണ്ടതില്ല. കുറിപ്പുകൾ എഴുതൂ, ചോദ്യങ്ങൾ ചോദിക്കൂ, നിങ്ങളുടെ ഭാഷയിൽ പഠിക്കൂ.",
-    startNotes: "കുറിപ്പ് സൃഷ്ടിക്കുക",
-    listen: "ആമുഖം കേൾക്കുക",
-    heroCard1: "നിങ്ങളുടെ വേഗം",
-    heroCard1Sub: "നിങ്ങളുടെ പഠന രീതി",
-    heroCard2: "മുന്നോട്ട് പോകൂ",
-    heroCard2Sub: "ഒരു സമയം ഒരു ചോദ്യം",
-    statNotes: "സേവ് ചെയ്ത കുറിപ്പുകൾ",
-    statNotesSub: "ഓർത്തിരിക്കേണ്ട ആശയങ്ങൾ",
-    statQuestions: "എന്റെ ചോദ്യങ്ങൾ",
-    statQuestionsSub: "നിങ്ങൾ എഴുതിയ സംശയങ്ങൾ",
-    statLanguages: "ഭാഷകൾ",
-    statLanguagesSub: "മനസ്സിലാക്കാനുള്ള ആറു വഴികൾ",
-    sectionTools: "പഠന ഉപകരണങ്ങൾ",
-    assistantTitle: "നിങ്ങളുടെ പഠന സഹായി",
-    assistantText: "എന്തെങ്കിലും വീണ്ടും കേൾക്കണോ? ടൈപ്പ് ചെയ്യുന്നതിനു പകരം സംസാരിക്കണോ? ഈ ഉപകരണങ്ങൾ സഹായിക്കും.",
-    readAloud: "എന്റെ ഏറ്റവും പുതിയ കുറിപ്പ് കേൾക്കുക",
-    readAloudSub: "സേവ് ചെയ്ത പഠന ഉള്ളടക്കം കേൾക്കുക",
-    voiceInput: "സംസാരിച്ച് ചോദിക്കുക",
-    voiceInputSub: "പിന്തുണയുള്ള ബ്രൗസറിൽ മൈക്രോഫോൺ ഉപയോഗിക്കുക",
-    gentleReminder: "ഒരു ചെറിയ ഓർമ്മപ്പെടുത്തൽ",
-    promptTitle: "വീണ്ടും ചോദിക്കുന്നത്<br>തികച്ചും ശരിയാണ്.",
-    promptText: "ചോദ്യം ചോദിക്കുന്നത് ബലഹീനതയല്ല. അത് മനസ്സിലാക്കാനുള്ള തുടക്കമാണ്.",
-    promptLink: "നിങ്ങളുടെ സംശയം എഴുതുക",
-    personalWorkspace: "നിങ്ങളുടെ സ്വകാര്യ ഇടം",
-    notesTitle: "പ്രധാന കാര്യങ്ങൾ കുറിച്ചുവയ്ക്കൂ",
-    notesDescription: "നിങ്ങൾ മനസ്സിലാക്കിയതും ഓർത്തിരിക്കേണ്ടതും വീണ്ടും പരിശോധിക്കേണ്ടതും ഇവിടെ എഴുതൂ.",
-    noteTitleLabel: "കുറിപ്പിന്റെ തലക്കെട്ട്",
-    noteTitlePlaceholder: "ഉദാ: പൈത്തൺ ആമുഖം",
-    noteContentLabel: "നിങ്ങളുടെ കുറിപ്പുകൾ",
-    noteContentPlaceholder: "ക്ലാസിലെ പ്രധാന കാര്യങ്ങൾ ഇവിടെ എഴുതൂ...",
-    privateHint: "ഈ ബ്രൗസറിൽ സേവ് ചെയ്യും",
-    saveNote: "കുറിപ്പ് സേവ് ചെയ്യുക",
-    speakUp: "നിങ്ങളുടെ ചോദ്യം ചോദിക്കൂ",
-    questionsTitle: "ചോദ്യങ്ങൾക്ക് ഉത്തരങ്ങൾ വേണം",
-    questionsDescription: "ക്ലാസിനു ശേഷം മറക്കുന്നതിനു മുമ്പ് നിങ്ങളുടെ സംശയം ഇവിടെ എഴുതൂ.",
-    subjectLabel: "വിഷയം അല്ലെങ്കിൽ പാഠഭാഗം",
-    subjectPlaceholder: "ഉദാ: ഗണിതം",
-    questionLabel: "ഏത് കാര്യത്തിലാണ് സഹായം വേണ്ടത്?",
-    questionPlaceholder: "നിങ്ങൾക്ക് ഇഷ്ടമുള്ള ഭാഷയിൽ ചോദ്യം എഴുതൂ...",
-    questionHint: "നിങ്ങളുടെ വാക്കുകളിൽ നിങ്ങളുടെ സംശയം",
-    saveQuestion: "ചോദ്യം സേവ് ചെയ്യുക",
-    bannerTitle: "ക്ലാസ് മുറിയിൽ നിങ്ങളുടെ ശബ്ദത്തിനും സ്ഥാനമുണ്ട്.",
-    bannerText: "നിങ്ങളുടെ വേഗത്തിൽ പഠിക്കൂ. ഭയമില്ലാതെ ചോദിക്കൂ. മുന്നോട്ട് പോകൂ.",
-    bannerLink: "സംശയം പങ്കുവയ്ക്കൂ →",
-    footerText: "മികച്ച ആശയവിനിമയത്തിനും ആത്മവിശ്വാസത്തോടെ പഠിക്കാനും.",
-    clearData: "എന്റെ പ്രാദേശിക ഡാറ്റ മായ്ക്കുക",
-    emptyNotes: "കുറിപ്പുകൾ സേവ് ചെയ്യുമ്പോൾ ഇവിടെ കാണാം.",
-    emptyQuestions: "നിങ്ങളുടെ സേവ് ചെയ്ത ചോദ്യങ്ങൾ ഇവിടെ കാണാം.",
-    delete: "മായ്ക്കുക",
-    saved: "സേവ് ചെയ്തു",
-    noteSaved: "നിങ്ങളുടെ കുറിപ്പ് സേവ് ചെയ്തു.",
-    questionSaved: "നിങ്ങളുടെ ചോദ്യം സേവ് ചെയ്തു.",
-    noteDeleted: "കുറിപ്പ് മായ്ച്ചു.",
-    questionDeleted: "ചോദ്യം മായ്ച്ചു.",
-    titleRequired: "ദയവായി തലക്കെട്ടും കുറിപ്പും എഴുതുക.",
-    questionRequired: "ദയവായി നിങ്ങളുടെ ചോദ്യം എഴുതുക.",
-    noNotes: "നിങ്ങൾ ഇതുവരെ കുറിപ്പുകളൊന്നും സേവ് ചെയ്തിട്ടില്ല.",
-    noSpeech: "ഈ ബ്രൗസറിൽ ശബ്ദം തിരിച്ചറിയാനുള്ള സൗകര്യമില്ല. പിന്തുണയുള്ള ബ്രൗസർ ഉപയോഗിക്കുകയോ ടൈപ്പ് ചെയ്യുകയോ ചെയ്യുക.",
-    listening: "കേൾക്കുന്നു... ഇപ്പോൾ സംസാരിക്കൂ.",
-    recognitionError: "നിങ്ങളുടെ ശബ്ദം തിരിച്ചറിയാനായില്ല. വീണ്ടും ശ്രമിക്കൂ അല്ലെങ്കിൽ ടൈപ്പ് ചെയ്യൂ.",
-    speechEnded: "ശബ്ദ ഇൻപുട്ട് അവസാനിച്ചു.",
-    reading: "ശബ്ദമായി വായിക്കുന്നു...",
-    speechUnavailable: "ഈ ബ്രൗസറിൽ ശബ്ദമായി വായിക്കാനുള്ള സൗകര്യമില്ല.",
-    speechStopped: "ശബ്ദം നിർത്തി.",
-    dataCleared: "നിങ്ങളുടെ സേവ് ചെയ്ത കുറിപ്പുകളും ചോദ്യങ്ങളും മായ്ച്ചു.",
-    confirmClear: "സേവ് ചെയ്ത എല്ലാ കുറിപ്പുകളും ചോദ്യങ്ങളും മായ്ക്കണോ? ഇത് തിരിച്ചെടുക്കാനാകില്ല.",
-    storageWarning: "ബ്രൗസർ സ്റ്റോറേജ് ലഭ്യമല്ല. നിങ്ങളുടെ ഡാറ്റ സേവ് ചെയ്തേക്കില്ല.",
-    emptyTitle: "തലക്കെട്ടില്ല",
-    savedQuestion: "സേവ് ചെയ്ത ചോദ്യം",
-    readIntroduction: "ക്ലാസ്‌ബ്രിഡ്ജിലേക്ക് സ്വാഗതം. കുറിപ്പുകൾ സേവ് ചെയ്യൂ, ചോദ്യങ്ങൾ എഴുതൂ, നിങ്ങൾക്ക് ഇഷ്ടമുള്ള ഭാഷയിൽ പഠിക്കൂ. ഓരോ ചോദ്യവും പ്രധാനമാണ്.",
-    deleteFailed: "ഈ ഇനം മായ്ക്കാൻ കഴിഞ്ഞില്ല."
+    welcome: "ബുദ്ധിപൂർവം കൃഷി ചെയ്യൂ. മികച്ച വിളവ് നേടൂ.",
+    welcomeText: "നിങ്ങളുടെ കൃഷിയിടവും വിളകളും പുരോഗതിയും ഒരിടത്ത്.",
+    tagline: "നിങ്ങളുടെ ഡിജിറ്റൽ കൃഷി സഹായി",
+    chooseLanguage: "നിങ്ങളുടെ ഭാഷ തിരഞ്ഞെടുക്കുക",
+    farmerLogin: "കർഷക ലോഗിൻ",
+    loginTitle: "വീണ്ടും സ്വാഗതം!",
+    loginText: "നിങ്ങളുടെ കൃഷിയിടം എളുപ്പത്തിൽ നിയന്ത്രിക്കൂ.",
+    usernameLabel: "നിങ്ങളുടെ പേര്",
+    usernamePlaceholder: "പേര് നൽകുക",
+    passwordLabel: "പാസ്‌വേഡ്",
+    passwordPlaceholder: "ഏതെങ്കിലും ഡെമോ പാസ്‌വേഡ് നൽകുക",
+    signIn: "എന്റെ കൃഷിയിടത്തിലേക്ക്",
+    demoNote: "ഡെമോ വെബ്‌സൈറ്റ്: തുടരാൻ ഏതെങ്കിലും പേരും പാസ്‌വേഡും ഉപയോഗിക്കുക.",
+    loadingLabel: "ദയവായി കാത്തിരിക്കുക",
+    loadingTitle: "നിങ്ങളുടെ കൃഷിയിട വിവരങ്ങൾ ലോഡ് ചെയ്യുന്നു...",
+    loadingCaption: "നിങ്ങളുടെ ഡാഷ്‌ബോർഡ് തയ്യാറാക്കുന്നു...",
+    fields: "കൃഷിയിടങ്ങൾ",
+    crops: "വിളകൾ",
+    irrigation: "ജലസേചനം",
+    fertilizer: "വളം",
+    pests: "കീടങ്ങൾ",
+    harvest: "വിളവെടുപ്പ്",
+    farmManagement: "കൃഷിയിട നിയന്ത്രണം",
+    farmOwner: "കൃഷിയിട ഉടമ",
+    workspace: "പ്രധാന മെനു",
+    home: "ഹോം",
+    seasonTitle: "ഖാരിഫ് സീസൺ",
+    seasonText: "ഡെമോ സീസൺ · ഇന്ത്യ",
+    logout: "ലോഗ് ഔട്ട്",
+    dashboard: "കൃഷി ഡാഷ്‌ബോർഡ്",
+    goodDay: "ആത്മവിശ്വാസത്തോടെ കൃഷി ചെയ്യൂ",
+    hello: "നമസ്കാരം",
+    bannerText: "ഇന്ന് നിങ്ങളുടെ കൃഷിയിടത്തിൽ നടക്കുന്ന കാര്യങ്ങൾ കാണൂ.",
+    exploreFields: "എന്റെ കൃഷിയിടങ്ങൾ കാണുക",
+    totalFields: "ആകെ കൃഷിയിടങ്ങൾ",
+    activeCrops: "സജീവ വിളകൾ",
+    waterToday: "ജലസേചന രേഖകൾ",
+    harvestReady: "വിളവെടുപ്പ് പുരോഗതി",
+    fieldsManaged: "നിയന്ത്രിക്കുന്ന കൃഷിയിടങ്ങൾ",
+    cropsGrowing: "ഈ സീസണിലെ വിളകൾ",
+    irrigationTracked: "ജലസേചന രേഖകൾ",
+    harvestProgress: "ഡെമോ വിളവെടുപ്പ് നില",
+    yourFarm: "നിങ്ങളുടെ കൃഷിയിടം",
+    myFields: "എന്റെ കൃഷിയിടങ്ങൾ",
+    viewAll: "എല്ലാം കാണുക",
+    stayUpdated: "പുതിയ വിവരങ്ങൾ",
+    recentActivity: "സമീപകാല പ്രവർത്തനങ്ങൾ",
+    live: "തത്സമയം",
+    getStarted: "തുടങ്ങാം",
+    quickActions: "ദ്രുത പ്രവർത്തനങ്ങൾ",
+    addField: "കൃഷിയിടം ചേർക്കുക",
+    addCrop: "വിള ചേർക്കുക",
+    recordWater: "ജലസേചനം രേഖപ്പെടുത്തുക",
+    updateHarvest: "വിളവെടുപ്പ് പുതുക്കുക",
+    farmRecords: "കൃഷി രേഖകൾ",
+    addNew: "പുതിയത് ചേർക്കുക",
+    cancel: "റദ്ദാക്കുക",
+    saveRecord: "രേഖ സംരക്ഷിക്കുക",
+    footerText: "ഓരോ കൃഷിയിടത്തിലൂടെയും ഹരിതഭാവി വളർത്താം.",
+    vegetative: "വളർച്ചാ ഘട്ടം",
+    flowering: "പൂവിടുന്ന ഘട്ടം",
+    maturity: "വിളവെത്തുന്ന ഘട്ടം",
+    seedling: "തൈ ഘട്ടം",
+    healthy: "ആരോഗ്യമുള്ളത്",
+    needsAttention: "ശ്രദ്ധ ആവശ്യമാണ്",
+    field: "കൃഷിയിടം",
+    crop: "വിള",
+    stage: "ഘട്ടം",
+    progress: "പുരോഗതി",
+    area: "വിസ്തീർണം (ഏക്കർ)",
+    name: "പേര്",
+    cropName: "വിളയുടെ പേര്",
+    fieldName: "കൃഷിയിടത്തിന്റെ പേര്",
+    selectField: "കൃഷിയിടം തിരഞ്ഞെടുക്കുക",
+    selectCrop: "വിള തിരഞ്ഞെടുക്കുക",
+    date: "തീയതി",
+    amount: "അളവ്",
+    unit: "യൂണിറ്റ്",
+    notes: "വിവരങ്ങൾ",
+    type: "തരം",
+    status: "നില",
+    activity: "പ്രവർത്തനം",
+    action: "നടപടി",
+    actions: "നടപടികൾ",
+    fertilizerType: "വളത്തിന്റെ തരം",
+    pestName: "കണ്ടെത്തിയ കീടം",
+    harvestQuantity: "വിളവെടുപ്പ് അളവ്",
+    delete: "നീക്കം ചെയ്യുക",
+    edit: "തിരുത്തുക",
+    noRecords: "രേഖകളില്ല. ആദ്യ രേഖ ചേർക്കുക!",
+    recordAdded: "രേഖ വിജയകരമായി ചേർത്തു!",
+    recordDeleted: "രേഖ നീക്കം ചെയ്തു.",
+    loginSuccess: "നിങ്ങളുടെ കൃഷിയിടത്തിലേക്ക് സ്വാഗതം!",
+    logoutSuccess: "നിങ്ങൾ ലോഗ് ഔട്ട് ചെയ്തു.",
+    fillRequired: "ആവശ്യമായ വിവരങ്ങൾ പൂരിപ്പിക്കുക.",
+    confirmDelete: "ഈ രേഖ നീക്കം ചെയ്യണോ?",
+    all: "എല്ലാം",
+    rice: "നെല്ല്",
+    tomato: "തക്കാളി",
+    maize: "ചോളം",
+    wheat: "ഗോതമ്പ്",
+    vegetables: "പച്ചക്കറികൾ",
+    waterActivity: "ജലസേചനം രേഖപ്പെടുത്തി",
+    fertilizerActivity: "വളം പ്രയോഗിച്ചു",
+    pestActivity: "കീട വിവരങ്ങൾ പുതുക്കി",
+    harvestActivity: "വിളവെടുപ്പ് പുരോഗതി പുതുക്കി",
+    recentField: "കൃഷിയിടം ചേർത്തു",
+    today: "ഇന്ന്",
+    yesterday: "ഇന്നലെ",
+    daysAgo: "ദിവസം മുമ്പ്",
+    kg: "കിലോഗ്രാം",
+    litres: "ലിറ്റർ",
+    nitrogen: "നൈട്രജൻ വളം",
+    compost: "ജൈവ കമ്പോസ്റ്റ്",
+    aphids: "മുഞ്ഞ",
+    leafSpot: "ഇല പുള്ളി രോഗം",
+    expected: "പ്രതീക്ഷിക്കുന്നത്",
+    completed: "പൂർത്തിയായി",
+    inProgress: "പുരോഗമിക്കുന്നു",
+    dateLabel: "ഇന്നത്തെ തീയതി",
+    homeGreeting: "കൃഷി ഡാഷ്‌ബോർഡ്"
   },
 
   ta: {
-    workspace: "பணியிடம்",
-    navHome: "முகப்பு",
-    navNotes: "என் குறிப்புகள்",
-    navQuestions: "என் கேள்விகள்",
-    navHelp: "படிப்பு உதவியாளர்",
-    tipTitle: "ஒவ்வொரு கேள்வியும் முக்கியம்.",
-    tipText: "தயக்கமின்றி உதவி கேட்கும்போது கற்றல் எளிதாகிறது.",
-    tipLink: "கேள்வி கேளுங்கள் →",
-    localPrivate: "உங்களுக்கான தனிப்பட்ட கற்றல் இடம்",
-    breadcrumb: "உங்கள் பணியிடம்",
-    eyebrow: "உங்கள் கற்றல் பயணம்",
-    welcomeTitle: 'இன்று புரிந்துகொள்ளுங்கள்.<br><span>நாளை நினைவில் கொள்ளுங்கள்.</span>',
-    welcomeText: "வகுப்பு வேகமாகச் செல்லலாம். ஆனால் நீங்கள் அவசரப்பட வேண்டியதில்லை. குறிப்புகளைச் சேமியுங்கள், கேள்விகள் கேளுங்கள், உங்கள் மொழியில் கற்றுக்கொள்ளுங்கள்.",
-    startNotes: "குறிப்பை உருவாக்கு",
-    listen: "அறிமுகத்தைக் கேளுங்கள்",
-    heroCard1: "உங்கள் வேகம்",
-    heroCard1Sub: "உங்கள் கற்றல் முறை",
-    heroCard2: "தொடர்ந்து முன்னேறுங்கள்",
-    heroCard2Sub: "ஒரு நேரத்தில் ஒரு கேள்வி",
-    statNotes: "சேமித்த குறிப்புகள்",
-    statNotesSub: "நினைவில் வைக்க வேண்டியவை",
-    statQuestions: "என் கேள்விகள்",
-    statQuestionsSub: "நீங்கள் எழுதிய சந்தேகங்கள்",
-    statLanguages: "மொழிகள்",
-    statLanguagesSub: "புரிந்துகொள்ள ஆறு வழிகள்",
-    sectionTools: "கற்றல் கருவிகள்",
-    assistantTitle: "உங்கள் படிப்பு உதவியாளர்",
-    assistantText: "எதையாவது மீண்டும் கேட்க வேண்டுமா? தட்டச்சு செய்வதற்குப் பதிலாகப் பேச விரும்புகிறீர்களா? இந்தக் கருவிகள் உதவும்.",
-    readAloud: "எனது சமீபத்திய குறிப்பைக் கேளுங்கள்",
-    readAloudSub: "சேமித்த படிப்புத் தகவலைக் கேளுங்கள்",
-    voiceInput: "பேசிக் கேள்வி கேளுங்கள்",
-    voiceInputSub: "ஆதரிக்கும் உலாவியில் மைக்ரோஃபோனைப் பயன்படுத்துங்கள்",
-    gentleReminder: "ஒரு சிறிய நினைவூட்டல்",
-    promptTitle: "மீண்டும் கேட்பது<br>முற்றிலும் சரியே.",
-    promptText: "கேள்வி கேட்பது பலவீனம் அல்ல. அது புரிந்துகொள்ளும் தொடக்கம்.",
-    promptLink: "உங்கள் சந்தேகத்தை எழுதுங்கள்",
-    personalWorkspace: "உங்களுக்கான தனிப்பட்ட இடம்",
-    notesTitle: "முக்கியமானவற்றைக் குறித்துக்கொள்ளுங்கள்",
-    notesDescription: "நீங்கள் புரிந்துகொண்டவை, நினைவில் வைக்க வேண்டியவை அல்லது மீண்டும் படிக்க வேண்டியவற்றை இங்கே எழுதுங்கள்.",
-    noteTitleLabel: "குறிப்பின் தலைப்பு",
-    noteTitlePlaceholder: "எ.கா.: பைத்தான் அறிமுகம்",
-    noteContentLabel: "உங்கள் குறிப்புகள்",
-    noteContentPlaceholder: "வகுப்பின் முக்கியமான கருத்துகளை இங்கே எழுதுங்கள்...",
-    privateHint: "இந்த உலாவியில் சேமிக்கப்படும்",
-    saveNote: "குறிப்பைச் சேமி",
-    speakUp: "உங்கள் கேள்வியைக் கேளுங்கள்",
-    questionsTitle: "கேள்விகளுக்குப் பதில்கள் தேவை",
-    questionsDescription: "வகுப்பு முடிந்ததும் மறப்பதற்கு முன் உங்கள் சந்தேகத்தை இங்கே எழுதுங்கள்.",
-    subjectLabel: "பாடம் அல்லது தலைப்பு",
-    subjectPlaceholder: "எ.கா.: கணிதம்",
-    questionLabel: "எந்த விஷயத்தில் உதவி வேண்டும்?",
-    questionPlaceholder: "உங்களுக்குப் பிடித்த மொழியில் கேள்வியை எழுதுங்கள்...",
-    questionHint: "உங்கள் சொற்களில் உங்கள் சந்தேகம்",
-    saveQuestion: "கேள்வியைச் சேமி",
-    bannerTitle: "வகுப்பறையில் உங்கள் குரலுக்கும் இடமுண்டு.",
-    bannerText: "உங்கள் வேகத்தில் கற்றுக்கொள்ளுங்கள். பயமின்றிக் கேளுங்கள். முன்னேறுங்கள்.",
-    bannerLink: "சந்தேகத்தைப் பகிருங்கள் →",
-    footerText: "சிறந்த தொடர்புக்கும் நம்பிக்கையுடன் கற்றலுக்கும்.",
-    clearData: "எனது உள்ளூர் தரவை அழி",
-    emptyNotes: "நீங்கள் குறிப்புகளைச் சேமித்ததும் அவை இங்கே தோன்றும்.",
-    emptyQuestions: "நீங்கள் சேமித்த கேள்விகள் இங்கே தோன்றும்.",
+    welcome: "புத்திசாலித்தனமாக விவசாயம் செய்யுங்கள்.",
+    welcomeText: "உங்கள் நிலம், பயிர்கள், முன்னேற்றம் — அனைத்தும் ஒரே இடத்தில்.",
+    tagline: "உங்கள் டிஜிட்டல் விவசாய உதவியாளர்",
+    chooseLanguage: "உங்கள் மொழியைத் தேர்ந்தெடுக்கவும்",
+    farmerLogin: "விவசாயி உள்நுழைவு",
+    loginTitle: "மீண்டும் வரவேற்கிறோம்!",
+    loginText: "உங்கள் பண்ணையை எளிதாக நிர்வகிக்கவும்.",
+    usernameLabel: "உங்கள் பெயர்",
+    usernamePlaceholder: "உங்கள் பெயரை உள்ளிடவும்",
+    passwordLabel: "கடவுச்சொல்",
+    passwordPlaceholder: "ஏதேனும் டெமோ கடவுச்சொல்லை உள்ளிடவும்",
+    signIn: "என் பண்ணைக்குச் செல்லவும்",
+    demoNote: "டெமோ இணையதளம்: தொடர ஏதேனும் பெயர் மற்றும் கடவுச்சொல்லைப் பயன்படுத்தவும்.",
+    loadingLabel: "தயவுசெய்து காத்திருக்கவும்",
+    loadingTitle: "உங்கள் பண்ணைத் தரவு ஏற்றப்படுகிறது...",
+    loadingCaption: "உங்கள் டாஷ்போர்டு தயாராகிறது...",
+    fields: "வயல்கள்",
+    crops: "பயிர்கள்",
+    irrigation: "நீர்ப்பாசனம்",
+    fertilizer: "உரம்",
+    pests: "பூச்சிகள்",
+    harvest: "அறுவடை",
+    farmManagement: "பண்ணை மேலாண்மை",
+    farmOwner: "பண்ணை உரிமையாளர்",
+    workspace: "முக்கிய மெனு",
+    home: "முகப்பு",
+    seasonTitle: "காரிப் பருவம்",
+    seasonText: "டெமோ பருவம் · இந்தியா",
+    logout: "வெளியேறு",
+    dashboard: "பண்ணை டாஷ்போர்டு",
+    goodDay: "நம்பிக்கையுடன் விவசாயம் செய்யுங்கள்",
+    hello: "வணக்கம்",
+    bannerText: "இன்று உங்கள் பண்ணையில் நடப்பவற்றைப் பாருங்கள்.",
+    exploreFields: "என் வயல்களைப் பார்க்கவும்",
+    totalFields: "மொத்த வயல்கள்",
+    activeCrops: "செயலில் உள்ள பயிர்கள்",
+    waterToday: "நீர்ப்பாசன பதிவுகள்",
+    harvestReady: "அறுவடை முன்னேற்றம்",
+    fieldsManaged: "நிர்வகிக்கப்படும் வயல்கள்",
+    cropsGrowing: "இந்தப் பருவத்தில் வளரும் பயிர்கள்",
+    irrigationTracked: "நீர்ப்பாசன பதிவுகள்",
+    harvestProgress: "டெமோ அறுவடை நிலை",
+    yourFarm: "உங்கள் பண்ணை",
+    myFields: "என் வயல்கள்",
+    viewAll: "அனைத்தையும் காண்க",
+    stayUpdated: "புதிய தகவல்கள்",
+    recentActivity: "சமீபத்திய செயல்பாடுகள்",
+    live: "நேரலை",
+    getStarted: "தொடங்குங்கள்",
+    quickActions: "விரைவான செயல்கள்",
+    addField: "வயலைச் சேர்க்கவும்",
+    addCrop: "பயிரைச் சேர்க்கவும்",
+    recordWater: "நீர்ப்பாசனத்தைப் பதிவு செய்யவும்",
+    updateHarvest: "அறுவடையைப் புதுப்பிக்கவும்",
+    farmRecords: "பண்ணைப் பதிவுகள்",
+    addNew: "புதியதைச் சேர்க்கவும்",
+    cancel: "ரத்து செய்",
+    saveRecord: "பதிவைச் சேமிக்கவும்",
+    footerText: "ஒவ்வொரு வயலிலும் பசுமையான எதிர்காலத்தை வளர்ப்போம்.",
+    vegetative: "வளர்ச்சி நிலை",
+    flowering: "பூக்கும் நிலை",
+    maturity: "முதிர்ச்சி நிலை",
+    seedling: "நாற்று நிலை",
+    healthy: "ஆரோக்கியமானது",
+    needsAttention: "கவனம் தேவை",
+    field: "வயல்",
+    crop: "பயிர்",
+    stage: "நிலை",
+    progress: "முன்னேற்றம்",
+    area: "பரப்பளவு (ஏக்கர்)",
+    name: "பெயர்",
+    cropName: "பயிரின் பெயர்",
+    fieldName: "வயலின் பெயர்",
+    selectField: "வயலைத் தேர்ந்தெடுக்கவும்",
+    selectCrop: "பயிரைத் தேர்ந்தெடுக்கவும்",
+    date: "தேதி",
+    amount: "அளவு",
+    unit: "அலகு",
+    notes: "குறிப்புகள்",
+    type: "வகை",
+    status: "நிலை",
+    activity: "செயல்பாடு",
+    action: "செயல்",
+    actions: "செயல்கள்",
+    fertilizerType: "உர வகை",
+    pestName: "கண்டறியப்பட்ட பூச்சி",
+    harvestQuantity: "அறுவடை அளவு",
     delete: "நீக்கு",
-    saved: "சேமிக்கப்பட்டது",
-    noteSaved: "உங்கள் குறிப்பு சேமிக்கப்பட்டது.",
-    questionSaved: "உங்கள் கேள்வி சேமிக்கப்பட்டது.",
-    noteDeleted: "குறிப்பு நீக்கப்பட்டது.",
-    questionDeleted: "கேள்வி நீக்கப்பட்டது.",
-    titleRequired: "தயவுசெய்து தலைப்பையும் குறிப்பையும் எழுதுங்கள்.",
-    questionRequired: "தயவுசெய்து உங்கள் கேள்வியை எழுதுங்கள்.",
-    noNotes: "நீங்கள் இன்னும் எந்தக் குறிப்பையும் சேமிக்கவில்லை.",
-    noSpeech: "இந்த உலாவியில் பேச்சை அடையாளம் காணும் வசதி இல்லை. ஆதரிக்கும் உலாவியைப் பயன்படுத்தவும் அல்லது தட்டச்சு செய்யவும்.",
-    listening: "கேட்கிறது... இப்போது பேசுங்கள்.",
-    recognitionError: "உங்கள் பேச்சைப் புரிந்துகொள்ள முடியவில்லை. மீண்டும் முயற்சிக்கவும் அல்லது தட்டச்சு செய்யவும்.",
-    speechEnded: "குரல் உள்ளீடு முடிந்தது.",
-    reading: "குரலில் படிக்கப்படுகிறது...",
-    speechUnavailable: "இந்த உலாவியில் குரலில் வாசிக்கும் வசதி இல்லை.",
-    speechStopped: "குரல் நிறுத்தப்பட்டது.",
-    dataCleared: "உங்கள் சேமித்த குறிப்புகளும் கேள்விகளும் அழிக்கப்பட்டன.",
-    confirmClear: "சேமித்த எல்லா குறிப்புகளையும் கேள்விகளையும் நீக்கவா? இதை மீட்டெடுக்க முடியாது.",
-    storageWarning: "உலாவி சேமிப்பகம் கிடைக்கவில்லை. உங்கள் தரவு சேமிக்கப்படாமல் போகலாம்.",
-    emptyTitle: "தலைப்பு இல்லை",
-    savedQuestion: "சேமித்த கேள்வி",
-    readIntroduction: "கிளாஸ்பிரிட்ஜுக்கு வரவேற்கிறோம். உங்கள் குறிப்புகளைச் சேமியுங்கள், கேள்விகளை எழுதுங்கள், உங்களுக்குப் பிடித்த மொழியில் கற்றுக்கொள்ளுங்கள். ஒவ்வொரு கேள்வியும் முக்கியம்.",
-    deleteFailed: "இந்த உருப்படியை நீக்க முடியவில்லை."
+    edit: "திருத்து",
+    noRecords: "பதிவுகள் இல்லை. முதல் பதிவைச் சேர்க்கவும்!",
+    recordAdded: "பதிவு வெற்றிகரமாகச் சேர்க்கப்பட்டது!",
+    recordDeleted: "பதிவு நீக்கப்பட்டது.",
+    loginSuccess: "உங்கள் பண்ணைக்கு வரவேற்கிறோம்!",
+    logoutSuccess: "நீங்கள் வெளியேறிவிட்டீர்கள்.",
+    fillRequired: "தேவையான அனைத்து விவரங்களையும் நிரப்பவும்.",
+    confirmDelete: "இந்தப் பதிவை நீக்க வேண்டுமா?",
+    all: "அனைத்தும்",
+    rice: "நெல்",
+    tomato: "தக்காளி",
+    maize: "மக்காச்சோளம்",
+    wheat: "கோதுமை",
+    vegetables: "காய்கறிகள்",
+    waterActivity: "நீர்ப்பாசனம் பதிவு செய்யப்பட்டது",
+    fertilizerActivity: "உரம் இடப்பட்டது",
+    pestActivity: "பூச்சி விவரங்கள் புதுப்பிக்கப்பட்டன",
+    harvestActivity: "அறுவடை முன்னேற்றம் புதுப்பிக்கப்பட்டது",
+    recentField: "வயல் சேர்க்கப்பட்டது",
+    today: "இன்று",
+    yesterday: "நேற்று",
+    daysAgo: "நாட்களுக்கு முன்பு",
+    kg: "கிலோகிராம்",
+    litres: "லிட்டர்",
+    nitrogen: "நைட்ரஜன் உரம்",
+    compost: "இயற்கை உரம்",
+    aphids: "அசுவினி பூச்சிகள்",
+    leafSpot: "இலைப்புள்ளி நோய்",
+    expected: "எதிர்பார்க்கப்படும்",
+    completed: "முடிந்தது",
+    inProgress: "நடைபெறுகிறது",
+    dateLabel: "இன்றைய தேதி",
+    homeGreeting: "பண்ணை டாஷ்போர்டு"
   }
 };
 
-const speechLocales = {
-  en: "en-IN",
-  hi: "hi-IN",
-  pa: "pa-IN",
-  te: "te-IN",
-  ml: "ml-IN",
-  ta: "ta-IN"
-};
+/* ---------- APPLICATION STATE ---------- */
 
 let currentLanguage = "en";
-let recognition = null;
-let toastTimer = null;
-let isListening = false;
-let isSpeaking = false;
+let currentPage = "home";
+let currentRecordType = "fields";
+let farmer = "Farmer";
+let toastTimer;
 
-let notes = readStoredArray("classbridge_notes");
-let questions = readStoredArray("classbridge_questions");
+const today = new Date().toISOString().slice(0, 10);
+
+const records = {
+  fields: [
+    { id: 1, name: "Green Valley", crop: "Rice", area: 2.5, stage: "vegetative", progress: 58 },
+    { id: 2, name: "Sunrise Farm", crop: "Tomato", area: 1.5, stage: "flowering", progress: 72 },
+    { id: 3, name: "Harvest Hope", crop: "Maize", area: 3, stage: "maturity", progress: 86 },
+    { id: 4, name: "Golden Acres", crop: "Wheat", area: 2, stage: "vegetative", progress: 45 },
+    { id: 5, name: "Green Garden", crop: "Vegetables", area: 1, stage: "seedling", progress: 25 }
+  ],
+
+  crops: [
+    { id: 1, name: "Rice", field: "Green Valley", stage: "vegetative", status: "healthy" },
+    { id: 2, name: "Tomato", field: "Sunrise Farm", stage: "flowering", status: "healthy" },
+    { id: 3, name: "Maize", field: "Harvest Hope", stage: "maturity", status: "healthy" },
+    { id: 4, name: "Wheat", field: "Golden Acres", stage: "vegetative", status: "healthy" },
+    { id: 5, name: "Vegetables", field: "Green Garden", stage: "seedling", status: "healthy" }
+  ],
+
+  irrigation: [
+    { id: 1, field: "Green Valley", date: today, amount: 500, unit: "litres", notes: "Morning irrigation" },
+    { id: 2, field: "Sunrise Farm", date: today, amount: 300, unit: "litres", notes: "Routine watering" },
+    { id: 3, field: "Harvest Hope", date: today, amount: 450, unit: "litres", notes: "Crop watering" },
+    { id: 4, field: "Golden Acres", date: today, amount: 350, unit: "litres", notes: "Morning watering" },
+    { id: 5, field: "Green Garden", date: today, amount: 200, unit: "litres", notes: "Seedling care" },
+    { id: 6, field: "Green Valley", date: today, amount: 250, unit: "litres", notes: "Afternoon watering" },
+    { id: 7, field: "Sunrise Farm", date: today, amount: 180, unit: "litres", notes: "Drip irrigation" },
+    { id: 8, field: "Harvest Hope", date: today, amount: 400, unit: "litres", notes: "Scheduled watering" }
+  ],
+
+  fertilizer: [
+    { id: 1, field: "Green Valley", type: "Nitrogen fertilizer", date: today, amount: 10, unit: "kg", notes: "Scheduled application" },
+    { id: 2, field: "Sunrise Farm", type: "Organic compost", date: today, amount: 8, unit: "kg", notes: "Soil enrichment" },
+    { id: 3, field: "Harvest Hope", type: "Nitrogen fertilizer", date: today, amount: 12, unit: "kg", notes: "Crop nutrition" },
+    { id: 4, field: "Golden Acres", type: "Organic compost", date: today, amount: 7, unit: "kg", notes: "Soil improvement" },
+    { id: 5, field: "Green Garden", type: "Organic compost", date: today, amount: 5, unit: "kg", notes: "Seedling support" },
+    { id: 6, field: "Green Valley", type: "Organic compost", date: today, amount: 6, unit: "kg", notes: "Organic application" }
+  ],
+
+  pests: [
+    { id: 1, field: "Green Valley", type: "Aphids", date: today, status: "healthy", notes: "Routine inspection" },
+    { id: 2, field: "Sunrise Farm", type: "Leaf spot", date: today, status: "warning", notes: "Monitor affected leaves" },
+    { id: 3, field: "Harvest Hope", type: "Aphids", date: today, status: "healthy", notes: "No major damage" },
+    { id: 4, field: "Golden Acres", type: "Leaf spot", date: today, status: "healthy", notes: "Inspection completed" },
+    { id: 5, field: "Green Garden", type: "Aphids", date: today, status: "healthy", notes: "Routine monitoring" }
+  ],
+
+  harvest: [
+    { id: 1, field: "Green Valley", crop: "Rice", date: today, amount: 0, unit: "kg", status: "In progress", notes: "Growing" },
+    { id: 2, field: "Sunrise Farm", crop: "Tomato", date: today, amount: 0, unit: "kg", status: "In progress", notes: "Flowering stage" },
+    { id: 3, field: "Harvest Hope", crop: "Maize", date: today, amount: 0, unit: "kg", status: "Expected", notes: "Approaching maturity" },
+    { id: 4, field: "Golden Acres", crop: "Wheat", date: today, amount: 0, unit: "kg", status: "Expected", notes: "Growing" },
+    { id: 5, field: "Green Garden", crop: "Vegetables", date: today, amount: 0, unit: "kg", status: "In progress", notes: "Early growth" }
+  ]
+};
+
+let activities = [
+  { type: "water", text: "waterActivity", detail: "Green Valley", time: "09:30" },
+  { type: "fertilizer", text: "fertilizerActivity", detail: "Sunrise Farm", time: "08:45" },
+  { type: "pest", text: "pestActivity", detail: "Harvest Hope", time: "Yesterday" },
+  { type: "harvest", text: "harvestActivity", detail: "Golden Acres", time: "Yesterday" }
+];
+
+/* ---------- TRANSLATION HELPERS ---------- */
 
 function t(key) {
-  return translations[currentLanguage]?.[key] ??
-         translations.en[key] ??
-         key;
+  return translations[currentLanguage]?.[key]
+    || translations.en[key]
+    || key;
 }
 
-/* Safely read browser storage */
-function readStoredArray(key) {
-  try {
-    const value = localStorage.getItem(key);
-    const parsed = value ? JSON.parse(value) : [];
-    return Array.isArray(parsed) ? parsed : [];
-  } catch (error) {
-    return [];
-  }
+function translateValue(value) {
+  const map = {
+    Rice: "rice",
+    Tomato: "tomato",
+    Maize: "maize",
+    Wheat: "wheat",
+    Vegetables: "vegetables",
+    "Green Valley": "Green Valley",
+    "Sunrise Farm": "Sunrise Farm",
+    "Harvest Hope": "Harvest Hope",
+    "Golden Acres": "Golden Acres",
+    "Green Garden": "Green Garden",
+    "Nitrogen fertilizer": "nitrogen",
+    "Organic compost": "compost",
+    Aphids: "aphids",
+    "Leaf spot": "leafSpot",
+    "In progress": "inProgress",
+    Expected: "expected",
+    Completed: "completed"
+  };
+
+  return map[value] ? t(map[value]) : value;
 }
 
-function saveStoredArray(key, data) {
-  try {
-    localStorage.setItem(key, JSON.stringify(data));
-    return true;
-  } catch (error) {
-    showToast(t("storageWarning"));
-    return false;
-  }
+function translateDate(date) {
+  if (!date) return "";
+  const parsed = new Date(date + "T12:00:00");
+  if (Number.isNaN(parsed.getTime())) return date;
+
+  const locale = {
+    en: "en-IN",
+    hi: "hi-IN",
+    pa: "pa-IN",
+    te: "te-IN",
+    ml: "ml-IN",
+    ta: "ta-IN"
+  }[currentLanguage] || "en-IN";
+
+  return new Intl.DateTimeFormat(locale, {
+    day: "numeric",
+    month: "short",
+    year: "numeric"
+  }).format(parsed);
 }
 
-/* Language switching */
-function setLanguage(language) {
-  if (!translations[language]) language = "en";
+function applyTranslations() {
+  document.documentElement.lang = currentLanguage;
 
-  stopSpeaking();
-  currentLanguage = language;
-
-  document.documentElement.lang = ({
-    en: "en",
-    hi: "hi",
-    pa: "pa",
-    te: "te",
-    ml: "ml",
-    ta: "ta"
-  })[language];
-
-  document.querySelectorAll("[data-i18n]").forEach((element) => {
+  $$("[data-i18n]").forEach(element => {
     const key = element.dataset.i18n;
-    const translated = t(key);
-
-    // Only predefined translation strings are inserted as HTML.
-    element.innerHTML = translated;
+    element.textContent = t(key);
   });
 
-  document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
+  $$("[data-i18n-placeholder]").forEach(element => {
     element.placeholder = t(element.dataset.i18nPlaceholder);
   });
 
-  $("#languageSelect").value = language;
-  renderNotes();
-  renderQuestions();
-}
+  $("#loginLanguage").value = currentLanguage;
+  $("#dashboardLanguage").value = currentLanguage;
 
-/* Small notification */
-function showToast(message) {
-  const toast = $("#toast");
-  toast.textContent = message;
-  toast.classList.add("show");
+  renderDashboard();
+  updatePageHeading();
 
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => {
-    toast.classList.remove("show");
-  }, 3000);
-}
-
-/* Speech playback */
-function stopSpeaking() {
-  if ("speechSynthesis" in window) {
-    window.speechSynthesis.cancel();
-  }
-
-  isSpeaking = false;
-}
-
-function speakText(text) {
-  if (!("speechSynthesis" in window) ||
-      typeof SpeechSynthesisUtterance === "undefined") {
-    showToast(t("speechUnavailable"));
-    return;
-  }
-
-  stopSpeaking();
-
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = speechLocales[currentLanguage];
-  utterance.rate = 0.9;
-  utterance.pitch = 1;
-
-  utterance.onstart = () => {
-    isSpeaking = true;
-    $("#voiceStatus").textContent = t("reading");
-  };
-
-  utterance.onend = () => {
-    isSpeaking = false;
-    $("#voiceStatus").textContent = "";
-  };
-
-  utterance.onerror = () => {
-    isSpeaking = false;
-    $("#voiceStatus").textContent = t("speechUnavailable");
-  };
-
-  window.speechSynthesis.speak(utterance);
-}
-
-/* Read the introduction */
-$("#readWelcome").addEventListener("click", () => {
-  speakText(t("readIntroduction"));
-});
-
-/* Read the latest note */
-$("#readNotes").addEventListener("click", () => {
-  if (notes.length === 0) {
-    showToast(t("noNotes"));
-    return;
-  }
-
-  const latest = notes[0];
-  speakText(`${latest.title}. ${latest.content}`);
-});
-
-/* Speech-to-text support varies by browser */
-function startVoiceInput() {
-  const SpeechRecognition =
-    window.SpeechRecognition || window.webkitSpeechRecognition;
-
-  if (!SpeechRecognition) {
-    $("#voiceStatus").textContent = t("noSpeech");
-    showToast(t("noSpeech"));
-    return;
-  }
-
-  if (isListening && recognition) {
-    recognition.stop();
-    return;
-  }
-
-  try {
-    recognition = new SpeechRecognition();
-    recognition.lang = speechLocales[currentLanguage];
-    recognition.continuous = false;
-    recognition.interimResults = true;
-    recognition.maxAlternatives = 1;
-    isListening = true;
-
-    const questionInput = $("#questionContent");
-    const originalText = questionInput.value.trim();
-
-    recognition.onstart = () => {
-      $("#voiceStatus").textContent = t("listening");
-      $("#voiceQuestion").classList.add("listening");
-    };
-
-    recognition.onresult = (event) => {
-      let finalTranscript = "";
-      let interimTranscript = "";
-
-      for (let i = event.resultIndex; i < event.results.length; i++) {
-        const transcript = event.results[i][0].transcript;
-
-        if (event.results[i].isFinal) {
-          finalTranscript += transcript;
-        } else {
-          interimTranscript += transcript;
-        }
-      }
-
-      const spokenText = (finalTranscript || interimTranscript).trim();
-
-      if (spokenText) {
-        questionInput.value =
-          [originalText, spokenText].filter(Boolean).join(" ").trim();
-      }
-    };
-
-    recognition.onerror = (event) => {
-      if (event.error !== "aborted" && event.error !== "no-speech") {
-        $("#voiceStatus").textContent = t("recognitionError");
-      } else if (event.error === "no-speech") {
-        $("#voiceStatus").textContent = t("recognitionError");
-      }
-    };
-
-    recognition.onend = () => {
-      isListening = false;
-      $("#voiceQuestion").classList.remove("listening");
-
-      if ($("#voiceStatus").textContent === t("listening")) {
-        $("#voiceStatus").textContent = t("speechEnded");
-      }
-    };
-
-    recognition.start();
-  } catch (error) {
-    isListening = false;
-    $("#voiceStatus").textContent = t("recognitionError");
+  if (!$("#managementPage").classList.contains("hidden")) {
+    renderManagementPage();
   }
 }
 
-$("#voiceQuestion").addEventListener("click", startVoiceInput);
+function setLanguage(language) {
+  if (!translations[language]) return;
+  currentLanguage = language;
+  applyTranslations();
+}
 
-/* Notes */
-$("#noteForm").addEventListener("submit", (event) => {
+/* ---------- LOGIN AND LOADING ---------- */
+
+$("#loginForm").addEventListener("submit", event => {
   event.preventDefault();
 
-  const title = $("#noteTitle").value.trim();
-  const content = $("#noteContent").value.trim();
+  const name = $("#username").value.trim();
+  const password = $("#password").value;
 
-  if (!title || !content) {
-    $("#noteStatus").textContent = t("titleRequired");
+  if (!name || !password) {
+    showToast(t("fillRequired"));
     return;
   }
 
-  const newNote = {
-    id: createId(),
-    title,
-    content,
-    date: new Date().toISOString()
-  };
+  farmer = name;
+  $("#farmerName").textContent = farmer;
+  $("#welcomeName").textContent = farmer;
+  $("#userAvatar").textContent = farmer.charAt(0).toUpperCase();
 
-  notes.unshift(newNote);
+  $("#loginScreen").classList.add("hidden");
+  $("#loadingScreen").classList.remove("hidden");
 
-  if (!saveStoredArray("classbridge_notes", notes)) {
-    notes.shift();
-    return;
-  }
+  const tasks = $$(".loading-task");
+  const progress = $("#loadingProgress");
 
-  $("#noteForm").reset();
-  $("#noteStatus").textContent = t("noteSaved");
-  renderNotes();
-  showToast(t("noteSaved"));
-});
+  tasks.forEach(task => task.classList.remove("done", "pending"));
+  progress.style.width = "0%";
 
-/* Questions */
-$("#questionForm").addEventListener("submit", (event) => {
-  event.preventDefault();
+  let completed = 0;
 
-  const subject = $("#questionSubject").value.trim();
-  const content = $("#questionContent").value.trim();
+  function loadNextTask() {
+    if (completed > 0) {
+      tasks[completed - 1]?.classList.add("done");
+    }
 
-  if (!content) {
-    $("#questionStatus").textContent = t("questionRequired");
-    return;
-  }
-
-  const newQuestion = {
-    id: createId(),
-    subject: subject || t("savedQuestion"),
-    content,
-    date: new Date().toISOString()
-  };
-
-  questions.unshift(newQuestion);
-
-  if (!saveStoredArray("classbridge_questions", questions)) {
-    questions.shift();
-    return;
-  }
-
-  $("#questionForm").reset();
-  $("#questionStatus").textContent = t("questionSaved");
-  renderQuestions();
-  showToast(t("questionSaved"));
-});
-
-function createId() {
-  return `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
-}
-
-function formatDate(dateString) {
-  const date = new Date(dateString);
-
-  if (Number.isNaN(date.getTime())) return "";
-
-  try {
-    return new Intl.DateTimeFormat(currentLanguage, {
-      dateStyle: "medium",
-      timeStyle: "short"
-    }).format(date);
-  } catch (error) {
-    return date.toLocaleString();
-  }
-}
-
-/* Create item elements safely using textContent */
-function makeSavedItem(item, kind) {
-  const article = document.createElement("article");
-  article.className = "saved-item";
-
-  const title = document.createElement("h3");
-  title.textContent = item.title || item.subject || t("emptyTitle");
-
-  const content = document.createElement("p");
-  content.textContent = item.content || "";
-
-  const meta = document.createElement("div");
-  meta.className = "saved-meta";
-
-  const date = document.createElement("span");
-  date.textContent = formatDate(item.date);
-
-  const deleteButton = document.createElement("button");
-  deleteButton.type = "button";
-  deleteButton.className = "delete-item";
-  deleteButton.textContent = t("delete");
-  deleteButton.addEventListener("click", () => deleteItem(item.id, kind));
-
-  meta.append(date, deleteButton);
-  article.append(title, content, meta);
-
-  return article;
-}
-
-function renderNotes() {
-  const list = $("#notesList");
-  list.replaceChildren();
-
-  $("#notesCount").textContent = notes.length;
-
-  if (notes.length === 0) {
-    const empty = document.createElement("div");
-    empty.className = "empty-state";
-    empty.textContent = t("emptyNotes");
-    list.appendChild(empty);
-    return;
-  }
-
-  notes.forEach((note) => {
-    list.appendChild(makeSavedItem(note, "note"));
-  });
-}
-
-function renderQuestions() {
-  const list = $("#questionsList");
-  list.replaceChildren();
-
-  $("#questionsCount").textContent = questions.length;
-
-  if (questions.length === 0) {
-    const empty = document.createElement("div");
-    empty.className = "empty-state";
-    empty.textContent = t("emptyQuestions");
-    list.appendChild(empty);
-    return;
-  }
-
-  questions.forEach((question) => {
-    list.appendChild(makeSavedItem(question, "question"));
-  });
-}
-
-function deleteItem(id, kind) {
-  if (kind === "note") {
-    const previous = notes;
-    notes = notes.filter((item) => item.id !== id);
-
-    if (!saveStoredArray("classbridge_notes", notes)) {
-      notes = previous;
+    if (completed < tasks.length) {
+      tasks[completed].classList.add("pending");
+      progress.style.width =
+        `${Math.round((completed / tasks.length) * 100)}%`;
+      completed++;
+      window.setTimeout(loadNextTask, 260);
       return;
     }
 
-    renderNotes();
-    showToast(t("noteDeleted"));
-  } else {
-    const previous = questions;
-    questions = questions.filter((item) => item.id !== id);
+    progress.style.width = "100%";
+    tasks.forEach(task => {
+      task.classList.remove("pending");
+      task.classList.add("done");
+    });
 
-    if (!saveStoredArray("classbridge_questions", questions)) {
-      questions = previous;
-      return;
-    }
+    window.setTimeout(() => {
+      $("#loadingScreen").classList.add("hidden");
+      $("#appScreen").classList.remove("hidden");
+      $("#todayDate").textContent = new Intl.DateTimeFormat(
+        currentLanguage === "en" ? "en-IN" : currentLanguage + "-IN",
+        { weekday: "short", day: "numeric", month: "short", year: "numeric" }
+      ).format(new Date());
 
-    renderQuestions();
-    showToast(t("questionDeleted"));
-  }
-}
-
-/* Clear locally stored project data */
-$("#clearData").addEventListener("click", () => {
-  if (!window.confirm(t("confirmClear"))) return;
-
-  const previousNotes = notes;
-  const previousQuestions = questions;
-
-  notes = [];
-  questions = [];
-
-  const notesSaved = saveStoredArray("classbridge_notes", notes);
-  const questionsSaved = saveStoredArray("classbridge_questions", questions);
-
-  if (!notesSaved || !questionsSaved) {
-    notes = previousNotes;
-    questions = previousQuestions;
-    renderNotes();
-    renderQuestions();
-    return;
+      currentPage = "home";
+      updateNavigation();
+      showToast(t("loginSuccess"));
+      window.scrollTo(0, 0);
+    }, 350);
   }
 
-  renderNotes();
-  renderQuestions();
-  showToast(t("dataCleared"));
+  loadNextTask();
 });
 
-/* Mobile sidebar */
-$("#menuButton").addEventListener("click", () => {
-  const sidebar = $("#sidebar");
-  const opened = sidebar.classList.toggle("open");
-
-  $("#menuButton").setAttribute("aria-expanded", String(opened));
-  $("#menuButton").setAttribute(
-    "aria-label",
-    opened ? "Close navigation" : "Open navigation"
-  );
-});
-
-document.querySelectorAll(".nav-link, .tip-link").forEach((link) => {
-  link.addEventListener("click", () => {
-    $("#sidebar").classList.remove("open");
-    $("#menuButton").setAttribute("aria-expanded", "false");
-  });
-});
-
-/* Apply the selected language */
-$("#languageSelect").addEventListener("change", (event) => {
+$("#loginLanguage").addEventListener("change", event => {
   setLanguage(event.target.value);
 });
 
-/* Start the application */
-setLanguage("en");
-renderNotes();
-renderQuestions();
+$("#dashboardLanguage").addEventListener("change", event => {
+  setLanguage(event.target.value);
+});
+
+$("#logoutButton").addEventListener("click", () => {
+  $("#appScreen").classList.add("hidden");
+  $("#loadingScreen").classList.add("hidden");
+  $("#loginScreen").classList.remove("hidden");
+  $("#password").value = "";
+  closeSidebar();
+  showToast(t("logoutSuccess"));
+  window.scrollTo(0, 0);
+});
+
+/* ---------- SIDEBAR ---------- */
+
+function openSidebar() {
+  $("#sidebar").classList.add("open");
+  $("#sidebarOverlay").classList.add("visible");
+}
+
+function closeSidebar() {
+  $("#sidebar").classList.remove("open");
+  $("#sidebarOverlay").classList.remove("visible");
+}
+
+$("#menuButton").addEventListener("click", openSidebar);
+$("#closeSidebar").addEventListener("click", closeSidebar);
+$("#sidebarOverlay").addEventListener("click", closeSidebar);
+
+function updateNavigation() {
+  $$(".nav-link").forEach(button => {
+    button.classList.toggle(
+      "active",
+      button.dataset.page === currentPage
+    );
+  });
+}
+
+function updatePageHeading() {
+  const headings = {
+    home: "dashboard",
+    fields: "fields",
+    crops: "crops",
+    irrigation: "irrigation",
+    fertilizer: "fertilizer",
+    pests: "pests",
+    harvest: "harvest"
+  };
+
+  const heading = headings[currentPage] || "dashboard";
+  $(".topbar h2").textContent = t(heading);
+}
+
+function navigateTo(page) {
+  if (!records[page] && page !== "home") return;
+
+  currentPage = page;
+  updateNavigation();
+  updatePageHeading();
+  closeSidebar();
+
+  if (page === "home") {
+    $("#managementPage").classList.add("hidden");
+    $(".content-grid").classList.remove("hidden");
+    $(".quick-panel").classList.remove("hidden");
+    renderDashboard();
+  } else {
+    $(".content-grid").classList.add("hidden");
+    $(".quick-panel").classList.add("hidden");
+    $("#managementPage").classList.remove("hidden");
+    renderManagementPage();
+  }
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+$("#sideNav").addEventListener("click", event => {
+  const button = event.target.closest("[data-page]");
+  if (button) navigateTo(button.dataset.page);
+});
+
+$$("[data-go]").forEach(button => {
+  button.addEventListener("click", () => navigateTo(button.dataset.go));
+});
+
+$$("[data-add]").forEach(button => {
+  button.addEventListener("click", () => openRecordModal(button.dataset.add));
+});
+
+/* ---------- DASHBOARD ---------- */
+
+function cropEmoji(crop) {
+  const icons = {
+    Rice: "🌾",
+    Tomato: "🍅",
+    Maize: "🌽",
+    Wheat: "🌾",
+    Vegetables: "🥬"
+  };
+  return icons[crop] || "🌱";
+}
+
+function cropClass(crop) {
+  const classes = {
+    Rice: "rice",
+    Tomato: "tomato",
+    Maize: "maize",
+    Wheat: "wheat",
+    Vegetables: "vegetable"
+  };
+  return classes[crop] || "";
+}
+
+function renderDashboard() {
+  if (!$("#featuredFields")) return;
+
+  $("#statFields").textContent = records.fields.length;
+  $("#statCrops").textContent = records.crops.length;
+  $("#statWater").textContent = records.irrigation.length;
+
+  $("#featuredFields").innerHTML = records.fields.slice(0, 3).map(field => `
+    <article class="field-item">
+      <div class="field-picture ${cropClass(field.crop)}">
+        ${cropEmoji(field.crop)}
+      </div>
+      <div class="field-info">
+        <h3>${escapeHTML(field.name)}</h3>
+        <p>${escapeHTML(translateValue(field.crop))} ·
+          ${Number(field.area)} ${t("area").replace(" (acres)", "").replace(" (एकड़)", "").replace(" (ਏਕੜ)", "")}
+        </p>
+        <div class="field-progress-row">
+          <div class="mini-track">
+            <span style="width:${Math.max(0, Math.min(100, Number(field.progress)))}%"></span>
+          </div>
+          <strong>${field.progress}%</strong>
+        </div>
+      </div>
+    </article>
+  `).join("");
+
+  const activityIcons = {
+    water: "💧",
+    fertilizer: "🌿",
+    pest: "🐛",
+    harvest: "🌾",
+    field: "🌱"
+  };
+
+  $("#recentActivity").innerHTML = activities.slice(0, 5).map(item => `
+    <article class="activity-item">
+      <div class="activity-icon ${item.type}">
+        ${activityIcons[item.type] || "🌱"}
+      </div>
+      <div class="activity-copy">
+        <h3>${escapeHTML(t(item.text))}</h3>
+        <p>${escapeHTML(item.detail)}</p>
+      </div>
+      <span class="activity-time">${escapeHTML(
+        item.time === "Today" ? t("today") :
+        item.time === "Yesterday" ? t("yesterday") :
+        item.time
+      )}</span>
+    </article>
+  `).join("");
+}
+
+/* ---------- RECORD TABLES ---------- */
+
+const schemas = {
+  fields: {
+    title: "fields",
+    columns: ["name", "crop", "area", "stage", "progress"],
+    form: [
+      { key: "name", type: "text", required: true },
+      { key: "crop", type: "select", options: ["Rice", "Tomato", "Maize", "Wheat", "Vegetables"], required: true },
+      { key: "area", type: "number", required: true, min: 0.1, step: "0.1" },
+      { key: "stage", type: "select", options: ["seedling", "vegetative", "flowering", "maturity"], required: true },
+      { key: "progress", type: "number", required: true, min: 0, max: 100 }
+    ]
+  },
+
+  crops: {
+    title: "crops",
+    columns: ["name", "field", "stage", "status"],
+    form: [
+      { key: "name", type: "select", options: ["Rice", "Tomato", "Maize", "Wheat", "Vegetables"], required: true },
+      { key: "field", type: "select", source: "fields", required: true },
+      { key: "stage", type: "select", options: ["seedling", "vegetative", "flowering", "maturity"], required: true },
+      { key: "status", type: "select", options: ["healthy", "warning"], required: true }
+    ]
+  },
+
+  irrigation: {
+    title: "irrigation",
+    columns: ["field", "date", "amount", "unit", "notes"],
+    form: [
+      { key: "field", type: "select", source: "fields", required: true },
+      { key: "date", type: "date", required: true },
+      { key: "amount", type: "number", required: true, min: 0 },
+      { key: "unit", type: "select", options: ["litres", "kg"], required: true },
+      { key: "notes", type: "text", required: false }
+    ]
+  },
+
+  fertilizer: {
+    title: "fertilizer",
+    columns: ["field", "type", "date", "amount", "unit"],
+    form: [
+      { key: "field", type: "select", source: "fields", required: true },
+      { key: "type", type: "select", options: ["Nitrogen fertilizer", "Organic compost"], required: true },
+      { key: "date", type: "date", required: true },
+      { key: "amount", type: "number", required: true, min: 0 },
+      { key: "unit", type: "select", options: ["kg", "litres"], required: true }
+    ]
+  },
+
+  pests: {
+    title: "pests",
+    columns: ["field", "type", "date", "status", "notes"],
+    form: [
+      { key: "field", type: "select", source: "fields", required: true },
+      { key: "type", type: "select", options: ["Aphids", "Leaf spot"], required: true },
+      { key: "date", type: "date", required: true },
+      { key: "status", type: "select", options: ["healthy", "warning"], required: true },
+      { key: "notes", type: "text", required: false }
+    ]
+  },
+
+  harvest: {
+    title: "harvest",
+    columns: ["field", "crop", "date", "amount", "unit", "status"],
+    form: [
+      { key: "field", type: "select", source: "fields", required: true },
+      { key: "crop", type: "select", options: ["Rice", "Tomato", "Maize", "Wheat", "Vegetables"], required: true },
+      { key: "date", type: "date", required: true },
+      { key: "amount", type: "number", required: true, min: 0 },
+      { key: "unit", type: "select", options: ["kg"], required: true },
+      { key: "status", type: "select", options: ["Expected", "In progress", "Completed"], required: true }
+    ]
+  }
+};
+
+function columnLabel(key) {
+  const labels = {
+    name: "name",
+    crop: "crop",
+    field: "field",
+    area: "area",
+    stage: "stage",
+    progress: "progress",
+    date: "date",
+    amount: "amount",
+    unit: "unit",
+    notes: "notes",
+    type: "type",
+    status: "status"
+  };
+
+  return t(labels[key] || key);
+}
+
+function formatCell(key, value) {
+  if (value === undefined || value === null || value === "") return "—";
+
+  if (key === "date") return escapeHTML(translateDate(String(value)));
+
+  if (key === "area") return `${escapeHTML(String(value))} acres`;
+
+  if (key === "progress") return `${escapeHTML(String(value))}%`;
+
+  if (key === "stage") return escapeHTML(t(value));
+
+  if (key === "status") {
+    const warning = value === "warning" || value === "Expected";
+    const statusText = value === "warning" ? t("needsAttention") :
+      value === "healthy" ? t("healthy") : translateValue(value);
+
+    return `<span class="status-pill ${warning ? "warning" : ""}">${escapeHTML(statusText)}</span>`;
+  }
+
+  if (key === "crop" || key === "type" || key === "unit") {
+    return escapeHTML(translateValue(value));
+  }
+
+  return escapeHTML(String(value));
+}
+
+function renderManagementPage() {
+  const schema = schemas[currentPage];
+  if (!schema) return;
+
+  $("#managementTitle").textContent = t(schema.title);
+
+  const data = records[currentPage];
+
+  if (!data.length) {
+    $("#managementContent").innerHTML = `
+      <div class="empty-state">${escapeHTML(t("noRecords"))}</div>
+    `;
+    return;
+  }
+
+  const columns = schema.columns;
+
+  $("#managementContent").innerHTML = `
+    <table class="records-table">
+      <thead>
+        <tr>
+          ${columns.map(key => `<th>${escapeHTML(columnLabel(key))}</th>`).join("")}
+          <th>${escapeHTML(t("actions"))}</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${data.map(record => `
+          <tr>
+            ${columns.map(key => `<td>${formatCell(key, record[key])}</td>`).join("")}
+            <td>
+              <div class="table-actions">
+                <button class="small-action delete"
+                  data-delete="${record.id}"
+                  aria-label="${escapeHTML(t("delete"))}">
+                  ${escapeHTML(t("delete"))}
+                </button>
+              </div>
+            </td>
+          </tr>
+        `).join("")}
+      </tbody>
+    </table>
+  `;
+}
+
+$("#managementContent").addEventListener("click", event => {
+  const button = event.target.closest("[data-delete]");
+  if (!button) return;
+
+  if (!window.confirm(t("confirmDelete"))) return;
+
+  const id = Number(button.dataset.delete);
+  records[currentPage] = records[currentPage].filter(
+    record => record.id !== id
+  );
+
+  renderManagementPage();
+  renderDashboard();
+  showToast(t("recordDeleted"));
+});
+
+$("#addRecordButton").addEventListener("click", () => {
+  openRecordModal(currentPage);
+});
+
+/* ---------- ADD RECORD MODAL ---------- */
+
+function openRecordModal(type) {
+  if (!schemas[type]) return;
+
+  currentRecordType = type;
+  const schema = schemas[type];
+
+  $("#modalTitle").textContent = `${t("addNew")} — ${t(schema.title)}`;
+
+  $("#recordFormFields").innerHTML = schema.form.map(field => {
+    const label = columnLabel(field.key);
+    const id = `record-${field.key}`;
+
+    let control = "";
+
+    if (field.type === "select") {
+      let options = field.options || [];
+
+      if (field.source === "fields") {
+        options = records.fields.map(item => item.name);
+      }
+
+      control = `
+        <select id="${id}" name="${field.key}"
+          ${field.required ? "required" : ""}>
+          <option value="">${escapeHTML(
+            field.source === "fields" ? t("selectField") :
+            field.key === "crop" ? t("selectCrop") : label
+          )}</option>
+          ${options.map(option => `
+            <option value="${escapeHTML(option)}">${escapeHTML(translateValue(option))}</option>
+          `).join("")}
+        </select>
+      `;
+    } else {
+      control = `
+        <input id="${id}" name="${field.key}"
+          type="${field.type}"
+          ${field.min !== undefined ? `min="${field.min}"` : ""}
+          ${field.max !== undefined ? `max="${field.max}"` : ""}
+          ${field.step ? `step="${field.step}"` : ""}
+          ${field.required ? "required" : ""}
+          ${field.type === "date" ? `value="${today}"` : ""}
+          ${field.key === "progress" ? 'value="0"' : ""}
+          placeholder="${escapeHTML(label)}">
+      `;
+    }
+
+    return `
+      <label for="${id}">${escapeHTML(label)}</label>
+      ${control}
+    `;
+  }).join("");
+
+  $("#recordModal").classList.remove("hidden");
+}
+
+function closeRecordModal() {
+  $("#recordModal").classList.add("hidden");
+  $("#recordForm").reset();
+}
+
+$("#closeModal").addEventListener("click", closeRecordModal);
+$("#cancelModal").addEventListener("click", closeRecordModal);
+
+$("#recordModal").addEventListener("click", event => {
+  if (event.target === $("#recordModal")) closeRecordModal();
+});
+
+$("#recordForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  const schema = schemas[currentRecordType];
+  const formData = new FormData(event.currentTarget);
+  const record = {
+    id: Date.now()
+  };
+
+  schema.form.forEach(field => {
+    let value = formData.get(field.key);
+
+    if (field.type === "number") {
+      value = Number(value);
+    }
+
+    record[field.key] = value;
+  });
+
+  if (currentRecordType === "fields") {
+    record.progress = Math.max(0, Math.min(100, record.progress));
+  }
+
+  records[currentRecordType].push(record);
+
+  const activityTypes = {
+    fields: { type: "field", text: "recentField" },
+    crops: { type: "field", text: "recentField" },
+    irrigation: { type: "water", text: "waterActivity" },
+    fertilizer: { type: "fertilizer", text: "fertilizerActivity" },
+    pests: { type: "pest", text: "pestActivity" },
+    harvest: { type: "harvest", text: "harvestActivity" }
+  };
+
+  const activity = activityTypes[currentRecordType];
+
+  activities.unshift({
+    type: activity.type,
+    text: activity.text,
+    detail: record.field || record.name || "Farm",
+    time: new Date().toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit"
+    })
+  });
+
+  activities = activities.slice(0, 10);
+
+  closeRecordModal();
+  renderDashboard();
+
+  if (currentPage !== "home") {
+    renderManagementPage();
+  }
+
+  showToast(t("recordAdded"));
+});
+
+/* ---------- SECURITY AND NOTIFICATIONS ---------- */
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, character => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[character]);
+}
+
+function showToast(message) {
+  const toast = $("#toast");
+
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  window.clearTimeout(toastTimer);
+
+  toastTimer = window.setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2600);
+}
+
+/* ---------- INITIAL SETUP ---------- */
+
+applyTranslations();
