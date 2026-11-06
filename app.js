@@ -1,4 +1,11 @@
+// ========================================
+// HARVESTLY - MULTILINGUAL FARMING WEBSITE
+// ========================================
+
+// 1. LANGUAGE TRANSLATIONS
+
 const translations = {
+
     en: {
         tag: "🌱 YOUR FARM, OUR CARE",
         heading: "Grow Better. Harvest Smarter.",
@@ -14,6 +21,10 @@ const translations = {
         signup: "Create Account",
         show: "Show",
         hide: "Hide",
+        empty: "Please enter your username and password.",
+        success: "Welcome",
+        successEnd: "! Your demo login is successful. Dashboard is our next step.",
+        signupMessage: "Account registration will be added soon.",
         footer: "© 2026 Harvestly | Smart Farming for Everyone"
     },
 
@@ -32,6 +43,10 @@ const translations = {
         signup: "ఖాతా సృష్టించండి",
         show: "చూపించు",
         hide: "దాచు",
+        empty: "దయచేసి మీ పేరు మరియు పాస్‌వర్డ్ నమోదు చేయండి.",
+        success: "స్వాగతం",
+        successEnd: "! మీ డెమో లాగిన్ విజయవంతమైంది.",
+        signupMessage: "ఖాతా నమోదు త్వరలో జోడించబడుతుంది.",
         footer: "© 2026 Harvestly | అందరికీ స్మార్ట్ వ్యవసాయం"
     },
 
@@ -50,6 +65,10 @@ const translations = {
         signup: "खाता बनाएं",
         show: "दिखाएं",
         hide: "छिपाएं",
+        empty: "कृपया अपना नाम और पासवर्ड दर्ज करें।",
+        success: "स्वागत है",
+        successEnd: "! आपका डेमो लॉगिन सफल रहा।",
+        signupMessage: "खाता पंजीकरण जल्द जोड़ा जाएगा।",
         footer: "© 2026 Harvestly | सभी के लिए स्मार्ट खेती"
     },
 
@@ -68,6 +87,10 @@ const translations = {
         signup: "ਖਾਤਾ ਬਣਾਓ",
         show: "ਦਿਖਾਓ",
         hide: "ਲੁਕਾਓ",
+        empty: "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਨਾਮ ਅਤੇ ਪਾਸਵਰਡ ਭਰੋ।",
+        success: "ਜੀ ਆਇਆਂ ਨੂੰ",
+        successEnd: "! ਤੁਹਾਡਾ ਡੈਮੋ ਲੌਗਇਨ ਸਫਲ ਹੋ ਗਿਆ ਹੈ।",
+        signupMessage: "ਖਾਤਾ ਰਜਿਸਟ੍ਰੇਸ਼ਨ ਜਲਦੀ ਸ਼ਾਮਲ ਕੀਤੀ ਜਾਵੇਗੀ।",
         footer: "© 2026 Harvestly | ਸਭ ਲਈ ਸਮਾਰਟ ਖੇਤੀ"
     },
 
@@ -86,6 +109,10 @@ const translations = {
         signup: "അക്കൗണ്ട് സൃഷ്ടിക്കുക",
         show: "കാണിക്കുക",
         hide: "മറയ്ക്കുക",
+        empty: "ദയവായി നിങ്ങളുടെ പേരും പാസ്‌വേഡും നൽകുക.",
+        success: "സ്വാഗതം",
+        successEnd: "! നിങ്ങളുടെ ഡെമോ ലോഗിൻ വിജയകരമാണ്.",
+        signupMessage: "അക്കൗണ്ട് രജിസ്ട്രേഷൻ ഉടൻ ചേർക്കും.",
         footer: "© 2026 Harvestly | എല്ലാവർക്കും സ്മാർട്ട് കൃഷി"
     },
 
@@ -104,75 +131,191 @@ const translations = {
         signup: "கணக்கை உருவாக்கவும்",
         show: "காட்டு",
         hide: "மறை",
+        empty: "உங்கள் பெயர் மற்றும் கடவுச்சொல்லை உள்ளிடவும்.",
+        success: "வரவேற்கிறோம்",
+        successEnd: "! உங்கள் டெமோ உள்நுழைவு வெற்றிகரமாக முடிந்தது.",
+        signupMessage: "கணக்கு பதிவு விரைவில் சேர்க்கப்படும்.",
         footer: "© 2026 Harvestly | அனைவருக்கும் ஸ்மார்ட் விவசாயம்"
     }
+
 };
 
-// Language switching
+
+// 2. GET HTML ELEMENTS
+
 const languageSelect = document.getElementById("language");
 
-function changeLanguage(language) {
-    const t = translations[language];
+const usernameInput = document.getElementById("username");
 
-    document.getElementById("tag").textContent = t.tag;
-    document.getElementById("heading").textContent = t.heading;
-    document.getElementById("description").textContent = t.description;
-    document.getElementById("welcome").textContent = t.welcome;
-    document.getElementById("subtitle").textContent = t.subtitle;
-    document.getElementById("userLabel").textContent = t.userLabel;
-    document.getElementById("passLabel").textContent = t.passLabel;
-    document.getElementById("username").placeholder = t.userPlaceholder;
-    document.getElementById("password").placeholder = t.passPlaceholder;
-    document.getElementById("loginButton").textContent = t.login;
-    document.getElementById("newUser").textContent = t.newUser;
-    document.getElementById("signup").textContent = t.signup;
-    document.querySelector("footer").textContent = t.footer;
-
-    updatePasswordButton();
-}
-
-languageSelect.addEventListener("change", function () {
-    changeLanguage(this.value);
-});
-
-// Show and hide password
 const passwordInput = document.getElementById("password");
+
 const toggleButton = document.getElementById("togglePassword");
 
+const loginForm = document.getElementById("loginForm");
+
+
+// 3. UPDATE PASSWORD BUTTON
+
 function updatePasswordButton() {
-    const t = translations[languageSelect.value];
+
+    const language = languageSelect.value;
+
+    const t = translations[language] || translations.en;
 
     toggleButton.textContent =
         passwordInput.type === "password" ? t.show : t.hide;
+
 }
 
-toggleButton.addEventListener("click", function () {
-    passwordInput.type =
-        passwordInput.type === "password" ? "text" : "password";
 
+// 4. LANGUAGE SWITCHING FUNCTION
+
+function changeLanguage(language) {
+
+    const t = translations[language] || translations.en;
+
+    // Update browser language
+    document.documentElement.lang = language;
+
+    // Update website content
+    document.getElementById("tag").textContent = t.tag;
+
+    document.getElementById("heading").textContent = t.heading;
+
+    document.getElementById("description").textContent = t.description;
+
+    document.getElementById("welcome").textContent = t.welcome;
+
+    document.getElementById("subtitle").textContent = t.subtitle;
+
+    document.getElementById("userLabel").textContent = t.userLabel;
+
+    document.getElementById("passLabel").textContent = t.passLabel;
+
+    usernameInput.placeholder = t.userPlaceholder;
+
+    passwordInput.placeholder = t.passPlaceholder;
+
+    document.getElementById("loginButton").textContent = t.login;
+
+    document.getElementById("newUser").textContent = t.newUser;
+
+    document.getElementById("signup").textContent = t.signup;
+
+    document.querySelector("footer").textContent = t.footer;
+
+    // Update password visibility text
     updatePasswordButton();
-});
 
-// Demo login
-document.getElementById("loginForm").addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    const username = document.getElementById("username").value.trim();
-    const password = passwordInput.value;
-
-    if (username === "" || password === "") {
-        alert("Please enter your username and password.");
-        return;
+    // Save selected language
+    try {
+        localStorage.setItem("harvestlyLanguage", language);
+    } catch (error) {
+        console.warn("Language preference could not be saved.");
     }
 
-    alert("Welcome " + username + "! Your demo login is successful. Dashboard is our next step.");
+}
+
+
+// 5. LANGUAGE SELECT EVENT
+
+languageSelect.addEventListener("change", function () {
+
+    changeLanguage(this.value);
+
 });
 
-// Create account demo
-document.getElementById("signup").addEventListener("click", function (event) {
+
+// 6. SHOW AND HIDE PASSWORD
+
+toggleButton.addEventListener("click", function () {
+
+    if (passwordInput.type === "password") {
+
+        passwordInput.type = "text";
+
+    } else {
+
+        passwordInput.type = "password";
+
+    }
+
+    updatePasswordButton();
+
+});
+
+
+// 7. LOGIN FORM VALIDATION
+
+loginForm.addEventListener("submit", function (event) {
+
     event.preventDefault();
-    alert("Account registration will be added in the next development step.");
+
+    const username = usernameInput.value.trim();
+
+    const password = passwordInput.value;
+
+    const language = languageSelect.value;
+
+    const t = translations[language] || translations.en;
+
+    if (username === "" || password.trim() === "") {
+
+        alert(t.empty);
+
+        return;
+
+    }
+
+    // Demo login message
+    alert(t.success + " " + username + t.successEnd);
+
 });
 
-// Set initial language
-changeLanguage("en");
+
+// 8. CREATE ACCOUNT BUTTON
+
+document.getElementById("signup").addEventListener("click", function (event) {
+
+    event.preventDefault();
+
+    const language = languageSelect.value;
+
+    const t = translations[language] || translations.en;
+
+    alert(t.signupMessage);
+
+});
+
+
+// 9. LOAD SAVED LANGUAGE WHEN WEBSITE OPENS
+
+let savedLanguage = "en";
+
+try {
+
+    savedLanguage = localStorage.getItem("harvestlyLanguage") || "en";
+
+} catch (error) {
+
+    savedLanguage = "en";
+
+}
+
+// Check whether saved language is valid
+if (!translations[savedLanguage]) {
+
+    savedLanguage = "en";
+
+}
+
+// Set language dropdown
+languageSelect.value = savedLanguage;
+
+// Apply selected language
+changeLanguage(savedLanguage);
+
+
+// ========================================
+// HARVESTLY JAVASCRIPT INITIALIZATION DONE
+// ========================================
