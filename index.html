@@ -1,39 +1,57 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Harvestly | Smart Farming</title>
 
     <link rel="stylesheet" href="styles.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
 
     <main class="login-page">
 
+        <!-- NAVIGATION -->
         <nav class="top-nav">
+
             <a class="brand" href="#">
                 <span class="brand-icon">🌿</span>
                 HARVESTLY
             </a>
 
+            <!-- LANGUAGE SELECTION -->
             <select id="language" aria-label="Choose language">
+
                 <option value="en">English</option>
                 <option value="te">తెలుగు</option>
                 <option value="hi">हिंदी</option>
                 <option value="pa">ਪੰਜਾਬੀ</option>
                 <option value="ml">മലയാളം</option>
                 <option value="ta">தமிழ்</option>
+
             </select>
+
         </nav>
 
+
+        <!-- MAIN HERO SECTION -->
         <section class="hero-content">
 
             <div class="hero-text">
-                <span class="tag" id="tag">🌱 YOUR FARM, OUR CARE</span>
+
+                <span class="tag" id="tag">
+                    🌱 YOUR FARM, OUR CARE
+                </span>
 
                 <h1 id="heading">
                     Grow Better.<br>
@@ -46,22 +64,33 @@
                 </p>
 
                 <div class="features">
+
                     <span>🌾 Easy Farming</span>
+
                     <span>💧 Smart Irrigation</span>
+
                     <span>🌱 Healthy Crops</span>
+
                 </div>
+
             </div>
 
+
+            <!-- LOGIN CARD -->
             <div class="login-card">
 
                 <div class="card-icon">🌻</div>
 
-                <h2 id="welcome">Welcome Back!</h2>
+                <h2 id="welcome">
+                    Welcome Back!
+                </h2>
 
                 <p class="card-description" id="subtitle">
                     Sign in to manage your farm
                 </p>
 
+
+                <!-- LOGIN FORM -->
                 <form id="loginForm">
 
                     <label id="userLabel" for="username">
@@ -71,51 +100,84 @@
                     <input
                         type="text"
                         id="username"
+                        name="username"
                         placeholder="Enter your username"
+                        autocomplete="username"
                         required
                     >
+
 
                     <label id="passLabel" for="password">
                         Password
                     </label>
 
                     <div class="password-box">
+
                         <input
                             type="password"
                             id="password"
+                            name="password"
                             placeholder="Enter your password"
+                            autocomplete="current-password"
                             required
                         >
 
-                        <button type="button" id="togglePassword">
+                        <button
+                            type="button"
+                            id="togglePassword"
+                            aria-label="Show or hide password"
+                        >
                             Show
                         </button>
+
                     </div>
 
-                    <button type="submit" class="login-button" id="loginButton">
+
+                    <!-- LOGIN BUTTON -->
+                    <button
+                        type="submit"
+                        class="login-button"
+                        id="loginButton"
+                    >
                         Login to Harvestly →
                     </button>
 
                 </form>
 
+
+                <!-- CREATE ACCOUNT -->
                 <p class="signup-text">
-                    <span id="newUser">New to Harvestly?</span>
-                    <a href="#" id="signup">Create Account</a>
+
+                    <span id="newUser">
+                        New to Harvestly?
+                    </span>
+
+                    <a href="#" id="signup">
+                        Create Account
+                    </a>
+
                 </p>
+
 
                 <p class="secure-text">
                     🌿 Simple farming. Better living.
                 </p>
 
             </div>
+
         </section>
 
+
+        <!-- FOOTER -->
         <footer>
             © 2026 Harvestly | Smart Farming for Everyone
         </footer>
 
     </main>
 
+
+    <!-- JAVASCRIPT CONNECTION -->
     <script src="app.js"></script>
+
 </body>
 </html>
