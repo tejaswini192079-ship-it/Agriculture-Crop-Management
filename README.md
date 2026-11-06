@@ -1,91 +1,100 @@
-# 🌱 Harvestly – Farm Management Platform
+# 🌱 Harvestly – Smart Farm Management Platform
+
+<p align="center">
+  <strong>Grow Better. Harvest Smarter.</strong>
+</p>
+
+## 🌐 Live Website
+
+**[Visit Harvestly – Farm Management Platform](https://tejaswini192079-ship-it.github.io/Agriculture-Crop-Management/)**
 
 ## 📌 Project Overview
 
-Harvestly is a web-based Agriculture Crop Management Platform designed to help organize farm fields, monitor crop growth, and manage important farming activities in one place.
+Harvestly is a web-based Agriculture Crop Management Platform designed to help farmers organize their fields, monitor crop growth, and manage farming activities in one place.
 
-The platform provides a simple and user-friendly interface for viewing field information, tracking crop progress, and accessing farming-related assistance through a multilingual voice assistant.
+It provides a simple, colourful, and user-friendly interface for managing farm information and tracking important agricultural activities.
 
-## 🎯 Problem Statement
-
-Farmers often need to manage multiple fields, crops, irrigation activities, fertilizers, pest observations, and harvesting schedules. Keeping track of these activities can be difficult when information is scattered across different records.
-
-Harvestly aims to organize essential crop-management information through a single digital platform.
-
-## 🎯 Project Objectives
+## 🎯 Objectives
 
 - Organize farm and field information.
 - Display crop details and cultivation stages.
-- Track crop growth and harvest progress.
-- Provide a user-friendly dashboard.
-- Offer typed and voice-based farming assistance.
-- Support multiple languages to improve accessibility.
+- Monitor crop growth and harvest progress.
+- Manage irrigation, fertilizers, and pest observations.
+- Provide a simple and responsive dashboard.
+- Support multiple languages.
 
 ## ✨ Features
 
-- **Login Interface:** A simple demo login page.
-- **Farm Dashboard:** Displays farm-related information and summary cards.
-- **Field Management View:** Shows sample fields and their crops.
-- **Crop Progress Tracking:** Displays cultivation and harvest progress.
-- **Farming Assistance:** Allows users to type questions or use voice input.
-- **Multilingual Support:** Includes English, Telugu, Hindi, Tamil, Malayalam, and Kannada options.
-- **Responsive Design:** Designed to work across different screen sizes.
+- **Login Page:** Simple demo login interface.
+- **Dashboard:** Overview of farm activities.
+- **Field Management:** View sample fields and crops.
+- **Crop Tracking:** Monitor cultivation and harvest progress.
+- **Activity Management:** Record farming activities.
+- **Multilingual Support:** English, Hindi, Punjabi, Telugu, Malayalam, and Tamil.
+- **Responsive Design:** Supports desktop and mobile screens.
 
 ## 🛠️ Technologies Used
 
-- **HTML5** – Structure of the website.
-- **CSS3** – Styling, layout, and responsive design.
-- **JavaScript** – User interactions and dashboard functionality.
-- **Web Speech API** – Browser-supported speech recognition and text-to-speech features.
+- HTML5 – Website structure.
+- CSS3 – Design, styling, and responsive layout.
+- JavaScript – Website functionality and interactions.
 
 ## 📂 Project Structure
 
 ```text
-Harvestly/
+Agriculture-Crop-Management/
+│
 ├── index.html
-├── style.css
-├── script.js
+├── styles.css
+├── app.js
 └── README.md
 ```
 
-*Note: Update the filenames above if your actual CSS or JavaScript filenames are different.*
+## 📄 Source Code
+
+- [View HTML – index.html](index.html)
+- [View CSS – styles.css](styles.css)
+- [View JavaScript – app.js](app.js)
 
 ## 🚀 How to Run the Project
 
-1. Open the project repository on GitHub.
-2. Open the published website using the project link below.
-3. Enter a username and password on the demo login page.
-4. Explore the dashboard and crop information.
-5. Try the typed or voice assistant and available language options.
+### Option 1: Run Online
 
-## 🌐 Live Website
+1. Open the [Harvestly Live Website](https://tejaswini192079-ship-it.github.io/Agriculture-Crop-Management/).
+2. Enter a username and password.
+3. Click the login button.
+4. Explore the dashboard and available features.
 
-Add your published GitHub Pages URL here:
+### Option 2: Run on Your Computer
 
-`## 🌐 Live Website
+1. Download or clone this repository.
+2. Keep `index.html`, `styles.css`, and `app.js` in the same folder.
+3. Open `index.html` in your browser.
+4. Explore the website.
 
-[Visit Harvestly – Farm Management Platform](https://tejaswini192079-ship-it.github.io/Agriculture-Crop-Management/)`
+## ⚠️ Project Limitations
+
+This is a front-end demonstration. Login is not secure authentication, and sample farm information is not connected to a permanent database.
 
 ## 🔮 Future Enhancements
 
 - Secure user authentication.
-- Database integration for saving farm records.
-- Weather forecasts and crop recommendations.
-- Real-time irrigation and crop monitoring.
-- Pest and disease detection assistance.
-- Personalized farming recommendations.
-
-## ⚠️ Project Limitations
-
-This project is a front-end demonstration. The login interface is not secure authentication, and sample farm information may not be saved permanently. The voice assistant depends on browser and device speech capabilities.
+- Database integration.
+- Live weather updates.
+- Crop disease detection.
+- Smart irrigation recommendations.
+- Real-time farm monitoring.
 
 ## 👨‍💻 Project Information
 
-- **Project Name:** Harvestly – Farm Management Platform
+- **Project:** Harvestly – Farm Management Platform
 - **Course:** CSE326
 - **Project Type:** Web Development
-- **Developed Using:** HTML, CSS, and JavaScript
+- **Technologies:** HTML, CSS, JavaScript
+- **Hosting:** GitHub Pages
 
 ---
 
-*Harvestly – Organizing farm activities for smarter crop management.* 🌾
+<p align="center">
+  🌾 <strong>Harvestly – Organizing farm activities for smarter crop management.</strong>
+</p>
