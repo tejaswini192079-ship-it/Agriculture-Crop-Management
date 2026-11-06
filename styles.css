@@ -246,3 +246,6 @@ footer {
         padding: 25px 20px;
     }
 }
+.login-page {
+    background: red !important;
+}
