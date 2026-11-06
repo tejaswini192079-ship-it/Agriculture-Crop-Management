@@ -1,4 +1,3 @@
-
 const translations = {
     en: {
         tag: "🌱 YOUR FARM, OUR CARE",
