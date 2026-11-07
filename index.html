@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#14532d">
+<meta name="description" content="Harvestly - a simple multilingual farm management platform for fields, crops, cultivation stages, irrigation, fertilizer, pests and harvest.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%B1%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.pexels.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&family=Noto+Sans+Tamil:wght@400;600;700&display=swap" rel="stylesheet">
+<title>Harvestly | Smart Farming. Simple Living.</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= LOGIN PAGE ================= -->
+<section id="loginPage" class="login">
+  <div class="login-bg on" id="loginBg"></div>
+  <div class="login-bg" id="loginBg2"></div>
+  <div class="login-overlay"></div>
+
+  <div class="lang-bar" id="langBarLogin"></div>
+
+  <div class="login-wrap">
+    <div class="hero">
+      <div class="logo">🌱 <b>Harvestly</b></div>
+      <p class="tag" data-i="tag"></p>
+      <h1 data-i="heroTitle"></h1>
+      <p class="sub" data-i="heroSub"></p>
+      <div class="pills">
+        <span class="pill p1">🌱 <i data-i="f1"></i></span>
+        <span class="pill p2">💧 <i data-i="f2"></i></span>
+        <span class="pill p3">🌾 <i data-i="f3"></i></span>
+      </div>
+      <div class="trust">
+        <div><b>8</b><span data-i="t1"></span></div>
+        <div><b>3</b><span data-i="t2"></span></div>
+        <div><b>🔊</b><span data-i="t3"></span></div>
+      </div>
+      <div class="strip">
+        <div class="bub ph-rice"></div>
+        <div class="bub ph-wheat"></div>
+        <div class="bub ph-tomato"></div>
+        <div class="bub ph-cotton"></div>
+        <div class="bub ph-maize"></div>
+      </div>
+    </div>
+
+    <form class="card login-card" id="loginForm">
+      <div class="avatar">👨‍🌾</div>
+      <h2 data-i="signin"></h2>
+      <p class="muted" data-i="signSub"></p>
+      <label class="input"><span>👤</span><input id="uName" required data-ph="name" autocomplete="off"></label>
+      <label class="input"><span>🔒</span><input id="uPass" type="password" required data-ph="pass"></label>
+      <button class="btn big" type="submit"><span data-i="login"></span> →</button>
+      <p class="demo" data-i="demo"></p>
+      <button type="button" class="listen" data-listen="loginCard">🔊 <span data-i="listen"></span></button>
+    </form>
+  </div>
+</section>
+
+<!-- ================= APP ================= -->
+<section id="app" class="app hidden">
+  <aside class="side" id="side">
+    <div class="logo dark">🌱 <b>Harvestly</b></div>
+    <nav>
+      <a data-go="home" class="active"><em>🏠</em><span data-i="dash"></span></a>
+      <a data-go="fields"><em>🗺️</em><span data-i="fields"></span></a>
+      <a data-go="care"><em>💧</em><span data-i="acts"></span></a>
+      <a data-go="harvest"><em>🌾</em><span data-i="harvest"></span></a>
+    </nav>
+    <button class="btn out" id="logout">↪ <span data-i="logout"></span></button>
+  </aside>
+
+  <main class="main">
+    <header class="top">
+      <button class="burger" id="burger" aria-label="Menu">☰</button>
+      <div>
+        <h2><span data-i="welcome"></span>, <span id="who"></span> 🌿</h2>
+        <small class="muted" id="today"></small>
+      </div>
+      <div class="lang-bar compact" id="langBarApp"></div>
+    </header>
+
+    <!-- HOME -->
+    <div class="view" id="v-home">
+      <div class="banner ph-farm1">
+        <div class="banner-txt">
+          <span class="eyebrow" data-i="tag"></span>
+          <h2 data-i="bannerTitle"></h2>
+          <p data-i="bannerSub"></p>
+          <button class="btn light" id="bannerBtn"><span data-i="bannerBtn"></span> →</button>
+        </div>
+        <div class="banner-pics">
+          <div class="bp ph-tomato"></div>
+          <div class="bp ph-rice"></div>
+          <div class="bp ph-wheat"></div>
+        </div>
+      </div>
+
+      <h3 class="sec" data-i="snap"></h3>
+      <div class="stats" id="stats"></div>
+      <div class="score reveal" id="score"></div>
+
+      <div class="rowhead"><h3 class="sec" data-i="yourFields"></h3><button class="btn" id="viewAll"><span data-i="fields"></span> →</button></div>
+      <div class="grid" id="homeFields"></div>
+
+      <h3 class="sec" data-i="galTitle"></h3>
+      <div class="gallery">
+        <div class="gcard ph-rice reveal" data-crop="rice"><b data-i="c_rice"></b></div>
+        <div class="gcard ph-wheat reveal" data-crop="wheat"><b data-i="c_wheat"></b></div>
+        <div class="gcard ph-tomato reveal" data-crop="tomato"><b data-i="c_tomato"></b></div>
+        <div class="gcard ph-cotton reveal" data-crop="cotton"><b data-i="c_cotton"></b></div>
+        <div class="gcard ph-maize reveal" data-crop="maize"><b data-i="c_maize"></b></div>
+        <div class="gcard ph-sugarcane reveal" data-crop="sugarcane"><b data-i="c_sugarcane"></b></div>
+        <div class="gcard ph-chilli reveal" data-crop="chilli"><b data-i="c_chilli"></b></div>
+        <div class="gcard ph-banana reveal" data-crop="banana"><b data-i="c_banana"></b></div>
+      </div>
+
+      <h3 class="sec" data-i="howTitle"></h3>
+      <div class="how">
+        <div class="step reveal"><div class="sphoto ph-farm4"><i class="num">1</i></div><p data-i="how1"></p></div>
+        <div class="step reveal"><div class="sphoto ph-irrig"><i class="num">2</i></div><p data-i="how2"></p></div>
+        <div class="step reveal"><div class="sphoto ph-harvest"><i class="num">3</i></div><p data-i="how3"></p></div>
+      </div>
+
+      <h3 class="sec" data-i="whyTitle"></h3>
+      <div class="why">
+        <div class="wtile w1 reveal"><div class="wic">🗣️</div><b data-i="why1"></b></div>
+        <div class="wtile w2 reveal"><div class="wic">🔊</div><b data-i="why2"></b></div>
+        <div class="wtile w3 reveal"><div class="wic">🖼️</div><b data-i="why3"></b></div>
+        <div class="wtile w4 reveal"><div class="wic">📱</div><b data-i="why4"></b></div>
+      </div>
+
+      <h3 class="sec" data-i="tipsTitle"></h3>
+      <div class="tips">
+        <div class="tip t1 reveal"><span>💧</span><p data-i="tip1"></p></div>
+        <div class="tip t2 reveal"><span>🔍</span><p data-i="tip2"></p></div>
+        <div class="tip t3 reveal"><span>🌿</span><p data-i="tip3"></p></div>
+      </div>
+    </div>
+
+    <!-- FIELDS -->
+    <div class="view hidden" id="v-fields">
+      <div class="vbanner ph-farm2"><div><h2 data-i="yourFields"></h2><p data-i="fieldsSub"></p></div></div>
+      <div class="row toolbar">
+        <div class="filters" id="filters"></div>
+        <button class="btn" id="openAdd">＋ <span data-i="addField"></span></button>
+      </div>
+      <div class="grid" id="fieldList"></div>
+    </div>
+
+    <!-- FIELD DETAIL (opens when a field is tapped) -->
+    <div class="view hidden" id="v-detail"><div id="detail"></div></div>
+
+    <!-- CARE -->
+    <div class="view hidden" id="v-care">
+      <div class="vbanner ph-farm3"><div><h2 data-i="acts"></h2><p data-i="careSub"></p></div></div>
+      <div class="care-grid">
+        <div class="care ph-irrig" data-type="irrig"><div class="ic">💧</div><h4 data-i="irrig"></h4><p data-i="irrigD"></p><button class="btn light">＋ <span data-i="add"></span></button></div>
+        <div class="care ph-fert" data-type="fert"><div class="ic">🌿</div><h4 data-i="fert"></h4><p data-i="fertD"></p><button class="btn light">＋ <span data-i="add"></span></button></div>
+        <div class="care ph-pest" data-type="pest"><div class="ic">🐛</div><h4 data-i="pest"></h4><p data-i="pestD"></p><button class="btn light">＋ <span data-i="add"></span></button></div>
+      </div>
+      <h3 class="sec" data-i="history"></h3>
+      <div class="card" id="history"></div>
+    </div>
+
+    <!-- HARVEST -->
+    <div class="view hidden" id="v-harvest">
+      <div class="vbanner ph-harvest"><div><h2>🌾 <span data-i="harvestTitle"></span></h2><p data-i="harvestSub"></p></div></div>
+      <div class="grid" id="harvestList"></div>
+    </div>
+
+    <footer class="foot">
+      <div class="foot-logo">🌱 <b>Harvestly</b></div>
+      <p data-i="footTag"></p>
+      <small>© 2026 Harvestly · Smart Farming. Simple Living. · Photos: <a href="https://www.pexels.com" target="_blank" rel="noopener">Pexels</a></small>
+    </footer>
+  </main>
+</section>
+
+<!-- ================= MODALS ================= -->
+<div class="modal hidden" id="mField">
+  <form class="card m-card" id="fieldForm">
+    <button type="button" class="x" data-close>✕</button>
+    <h3 data-i="addField"></h3>
+    <label data-i="fname"></label>
+    <input id="fName" required>
+    <label data-i="crop"></label>
+    <select id="fCrop"></select>
+    <label data-i="area"></label>
+    <input id="fArea" type="number" step="0.1" min="0.1" required>
+    <label data-i="stage"></label>
+    <select id="fStage"></select>
+    <button class="btn big" type="submit" data-i="save"></button>
+  </form>
+</div>
+
+<div class="modal hidden" id="mCare">
+  <form class="card m-card" id="careForm">
+    <button type="button" class="x" data-close>✕</button>
+    <h3 id="careTitle"></h3>
+    <label data-i="choose"></label>
+    <select id="cField"></select>
+    <label data-i="note"></label>
+    <input id="cNote" required>
+    <button class="btn big" type="submit" data-i="save"></button>
+  </form>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="script.js"></script>
+<script src="chatbot.js"></script>
+</body>
+</html>
